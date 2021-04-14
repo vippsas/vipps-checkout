@@ -14,7 +14,6 @@ For more information about this product, please see
 * [Vipps Checkout API Checklist](vipps-ecom-api-checklist.md): For direct and POS integrations.
 * [Frequently Asked Questions](vipps-ecom-api-faq.md): Questions and answers.¨
 
-You can preusre the API reference documentation as 
-
+You can peruse the API reference documentation here: 
 
 * [Swagger](https://vippsas.github.io/vipps-checkout/)
