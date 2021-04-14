@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  title: checkout-backend.API
+  version: v1
+servers:
+  - url: https://apitest.vipps.no/checkout
+  - url: https://api.vipps.no/checkout
+paths:
+  /Checkout:
+    get:
+      tags:
+        - Checkout
+      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
+      responses:
+        '200':
+          description: ''
+  /Healthcheck:
+    get:
+      tags:
+        - Healthcheck
+      summary: Check the health of the app.
+      responses:
+        '200':
+          description: Health OK!
+  '/login/{sessionId}':
+    get:
+      tags:
+        - Login
+      summary: This endpoint is polled on by the checkout-frontend application while the user completes the login flow in another tab.
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the CustomerData object for the given session id.
+        '204':
+          description: 'The specified session id is recognized, but no data is available yet (login flow not yet completed by user).'
+        '404':
+          description: The specified session id is unknown.
+  /login/redirect:
+    get:
+      tags:
+        - Login
+      summary: "Redirect endpoint seen by user after login. Authenticates to the Login API\r\non behalf of the user, and fetches the required user information."
+      responses:
+        '200':
+          description: Login successful or failed. User will be asked to close the tab and go back to the original page.
+components: { }
