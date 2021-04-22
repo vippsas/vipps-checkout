@@ -7,7 +7,7 @@ Preliminary documentation. Subject to change
 - [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
 - [Example integration](#example-integration)
-- [Call by call flow](#call-by-call-flow)
+- [Webhooks](#webhooks)
 
 # Flow diagram
 
@@ -38,8 +38,9 @@ A minimal example with example values:
 {
   "merchantInfo": {
     "merchantSerialNumber": "123456",
-    "callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update",
-    "fallBack": "https://example.com/vipps/fallback-result-page/order123abc"
+    "callbackPrefix":"https://example.com/vipps/callbacks-for-ecom-payment-update",
+    "checkOutWebhookUrl": "https://example.com/vipps",
+    "fallBackUrl": "https://example.com/vipps/fallback-result-page/order123abc"
   },
   "transaction": {
     "orderId": "order123abc",
@@ -53,7 +54,9 @@ Example response:
 
 ```json
 {
-  "token": "fjepo1393_31f01f109d213"
+  "sessionID": "fjepo1393_31f01f109d213",
+  "checkoutFrontendUrl": "https://vippscheckoutprod.z6.web.core.windows.net/"
+  "pollingUrl": "https://api.vipps.no/checkout/fjepo1393_31f01f109d213"
 }
 ```
 
@@ -97,6 +100,33 @@ Then set up the iframe to host the Vipps Checkout in your frontend
 
 Insert the token into the iframe and display it to the Customer. 
 
-The user then completes the session in the Iframe and 
+The user then completes the session in the Iframe and gets redirected back to the fallBackUrl if applicable.
 
-# Call by call flow
+Vipps Checkout will then send a webhook to your defined URL. 
+
+The webhook request will include all the details generated from the Checkout session
+
+Example
+
+```json
+{
+  "transaction": {
+    "amount": "20000",
+    "status":"Reserve",
+    "moretoCome": "https://example.com/vipps",
+  },
+  "customer": {
+    "name": "Ola Nordmann",
+    "email": "example@example.com,"
+  },
+  "shipping": {
+      "example": "example" 
+  }
+}
+
+```
+# Webhooks
+
+Our webhooks will have the following policy with the following backoff routine: --------
+
+We strongly recomend polling to ensure that you are not critically impacted by a missing webhook on 
