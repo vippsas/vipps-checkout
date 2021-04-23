@@ -23,7 +23,7 @@ The standard flow for a Vipps Checkout consists of
 
 # Example integration
 
-First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server server request to set up a Checkout session. An example implementation can be found [here](www.example.com) 
+First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server server request to set up a Checkout session. An example implementation can be found [in the example-integration](#example-integration) 
 
 Request a session token acording to your needs, the full specification of the Checkout session endpoint can be found [here](https://fantastic-fiesta-211ff2ad.pages.github.io/#/Checkout/get_Checkout)
 
@@ -104,24 +104,88 @@ The user then completes the session in the Iframe and gets redirected back to th
 
 Vipps Checkout will then send a webhook to your defined URL. 
 
-The webhook request will include all the details generated from the Checkout session
+The webhook request will include all the details generated from the Checkout session. 
 
-Example
+Example of a standard Checkout session result where the account is set for automatic capture.
 
 ```json
 {
-  "transaction": {
-    "amount": "20000",
-    "status":"Reserve",
-    "moretoCome": "https://example.com/vipps",
+  "userinfo": {
+    "sub": "c06c4afe-d9e1-4c5d-939a-177d752a0944",
+    "birthdate": "1815-12-10",
+    "email": "user@example.com",
+    "email_verified": true,
+    "nin": "10121550047",
+    "name": "Ada Lovelace",
+    "given_name": "Ada",
+    "family_name": "Lovelace",
+    "sid": "7d78a726-af92-499e-b857-de263ef9a969",
+    "phone_number": "4712345678",
+    "address": {
+        "street_address": "Suburbia 23",
+        "postal_code": "2101",
+        "region": "OSLO",
+        "country": "NO",
+        "formatted": "Suburbia 23\\n2101 OSLO\\nNO",
+        "address_type": "home"
+    },
+    "other_addresses": [
+        {
+            "street_address": "Fancy Office Street 2",
+            "postal_code": "0218",
+            "region": "OSLO",
+            "country": "NO",
+            "formatted": "Fancy Office Street 2\\n0218 OSLO\\nNO",
+            "address_type": "work"
+        },
+        {
+            "street_address": "Summer House Lane 14",
+            "postal_code": "1452",
+            "region": "OSLO",
+            "country": "NO",
+            "formatted": "Summer House Lane 14\\n1452 OSLO\\nNO",
+            "address_type": "other"
+        }
+    ],
+    "accounts": [
+        {
+            "account_name": "My savings",
+            "account_number": "12064590675",
+            "bank_name": "My bank"
+        }
+    ]
+}
   },
-  "customer": {
-    "name": "Ola Nordmann",
-    "email": "example@example.com,"
-  },
-  "shipping": {
-      "example": "example" 
-  }
+  "Transaction": {
+    "aggregate": {
+        "authorizedAmount": {
+        "currency": "NOK",
+        "type": "PURCHASE",
+        "value": 1000
+        },
+        "capturedAmount": {
+        "currency": "NOK",
+        "type": "PURCHASE",
+        "value": 1000
+        },
+    },
+    "amount": {
+        "currency": "NOK",
+        "type": "PURCHASE",
+        "value": 1000
+    },
+    "authorisationType": "FINAL_AUTH",
+    "authorised": true,
+    "autoCapture": true,
+    "customerInteraction": "CUSTOMER_NOT_PRESENT",
+    "merchantAccount": "string",
+    "paymentMethod": {
+        "type": "WALLET",
+    },
+    "redirectUrl": "https://landing.vipps.no?token=abc123",
+    "reference": "reference-string",
+    "returnUrl": "https://example.io/redirect?orderId=abcc123",
+}
 }
 
 ```
@@ -129,4 +193,4 @@ Example
 
 Our webhooks will have the following policy with the following backoff routine: --------
 
-We strongly recomend polling to ensure that you are not critically impacted by a missing webhook on 
+We strongly recomend polling to ensure that you are not critically impacted by a missing webhook. For example due to intermediate network issues. The full payload of the polling endpoint can be found at work pending... [here](https://github.com/vippsas/vipps-epayments-api/blob/main/merchant-payments.v1.yml)
