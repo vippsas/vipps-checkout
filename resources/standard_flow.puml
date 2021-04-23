@@ -7,6 +7,11 @@ participant Vipps
 
 Merchant -> Vipps : Define Webhook and Redirect urls
 
+note right
+This is done using the portal, any value sent in the session
+request will override the default choices
+end note
+
 User -> Merchant : Start shopping session, proceed to Checkout
 Merchant -> Vipps : Start checkout session
 
@@ -19,6 +24,9 @@ end note
 Vipps --> Merchant : Return Checkout session token
 activate Vipps_frontend
 Merchant ->o Vipps_frontend: Insert checkout session token
+
+activate Merchant
+merchant -> Vipps : Poll on OrderID given in session setup
 Vipps_frontend -> User : Display session
 User -> Vipps_frontend : Complete session
 Vipps_frontend -> Vipps : Process payment
@@ -29,7 +37,9 @@ Vipps_frontend ->o Merchant : Redirect to merchant defined URL
 end
 deactivate Vipps_frontend
 
-Merchant -> Vipps: Start polling on session ID
+Merchant -> Vipps: receive polling result on orderID
+deactivate Merchant
+
 Vipps --> Merchant : Session result
 
 note right
