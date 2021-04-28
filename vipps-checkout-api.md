@@ -20,7 +20,6 @@ The standard flow for a Vipps Checkout consists of
 
 ![Checkout flow](resources/standard_flow.png)
 
-
 # Example integration
 
 First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server server request to set up a Checkout session. An example implementation can be found [in the example-integration](#example-integration) 
@@ -30,23 +29,25 @@ Request a session token acording to your needs, the full specification of the Ch
 A minimal example with example values:
 
 ```json
-
---header 'client_id: Insert client_ID value' 
---header 'client_secret: Insert client_ID value' 
---header 'Ocp-Apim-Subscription-Key: Insert Ocp-Apim-Subscription-Key value' 
-
 {
-  "merchantInfo": {
-    "merchantSerialNumber": "123456",
-    "callbackPrefix":"https://example.com/vipps/callbacks-for-ecom-payment-update",
-    "checkOutWebhookUrl": "https://example.com/vipps",
-    "fallBackUrl": "https://example.com/vipps/fallback-result-page/order123abc"
-  },
-  "transaction": {
-    "orderId": "order123abc",
-    "amount": 20000,
+    "authInfo": {
+        "clientId": "dddd",
+        "clientSecret": "ss",
+        "ocpApimSubscriptionKey": "ss"
+    },
+    "merchantInfo": {
+        "merchantSerialNumber": "123456",
+        "callbackPrefix":"https://example.com/vipps/callbacks-for-ecom-payment-update",
+        "checkOutWebhookUrl": "https://example.com/vipps",
+        "fallBackUrl": "https://example.com/vipps/fallback-result-page/order123abc"
+    },
+    "amount": {
+        "currency": "NOK",
+        "amount": 20000
+    },
+    "scopes": "",
+    "reference" : "31gf1g413121",
     "transactionText": "One pair of Vipps socks"
-  }
 }
 ```
 
@@ -106,10 +107,15 @@ Vipps Checkout will then send a webhook to your defined URL.
 
 The webhook request will include all the details generated from the Checkout session. 
 
-Example of a standard Checkout session result where the account is set for automatic capture.
+Example of a standard Checkout session result where the account is set for direct capture.
 
 ```json
+
 {
+    "merchantAccount": "string",
+    "redirectUrl": "https://landing.vipps.no?token=abc123",
+    "reference": "reference-string",
+    "returnUrl": "https://example.io/redirect?orderId=abcc123",
   "userinfo": {
     "sub": "c06c4afe-d9e1-4c5d-939a-177d752a0944",
     "birthdate": "1815-12-10",
@@ -128,34 +134,8 @@ Example of a standard Checkout session result where the account is set for autom
         "country": "NO",
         "formatted": "Suburbia 23\\n2101 OSLO\\nNO",
         "address_type": "home"
+        }
     },
-    "other_addresses": [
-        {
-            "street_address": "Fancy Office Street 2",
-            "postal_code": "0218",
-            "region": "OSLO",
-            "country": "NO",
-            "formatted": "Fancy Office Street 2\\n0218 OSLO\\nNO",
-            "address_type": "work"
-        },
-        {
-            "street_address": "Summer House Lane 14",
-            "postal_code": "1452",
-            "region": "OSLO",
-            "country": "NO",
-            "formatted": "Summer House Lane 14\\n1452 OSLO\\nNO",
-            "address_type": "other"
-        }
-    ],
-    "accounts": [
-        {
-            "account_name": "My savings",
-            "account_number": "12064590675",
-            "bank_name": "My bank"
-        }
-    ]
-}
-  },
   "Transaction": {
     "aggregate": {
         "authorizedAmount": {
@@ -176,21 +156,17 @@ Example of a standard Checkout session result where the account is set for autom
     },
     "authorisationType": "FINAL_AUTH",
     "authorised": true,
-    "autoCapture": true,
+    "directCapture": true,
     "customerInteraction": "CUSTOMER_NOT_PRESENT",
-    "merchantAccount": "string",
     "paymentMethod": {
         "type": "WALLET",
-    },
-    "redirectUrl": "https://landing.vipps.no?token=abc123",
-    "reference": "reference-string",
-    "returnUrl": "https://example.io/redirect?orderId=abcc123",
+    }
+  }
 }
-}
-
 ```
+
 # Webhooks
 
 Our webhooks will have the following policy with the following backoff routine: --------
 
-We strongly recomend polling to ensure that you are not critically impacted by a missing webhook. For example due to intermediate network issues. The full payload of the polling endpoint can be found at work pending... [here](https://github.com/vippsas/vipps-epayments-api/blob/main/merchant-payments.v1.yml)
+If you need to find 
