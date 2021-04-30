@@ -6,14 +6,6 @@ servers:
   - url: https://apitest.vipps.no/checkout
   - url: https://api.vipps.no/checkout
 paths:
-  /Checkout:
-    get:
-      tags:
-        - Checkout
-      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
-      responses:
-        '200':
-          description: ''
   /Healthcheck:
     get:
       tags:
@@ -48,4 +40,127 @@ paths:
       responses:
         '200':
           description: Login successful or failed. User will be asked to close the tab and go back to the original page.
-components: { }
+  '/Payment/{sessionId}':
+    post:
+      tags:
+        - Payment
+      summary: ''
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutPaymentInitiationRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutPaymentInitiationRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CheckoutPaymentInitiationRequestDto'
+      responses:
+        '200':
+          description: Payment initiated successfully.
+        '400':
+          description: 'The specified session id is known, but the payload is invalid.'
+        '404':
+          description: The specified session id is unknown.
+        '409':
+          description: 'The specified session id is known, but not in a state where a payment can be initiated.'
+  /session:
+    post:
+      tags:
+        - Session
+      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDto'
+      responses:
+        '200':
+          description: ''
+components:
+  schemas:
+    CheckoutPaymentInitiationRequestDto:
+      type: object
+      properties:
+        PhoneNumber:
+          type: string
+          nullable: true
+        SkipLandingPage:
+          type: boolean
+      additionalProperties: false
+    CheckoutSessionInitiationRequestDto:
+      type: object
+      properties:
+        AuthInfo:
+          $ref: '#/components/schemas/MerchantAuthInfo'
+        CustomerInfo:
+          $ref: '#/components/schemas/PaymentCustomerInfo'
+        MerchantInfo:
+          $ref: '#/components/schemas/PaymentMerchantInfo'
+        Transaction:
+          $ref: '#/components/schemas/PaymentTransaction'
+      additionalProperties: false
+    MerchantAuthInfo:
+      type: object
+      properties:
+        ClientId:
+          type: string
+          nullable: true
+        ClientSecret:
+          type: string
+          nullable: true
+        OcpApimSubscriptionKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentCustomerInfo:
+      type: object
+      properties:
+        MobileNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentMerchantInfo:
+      type: object
+      properties:
+        MerchantSerialNumber:
+          type: string
+          nullable: true
+        CallbackPrefix:
+          type: string
+          nullable: true
+        FallBack:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentTransaction:
+      type: object
+      properties:
+        Amount:
+          type: integer
+          format: int32
+        OrderId:
+          type: string
+          nullable: true
+        TimeStamp:
+          type: string
+          nullable: true
+        TransactionText:
+          type: string
+          nullable: true
+        SkipLandingPage:
+          type: boolean
+      additionalProperties: false

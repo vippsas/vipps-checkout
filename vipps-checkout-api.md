@@ -45,7 +45,7 @@ A minimal example with example values:
         "currency": "NOK",
         "amount": 20000
     },
-    "scopes": "",
+    "scope": "",
     "reference" : "31gf1g413121",
     "transactionText": "One pair of Vipps socks"
 }
@@ -56,7 +56,7 @@ Example response:
 ```json
 {
   "sessionID": "fjepo1393_31f01f109d213",
-  "checkoutFrontendUrl": "https://vippscheckoutprod.z6.web.core.windows.net/"
+  "checkoutFrontendUrl": "https://vippscheckoutprod.z6.web.core.windows.net/",
   "pollingUrl": "https://api.vipps.no/checkout/fjepo1393_31f01f109d213"
 }
 ```
@@ -168,5 +168,3 @@ Example of a standard Checkout session result where the account is set for direc
 # Webhooks
 
 Our webhooks will have the following policy with the following backoff routine: --------
-
-If you need to find 

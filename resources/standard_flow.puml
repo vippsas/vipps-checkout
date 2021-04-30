@@ -21,9 +21,9 @@ taking precedence over any standard configuration
 values  
 end note
 
-Vipps --> Merchant : Return Checkout session token
+Vipps --> Merchant : Return Checkout session id
 activate Vipps_frontend
-Merchant ->o Vipps_frontend: Insert checkout session token
+Merchant ->o Vipps_frontend: Insert checkout session id
 
 activate Merchant
 merchant -> Vipps : Poll on OrderID given in session setup
