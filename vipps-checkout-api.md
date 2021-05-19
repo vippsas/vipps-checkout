@@ -120,8 +120,7 @@ Vipps demands that every notificaiton Webhook is responded to with a HTTP 202 re
 
 ## Polling integration
 
-Vipps Checkout will expose a polling enpoint as described in 
-
+Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/).
 
 ## Example of polling response and Webhook notification
 
