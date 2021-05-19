@@ -1,6 +1,6 @@
 # Vipps Checkout guide
 
-VipVipps Checkout is designed to be a low friction low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
+Vipps Checkout is designed to be a low friction low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
 Preliminary documentation. Subject to change
 
@@ -8,6 +8,8 @@ Preliminary documentation. Subject to change
 - [Flow diagram](#flow-diagram)
 - [Example integration](#example-integration)
 - [System integration guidelines](#system-integration-guidelines)
+  - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
+    - [System information guidelines](#system-information-guidelines)
   - [Webhook integration](#webhook-integration)
   - [Polling integration](#polling-integration)
   - [Example of polling response and Webhook notification](#example-of-polling-response-and-webhook-notification)
@@ -109,7 +111,22 @@ The user then completes the session in the Iframe and gets redirected back to th
 
 # System integration guidelines
 
-Vipps checkout 
+## Integration partner and plugin guidelines
+Vipps Checkout supports Partner key based authentication as described in our [ecom-api](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys)
+
+In the initiation request use your own credentials and send the Merchant-Serial-Number as described. Resulting in an on behalf of authentication if the Merchant as a valid connection to your solution.
+
+### System information guidelines
+In order to fully utilize the conditions and support of the Vipps platform it is critical that you include all information regarding your system in the initiation headers as per the following example
+
+```
+Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
+Vipps-System-Version: 3.1.2
+Vipps-System-Plugin-Name: Point Of Sale Excellence
+Vipps-System-Plugin-Version: 4.5.6
+Content-Type: application/json
+```
+
 
 ## Webhook integration
 Vipps Checkout will then send a Webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification),The Webhook request will include all the details generated from the Checkout session. 
@@ -120,7 +137,11 @@ Vipps demands that every notificaiton Webhook is responded to with a HTTP 202 re
 
 ## Polling integration
 
-Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/).
+Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/). 
+
+```
+It is very highly recommended to base your system combines a Webhook and Polling based integration, this combination leads the a lot of potential redirect edge cases being seamlessly leading to a better customer experience
+```
 
 ## Example of polling response and Webhook notification
 

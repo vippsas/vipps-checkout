@@ -33,13 +33,6 @@ paths:
       responses:
         '200':
           description: ''
-    get:
-      tags:
-        - Healthcheck
-      summary: Check the health of the app.
-      responses:
-        '200':
-          description: Health OK!
   /session/{sessionId}:
     get:
       tags:
