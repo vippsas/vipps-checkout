@@ -1,13 +1,18 @@
 # Vipps Checkout guide
 
-VipVipps Checkout is designed to be a low friction low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
+Vipps Checkout is designed to be a low friction low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
 Preliminary documentation. Subject to change
 
 - [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
 - [Example integration](#example-integration)
-- [Webhooks](#webhooks)
+- [System integration guidelines](#system-integration-guidelines)
+  - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
+    - [System information guidelines](#system-information-guidelines)
+  - [Polling integration](#polling-integration)
+  - [Webhook integration](#webhook-integration)
+  - [Example of polling response and Webhook notification](#example-of-polling-response-and-webhook-notification)
 
 # Flow diagram
 
@@ -24,7 +29,7 @@ The standard flow for a Vipps Checkout consists of
 
 First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server server request to set up a Checkout session. An example implementation can be found [in the example-integration](#example-integration) 
 
-Request a session token acording to your needs, the full specification of the Checkout session endpoint can be found [here](https://fantastic-fiesta-211ff2ad.pages.github.io/#/Checkout/get_Checkout)
+Request a session token according to your needs, the full specification of the Checkout session endpoint can be found [here](https://fantastic-fiesta-211ff2ad.pages.github.io/#/Checkout/get_Checkout)
 
 A minimal example with example values:
 
@@ -41,7 +46,7 @@ A minimal example with example values:
         "checkOutWebhookUrl": "https://example.com/vipps",
         "fallBackUrl": "https://example.com/vipps/fallback-result-page/order123abc"
     },
-    "amount": {
+    "transaction": {
         "currency": "NOK",
         "amount": 20000
     },
@@ -55,12 +60,13 @@ Example response:
 
 ```json
 {
-  "sessionID": "fjepo1393_31f01f109d213",
-  "checkoutFrontendUrl": "https://vippscheckoutprod.z6.web.core.windows.net/",
+  "sessionId": "fjepo1393_31f01f109d213",
+  "checkoutFrontendUrl": "https://vippscheckout.vipps.no", 
   "pollingUrl": "https://api.vipps.no/checkout/fjepo1393_31f01f109d213"
 }
 ```
 
+*special note:* Do not hard code the URLs as these are subject to change for version bump at any time.
 
 Then set up the iframe to host the Vipps Checkout in your frontend
 
@@ -103,19 +109,49 @@ Insert the token into the iframe and display it to the Customer.
 
 The user then completes the session in the Iframe and gets redirected back to the fallBackUrl if applicable.
 
-Vipps Checkout will then send a webhook to your defined URL. 
+# System integration guidelines
 
-The webhook request will include all the details generated from the Checkout session. 
+## Integration partner and plugin guidelines
+Vipps Checkout supports Partner key based authentication as described in our [ecom-api](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys)
+
+In the initiation request use your own credentials and send the Merchant-Serial-Number as described. Resulting in an on behalf of authentication if the Merchant as a valid connection to your solution.
+
+### System information guidelines
+In order to fully utilize the conditions and support of the Vipps platform it is critical that you include all information regarding your system in the initiation headers as per the following example
+
+```
+Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
+Vipps-System-Version: 3.1.2
+Vipps-System-Plugin-Name: Point Of Sale Excellence
+Vipps-System-Plugin-Version: 4.5.6
+Content-Type: application/json
+```
+
+## Polling integration
+
+Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/). 
+
+```
+It is very highly recommended to base your system combines a Webhook and Polling based integration, this combination leads the a lot of potential redirect edge cases being seamlessly leading to a better customer experience
+```
+
+## Webhook integration
+Vipps Checkout will then send a Webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification). The Webhook request will include all the details generated from the Checkout session. 
 
 Example of a standard Checkout session result where the account is set for direct capture.
+
+Vipps demands that every notification Webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original Webhook notification. 
+
+
+## Example of polling response and Webhook notification
 
 ```json
 
 {
-    "merchantAccount": "string",
-    "redirectUrl": "https://landing.vipps.no?token=abc123",
-    "reference": "reference-string",
-    "returnUrl": "https://example.io/redirect?orderId=abcc123",
+  "merchantAccount": "string",
+  "redirectUrl": "https://landing.vipps.no?token=abc123",
+  "reference": "reference-string",
+  "returnUrl": "https://example.io/redirect?orderId=abcc123",
   "userinfo": {
     "sub": "c06c4afe-d9e1-4c5d-939a-177d752a0944",
     "birthdate": "1815-12-10",
@@ -128,43 +164,39 @@ Example of a standard Checkout session result where the account is set for direc
     "sid": "7d78a726-af92-499e-b857-de263ef9a969",
     "phone_number": "4712345678",
     "address": {
-        "street_address": "Suburbia 23",
-        "postal_code": "2101",
-        "region": "OSLO",
-        "country": "NO",
-        "formatted": "Suburbia 23\\n2101 OSLO\\nNO",
-        "address_type": "home"
-        }
-    },
+      "street_address": "Suburbia 23",
+      "postal_code": "2101",
+      "region": "OSLO",
+      "country": "NO",
+      "formatted": "Suburbia 23\\n2101 OSLO\\nNO",
+      "address_type": "home"
+    }
+  },
   "Transaction": {
     "aggregate": {
-        "authorizedAmount": {
+      "authorizedAmount": {
         "currency": "NOK",
         "type": "PURCHASE",
         "value": 1000
-        },
-        "capturedAmount": {
+      },
+      "capturedAmount": {
         "currency": "NOK",
         "type": "PURCHASE",
         "value": 1000
-        },
+      },
     },
     "amount": {
-        "currency": "NOK",
-        "type": "PURCHASE",
-        "value": 1000
+      "currency": "NOK",
+      "type": "PURCHASE",
+      "value": 1000
     },
     "authorisationType": "FINAL_AUTH",
     "authorised": true,
     "directCapture": true,
-    "customerInteraction": "CUSTOMER_NOT_PRESENT",
     "paymentMethod": {
-        "type": "WALLET",
+      "type": "WALLET",
     }
   }
 }
 ```
 
-# Webhooks
-
-Our webhooks will have the following policy with the following backoff routine: --------
