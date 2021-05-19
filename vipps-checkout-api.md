@@ -10,8 +10,8 @@ Preliminary documentation. Subject to change
 - [System integration guidelines](#system-integration-guidelines)
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
     - [System information guidelines](#system-information-guidelines)
-  - [Webhook integration](#webhook-integration)
   - [Polling integration](#polling-integration)
+  - [Webhook integration](#webhook-integration)
   - [Example of polling response and Webhook notification](#example-of-polling-response-and-webhook-notification)
 
 # Flow diagram
@@ -29,7 +29,7 @@ The standard flow for a Vipps Checkout consists of
 
 First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server server request to set up a Checkout session. An example implementation can be found [in the example-integration](#example-integration) 
 
-Request a session token acording to your needs, the full specification of the Checkout session endpoint can be found [here](https://fantastic-fiesta-211ff2ad.pages.github.io/#/Checkout/get_Checkout)
+Request a session token according to your needs, the full specification of the Checkout session endpoint can be found [here](https://fantastic-fiesta-211ff2ad.pages.github.io/#/Checkout/get_Checkout)
 
 A minimal example with example values:
 
@@ -60,7 +60,7 @@ Example response:
 
 ```json
 {
-  "sessionID": "fjepo1393_31f01f109d213",
+  "sessionId": "fjepo1393_31f01f109d213",
   "checkoutFrontendUrl": "https://vippscheckout.vipps.no", 
   "pollingUrl": "https://api.vipps.no/checkout/fjepo1393_31f01f109d213"
 }
@@ -127,14 +127,6 @@ Vipps-System-Plugin-Version: 4.5.6
 Content-Type: application/json
 ```
 
-
-## Webhook integration
-Vipps Checkout will then send a Webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification),The Webhook request will include all the details generated from the Checkout session. 
-
-Example of a standard Checkout session result where the account is set for direct capture.
-
-Vipps demands that every notificaiton Webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original Webhook notification. 
-
 ## Polling integration
 
 Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/). 
@@ -143,15 +135,23 @@ Vipps Checkout will expose a polling enpoint as described in our [swagger](https
 It is very highly recommended to base your system combines a Webhook and Polling based integration, this combination leads the a lot of potential redirect edge cases being seamlessly leading to a better customer experience
 ```
 
+## Webhook integration
+Vipps Checkout will then send a Webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification). The Webhook request will include all the details generated from the Checkout session. 
+
+Example of a standard Checkout session result where the account is set for direct capture.
+
+Vipps demands that every notification Webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original Webhook notification. 
+
+
 ## Example of polling response and Webhook notification
 
 ```json
 
 {
-    "merchantAccount": "string",
-    "redirectUrl": "https://landing.vipps.no?token=abc123",
-    "reference": "reference-string",
-    "returnUrl": "https://example.io/redirect?orderId=abcc123",
+  "merchantAccount": "string",
+  "redirectUrl": "https://landing.vipps.no?token=abc123",
+  "reference": "reference-string",
+  "returnUrl": "https://example.io/redirect?orderId=abcc123",
   "userinfo": {
     "sub": "c06c4afe-d9e1-4c5d-939a-177d752a0944",
     "birthdate": "1815-12-10",
@@ -164,37 +164,37 @@ It is very highly recommended to base your system combines a Webhook and Polling
     "sid": "7d78a726-af92-499e-b857-de263ef9a969",
     "phone_number": "4712345678",
     "address": {
-        "street_address": "Suburbia 23",
-        "postal_code": "2101",
-        "region": "OSLO",
-        "country": "NO",
-        "formatted": "Suburbia 23\\n2101 OSLO\\nNO",
-        "address_type": "home"
-        }
-    },
+      "street_address": "Suburbia 23",
+      "postal_code": "2101",
+      "region": "OSLO",
+      "country": "NO",
+      "formatted": "Suburbia 23\\n2101 OSLO\\nNO",
+      "address_type": "home"
+    }
+  },
   "Transaction": {
     "aggregate": {
-        "authorizedAmount": {
+      "authorizedAmount": {
         "currency": "NOK",
         "type": "PURCHASE",
         "value": 1000
-        },
-        "capturedAmount": {
+      },
+      "capturedAmount": {
         "currency": "NOK",
         "type": "PURCHASE",
         "value": 1000
-        },
+      },
     },
     "amount": {
-        "currency": "NOK",
-        "type": "PURCHASE",
-        "value": 1000
+      "currency": "NOK",
+      "type": "PURCHASE",
+      "value": 1000
     },
     "authorisationType": "FINAL_AUTH",
     "authorised": true,
     "directCapture": true,
     "paymentMethod": {
-        "type": "WALLET",
+      "type": "WALLET",
     }
   }
 }

@@ -26,7 +26,7 @@ activate Vipps_frontend
 Merchant ->o Vipps_frontend: Insert checkout session id
 
 activate Merchant
-merchant -> Vipps : Poll on OrderID given in session setup
+Merchant -> Vipps : Poll on OrderID given in session setup
 Vipps_frontend -> User : Display session
 User -> Vipps_frontend : Complete session
 Vipps_frontend -> Vipps : Process payment
