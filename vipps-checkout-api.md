@@ -7,7 +7,10 @@ Preliminary documentation. Subject to change
 - [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
 - [Example integration](#example-integration)
-- [Webhooks](#webhooks)
+- [System integration guidelines](#system-integration-guidelines)
+  - [Webhook integration](#webhook-integration)
+  - [Polling integration](#polling-integration)
+  - [Example of polling response and Webhook notification](#example-of-polling-response-and-webhook-notification)
 
 # Flow diagram
 
@@ -41,7 +44,7 @@ A minimal example with example values:
         "checkOutWebhookUrl": "https://example.com/vipps",
         "fallBackUrl": "https://example.com/vipps/fallback-result-page/order123abc"
     },
-    "amount": {
+    "transaction": {
         "currency": "NOK",
         "amount": 20000
     },
@@ -56,11 +59,12 @@ Example response:
 ```json
 {
   "sessionID": "fjepo1393_31f01f109d213",
-  "checkoutFrontendUrl": "https://vippscheckoutprod.z6.web.core.windows.net/",
+  "checkoutFrontendUrl": "https://vippscheckout.vipps.no", 
   "pollingUrl": "https://api.vipps.no/checkout/fjepo1393_31f01f109d213"
 }
 ```
 
+*special note:* Do not hard code the URLs as these are subject to change for version bump at any time.
 
 Then set up the iframe to host the Vipps Checkout in your frontend
 
@@ -103,11 +107,23 @@ Insert the token into the iframe and display it to the Customer.
 
 The user then completes the session in the Iframe and gets redirected back to the fallBackUrl if applicable.
 
-Vipps Checkout will then send a webhook to your defined URL. 
+# System integration guidelines
 
-The webhook request will include all the details generated from the Checkout session. 
+Vipps checkout 
+
+## Webhook integration
+Vipps Checkout will then send a Webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification),The Webhook request will include all the details generated from the Checkout session. 
 
 Example of a standard Checkout session result where the account is set for direct capture.
+
+Vipps demands that every notificaiton Webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original Webhook notification. 
+
+## Polling integration
+
+Vipps Checkout will expose a polling enpoint as described in 
+
+
+## Example of polling response and Webhook notification
 
 ```json
 
@@ -157,7 +173,6 @@ Example of a standard Checkout session result where the account is set for direc
     "authorisationType": "FINAL_AUTH",
     "authorised": true,
     "directCapture": true,
-    "customerInteraction": "CUSTOMER_NOT_PRESENT",
     "paymentMethod": {
         "type": "WALLET",
     }
@@ -165,6 +180,3 @@ Example of a standard Checkout session result where the account is set for direc
 }
 ```
 
-# Webhooks
-
-Our webhooks will have the following policy with the following backoff routine: --------

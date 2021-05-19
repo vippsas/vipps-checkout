@@ -14,63 +14,6 @@ paths:
       responses:
         '200':
           description: Health OK!
-  '/login/{sessionId}':
-    get:
-      tags:
-        - Login
-      summary: This endpoint is polled on by the checkout-frontend application while the user completes the login flow in another tab.
-      parameters:
-        - name: sessionId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successfully retrieved the CustomerData object for the given session id.
-        '204':
-          description: 'The specified session id is recognized, but no data is available yet (login flow not yet completed by user).'
-        '404':
-          description: The specified session id is unknown.
-  /login/redirect:
-    get:
-      tags:
-        - Login
-      summary: "Redirect endpoint seen by user after login. Authenticates to the Login API\r\non behalf of the user, and fetches the required user information."
-      responses:
-        '200':
-          description: Login successful or failed. User will be asked to close the tab and go back to the original page.
-  '/Payment/{sessionId}':
-    post:
-      tags:
-        - Payment
-      summary: ''
-      parameters:
-        - name: sessionId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CheckoutPaymentInitiationRequestDto'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/CheckoutPaymentInitiationRequestDto'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/CheckoutPaymentInitiationRequestDto'
-      responses:
-        '200':
-          description: Payment initiated successfully.
-        '400':
-          description: 'The specified session id is known, but the payload is invalid.'
-        '404':
-          description: The specified session id is unknown.
-        '409':
-          description: 'The specified session id is known, but not in a state where a payment can be initiated.'
   /session:
     post:
       tags:
@@ -90,6 +33,31 @@ paths:
       responses:
         '200':
           description: ''
+    get:
+      tags:
+        - Healthcheck
+      summary: Check the health of the app.
+      responses:
+        '200':
+          description: Health OK!
+  /session/{sessionId}:
+    get:
+      tags:
+        - Session
+      summary: This endpoint is polled on by the checkout-frontend application while the user completes the login flow in another tab.
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the CustomerData object for the given session id.
+        '204':
+          description: 'The specified session id is recognized, but no data is available yet (login flow not yet completed by user).'
+        '404':
+          description: The specified session id is unknown.
 components:
   schemas:
     CheckoutPaymentInitiationRequestDto:
@@ -98,8 +66,6 @@ components:
         PhoneNumber:
           type: string
           nullable: true
-        SkipLandingPage:
-          type: boolean
       additionalProperties: false
     CheckoutSessionInitiationRequestDto:
       type: object
@@ -161,6 +127,4 @@ components:
         TransactionText:
           type: string
           nullable: true
-        SkipLandingPage:
-          type: boolean
       additionalProperties: false

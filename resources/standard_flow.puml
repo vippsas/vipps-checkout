@@ -47,7 +47,7 @@ This should be considered best practice, as a polling
 based approach gives a backup solution to any fault scenario
 end note
 
-Vipps -> Merchant : Send Checkout Result to webhook URL
+Vipps -> Merchant : Send Checkout Result to Webhook URL
 
 note left
 A standard Checkout result will 
