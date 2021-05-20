@@ -22,9 +22,9 @@ values
 end note
 
 Vipps --> Merchant : Return Checkout session id
-activate Vipps_frontend
-Merchant ->o Vipps_frontend: Insert checkout session id
 
+Merchant ->o Vipps_frontend: Insert checkout session id
+activate Vipps_frontend
 activate Merchant
 Merchant -> Vipps : Poll on OrderID given in session setup
 Vipps_frontend -> User : Display session
@@ -40,14 +40,13 @@ deactivate Vipps_frontend
 Merchant <-- Vipps: receive polling result on orderID
 deactivate Merchant
 
-Vipps --> Merchant : Session result
-
 note right
-This should be considered best practice, as a polling
+This is best practice, as a polling
 based approach gives a backup solution to any fault scenario
 end note
 
 Vipps -> Merchant : Send Checkout Result to Webhook URL
+Vipps <-- Merchant : Accept
 
 note left
 A standard Checkout result will 
