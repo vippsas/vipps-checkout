@@ -175,9 +175,8 @@ Vipps demands that every notification Webhook is responded to with a HTTP 202 re
   "Transaction": {
     "aggregate": {
       "authorizedAmount": {
-        "currency": "NOK",
-        "type": "PURCHASE",
-        "value": 1000
+      
+      
       },
       "capturedAmount": {
         "currency": "NOK",

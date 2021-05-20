@@ -37,7 +37,7 @@ Vipps_frontend ->o Merchant : Redirect to merchant defined URL
 end
 deactivate Vipps_frontend
 
-Merchant -> Vipps: receive polling result on orderID
+Merchant <-- Vipps: receive polling result on orderID
 deactivate Merchant
 
 Vipps --> Merchant : Session result
