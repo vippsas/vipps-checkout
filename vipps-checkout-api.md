@@ -73,34 +73,102 @@ Next up you need to make a request from your client-side code to your own applic
 Here is an example integration written in JavaScript that will make a request to your back-end and embed an iframe:
 
 ```html
-<script>
-  var merchantBackendUrl = '<%= merchantBackendUrl %>';
-  var frameContainer = document.getElementById('checkout-frame-container');
-  var iframe = document.createElement('iframe');
-  document.getElementById('checkout-button').addEventListener('click', function () {
-    var data = {
-      productId: 123,
-    };
-    fetch(merchantBackendUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        iframe.src = data.checkoutFrontendUrl + '/?token=' + data.token;
-        iframe.classList.add('checkout-frame');
-        iframe.frameBorder = '0';
-        iframe.height = '1500px';
-        iframe.id = frameContainer.appendChild(iframe);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"
+    />
+    <title>Merchant</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+  </head>
+  <body>
+    <section id="merchant-order">    
+      <button type="button" id="checkout-button">Checkout with Vipps</button>
+    </section>
+    <section id="vipps-checkout-frame-container"></section>
+    <script>
+      var merchantBackendAppUrl = '<THE BACKEND OF THE MERCHANT TO RECEIVE CALLBACK>';
+      var checkoutFrontendUrl = '<URL TO VIPPS CHECKOUT>';
+      
+      // Setup iframe element and container to hold the iframe
+      var frameContainer = document.getElementById('vipps-checkout-frame-container');
+      var iframe = document.createElement('iframe');
+      var iframeId = 'vipps-checkout-iframe';
+      iframe.frameBorder = '0';
+      iframe.width = '100%';
+
+      // The height of the iframe is communicated from the iframe according to it's content
+      window.addEventListener(
+        'message',
+        (e) => {
+          if (e.origin === checkoutFrontendUrl) {
+            if (e.data.hasOwnProperty('frameHeight')) {
+              document.getElementById(iframeId).style.height = `${e.data.frameHeight}px`;
+            }
+          }
+        },
+        false,
+      );
+
+      // If token query parameter present, we don't need to start a new session and load the current one.
+      var token = getParameterByName('token');
+      if (token) {
+        iframe.src = checkoutFrontendUrl + '/?token=' + token;
+        iframe.id = iframeId;
+        frameContainer.appendChild(iframe);
+      }
+
+      // When clicking the "Checkout with Vipps" button
+      document.getElementById('checkout-button').addEventListener('click', function () {
+
+        // Set the amount of the purchase here in oere
+        var data = {
+          amount: '1600',
+        };
+        
+        // Call merchant backend which will again call Checkout backend to establish session
+        fetch(merchantBackendAppUrl + '/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            // Set token in URL and update the address field of the browser.
+            window.location.href = updateQueryStringParameter('token', data.token);
+          })
+          .catch(function (error) {
+            console.error('Error:', error);
+          });
       });
-  });
-</script>
+
+      // Helper functions
+      function updateQueryStringParameter(key, value) {
+        var uri = window.location.href;
+        var re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+        var separator = uri.indexOf('?') !== -1 ? '&' : '?';
+        if (uri.match(re)) {
+          return uri.replace(re, '$1' + key + '=' + value + '$2');
+        } else {
+          return uri + separator + key + '=' + value;
+        }
+      }
+      function getParameterByName(name) {
+        var match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search);
+        var result = match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        return result;
+      }
+    </script>
+  </body>
+</html>
+
 ```
 
 Insert the token into the iframe and display it to the Customer. 
