@@ -1,6 +1,6 @@
 # Vipps Checkout guide
 
-Vipps Checkout is designed to be a low friction low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
+Vipps Checkout is designed to be a low friction, low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
 Preliminary documentation. Subject to change
 
@@ -12,16 +12,16 @@ Preliminary documentation. Subject to change
     - [System information guidelines](#system-information-guidelines)
   - [Polling integration](#polling-integration)
   - [Webhook integration](#webhook-integration)
-  - [Example of polling response and Webhook notification](#example-of-polling-response-and-webhook-notification)
+  - [Example of polling response and webhook notification](#example-of-polling-response-and-webhook-notification)
 
 # Flow diagram
 
 The standard flow for a Vipps Checkout consists of
 
-1. Generation of a session.
+1. Generating a Checkout session.
 2. Displaying that session in a Vipps Checkout iframe.
 3. The user completing checkout process.
-4. The Merchant handling the result of the Checkout process.
+4. The Merchant handles the result of the Checkout process.
 
 ![Checkout flow](resources/standard_flow.png)
 
@@ -66,43 +66,41 @@ Example response:
 }
 ```
 
-*special note:* Do not hard code the URLs as these are subject to change for version bump at any time.
+*special note:* Do not hard code the URLs as shown in the response above as these are subject to change for version bump at any time.
 
-Then set up the iframe to host the Vipps Checkout in your frontend
+Next up you need to make a request from your client-side code to your own application's endpoint where you request the Vipps Checkout `sessionId`. This `sessionId` can then be used along with `checkoutFrontendUrl` to generate the Vipps Checkout iframe in your frontend.
 
-```
+Here is an example integration written in JavaScript that will make a request to your back-end and embed an iframe:
+
+```html
 <script>
-      var merchantBackendUrl = '<%= merchantBackendUrl %>';
-      var checkoutFrontendUrl = '<%= checkoutFrontendUrl %>';
-      var frameContainer = document.getElementById('checkout-frame-container');
-
-      var iframe = document.createElement('iframe');
-
-      document.getElementById('checkout-button').addEventListener('click', function () {
-        var data = {
-          amount: '1600000',
-        };
-
-        fetch(merchantBackendUrl + '/create-checkout-session', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            iframe.src = checkoutFrontendUrl + '/?token=' + data.token;
-            iframe.classList.add('checkout-frame');
-            iframe.frameBorder = '0';
-            iframe.height = '1500px';
-            iframe.id = frameContainer.appendChild(iframe);
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
+  var merchantBackendUrl = '<%= merchantBackendUrl %>';
+  var frameContainer = document.getElementById('checkout-frame-container');
+  var iframe = document.createElement('iframe');
+  document.getElementById('checkout-button').addEventListener('click', function () {
+    var data = {
+      productId: 123,
+    };
+    fetch(merchantBackendUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        iframe.src = data.checkoutFrontendUrl + '/?token=' + data.token;
+        iframe.classList.add('checkout-frame');
+        iframe.frameBorder = '0';
+        iframe.height = '1500px';
+        iframe.id = frameContainer.appendChild(iframe);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
-    </script>
+  });
+</script>
 ```
 
 Insert the token into the iframe and display it to the Customer. 
@@ -132,18 +130,18 @@ Content-Type: application/json
 Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/). 
 
 ```
-It is very highly recommended to base your system combines a Webhook and Polling based integration, this combination leads the a lot of potential redirect edge cases being seamlessly leading to a better customer experience
+It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
 ```
 
 ## Webhook integration
-Vipps Checkout will then send a Webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification). The Webhook request will include all the details generated from the Checkout session. 
+Vipps Checkout will then send a webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification). The webhook request will include all the details generated from the Checkout session. 
 
 Example of a standard Checkout session result where the account is set for direct capture.
 
-Vipps demands that every notification Webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original Webhook notification. 
+Vipps demands that every notification webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. 
 
 
-## Example of polling response and Webhook notification
+## Example of polling response and webhook notification
 
 ```json
 
@@ -175,9 +173,8 @@ Vipps demands that every notification Webhook is responded to with a HTTP 202 re
   "Transaction": {
     "aggregate": {
       "authorizedAmount": {
-        "currency": "NOK",
-        "type": "PURCHASE",
-        "value": 1000
+      
+      
       },
       "capturedAmount": {
         "currency": "NOK",
