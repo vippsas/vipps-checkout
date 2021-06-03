@@ -42,17 +42,14 @@ A minimal example with example values:
     },
     "merchantInfo": {
         "merchantSerialNumber": "123456",
-        "callbackPrefix":"https://example.com/vipps/callbacks-for-ecom-payment-update",
-        "checkOutWebhookUrl": "https://example.com/vipps",
-        "fallBackUrl": "https://example.com/vipps/fallback-result-page/order123abc"
+        "checkOutWebhookUrl": "https://example.com/vipps" //Will overwrite configuration on Merchant Profile
     },
     "transaction": {
         "currency": "NOK",
-        "amount": 20000
-    },
-    "scope": "",
-    "reference" : "31gf1g413121",
-    "transactionText": "One pair of Vipps socks"
+        "amount": 20000, //Must be in Minor Units. The smallest unit of a currency.
+        "transactionText": "One pair of Vipps socks",
+        "orderId" : "31gf1g413121"
+    }
 }
 ```
 
@@ -60,15 +57,15 @@ Example response:
 
 ```json
 {
-  "sessionId": "fjepo1393_31f01f109d213",
-  "checkoutFrontendUrl": "https://vippscheckout.vipps.no", 
-  "pollingUrl": "https://api.vipps.no/checkout/fjepo1393_31f01f109d213"
+  "token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJUdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIiwic2Vzc2lvblBvbGxpbmdVUkwiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvY2hlY2tvdXQvc2Vzc2lvbi9UdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIn0.ln7VzZkNvUGu0HhyA_a8IbXQN35WhDBmCYC9IvyYL-I",
+  "checkoutFrontendUrl": "https://vippscheckout.vipps.no/v1/", 
+  "pollingUrl": "https://api.vipps.no/checkout/31gf1g413121"
 }
 ```
 
 *special note:* Do not hard code the URLs as shown in the response above as these are subject to change for version bump at any time.
 
-Next up you need to make a request from your client-side code to your own application's endpoint where you request the Vipps Checkout `sessionId`. This `sessionId` can then be used along with `checkoutFrontendUrl` to generate the Vipps Checkout iframe in your frontend.
+Next up you need to make a request from your client-side code to your own application's endpoint where you request the Vipps Checkout `token`. This `token` can then be used along with `checkoutFrontendUrl` to generate the Vipps Checkout iframe in your frontend.
 
 Here is an example integration written in JavaScript that will make a request to your back-end and embed an iframe:
 
@@ -195,7 +192,7 @@ Content-Type: application/json
 
 ## Polling integration
 
-Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/). 
+Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/). TODO: Oppdater
 
 ```
 It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
@@ -219,15 +216,10 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
   "reference": "reference-string",
   "returnUrl": "https://example.io/redirect?orderId=abcc123",
   "userinfo": {
-    "sub": "c06c4afe-d9e1-4c5d-939a-177d752a0944",
-    "birthdate": "1815-12-10",
     "email": "user@example.com",
-    "email_verified": true,
-    "nin": "10121550047",
     "name": "Ada Lovelace",
     "given_name": "Ada",
     "family_name": "Lovelace",
-    "sid": "7d78a726-af92-499e-b857-de263ef9a969",
     "phone_number": "4712345678",
     "address": {
       "street_address": "Suburbia 23",
@@ -241,8 +233,9 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
   "Transaction": {
     "aggregate": {
       "authorizedAmount": {
-      
-      
+        "currency": "NOK",
+        "type": "PURCHASE",
+        "value": 1000
       },
       "capturedAmount": {
         "currency": "NOK",
