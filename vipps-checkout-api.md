@@ -71,7 +71,7 @@ Here is an example integration written in JavaScript that will make a request to
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
