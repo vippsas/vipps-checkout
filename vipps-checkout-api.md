@@ -121,12 +121,11 @@ Here is an example integration written in JavaScript that will make a request to
 
       // When clicking the "Checkout with Vipps" button
       document.getElementById('checkout-button').addEventListener('click', function () {
-
-        // Set the amount of the purchase here in oere
-        var data = {
-          amount: '1600',
+        // Define some data the merchant backend can use to determine what product/cost it should create a session for
+        const data = {
+          productId: 1,
         };
-        
+
         // Call merchant backend which will again call Checkout backend to establish session
         fetch(merchantBackendAppUrl + '/create-checkout-session', {
           method: 'POST',
