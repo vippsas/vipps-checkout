@@ -87,13 +87,15 @@ Here is an example integration written in JavaScript that will make a request to
     </section>
     <section id="vipps-checkout-frame-container"></section>
     <script>
-      var merchantBackendAppUrl = '<THE BACKEND OF THE MERCHANT TO RECEIVE CALLBACK>';
-      var checkoutFrontendUrl = '<URL TO VIPPS CHECKOUT>';
-      
+      const merchantBackendAppUrl = '<THE BACKEND OF THE MERCHANT TO RECEIVE CALLBACK>'; // replace me!
+
+      const token = getParameterByName('token');
+      const checkoutFrontendUrl = window.localStorage.getItem(`vipps-checkout-${token}`);
+
       // Setup iframe element and container to hold the iframe
-      var frameContainer = document.getElementById('vipps-checkout-frame-container');
-      var iframe = document.createElement('iframe');
-      var iframeId = 'vipps-checkout-iframe';
+      const frameContainer = document.getElementById('vipps-checkout-frame-container');
+      const iframe = document.createElement('iframe');
+      const iframeId = 'vipps-checkout-iframe';
       iframe.frameBorder = '0';
       iframe.width = '100%';
 
@@ -111,9 +113,8 @@ Here is an example integration written in JavaScript that will make a request to
       );
 
       // If token query parameter present, we don't need to start a new session and load the current one.
-      var token = getParameterByName('token');
       if (token) {
-        iframe.src = checkoutFrontendUrl + '/?token=' + token;
+        iframe.src = `${checkoutFrontendUrl}/?token=${token}`;
         iframe.id = iframeId;
         frameContainer.appendChild(iframe);
       }
@@ -139,6 +140,7 @@ Here is an example integration written in JavaScript that will make a request to
           })
           .then(function (data) {
             // Set token in URL and update the address field of the browser.
+            window.localStorage.setItem('vipps-checkout-' + data.token, data.checkoutFrontendUrl);
             window.location.href = updateQueryStringParameter('token', data.token);
           })
           .catch(function (error) {
