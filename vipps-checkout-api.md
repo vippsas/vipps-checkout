@@ -127,7 +127,7 @@ Here is an example integration written in JavaScript that will make a request to
         };
 
         // Call merchant backend which will again call Checkout backend to establish session
-        fetch(merchantBackendAppUrl + '/create-checkout-session', {
+        fetch(`${merchantBackendAppUrl}/create-checkout-session`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ Here is an example integration written in JavaScript that will make a request to
             window.location.href = updateQueryStringParameter('token', data.token);
           })
           .catch(function (error) {
-            console.error('Error:', error);
+            console.error('Error: ', error);
           });
       });
 
