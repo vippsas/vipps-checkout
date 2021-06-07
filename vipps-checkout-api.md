@@ -150,19 +150,20 @@ Here is an example integration written in JavaScript that will make a request to
 
       // Helper functions
       function updateQueryStringParameter(key, value) {
-        var uri = window.location.href;
-        var re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-        var separator = uri.indexOf('?') !== -1 ? '&' : '?';
-        if (uri.match(re)) {
-          return uri.replace(re, '$1' + key + '=' + value + '$2');
-        } else {
-          return uri + separator + key + '=' + value;
-        }
+        const url = new URL(window.location.href);
+        const urlParams = url.searchParams;
+
+        urlParams.append(key, value);
+        url.search = urlParams.toString();
+
+        return url.toString();
       }
+
       function getParameterByName(name) {
-        var match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search);
-        var result = match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-        return result;
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        return urlParams.get(name);
       }
     </script>
   </body>
