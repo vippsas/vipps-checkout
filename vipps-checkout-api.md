@@ -100,14 +100,14 @@ Here is an example integration written in JavaScript that will make a request to
       // The height of the iframe is communicated from the iframe according to it's content
       window.addEventListener(
         'message',
-        (e) => {
+        function (e) {
           if (e.origin === checkoutFrontendUrl) {
             if (e.data.hasOwnProperty('frameHeight')) {
-              document.getElementById(iframeId).style.height = `${e.data.frameHeight}px`;
+              document.getElementById(iframeId).style.height = e.data.frameHeight + 'px';
             }
           }
         },
-        false,
+        false
       );
 
       // If token query parameter present, we don't need to start a new session and load the current one.
@@ -158,7 +158,7 @@ Here is an example integration written in JavaScript that will make a request to
         }
       }
       function getParameterByName(name) {
-        var match = RegExp(`[?&]${name}=([^&]*)`).exec(window.location.search);
+        var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
         var result = match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         return result;
       }
