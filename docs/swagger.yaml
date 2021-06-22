@@ -79,6 +79,7 @@ paths:
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
+          required: true
           schema:
             $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
       requestBody:
@@ -162,16 +163,12 @@ components:
       properties:
         VippsSystemName:
           type: string
-          nullable: true
         VippsSystemVersion:
           type: string
-          nullable: true
         VippsSystemPluginName:
           type: string
-          nullable: true
         VippsSystemPluginVersion:
           type: string
-          nullable: true
       additionalProperties: false
     CustomerInformation:
       type: object
