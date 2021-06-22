@@ -12,31 +12,12 @@ paths:
         - Healthcheck
       summary: Check the health of the app.
       responses:
-        '200':
+        "200":
           description: Health OK!
-  /session:
-    post:
-      tags:
-        - Session
-      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDto'
-          text/json:
-            schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDto'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDto'
-      responses:
-        '200':
-          description: ''
-  /session/{sessionId}:
+  "/login/{sessionId}":
     get:
       tags:
-        - Session
+        - Login
       summary: This endpoint is polled on by the checkout-frontend application while the user completes the login flow in another tab.
       parameters:
         - name: sessionId
@@ -45,12 +26,112 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Successfully retrieved the CustomerData object for the given session id.
-        '204':
-          description: 'The specified session id is recognized, but no data is available yet (login flow not yet completed by user).'
-        '404':
+        "204":
+          description: "The specified session id is recognized, but no data is available yet (login flow not yet completed by user)."
+        "404":
           description: The specified session id is unknown.
+  /login/redirect:
+    get:
+      tags:
+        - Login
+      summary: "Redirect endpoint seen by user after login. Authenticates to the Login API\r\non behalf of the user, and fetches the required user information."
+      responses:
+        "200":
+          description: Login successful or failed. User will be asked to close the tab and go back to the original page.
+  "/Payment/{sessionId}":
+    post:
+      tags:
+        - Payment
+      summary: ""
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CheckoutPaymentInitiationRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CheckoutPaymentInitiationRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CheckoutPaymentInitiationRequestDto"
+      responses:
+        "200":
+          description: Payment initiated successfully.
+        "400":
+          description: "The specified session id is known, but the payload is invalid."
+        "404":
+          description: The specified session id is unknown.
+        "409":
+          description: "The specified session id is known, but not in a state where a payment can be initiated."
+  /session:
+    post:
+      tags:
+        - Session
+      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
+      parameters:
+        - name: checkoutSessionThirdPartyInformationHeaders
+          in: header
+          schema:
+            $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDto"
+      responses:
+        "200":
+          description: ""
+  "/session/{sessionId}":
+    get:
+      tags:
+        - Session
+      summary: Retrieve sessionInfo from cache and return
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+    post:
+      tags:
+        - Session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SessionUpdateRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/SessionUpdateRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/SessionUpdateRequestDto"
+      responses:
+        "200":
+          description: Success
 components:
   schemas:
     CheckoutPaymentInitiationRequestDto:
@@ -59,18 +140,54 @@ components:
         PhoneNumber:
           type: string
           nullable: true
+        SkipLandingPage:
+          type: boolean
+        ShippingInfo:
+          $ref: "#/components/schemas/ShippingAddress"
+        CustomerInfo:
+          $ref: "#/components/schemas/CustomerInformation"
       additionalProperties: false
     CheckoutSessionInitiationRequestDto:
       type: object
       properties:
         AuthInfo:
-          $ref: '#/components/schemas/MerchantAuthInfo'
-        CustomerInfo:
-          $ref: '#/components/schemas/PaymentCustomerInfo'
+          $ref: "#/components/schemas/MerchantAuthInfo"
         MerchantInfo:
-          $ref: '#/components/schemas/PaymentMerchantInfo'
+          $ref: "#/components/schemas/PaymentMerchantInfo"
         Transaction:
-          $ref: '#/components/schemas/PaymentTransaction'
+          $ref: "#/components/schemas/PaymentTransaction"
+      additionalProperties: false
+    CheckoutSessionThirdPartyInformationHeaders:
+      type: object
+      properties:
+        VippsSystemName:
+          type: string
+          nullable: true
+        VippsSystemVersion:
+          type: string
+          nullable: true
+        VippsSystemPluginName:
+          type: string
+          nullable: true
+        VippsSystemPluginVersion:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CustomerInformation:
+      type: object
+      properties:
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        PhoneNumber:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
       additionalProperties: false
     MerchantAuthInfo:
       type: object
@@ -82,13 +199,6 @@ components:
           type: string
           nullable: true
         OcpApimSubscriptionKey:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PaymentCustomerInfo:
-      type: object
-      properties:
-        MobileNumber:
           type: string
           nullable: true
       additionalProperties: false
@@ -114,10 +224,71 @@ components:
         OrderId:
           type: string
           nullable: true
-        TimeStamp:
+        TransactionText:
           type: string
           nullable: true
-        TransactionText:
+        SkipLandingPage:
+          type: boolean
+      additionalProperties: false
+    SessionUpdateRequestDto:
+      type: object
+      properties:
+        FirstName:
+          type: string
+          nullable: true
+          readOnly: true
+        LastName:
+          type: string
+          nullable: true
+          readOnly: true
+        Email:
+          type: string
+          nullable: true
+          readOnly: true
+        Phone:
+          type: string
+          nullable: true
+          readOnly: true
+        Address:
+          type: string
+          nullable: true
+          readOnly: true
+        Zip:
+          type: string
+          nullable: true
+          readOnly: true
+        City:
+          type: string
+          nullable: true
+          readOnly: true
+        Country:
+          type: string
+          nullable: true
+          readOnly: true
+        AddressType:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    ShippingAddress:
+      type: object
+      properties:
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        StreetAddress:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
           type: string
           nullable: true
       additionalProperties: false
