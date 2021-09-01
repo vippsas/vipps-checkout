@@ -203,7 +203,7 @@ Vipps Checkout will then send a webhook to your defined URL as described in our 
 
 The webhook will be sent to the following location.
 
-`{callbackPrefix}` + `checkout/v1/session/`+ `{orderId}`
+`{callbackPrefix}` + `/checkout/v1/order/`+ `{orderId}`
 
 Where `callbackPrefix`and `orderId`is defined when setting up the session.
 
