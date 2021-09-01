@@ -201,60 +201,41 @@ It is very highly recommended for your system to combine both webhook and pollin
 ## Webhook integration
 Vipps Checkout will then send a webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification). The webhook request will include all the details generated from the Checkout session. 
 
-Example of a standard Checkout session result where the account is set for direct capture.
+The webhook will be sent to the following location.
 
-Vipps demands that every notification webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. 
+`{callbackPrefix}` + `checkout/v1/session/`+ `{orderId}`
+
+Where `callbackPrefix`and `orderId`is defined when setting up the session.
+
+Vipps demands that every notification webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. It is critical that the endpoint receiving the callback is robust. And can receive any additional data not specified in the minimum example and still be backwards compatible in accordance to our integration guidelines.
 
 
 ## Example of polling response and webhook notification
 
 ```json
-
 {
-  "merchantAccount": "string",
-  "redirectUrl": "https://landing.vipps.no?token=abc123",
-  "reference": "reference-string",
-  "returnUrl": "https://example.io/redirect?orderId=abcc123",
-  "userinfo": {
-    "email": "user@example.com",
-    "name": "Ada Lovelace",
-    "given_name": "Ada",
-    "family_name": "Lovelace",
-    "phone_number": "4712345678",
-    "address": {
-      "street_address": "Suburbia 23",
-      "postal_code": "2101",
-      "region": "OSLO",
-      "country": "NO",
-      "formatted": "Suburbia 23\\n2101 OSLO\\nNO",
-      "address_type": "home"
+        "merchantSerialNumber": "59474",
+        "orderId": "393850103",
+        "transactionInfo": {
+            "amount": 1600,
+            "status": "RESERVE",
+            "timeStamp": null,
+            "transactionId": "393850103"
+        },
+        "userDetails": {
+            "firstName": "Test",
+            "lastName": "Testesen",
+            "phoneNumber": "+4790000004",
+            "email": "example@example.no"
+        },
+        "shippingDetails": {
+            "firstName": "Test",
+            "lastName": "Testesen",
+            "streetAddress": "Stedesen 1",
+            "postalCode": "0360",
+            "region": "OSLO",
+            "country": "NO"
+        }
     }
-  },
-  "Transaction": {
-    "aggregate": {
-      "authorizedAmount": {
-        "currency": "NOK",
-        "type": "PURCHASE",
-        "value": 1000
-      },
-      "capturedAmount": {
-        "currency": "NOK",
-        "type": "PURCHASE",
-        "value": 1000
-      },
-    },
-    "amount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 1000
-    },
-    "authorisationType": "FINAL_AUTH",
-    "authorised": true,
-    "directCapture": true,
-    "paymentMethod": {
-      "type": "WALLET",
-    }
-  }
-}
 ```
 
