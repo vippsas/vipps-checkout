@@ -35,11 +35,6 @@ A minimal example with example values:
 
 ```json
 {
-    "authInfo": {
-        "clientId": "dddd",
-        "clientSecret": "ss",
-        "ocpApimSubscriptionKey": "ss"
-    },
     "merchantInfo": {
         "merchantSerialNumber": "123456",
         "checkOutWebhookUrl": "https://example.com/vipps" //Will overwrite configuration on Merchant Profile
@@ -59,7 +54,7 @@ Example response:
 {
   "token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJUdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIiwic2Vzc2lvblBvbGxpbmdVUkwiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvY2hlY2tvdXQvc2Vzc2lvbi9UdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIn0.ln7VzZkNvUGu0HhyA_a8IbXQN35WhDBmCYC9IvyYL-I",
   "checkoutFrontendUrl": "https://vippscheckout.vipps.no/v1/", 
-  "pollingUrl": "https://api.vipps.no/checkout/31gf1g413121"
+  "pollingUrl": "https://api.vipps.no/checkout/v1/session/31gf1g413121"
 }
 ```
 
@@ -131,6 +126,13 @@ Here is an example integration written in JavaScript that will make a request to
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Vipps-System-Name': 'direct',
+            'Vipps-System-Version': '1.0',
+            'Vipps-System-Plugin-Name': 'direct',
+            'Vipps-System-Plugin-Version': '1.0',
+            'client_id': '<your client id>',
+            'client_secret': '<your client secret>',
+            'Ocp-Apim-Subscription-Key': '<your ocp apim subscription key>',              
           },
           body: JSON.stringify(data),
         })
@@ -192,10 +194,57 @@ Content-Type: application/json
 
 ## Polling integration
 
-Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/). TODO: Oppdater
+Vipps Checkout will expose a polling enpoint as described in our [swagger](https://fantastic-fiesta-211ff2ad.pages.github.io/#/).
 
 ```
 It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
+```
+## Example of polling response
+
+```json
+{
+    "sessionId": "bnLxjxBDHiIi3JglEnohyw",
+    "orderId": "471050523",
+    "transactionLogHistory": [
+        {
+            "amount": 1600,
+            "transactionText": "Dummy transaction id",
+            "timeStamp": "2021-09-24T11:51:36.939Z",
+            "operation": "RESERVE",
+            "operationSuccess": true,
+            "transactionId": "5937913513"
+        },
+        {
+            "amount": 1600,
+            "transactionText": "Dummy transaction id",
+            "timeStamp": "2021-09-24T11:51:23.181Z",
+            "operation": "INITIATE",
+            "operationSuccess": true,
+            "transactionId": "5937913513"
+        }
+    ],
+    "transactionSummary": {
+        "capturedAmount": 0,
+        "remainingAmountToCapture": 1600,
+        "refundedAmount": 0,
+        "remainingAmountToRefund": 0,
+        "bankIdentificationNumber": 492560
+    },
+    "userDetails": {
+        "firstName": "Test",
+        "lastName": "Testesen",
+        "phoneNumber": "+4790000004",
+        "email": "example@example.no"
+    },
+    "shippingDetails": {
+        "firstName": "Test",
+        "lastName": "Testesen",
+        "streetAddress": "Stedesen 1",
+        "postalCode": "0360",
+        "region": "Oslo",
+        "country": "NO"
+    }
+}
 ```
 
 ## Webhook integration
@@ -210,7 +259,7 @@ Where `callbackPrefix`and `orderId`is defined when setting up the session.
 Vipps demands that every notification webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. It is critical that the endpoint receiving the callback is robust. And can receive any additional data not specified in the minimum example and still be backwards compatible in accordance to our integration guidelines.
 
 
-## Example of polling response and webhook notification
+## Example of webhook notification
 
 ```json
 {
