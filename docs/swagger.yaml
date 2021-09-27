@@ -20,6 +20,21 @@ paths:
         - Session
       summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
       parameters:
+        - name: client_id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: client_secret
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Ocp-Apim-Subscription-Key
+          in: header
+          required: true
+          schema:
+            type: string      
         - name: Vipps-System-Name
           in: header
           required: true
