@@ -19,6 +19,42 @@ paths:
       tags:
         - Session
       summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
+      parameters:
+        - name: client_id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: client_secret
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Ocp-Apim-Subscription-Key
+          in: header
+          required: true
+          schema:
+            type: string      
+        - name: Vipps-System-Name
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Vipps-System-Version
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Vipps-System-Plugin-Name
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Vipps-System-Plugin-Version
+          in: header
+          required: true
+          schema:
+            type: string      
       requestBody:
         content:
           application/json:
@@ -33,12 +69,47 @@ paths:
       responses:
         '200':
           description: ''
-  /session/{sessionId}:
+  /v1/session/{sessionId}:
     get:
       tags:
         - Session
-      summary: This endpoint is polled on by the checkout-frontend application while the user completes the login flow in another tab.
+      summary: This endpoint is polled on by the merchant to retrieve information for a given session id.
       parameters:
+        - name: client_id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: client_secret
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Ocp-Apim-Subscription-Key
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Vipps-System-Name
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Vipps-System-Version
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Vipps-System-Plugin-Name
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Vipps-System-Plugin-Version
+          in: header
+          required: true
+          schema:
+            type: string           
         - name: sessionId
           in: path
           required: true
@@ -46,11 +117,11 @@ paths:
             type: string
       responses:
         '200':
-          description: Successfully retrieved the CustomerData object for the given session id.
-        '204':
-          description: 'The specified session id is recognized, but no data is available yet (login flow not yet completed by user).'
+          description: Successfully retrieved the session information for the given session id.
+        '400':
+          description: 'The specified session id is recognized, but no data is available yet (login flow or payment flow not yet completed by user).'
         '404':
-          description: The specified session id is unknown.
+          description: The specified session id is unknown.          
 components:
   schemas:
     CheckoutPaymentInitiationRequestDto:
@@ -63,27 +134,12 @@ components:
     CheckoutSessionInitiationRequestDto:
       type: object
       properties:
-        AuthInfo:
-          $ref: '#/components/schemas/MerchantAuthInfo'
         CustomerInfo:
           $ref: '#/components/schemas/PaymentCustomerInfo'
         MerchantInfo:
           $ref: '#/components/schemas/PaymentMerchantInfo'
         Transaction:
           $ref: '#/components/schemas/PaymentTransaction'
-      additionalProperties: false
-    MerchantAuthInfo:
-      type: object
-      properties:
-        ClientId:
-          type: string
-          nullable: true
-        ClientSecret:
-          type: string
-          nullable: true
-        OcpApimSubscriptionKey:
-          type: string
-          nullable: true
       additionalProperties: false
     PaymentCustomerInfo:
       type: object
