@@ -214,13 +214,25 @@ Vipps Checkout will expose a polling enpoint as described in our [swagger](https
 
 ```
 It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
+
+## Example of polling response when checkout SessionState is SessionStarted. Transaction information, User information and Shipping information are not available in this state of the session.
+
+```json
+{
+    "sessionId": "eoIjaGeiZA8gqMNvr8uXxg",
+    "orderId": "absbsbcb",
+    "sessionState": "SessionStarted"
+}
+
 ```
-## Example of polling response
+
+## Example of polling response when checkout SessionState any other state but not SessionStarted
 
 ```json
 {
     "sessionId": "bnLxjxBDHiIi3JglEnohyw",
     "orderId": "471050523",
+    "sessionState": "PaymentSuccessful",
     "transactionLogHistory": [
         {
             "amount": 1600,
