@@ -136,6 +136,9 @@ components:
           items:
             $ref: '#/components/schemas/ShippingOption'
           nullable: true
+        PrefillInformation:
+          $ref: '#/components/schemas/PrefillInformation'
+          nullable: true
       additionalProperties: false
     CheckoutSessionInitiationResponse:
       type: object
@@ -207,8 +210,26 @@ components:
         TransactionText:
           type: string
           nullable: true
-        SkipLandingPage:
-          type: boolean
+      additionalProperties: false
+    PrefillInformation:
+      type: object
+      properties:
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        Email:
+          type: string
+        PhoneNumber:
+          type: string
+        StreetAddress:
+          type: string
+        City:
+          type: string
+        PostalCode:
+          type: string
+        Country:
+          type: string
       additionalProperties: false
     SessionDetailsForMerchant:
       type: object
