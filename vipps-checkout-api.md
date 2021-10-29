@@ -11,8 +11,9 @@ Preliminary documentation. Subject to change
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
     - [System information guidelines](#system-information-guidelines)
   - [Polling integration](#polling-integration)
+  - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
   - [Webhook integration](#webhook-integration)
-  - [Example of polling response and webhook notification](#example-of-polling-response-and-webhook-notification)
+  - [Example of webhook notification](#example-of-webhook-notification)
 
 # Flow diagram
 
@@ -198,15 +199,18 @@ Vipps Checkout supports Partner key based authentication as described in our [ec
 In the initiation request use your own credentials and send the Merchant-Serial-Number as described. Resulting in an on behalf of authentication if the Merchant as a valid connection to your solution.
 
 ### System information guidelines
-In order to fully utilize the conditions and support of the Vipps platform it is critical that you include all information regarding your system in the initiation headers as per the following example
+In order to fully utilize the conditions and support of the Vipps platform it is critical that you include all information regarding your system in the initiation headers as per the following example. **Important:** Please use self-explanatory, human readable and reasonably short values that uniquely identify the system (and plugin).
 
-```
-Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
-Vipps-System-Version: 3.1.2
-Vipps-System-Plugin-Name: Point Of Sale Excellence
-Vipps-System-Plugin-Version: 4.5.6
-Content-Type: application/json
-```
+
+| Header                        | Description                                  | Example value       |
+| ----------------------------- | -------------------------------------------- | ------------------- |
+| `Merchant-Serial-Number`      | The merchant serial number                   | `123456`            |
+| `Vipps-System-Name`           | The name of the ecommerce solution           | `woocommerce`       |
+| `Vipps-System-Version`        | The version number of the ecommerce solution | `5.4`               |
+| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin             | `vipps-woocommerce` |
+| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `1.4.1`             |
+
+If any of these are not applicable for your integration please substitute with NA for Not Applicable.
 
 ## Polling integration
 
