@@ -112,13 +112,18 @@ Here is an example integration written in JavaScript that will make a request to
       iframe.frameBorder = '0';
       iframe.width = '100%';
 
-      // The height of the iframe is communicated from the iframe according to it's content
       window.addEventListener(
         'message',
         function (e) {
           if (e.origin === checkoutFrontendUrl) {
+            // The height of the iframe is communicated from the iframe according to it's content
             if (e.data.hasOwnProperty('frameHeight')) {
               document.getElementById(iframeId).style.height = e.data.frameHeight + 'px';
+            }
+            // URL to either Vipps mobile App or Vipps Landing page is communicated from the iframe when paying
+            // The actual redirect is handled here 
+            if (e.data.hasOwnProperty('paymentUrl')) {
+              window.location.href = e.data.paymentUrl;
             }
           }
         },
