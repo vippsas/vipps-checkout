@@ -14,6 +14,7 @@ Preliminary documentation. Subject to change
   - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
   - [Webhook integration](#webhook-integration)
   - [Example of webhook notification](#example-of-webhook-notification)
+  - [Shipping](#shipping)
 
 # Flow diagram
 
@@ -325,3 +326,29 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
     }
 ```
 
+## Shipping
+Per now we offer a static shipping feature where you can specify shipping options for the users in our create session API endpoint. Static shipping means a flat rate per shipping option regardless of the customer's address.
+We show a title, price and optional description and the ability to show optional logo from a limited set of logos from the most popular shipping providers.
+
+ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout/#/Session/post_session)
+
+```json
+"ShippingOptions": [
+    {
+      "IsDefault": true,
+      "Priority": 0,
+      "ShippingCost": 0,
+      "ShippingMethod": "string",
+      "ShippingMethodId": "string",
+      "ShippingMethodLogoId": "string",
+      "Description": "string"
+    }
+  ]
+```
+- `IsDefault` is the option pre-checked for the customer. Only one option should have this as true.
+- `Priority` allows you to specify the order of your options explicitly by ascending order.
+- `ShippingCost` is the amount in oere.
+- `ShippingMethod` is the title of the shipping option
+- `ShippingMethodId` will be the unique identifier for the shipping option, and will be returned to you in the callback and polling endpoint.
+- `ShippingMethodLogoId` shows the logo of the logistics provider. Can be either of these `"posten", "helthjem", "postnord"`.
+- `Description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
