@@ -136,6 +136,7 @@ Here is an example integration written in JavaScript that will make a request to
       if (token) {
         iframe.src = checkoutFrontendUrl + '/?token=' + token;
         iframe.id = iframeId;
+        iframe.title = "Vipps Checkout";
         frameContainer.appendChild(iframe);
       }
 
