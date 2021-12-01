@@ -272,7 +272,7 @@ It is very highly recommended for your system to combine both webhook and pollin
     "userDetails": {
         "firstName": "Test",
         "lastName": "Testesen",
-        "phoneNumber": "+4790000004",
+        "phoneNumber": "4790000004",
         "email": "example@example.no"
     },
     "shippingDetails": {
@@ -313,7 +313,7 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
         "userDetails": {
             "firstName": "Test",
             "lastName": "Testesen",
-            "phoneNumber": "+4790000004",
+            "phoneNumber": "4790000004",
             "email": "example@example.no"
         },
         "shippingDetails": {
