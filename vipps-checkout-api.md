@@ -131,7 +131,9 @@ Here is an example integration written in JavaScript that will make a request to
             });
           })
           .catch(function (error) {
-            console.error('Error:', error);
+            // Handle atlest these two types of errors here:
+            // 1. Fetch to create session endpoint failed
+            // 2. VippsCheckout SDK not loaded resulting in VippsCheckout not being defined
           });
       });
     </script>
@@ -140,7 +142,7 @@ Here is an example integration written in JavaScript that will make a request to
 
 ```
 
-`VippsCheckout` comes from the SDK that got loaded in `<head>` (async loading of SDK not available). The SDK's purpose is to attatch the iFrame to the given container element and load Vipps Checkout within it.
+`VippsCheckout` comes from the SDK at `https://vippscheckoutprod.z6.web.core.windows.net/vippsCheckoutSDK.js` that got loaded in `<head>` (async loading of SDK not available). The SDK's purpose is to attatch the iFrame to the given container element and load Vipps Checkout within it.
 
 The object argument to `VippsCheckout`
 ```js
@@ -156,6 +158,7 @@ We provide a help method that when called will redirect to the current page but 
 Use it like this when receiving data from the create session endpoint to enable this feature.
 
 ```js
+// <Create session fetch function>
 .then(function (data) {
   var vippsCheckout = VippsCheckout({
               checkoutFrontendUrl: data.checkoutFrontendUrl,
