@@ -152,18 +152,20 @@ The object argument to `VippsCheckout`
   token // The token from create session endpoint that is specific to each checkout. (Optional when using token as queryParam flow as described below) 
 }
 ```
+#### Sticky checkout example using query parameters
 The SDK provides an alternative flow to enable the use of a query parameter to keep the session "sticky", e.g. if you refresh the page. If the query parameter `token` is present, and the token attribute in the argument object to VippsCheckout is not defined, the SDK will load the iFrame with the token from the query parameter.
 
 We provide a help method that when called will redirect to the current page but attatch a `token` queryParameter to the URL.
-Use it like this when receiving data from the create session endpoint to enable this feature.
+Use it like this when receiving data from the create session endpoint to enable this feature. Note that the `VippsCheckout` initialization must be run outside of your fetch code if you use it in an event handler, or else the iFrame won't load.
 
 ```js
-// <Create session fetch function>
-.then(function (data) {
-  var vippsCheckout = VippsCheckout({
+var vippsCheckout = VippsCheckout({
               checkoutFrontendUrl: data.checkoutFrontendUrl,
               iFrameContainerId: 'checkout-frame-container'
             });
+
+// <Create session fetch function>
+.then(function (data) {
   vippsCheckout.redirectToCurrentPageWithToken(data.token)
 })
 ```
