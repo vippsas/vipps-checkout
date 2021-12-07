@@ -127,6 +127,7 @@ Here is an example integration written in JavaScript that will make a request to
             var vippsCheckout = VippsCheckout({
               checkoutFrontendUrl: data.checkoutFrontendUrl,
               iFrameContainerId: 'checkout-frame-container',
+              language: 'no',
               token: data.token
             });
           })
@@ -149,7 +150,8 @@ The object argument to `VippsCheckout`
 {
   checkoutFrontendUrl, // Will be supplied from our create session endpoint
   iFrameContainerId, // The id of the html element to contain the Checkout iFrame
-  token // The token from create session endpoint that is specific to each checkout. (Optional when using token as queryParam flow as described below) 
+  language // Can be set to 'no' norwegian, or 'en' english. This is optional and will default to 'en' english if not specified
+  token // The token from create session endpoint that is specific to each checkout. Optional when using token as queryParam flow as described below. 
 }
 ```
 #### Sticky checkout example using query parameters
