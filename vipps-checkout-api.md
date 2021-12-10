@@ -90,7 +90,7 @@ Here is an example integration written in JavaScript that will make a request to
 <html>
   <head>
     <title>Merchant</title>
-    <script src="https://vippscheckoutprod.z6.web.core.windows.net/vippsCheckoutSDK.js></script>
+    <script src="https://vippscheckoutprod.z6.web.core.windows.net/vippsCheckoutSDK.js"></script>
   </head>
   <body>
     <section id="merchant-order">    
