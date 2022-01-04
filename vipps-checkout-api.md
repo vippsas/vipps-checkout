@@ -308,7 +308,7 @@ We show a title, price and optional description and the ability to show optional
 ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout/#/Session/post_session)
 
 ```json
-"ShippingOptions": [
+"shippingOptions": [
     {
       "isDefault": true,
       "priority": 0,
