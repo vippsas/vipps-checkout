@@ -331,7 +331,8 @@ ShippingOptions are provided in the create session endpoint. See [Swagger docume
 ## Dynamic Shipping (COMING SOON)
 Shipping options can be calculated on the basis of shipping address. To support this, Checkout sends a callback to a merchant endpoint. The merchant endpoint is sent in during session initiation in the logistics.dynamicOptionsCallback field. If this field is null, dynamic shipping will not be used.
 The callback is as follows:
-``json
+
+```json
 {
   "streetAddress": "string",
   "postalCode": "string",
@@ -346,7 +347,7 @@ The callback is as follows:
 
 We strongly recommend merchants to also send in fallback shipping options in logistics.fixedOptions in case the fallback fails for some reason. If the callback does not resolve successfully within 8 seconds, this fallback will be used (or an error will be displayed to the user if no fixedOptions are provided). 
 
-``json
+```json
 [
   {
     "id": "string",
