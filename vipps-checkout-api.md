@@ -310,23 +310,23 @@ ShippingOptions are provided in the create session endpoint. See [Swagger docume
 ```json
 "ShippingOptions": [
     {
-      "IsDefault": true,
-      "Priority": 0,
-      "ShippingCost": 0,
-      "ShippingMethod": "string",
-      "ShippingMethodId": "string",
-      "ShippingMethodLogoId": "string",
-      "Description": "string"
+      "isDefault": true,
+      "priority": 0,
+      "shippingCost": 0,
+      "shippingMethod": "string",
+      "shippingMethodId": "string",
+      "shippingMethodLogoId": "string",
+      "description": "string"
     }
   ]
 ```
-- `IsDefault` is the option pre-checked for the customer. Only one option should have this as true.
-- `Priority` allows you to specify the order of your options explicitly by ascending order.
-- `ShippingCost` is the amount in oere.
-- `ShippingMethod` is the title of the shipping option
-- `ShippingMethodId` will be the unique identifier for the shipping option, and will be returned to you in the callback and polling endpoint.
-- `ShippingMethodLogoId` shows the logo of the logistics provider. Can be either of these `"posten", "helthjem", "postnord"`.
-- `Description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
+- `isDefault` is the option pre-checked for the customer. Only one option should have this as true.
+- `priority` allows you to specify the order of your options explicitly by ascending order.
+- `shippingCost` is the amount in oere.
+- `shippingMethod` is the title of the shipping option
+- `shippingMethodId` will be the unique identifier for the shipping option, and will be returned to you in the callback and polling endpoint.
+- `shippingMethodLogoId` shows the logo of the logistics provider. Can be either of these `"posten", "helthjem", "postnord"`.
+- `description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
 
 ## Dynamic Shipping (COMING SOON)
 Shipping options can be calculated on the basis of shipping address. To support this, Checkout sends a callback as a POST to a merchant endpoint. The merchant endpoint is provided in the session initiation in the logistics.dynamicOptionsCallback field. If this field is null, dynamic shipping will not be used.
