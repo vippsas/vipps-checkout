@@ -366,7 +366,7 @@ We strongly recommend merchants to also send in fallback shipping options in log
 - `id` will be the unique identifier for the shipping option, and will be returned to you in the callback and polling endpoint.
 - `isDefault` is the option pre-checked for the customer. Only one option should have this as true.
 - `priority` allows you to specify the order of your options explicitly by ascending order. Should be provided as an integer.
-- `brand` is the logistics provider. This is used to display a logo next to the shipping option. Currently `"posten", "helthjem" and "postnord"` logos are supported.
+- `brand` is the logistics provider. This is used to display a logo next to the shipping option. Currently `"posten", "helthjem" and "postnord"` logos are supported. If none of these are given, a generic logo will be displayed instead.
 - `product` is the shipping option product name, and is typically used to distinguish different options that the logistics providers offer. Such as "pick-up in store", "home delivery" and "mailbox". This will be displayed in the title of the shipping option.
 - `description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
 - `amount.currency` is the currency identificator according to ISO 4217.
