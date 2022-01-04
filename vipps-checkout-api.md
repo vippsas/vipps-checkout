@@ -351,14 +351,14 @@ We strongly recommend merchants to also send in fallback shipping options in log
 [
   {
     "id": "string",
-    "isDefault": boolean,
-    "priority": number,
+    "isDefault": true,
+    "priority": 0,
     "brand": "string",
     "product": "string",
     "description": "string"
     "amount": {
       "currency": "string",
-      "value": number
+      "value": 0
     },
   }
 ]
