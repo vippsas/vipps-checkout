@@ -14,6 +14,7 @@ Preliminary documentation. Subject to change
   - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
   - [Webhook integration](#webhook-integration)
   - [Example of webhook notification](#example-of-webhook-notification)
+  - [Shipping](#shipping)
 
 # Flow diagram
 
@@ -88,13 +89,8 @@ Here is an example integration written in JavaScript that will make a request to
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"
-    />
     <title>Merchant</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
   </head>
   <body>
     <section id="merchant-order">    
@@ -103,35 +99,6 @@ Here is an example integration written in JavaScript that will make a request to
     <section id="vipps-checkout-frame-container"></section>
     <script>
       var merchantBackendAppUrl = '<THE BACKEND OF THE MERCHANT TO RECEIVE CALLBACK>';
-      var checkoutFrontendUrl = '<URL TO VIPPS CHECKOUT>';
-      
-      // Setup iframe element and container to hold the iframe
-      var frameContainer = document.getElementById('vipps-checkout-frame-container');
-      var iframe = document.createElement('iframe');
-      var iframeId = 'vipps-checkout-iframe';
-      iframe.frameBorder = '0';
-      iframe.width = '100%';
-
-      // The height of the iframe is communicated from the iframe according to it's content
-      window.addEventListener(
-        'message',
-        function (e) {
-          if (e.origin === checkoutFrontendUrl) {
-            if (e.data.hasOwnProperty('frameHeight')) {
-              document.getElementById(iframeId).style.height = e.data.frameHeight + 'px';
-            }
-          }
-        },
-        false
-      );
-
-      // If token query parameter present, we don't need to start a new session and load the current one.
-      var token = getParameterByName('token');
-      if (token) {
-        iframe.src = checkoutFrontendUrl + '/?token=' + token;
-        iframe.id = iframeId;
-        frameContainer.appendChild(iframe);
-      }
 
       // When clicking the "Checkout with Vipps" button
       document.getElementById('checkout-button').addEventListener('click', function () {
@@ -157,39 +124,53 @@ Here is an example integration written in JavaScript that will make a request to
             return response.json();
           })
           .then(function (data) {
-            // Set token in URL and update the address field of the browser.
-            window.location.href = updateQueryStringParameter('token', data.token);
+            var vippsCheckout = VippsCheckout({
+              checkoutFrontendUrl: data.checkoutFrontendUrl,
+              iFrameContainerId: 'checkout-frame-container',
+              language: 'no',
+              token: data.token
+            });
           })
           .catch(function (error) {
-            console.error('Error:', error);
+            // Handle atlest these two types of errors here:
+            // 1. Fetch to create session endpoint failed
+            // 2. VippsCheckout SDK not loaded resulting in VippsCheckout not being defined
           });
       });
-
-      // Helper functions
-      function updateQueryStringParameter(key, value) {
-        var uri = window.location.href;
-        var re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-        var separator = uri.indexOf('?') !== -1 ? '&' : '?';
-        if (uri.match(re)) {
-          return uri.replace(re, '$1' + key + '=' + value + '$2');
-        } else {
-          return uri + separator + key + '=' + value;
-        }
-      }
-      function getParameterByName(name) {
-        var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-        var result = match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-        return result;
-      }
     </script>
   </body>
 </html>
 
 ```
 
-Insert the token into the iframe and display it to the Customer. 
+`VippsCheckout` comes from the SDK at `https://checkout.vipps.no/vippsCheckoutSDK.js` that got loaded in `<head>` (async loading of SDK not available). The SDK's purpose is to attatch the iFrame to the given container element and load Vipps Checkout within it.
 
-The user then completes the session in the Iframe and gets redirected back to the fallBackUrl if applicable.
+The object argument to `VippsCheckout`
+```js
+{
+  checkoutFrontendUrl, // Will be supplied from our create session endpoint
+  iFrameContainerId, // The id of the html element to contain the Checkout iFrame
+  language // Can be set to 'no' norwegian, or 'en' english. This is optional and will default to 'en' english if not specified
+  token // The token from create session endpoint that is specific to each checkout. Optional when using token as queryParam flow as described below. 
+}
+```
+#### Sticky checkout example using query parameters
+The SDK provides an alternative flow to enable the use of a query parameter to keep the session "sticky", e.g. if you refresh the page. If the query parameter `token` is present, and the token attribute in the argument object to VippsCheckout is not defined, the SDK will load the iFrame with the token from the query parameter.
+
+We provide a help method that when called will redirect to the current page but attatch a `token` queryParameter to the URL.
+Use it like this when receiving data from the create session endpoint to enable this feature. Note that the `VippsCheckout` initialization must be run outside of your fetch code if you use it in an event handler, or else the iFrame won't load.
+
+```js
+var vippsCheckout = VippsCheckout({
+              checkoutFrontendUrl: data.checkoutFrontendUrl,
+              iFrameContainerId: 'checkout-frame-container'
+            });
+
+// <Create session fetch function>
+.then(function (data) {
+  vippsCheckout.redirectToCurrentPageWithToken(data.token)
+})
+```
 
 # System integration guidelines
 
@@ -265,7 +246,7 @@ It is very highly recommended for your system to combine both webhook and pollin
     "userDetails": {
         "firstName": "Test",
         "lastName": "Testesen",
-        "phoneNumber": "+4790000004",
+        "phoneNumber": "4790000004",
         "email": "example@example.no"
     },
     "shippingDetails": {
@@ -306,7 +287,7 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
         "userDetails": {
             "firstName": "Test",
             "lastName": "Testesen",
-            "phoneNumber": "+4790000004",
+            "phoneNumber": "4790000004",
             "email": "example@example.no"
         },
         "shippingDetails": {
@@ -320,3 +301,73 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
     }
 ```
 
+## Shipping
+Per now we offer a static shipping feature where you can specify shipping options for the users in our create session API endpoint. Static shipping means a flat rate per shipping option regardless of the customer's address.
+We show a title, price and optional description and the ability to show optional logo from a limited set of logos from the most popular shipping providers.
+
+ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout/#/Session/post_session)
+
+```json
+"shippingOptions": [
+    {
+      "isDefault": true,
+      "priority": 0,
+      "shippingCost": 0,
+      "shippingMethod": "string",
+      "shippingMethodId": "string",
+      "shippingMethodLogoId": "string",
+      "description": "string"
+    }
+  ]
+```
+- `isDefault` is the option pre-checked for the customer. Only one option should have this as true.
+- `priority` allows you to specify the order of your options explicitly by ascending order.
+- `shippingCost` is the amount in oere.
+- `shippingMethod` is the title of the shipping option
+- `shippingMethodId` will be the unique identifier for the shipping option, and will be returned to you in the callback and polling endpoint.
+- `shippingMethodLogoId` shows the logo of the logistics provider. Can be either of these `"posten", "helthjem", "postnord"`.
+- `description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
+
+## Dynamic Shipping (COMING SOON)
+Shipping options can be calculated on the basis of shipping address. To support this, Checkout sends a callback as a POST to a merchant endpoint. The merchant endpoint is provided in the session initiation in the logistics.dynamicOptionsCallback field. If this field is null, dynamic shipping will not be used.
+The callback is as follows:
+
+```json
+{
+  "streetAddress": "string",
+  "postalCode": "string",
+  "region": "string",
+  "country": "string",
+}
+```
+- `streetAddress` is the street address. 
+- `postalCode` is the zip code.
+- `region` is the region.
+- `country` is the country.
+
+We strongly recommend merchants to also send in fallback shipping options in logistics.fixedOptions in case the fallback fails for some reason. If the callback does not resolve successfully within 8 seconds, this fallback will be used (or an error will be displayed to the user if no fixedOptions are provided). 
+
+```json
+[
+  {
+    "id": "string",
+    "isDefault": true,
+    "priority": 0,
+    "brand": "string",
+    "product": "string",
+    "description": "string"
+    "amount": {
+      "currency": "string",
+      "value": 0
+    },
+  }
+]
+```
+- `id` will be the unique identifier for the shipping option, and will be returned to you in the callback and polling endpoint.
+- `isDefault` is the option pre-checked for the customer. Only one option should have this as true.
+- `priority` allows you to specify the order of your options explicitly by ascending order. Should be provided as an integer.
+- `brand` is the logistics provider. This is used to display a logo next to the shipping option. Currently `"posten", "helthjem" and "postnord"` logos are supported. If none of these are given, a generic logo will be displayed instead.
+- `product` is the shipping option product name, and is typically used to distinguish different options that the logistics providers offer. Such as "pick-up in store", "home delivery" and "mailbox". This will be displayed in the title of the shipping option.
+- `description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
+- `amount.currency` is the currency identificator according to ISO 4217.
+- `amount.value` is the amount in the lowest currency subdivision (øre/oere for NOK) as an integer.
