@@ -1,143 +1,191 @@
 openapi: 3.0.1
 info:
-  title: checkout-backend.API
-  version: v1
+  title: checkout-backend-external.API
+  version: v2
 servers:
   - url: https://apitest.vipps.no/checkout
   - url: https://api.vipps.no/checkout
 paths:
-  /Healthcheck:
-    get:
-      tags:
-        - Healthcheck
-      summary: Check the health of the app.
-      responses:
-        "200":
-          description: Health OK!
   /session:
     post:
       tags:
         - Session
       summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
       parameters:
-        - name: client_id
+        - name: checkoutSessionThirdPartyInformationHeaders
           in: header
-          required: true
           schema:
-            type: string
-        - name: client_secret
+            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+        - name: merchantAuthInfoHeaders
           in: header
-          required: true
           schema:
-            type: string
-        - name: Ocp-Apim-Subscription-Key
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Name
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Version
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Plugin-Name
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Plugin-Version
-          in: header
-          required: true
-          schema:
-            type: string
+            $ref: '#/components/schemas/MerchantAuthInfoHeadersV1'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDto"
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV1'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV1'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV1'
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CheckoutSessionInitiationResponse"
-  /v1/session/{sessionId}:
+                $ref: '#/components/schemas/CheckoutSessionInitiationResponse'
+  '/v1/session/{sessionId}':
     get:
       tags:
         - Session
-      summary: "Retrieves sessionInfo from database when merchant polls. \r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
+      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
       parameters:
         - name: sessionId
           in: path
           required: true
           schema:
             type: string
-        - name: client_id
+        - name: checkoutSessionThirdPartyInformationHeaders
           in: header
-          required: true
           schema:
-            type: string
-        - name: client_secret
+            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+        - name: merchantAuthInfoHeaders
           in: header
-          required: true
           schema:
-            type: string
-        - name: Ocp-Apim-Subscription-Key
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Name
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Version
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Plugin-Name
-          in: header
-          required: true
-          schema:
-            type: string
-        - name: Vipps-System-Plugin-Version
-          in: header
-          required: true
-          schema:
-            type: string
+            $ref: '#/components/schemas/MerchantAuthInfoHeadersV1'
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SessionDetailsForMerchant"
-        "404":
-          description: "The specified session id is unknown."
+                $ref: '#/components/schemas/SessionResponseV1'
+        '404':
+          description: The specified session id is unknown.
+  /v2/session:
+    post:
+      tags:
+        - Session
+      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
+      parameters:
+        - name: checkoutSessionThirdPartyInformationHeaders
+          in: header
+          schema:
+            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+        - name: merchantAuthInfoHeaders
+          in: header
+          schema:
+            $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSessionInitiationResponse'
+  '/v2/session/{sessionId}':
+    get:
+      tags:
+        - Session
+      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: checkoutSessionThirdPartyInformationHeaders
+          in: header
+          schema:
+            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+        - name: merchantAuthInfoHeaders
+          in: header
+          schema:
+            $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponseV2'
+        '404':
+          description: The specified session id is unknown.
 components:
   schemas:
-    CheckoutSessionInitiationRequestDto:
+    Amount:
+      type: object
+      properties:
+        Currency:
+          type: string
+          nullable: true
+        Value:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AmountV1:
+      type: object
+      properties:
+        Value:
+          type: integer
+          format: int32
+        Currency:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AmountV2:
+      type: object
+      properties:
+        Value:
+          type: integer
+          format: int32
+        Currency:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CheckoutSessionInitiationRequestDtoV1:
       type: object
       properties:
         MerchantInfo:
-          $ref: "#/components/schemas/PaymentMerchantInfo"
+          $ref: '#/components/schemas/PaymentMerchantInfoV1'
         Transaction:
-          $ref: "#/components/schemas/PaymentTransaction"
+          $ref: '#/components/schemas/PaymentTranactionV1'
         ShippingOptions:
           type: array
           items:
-            $ref: "#/components/schemas/ShippingOption"
+            $ref: '#/components/schemas/ShippingOptionV1'
           nullable: true
         PrefillInformation:
-          $ref: "#/components/schemas/PrefillInformation"
+          $ref: '#/components/schemas/PrefillInformationV1'
+      additionalProperties: false
+    CheckoutSessionInitiationRequestDtoV2:
+      type: object
+      properties:
+        MerchantInfo:
+          $ref: '#/components/schemas/PaymentMerchantInfo'
+        Transaction:
+          $ref: '#/components/schemas/PaymentTransaction'
+        Logistics:
+          $ref: '#/components/schemas/Logistics'
+        PrefillCustomer:
+          $ref: '#/components/schemas/PrefillCustomer'
+        CustomerInteraction:
+          type: string
           nullable: true
       additionalProperties: false
     CheckoutSessionInitiationResponse:
@@ -169,7 +217,39 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    MerchantAuthInfoHeaders:
+    Logistics:
+      type: object
+      properties:
+        FixedOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogisticsOption'
+          nullable: true
+      additionalProperties: false
+    LogisticsOption:
+      type: object
+      properties:
+        Amount:
+          $ref: '#/components/schemas/Amount'
+        Id:
+          type: string
+          nullable: true
+        Priority:
+          type: integer
+          format: int32
+        Brand:
+          type: string
+          nullable: true
+        Product:
+          type: string
+          nullable: true
+        IsDefault:
+          type: boolean
+        Description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MerchantAuthInfoHeadersV1:
       type: object
       properties:
         client_id:
@@ -182,7 +262,61 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    MerchantAuthInfoHeadersV2:
+      type: object
+      properties:
+        client_id:
+          type: string
+          nullable: true
+        client_secret:
+          type: string
+          nullable: true
+        Ocp-Apim-Subscription-Key:
+          type: string
+          nullable: true
+        Merchant-Serial-Number:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentDetailsV1:
+      type: object
+      properties:
+        Amount:
+          $ref: '#/components/schemas/AmountV1'
+        State:
+          type: string
+          nullable: true
+        TransactionAggregate:
+          $ref: '#/components/schemas/TransactionAggregateV1'
+      additionalProperties: false
+    PaymentDetailsV2:
+      type: object
+      properties:
+        Amount:
+          $ref: '#/components/schemas/AmountV2'
+        State:
+          type: string
+          nullable: true
+        TransactionAggregate:
+          $ref: '#/components/schemas/TransactionAggregateV2'
+      additionalProperties: false
     PaymentMerchantInfo:
+      type: object
+      properties:
+        CallbackPrefix:
+          type: string
+          nullable: true
+        ReturnUrl:
+          type: string
+          nullable: true
+        CallbackAuthorizationToken:
+          type: string
+          nullable: true
+        TermsAndConditionsUrl:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentMerchantInfoV1:
       type: object
       properties:
         MerchantSerialNumber:
@@ -201,7 +335,7 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    PaymentTransaction:
+    PaymentTranactionV1:
       type: object
       properties:
         Amount:
@@ -214,27 +348,75 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    PrefillInformation:
+    PaymentTransaction:
+      type: object
+      properties:
+        Amount:
+          $ref: '#/components/schemas/Amount'
+        Reference:
+          type: string
+          nullable: true
+        PaymentDescription:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PrefillCustomer:
       type: object
       properties:
         FirstName:
           type: string
+          nullable: true
         LastName:
           type: string
+          nullable: true
         Email:
           type: string
+          nullable: true
         PhoneNumber:
           type: string
+          nullable: true
         StreetAddress:
           type: string
+          nullable: true
         City:
           type: string
+          nullable: true
         PostalCode:
           type: string
+          nullable: true
         Country:
           type: string
+          nullable: true
       additionalProperties: false
-    SessionDetailsForMerchant:
+    PrefillInformationV1:
+      type: object
+      properties:
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        Email:
+          type: string
+          nullable: true
+        PhoneNumber:
+          type: string
+          nullable: true
+        StreetAddress:
+          type: string
+          nullable: true
+        City:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SessionResponseV1:
       type: object
       properties:
         SessionId:
@@ -246,47 +428,89 @@ components:
         SessionState:
           type: string
           nullable: true
-        TransactionLogHistory:
-          type: array
-          items:
-            $ref: "#/components/schemas/TransactionLogHistory"
+        PaymentMethod:
+          type: string
           nullable: true
-        TransactionSummary:
-          $ref: "#/components/schemas/TransactionSummary"
+        PaymentDetails:
+          $ref: '#/components/schemas/PaymentDetailsV1'
         UserDetails:
-          $ref: "#/components/schemas/UserDetails"
+          $ref: '#/components/schemas/UserDetailsV1'
         ShippingDetails:
-          $ref: "#/components/schemas/ShippingAddress"
+          $ref: '#/components/schemas/ShippingDetailsV1'
       additionalProperties: false
-    ShippingAddress:
+    SessionResponseV2:
+      type: object
+      properties:
+        SessionId:
+          type: string
+          nullable: true
+        Reference:
+          type: string
+          nullable: true
+        SessionState:
+          type: string
+          nullable: true
+        PaymentMethod:
+          type: string
+          nullable: true
+        PaymentDetails:
+          $ref: '#/components/schemas/PaymentDetailsV2'
+        UserDetails:
+          $ref: '#/components/schemas/UserDetailsV2'
+        ShippingDetails:
+          $ref: '#/components/schemas/ShippingDetailsV2'
+      additionalProperties: false
+    ShippingDetailsV1:
       type: object
       properties:
         FirstName:
           type: string
           nullable: true
-          readOnly: true
         LastName:
           type: string
           nullable: true
-          readOnly: true
         StreetAddress:
           type: string
           nullable: true
-          readOnly: true
         PostalCode:
           type: string
           nullable: true
-          readOnly: true
         Region:
           type: string
           nullable: true
-          readOnly: true
         Country:
           type: string
           nullable: true
-          readOnly: true
+        ShippingMethodId:
+          type: string
+          nullable: true
       additionalProperties: false
-    ShippingOption:
+    ShippingDetailsV2:
+      type: object
+      properties:
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        StreetAddress:
+          type: string
+          nullable: true
+        PostalCode:
+          type: string
+          nullable: true
+        Region:
+          type: string
+          nullable: true
+        Country:
+          type: string
+          nullable: true
+        ShippingMethodId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ShippingOptionV1:
       type: object
       properties:
         IsDefault:
@@ -310,48 +534,47 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    TransactionLogHistory:
+    TransactionAggregateV1:
       type: object
       properties:
-        Amount:
-          type: integer
-          format: int32
-        TransactionText:
-          type: string
-          nullable: true
-        TimeStamp:
-          type: string
-          nullable: true
-        Operation:
-          type: string
-          nullable: true
-        OperationSuccess:
-          type: boolean
-        TransactionId:
-          type: string
-          nullable: true
-      additionalProperties: false
-    TransactionSummary:
-      type: object
-      properties:
+        CancelledAmount:
+          $ref: '#/components/schemas/AmountV1'
         CapturedAmount:
-          type: integer
-          format: int32
-        RemainingAmountToCapture:
-          type: integer
-          format: int32
+          $ref: '#/components/schemas/AmountV1'
         RefundedAmount:
-          type: integer
-          format: int32
-        RemainingAmountToRefund:
-          type: integer
-          format: int32
-        BankIdentificationNumber:
-          type: integer
-          format: int32
+          $ref: '#/components/schemas/AmountV1'
+        AuthorizedAmount:
+          $ref: '#/components/schemas/AmountV1'
+      additionalProperties: false
+    TransactionAggregateV2:
+      type: object
+      properties:
+        CancelledAmount:
+          $ref: '#/components/schemas/AmountV2'
+        CapturedAmount:
+          $ref: '#/components/schemas/AmountV2'
+        RefundedAmount:
+          $ref: '#/components/schemas/AmountV2'
+        AuthorizedAmount:
+          $ref: '#/components/schemas/AmountV2'
+      additionalProperties: false
+    UserDetailsV1:
+      type: object
+      properties:
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        PhoneNumber:
+          type: string
+          nullable: true
+        Email:
+          type: string
           nullable: true
       additionalProperties: false
-    UserDetails:
+    UserDetailsV2:
       type: object
       properties:
         FirstName:
