@@ -90,7 +90,7 @@ Here is an example integration written in JavaScript that will make a request to
 <html>
   <head>
     <title>Merchant</title>
-    <script src="https://vippscheckoutprod.z6.web.core.windows.net/vippsCheckoutSDK.js"></script>
+    <script src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
   </head>
   <body>
     <section id="merchant-order">    
@@ -143,7 +143,7 @@ Here is an example integration written in JavaScript that will make a request to
 
 ```
 
-`VippsCheckout` comes from the SDK at `https://vippscheckoutprod.z6.web.core.windows.net/vippsCheckoutSDK.js` that got loaded in `<head>` (async loading of SDK not available). The SDK's purpose is to attatch the iFrame to the given container element and load Vipps Checkout within it.
+`VippsCheckout` comes from the SDK at `https://checkout.vipps.no/vippsCheckoutSDK.js` that got loaded in `<head>` (async loading of SDK not available). The SDK's purpose is to attatch the iFrame to the given container element and load Vipps Checkout within it.
 
 The object argument to `VippsCheckout`
 ```js
