@@ -70,7 +70,7 @@ Request body:
         }
     },
     "logistics": {
-        "dynamicOptionsCallback": "", // URL for dynamic logistics. If not given, only fixed logistics options will be used.
+        "dynamicOptionsCallback": "https://example.com/vipps/dynamiclogisticsoptions", // URL for dynamic logistics. If not given, only fixed logistics options will be used.
         "fixedOptions": [
           {    
             "id": "postenstore",
