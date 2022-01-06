@@ -59,7 +59,7 @@ Request body:
         "fallBackUrl": "https://example.com/vipps", //Will overwrite configuration on Merchant Profile
         "callbackPrefix": "https://example.com/vipps/callbacks-for-payment-updates",
         "callbackAuthorizationToken": "iOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImllX3FXQ1hoWHh0MXpJ",
-        termsAndConditionsUrl: "https://example.com/vipps/termsAndConditions"
+        "termsAndConditionsUrl": "https://example.com/vipps/termsAndConditions"
     },
     "transaction": {
         "reference" : "31gf1g413121",
@@ -69,7 +69,7 @@ Request body:
           "value": 20000, //Must be in Minor Units. The smallest unit of a currency.
         }
     },
-    "logistics: {
+    "logistics": {
         "dynamicOptionsCallback": "", // URL for dynamic logistics. If not given, only fixed logistics options will be used.
         "fixedOptions": [
           {    
