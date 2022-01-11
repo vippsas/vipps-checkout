@@ -38,7 +38,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CheckoutSessionInitiationResponse'
-  '/v1/session/{sessionId}':
+  /v1/session/{sessionId}:
     get:
       tags:
         - Session
@@ -98,7 +98,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CheckoutSessionInitiationResponse'
-  '/v2/session/{sessionId}':
+  /v2/session/{sessionId}:
     get:
       tags:
         - Session
@@ -131,96 +131,99 @@ components:
     Amount:
       type: object
       properties:
-        Currency:
+        currency:
           type: string
           nullable: true
-        Value:
+        value:
           type: integer
           format: int32
       additionalProperties: false
     AmountV1:
       type: object
       properties:
-        Value:
+        value:
           type: integer
           format: int32
-        Currency:
+        currency:
           type: string
           nullable: true
       additionalProperties: false
     AmountV2:
       type: object
       properties:
-        Value:
+        value:
           type: integer
           format: int32
-        Currency:
+        currency:
           type: string
           nullable: true
       additionalProperties: false
     CheckoutSessionInitiationRequestDtoV1:
       type: object
       properties:
-        MerchantInfo:
+        merchantInfo:
           $ref: '#/components/schemas/PaymentMerchantInfoV1'
-        Transaction:
+        transaction:
           $ref: '#/components/schemas/PaymentTranactionV1'
-        ShippingOptions:
+        shippingOptions:
           type: array
           items:
             $ref: '#/components/schemas/ShippingOptionV1'
           nullable: true
-        PrefillInformation:
+        prefillInformation:
           $ref: '#/components/schemas/PrefillInformationV1'
       additionalProperties: false
     CheckoutSessionInitiationRequestDtoV2:
       type: object
       properties:
-        MerchantInfo:
+        merchantInfo:
           $ref: '#/components/schemas/PaymentMerchantInfo'
-        Transaction:
+        transaction:
           $ref: '#/components/schemas/PaymentTransaction'
-        Logistics:
+        logistics:
           $ref: '#/components/schemas/Logistics'
-        PrefillCustomer:
+        prefillCustomer:
           $ref: '#/components/schemas/PrefillCustomer'
-        CustomerInteraction:
+        customerInteraction:
           type: string
           nullable: true
       additionalProperties: false
     CheckoutSessionInitiationResponse:
       type: object
       properties:
-        Token:
+        token:
           type: string
           nullable: true
-        CheckoutFrontendUrl:
+        checkoutFrontendUrl:
           type: string
           nullable: true
-        PollingUrl:
+        pollingUrl:
           type: string
           nullable: true
       additionalProperties: false
     CheckoutSessionThirdPartyInformationHeaders:
       type: object
       properties:
-        Vipps-System-Name:
+        vipps-System-Name:
           type: string
           nullable: true
-        Vipps-System-Version:
+        vipps-System-Version:
           type: string
           nullable: true
-        Vipps-System-Plugin-Name:
+        vipps-System-Plugin-Name:
           type: string
           nullable: true
-        Vipps-System-Plugin-Version:
+        vipps-System-Plugin-Version:
           type: string
           nullable: true
       additionalProperties: false
     Logistics:
       type: object
       properties:
-        FixedOptions:
+        dynamicOptionsCallback:
+          type: string
+          nullable: true
+        fixedOptions:
           type: array
           items:
             $ref: '#/components/schemas/LogisticsOption'
@@ -229,23 +232,23 @@ components:
     LogisticsOption:
       type: object
       properties:
-        Amount:
+        amount:
           $ref: '#/components/schemas/Amount'
-        Id:
+        id:
           type: string
           nullable: true
-        Priority:
+        priority:
           type: integer
           format: int32
-        Brand:
+        brand:
           type: string
           nullable: true
-        Product:
+        product:
           type: string
           nullable: true
-        IsDefault:
+        isDefault:
           type: boolean
-        Description:
+        description:
           type: string
           nullable: true
       additionalProperties: false
@@ -258,7 +261,7 @@ components:
         client_secret:
           type: string
           nullable: true
-        Ocp-Apim-Subscription-Key:
+        ocp-Apim-Subscription-Key:
           type: string
           nullable: true
       additionalProperties: false
@@ -271,322 +274,322 @@ components:
         client_secret:
           type: string
           nullable: true
-        Ocp-Apim-Subscription-Key:
+        ocp-Apim-Subscription-Key:
           type: string
           nullable: true
-        Merchant-Serial-Number:
+        merchant-Serial-Number:
           type: string
           nullable: true
       additionalProperties: false
     PaymentDetailsV1:
       type: object
       properties:
-        Amount:
+        amount:
           $ref: '#/components/schemas/AmountV1'
-        State:
+        state:
           type: string
           nullable: true
-        TransactionAggregate:
+        transactionAggregate:
           $ref: '#/components/schemas/TransactionAggregateV1'
       additionalProperties: false
     PaymentDetailsV2:
       type: object
       properties:
-        Amount:
+        amount:
           $ref: '#/components/schemas/AmountV2'
-        State:
+        state:
           type: string
           nullable: true
-        TransactionAggregate:
+        transactionAggregate:
           $ref: '#/components/schemas/TransactionAggregateV2'
       additionalProperties: false
     PaymentMerchantInfo:
       type: object
       properties:
-        CallbackPrefix:
+        callbackPrefix:
           type: string
           nullable: true
-        ReturnUrl:
+        returnUrl:
           type: string
           nullable: true
-        CallbackAuthorizationToken:
+        callbackAuthorizationToken:
           type: string
           nullable: true
-        TermsAndConditionsUrl:
+        termsAndConditionsUrl:
           type: string
           nullable: true
       additionalProperties: false
     PaymentMerchantInfoV1:
       type: object
       properties:
-        MerchantSerialNumber:
+        merchantSerialNumber:
           type: string
           nullable: true
-        CallbackPrefix:
+        callbackPrefix:
           type: string
           nullable: true
-        ReturnUrl:
+        returnUrl:
           type: string
           nullable: true
-        CallbackAuthorizationToken:
+        callbackAuthorizationToken:
           type: string
           nullable: true
-        TermsAndConditionsUrl:
+        termsAndConditionsUrl:
           type: string
           nullable: true
       additionalProperties: false
     PaymentTranactionV1:
       type: object
       properties:
-        Amount:
+        amount:
           type: integer
           format: int32
-        OrderId:
+        orderId:
           type: string
           nullable: true
-        TransactionText:
+        transactionText:
           type: string
           nullable: true
       additionalProperties: false
     PaymentTransaction:
       type: object
       properties:
-        Amount:
+        amount:
           $ref: '#/components/schemas/Amount'
-        Reference:
+        reference:
           type: string
           nullable: true
-        PaymentDescription:
+        paymentDescription:
           type: string
           nullable: true
       additionalProperties: false
     PrefillCustomer:
       type: object
       properties:
-        FirstName:
+        firstName:
           type: string
           nullable: true
-        LastName:
+        lastName:
           type: string
           nullable: true
-        Email:
+        email:
           type: string
           nullable: true
-        PhoneNumber:
+        phoneNumber:
           type: string
           nullable: true
-        StreetAddress:
+        streetAddress:
           type: string
           nullable: true
-        City:
+        city:
           type: string
           nullable: true
-        PostalCode:
+        postalCode:
           type: string
           nullable: true
-        Country:
+        country:
           type: string
           nullable: true
       additionalProperties: false
     PrefillInformationV1:
       type: object
       properties:
-        FirstName:
+        firstName:
           type: string
           nullable: true
-        LastName:
+        lastName:
           type: string
           nullable: true
-        Email:
+        email:
           type: string
           nullable: true
-        PhoneNumber:
+        phoneNumber:
           type: string
           nullable: true
-        StreetAddress:
+        streetAddress:
           type: string
           nullable: true
-        City:
+        city:
           type: string
           nullable: true
-        PostalCode:
+        postalCode:
           type: string
           nullable: true
-        Country:
+        country:
           type: string
           nullable: true
       additionalProperties: false
     SessionResponseV1:
       type: object
       properties:
-        SessionId:
+        sessionId:
           type: string
           nullable: true
-        OrderId:
+        orderId:
           type: string
           nullable: true
-        SessionState:
+        sessionState:
           type: string
           nullable: true
-        PaymentMethod:
+        paymentMethod:
           type: string
           nullable: true
-        PaymentDetails:
+        paymentDetails:
           $ref: '#/components/schemas/PaymentDetailsV1'
-        UserDetails:
+        userDetails:
           $ref: '#/components/schemas/UserDetailsV1'
-        ShippingDetails:
+        shippingDetails:
           $ref: '#/components/schemas/ShippingDetailsV1'
       additionalProperties: false
     SessionResponseV2:
       type: object
       properties:
-        SessionId:
+        sessionId:
           type: string
           nullable: true
-        Reference:
+        reference:
           type: string
           nullable: true
-        SessionState:
+        sessionState:
           type: string
           nullable: true
-        PaymentMethod:
+        paymentMethod:
           type: string
           nullable: true
-        PaymentDetails:
+        paymentDetails:
           $ref: '#/components/schemas/PaymentDetailsV2'
-        UserDetails:
+        userDetails:
           $ref: '#/components/schemas/UserDetailsV2'
-        ShippingDetails:
+        shippingDetails:
           $ref: '#/components/schemas/ShippingDetailsV2'
       additionalProperties: false
     ShippingDetailsV1:
       type: object
       properties:
-        FirstName:
+        firstName:
           type: string
           nullable: true
-        LastName:
+        lastName:
           type: string
           nullable: true
-        StreetAddress:
+        streetAddress:
           type: string
           nullable: true
-        PostalCode:
+        postalCode:
           type: string
           nullable: true
-        Region:
+        region:
           type: string
           nullable: true
-        Country:
+        country:
           type: string
           nullable: true
-        ShippingMethodId:
+        shippingMethodId:
           type: string
           nullable: true
       additionalProperties: false
     ShippingDetailsV2:
       type: object
       properties:
-        FirstName:
+        firstName:
           type: string
           nullable: true
-        LastName:
+        lastName:
           type: string
           nullable: true
-        StreetAddress:
+        streetAddress:
           type: string
           nullable: true
-        PostalCode:
+        postalCode:
           type: string
           nullable: true
-        Region:
+        region:
           type: string
           nullable: true
-        Country:
+        country:
           type: string
           nullable: true
-        ShippingMethodId:
+        shippingMethodId:
           type: string
           nullable: true
       additionalProperties: false
     ShippingOptionV1:
       type: object
       properties:
-        IsDefault:
+        isDefault:
           type: boolean
-        Priority:
+        priority:
           type: integer
           format: int32
-        ShippingCost:
+        shippingCost:
           type: integer
           format: int32
-        ShippingMethod:
+        shippingMethod:
           type: string
           nullable: true
-        ShippingMethodId:
+        shippingMethodId:
           type: string
           nullable: true
-        ShippingMethodLogoId:
+        shippingMethodLogoId:
           type: string
           nullable: true
-        Description:
+        description:
           type: string
           nullable: true
       additionalProperties: false
     TransactionAggregateV1:
       type: object
       properties:
-        CancelledAmount:
+        cancelledAmount:
           $ref: '#/components/schemas/AmountV1'
-        CapturedAmount:
+        capturedAmount:
           $ref: '#/components/schemas/AmountV1'
-        RefundedAmount:
+        refundedAmount:
           $ref: '#/components/schemas/AmountV1'
-        AuthorizedAmount:
+        authorizedAmount:
           $ref: '#/components/schemas/AmountV1'
       additionalProperties: false
     TransactionAggregateV2:
       type: object
       properties:
-        CancelledAmount:
+        cancelledAmount:
           $ref: '#/components/schemas/AmountV2'
-        CapturedAmount:
+        capturedAmount:
           $ref: '#/components/schemas/AmountV2'
-        RefundedAmount:
+        refundedAmount:
           $ref: '#/components/schemas/AmountV2'
-        AuthorizedAmount:
+        authorizedAmount:
           $ref: '#/components/schemas/AmountV2'
       additionalProperties: false
     UserDetailsV1:
       type: object
       properties:
-        FirstName:
+        firstName:
           type: string
           nullable: true
-        LastName:
+        lastName:
           type: string
           nullable: true
-        PhoneNumber:
+        phoneNumber:
           type: string
           nullable: true
-        Email:
+        email:
           type: string
           nullable: true
       additionalProperties: false
     UserDetailsV2:
       type: object
       properties:
-        FirstName:
+        firstName:
           type: string
           nullable: true
-        LastName:
+        lastName:
           type: string
           nullable: true
-        PhoneNumber:
+        phoneNumber:
           type: string
           nullable: true
-        Email:
+        email:
           type: string
           nullable: true
       additionalProperties: false
