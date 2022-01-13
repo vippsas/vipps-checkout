@@ -334,7 +334,9 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
 ```
 
 ## Shipping
-Per now we offer a static shipping feature where you can specify shipping options for the users in our create session API endpoint. Static shipping means a flat rate per shipping option regardless of the customer's address.
+Per now we offer a static shipping feature where you can specify shipping options for the users in our create session API endpoint. If no shipping options are provided, and Dynamic Shipping is not enabled, the customer will not be given any shipping options. 
+
+Static shipping means a flat rate per shipping option regardless of the customer's address.
 We show a title, price and optional description and the ability to show optional logo from a limited set of logos from the most popular shipping providers.
 
 ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout/#/Session/post_session)
