@@ -362,7 +362,7 @@ ShippingOptions are provided in the create session endpoint. See [Swagger docume
 - `shippingMethodLogoId` shows the logo of the logistics provider. Can be either of these `"posten", "helthjem", "postnord"`.
 - `description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
 
-## Dynamic Shipping (COMING SOON)
+## Dynamic Shipping
 Shipping options can be calculated on the basis of shipping address. To support this, Checkout sends a callback as a POST to a merchant endpoint. The merchant endpoint is provided in the session initiation in the logistics.dynamicOptionsCallback field. If this field is null, dynamic shipping will not be used.
 The callback is as follows:
 
