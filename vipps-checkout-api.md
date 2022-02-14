@@ -10,13 +10,14 @@ Preliminary documentation. Subject to change
       - [Sticky checkout example using query parameters](#sticky-checkout-example-using-query-parameters)
 - [System integration guidelines](#system-integration-guidelines)
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
-    - [System information guidelines](#system-information-guidelines)
+    - [Partner signup API guidelines](#partner-signup-api-guidelines)
+  - [System information guidelines](#system-information-guidelines)
   - [Polling integration](#polling-integration)
   - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
   - [Webhook integration](#webhook-integration)
   - [Example of webhook notification](#example-of-webhook-notification)
   - [Shipping](#shipping)
-  - [Dynamic Shipping (COMING SOON)](#dynamic-shipping-coming-soon)
+  - [Dynamic Shipping](#dynamic-shipping)
 
 # Flow diagram
 
@@ -159,7 +160,7 @@ The object argument to `VippsCheckout`
 #### Sticky checkout example using query parameters
 The SDK provides an alternative flow to enable the use of a query parameter to keep the session "sticky", e.g. if you refresh the page. If the query parameter `token` is present, and the token attribute in the argument object to VippsCheckout is not defined, the SDK will load the iFrame with the token from the query parameter.
 
-We provide a help method that when called will redirect to the current page but attatch a `token` queryParameter to the URL.
+We provide a help method that when called will redirect to the current page but attach a `token` queryParameter to the URL.
 Use it like this when receiving data from the create session endpoint to enable this feature. Note that the `VippsCheckout` initialization must be run outside of your fetch code if you use it in an event handler, or else the iFrame won't load.
 
 ```js
@@ -181,7 +182,10 @@ Vipps Checkout supports Partner key based authentication as described in our [ec
 
 In the initiation request use your own credentials and send the Merchant-Serial-Number as described. Resulting in an on behalf of authentication if the Merchant as a valid connection to your solution.
 
-### System information guidelines
+### Partner signup API guidelines
+If you are utilizing the [SignupAPI](https://github.com/vippsas/vipps-signup-api) you need to utilize the "Ecom access" key instead of using the default access token in the API calls. This API is considered deprecated by Vipps and should be migrated away from.
+
+## System information guidelines
 In order to fully utilize the conditions and support of the Vipps platform it is critical that you include all information regarding your system in the initiation headers as per the following example. **Important:** Please use self-explanatory, human readable and reasonably short values that uniquely identify the system (and plugin).
 
 
@@ -197,7 +201,7 @@ If any of these are not applicable for your integration please substitute with N
 
 ## Polling integration
 
-Vipps Checkout will expose a polling enpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_session__sessionId_).
+Vipps Checkout will expose a polling endpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_session__sessionId_).
 
 ```
 It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
@@ -330,7 +334,7 @@ ShippingOptions are provided in the create session endpoint. See [Swagger docume
 - `shippingMethodLogoId` shows the logo of the logistics provider. Can be either of these `"posten", "helthjem", "postnord"`.
 - `description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information. 
 
-## Dynamic Shipping (COMING SOON)
+## Dynamic Shipping
 Shipping options can be calculated on the basis of shipping address. To support this, Checkout sends a callback as a POST to a merchant endpoint. The merchant endpoint is provided in the session initiation in the logistics.dynamicOptionsCallback field. If this field is null, dynamic shipping will not be used.
 The callback is as follows:
 
