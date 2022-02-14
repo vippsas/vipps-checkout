@@ -1,1 +1,3 @@
 #Checkout integration checklist
+
+## Checklist
