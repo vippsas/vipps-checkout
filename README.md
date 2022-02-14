@@ -6,7 +6,7 @@ This repository contains all the information you need to fully utilize the Vipps
 
 You can peruse the API reference documentation here: 
 
-* [Swagger](https://vippsas.github.io/vipps-checkout/)
+* [Swagger](https://vippsas.github.io/vipps-checkout-api/)
 * [Vipps Checkout API guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
 * [Frequently Asked Questions](vipps-checkout-api-faq.md): Questions and answers
 

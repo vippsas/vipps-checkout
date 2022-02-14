@@ -7,6 +7,7 @@ Preliminary documentation. Subject to change
 - [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
 - [Example integration](#example-integration)
+      - [Sticky checkout example using query parameters](#sticky-checkout-example-using-query-parameters)
 - [System integration guidelines](#system-integration-guidelines)
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
     - [System information guidelines](#system-information-guidelines)
@@ -15,6 +16,7 @@ Preliminary documentation. Subject to change
   - [Webhook integration](#webhook-integration)
   - [Example of webhook notification](#example-of-webhook-notification)
   - [Shipping](#shipping)
+  - [Dynamic Shipping (COMING SOON)](#dynamic-shipping-coming-soon)
 
 # Flow diagram
 
@@ -31,7 +33,7 @@ The standard flow for a Vipps Checkout consists of
 
 First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server to server request to set up a Checkout session. An example implementation can be found [in the example-integration](#example-integration) 
 
-Request a session token according to your needs, the full specification of the Checkout session endpoint can be found [here](https://vippsas.github.io/vipps-checkout/#/Session/post_session)
+Request a session token according to your needs, the full specification of the Checkout session endpoint can be found [here](https://vippsas.github.io/vipps-checkout-api/#/Session/post_session)
 
 A minimal example with example values:
 
@@ -227,7 +229,7 @@ If any of these are not applicable for your integration please substitute with N
 
 ## Polling integration
 
-Vipps Checkout will expose a polling enpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout/#/Session/get_session__sessionId_).
+Vipps Checkout will expose a polling enpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_session__sessionId_).
 
 ```
 It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
@@ -339,7 +341,7 @@ Per now we offer a static shipping feature where you can specify shipping option
 Static shipping means a flat rate per shipping option regardless of the customer's address.
 We show a title, price and optional description and the ability to show optional logo from a limited set of logos from the most popular shipping providers.
 
-ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout/#/Session/post_session)
+ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout-api/#/Session/post_session)
 
 ```json
 "shippingOptions": [
