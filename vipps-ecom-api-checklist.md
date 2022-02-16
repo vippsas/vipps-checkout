@@ -1,1 +1,0 @@
-#Checkout integration checklist
