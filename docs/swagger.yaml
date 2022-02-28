@@ -15,30 +15,30 @@ paths:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+            $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
         - name: merchantAuthInfoHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/MerchantAuthInfoHeadersV1'
+            $ref: "#/components/schemas/MerchantAuthInfoHeadersV1"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV1'
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDtoV1"
           text/json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV1'
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDtoV1"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV1'
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDtoV1"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckoutSessionInitiationResponse'
-  /v1/session/{sessionId}:
+                $ref: "#/components/schemas/CheckoutSessionInitiationResponse"
+  "/v1/session/{sessionId}":
     get:
       tags:
         - Session
@@ -52,19 +52,19 @@ paths:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+            $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
         - name: merchantAuthInfoHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/MerchantAuthInfoHeadersV1'
+            $ref: "#/components/schemas/MerchantAuthInfoHeadersV1"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionResponseV1'
-        '404':
+                $ref: "#/components/schemas/SessionResponseV1"
+        "404":
           description: The specified session id is unknown.
   /v2/session:
     post:
@@ -75,30 +75,30 @@ paths:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+            $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
         - name: merchantAuthInfoHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+            $ref: "#/components/schemas/MerchantAuthInfoHeadersV2"
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDtoV2"
           text/json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDtoV2"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+              $ref: "#/components/schemas/CheckoutSessionInitiationRequestDtoV2"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckoutSessionInitiationResponse'
-  /v2/session/{sessionId}:
+                $ref: "#/components/schemas/CheckoutSessionInitiationResponse"
+  "/v2/session/{sessionId}":
     get:
       tags:
         - Session
@@ -112,19 +112,49 @@ paths:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+            $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
         - name: merchantAuthInfoHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+            $ref: "#/components/schemas/MerchantAuthInfoHeadersV2"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionResponseV2'
-        '404':
+                $ref: "#/components/schemas/SessionResponseV2"
+        "404":
+          description: The specified session id is unknown.
+  /v2/session/cancel:
+    post:
+      tags:
+        - Session
+      summary: Cancels the current Checkout session if payment is not initiated
+      parameters:
+        - name: checkoutSessionThirdPartyInformationHeaders
+          in: header
+          schema:
+            $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
+        - name: merchantAuthInfoHeaders
+          in: header
+          schema:
+            $ref: "#/components/schemas/MerchantAuthInfoHeadersV2"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CancelSessionRequest"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CancelSessionRequest"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CancelSessionRequest"
+      responses:
+        "200":
+          description: ""
+        "404":
           description: The specified session id is unknown.
 components:
   schemas:
@@ -137,6 +167,7 @@ components:
         value:
           type: integer
           format: int32
+          nullable: true
       additionalProperties: false
     AmountV1:
       type: object
@@ -158,32 +189,68 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    BillingDetailsV2:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        streetAddress:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Defines the details of the invoiced customer (purchaser) of the order.
+    CancelSessionRequest:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          nullable: true
+      additionalProperties: false
     CheckoutSessionInitiationRequestDtoV1:
       type: object
       properties:
         merchantInfo:
-          $ref: '#/components/schemas/PaymentMerchantInfoV1'
+          $ref: "#/components/schemas/PaymentMerchantInfoV1"
         transaction:
-          $ref: '#/components/schemas/PaymentTranactionV1'
+          $ref: "#/components/schemas/PaymentTranactionV1"
         shippingOptions:
           type: array
           items:
-            $ref: '#/components/schemas/ShippingOptionV1'
+            $ref: "#/components/schemas/ShippingOptionV1"
           nullable: true
         prefillInformation:
-          $ref: '#/components/schemas/PrefillInformationV1'
+          $ref: "#/components/schemas/PrefillInformationV1"
       additionalProperties: false
     CheckoutSessionInitiationRequestDtoV2:
       type: object
       properties:
         merchantInfo:
-          $ref: '#/components/schemas/PaymentMerchantInfo'
+          $ref: "#/components/schemas/PaymentMerchantInfo"
         transaction:
-          $ref: '#/components/schemas/PaymentTransaction'
+          $ref: "#/components/schemas/PaymentTransaction"
         logistics:
-          $ref: '#/components/schemas/Logistics'
+          $ref: "#/components/schemas/Logistics"
         prefillCustomer:
-          $ref: '#/components/schemas/PrefillCustomer'
+          $ref: "#/components/schemas/PrefillCustomer"
         customerInteraction:
           type: string
           nullable: true
@@ -226,20 +293,21 @@ components:
         fixedOptions:
           type: array
           items:
-            $ref: '#/components/schemas/LogisticsOption'
+            $ref: "#/components/schemas/LogisticsOption"
           nullable: true
       additionalProperties: false
     LogisticsOption:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          $ref: "#/components/schemas/Amount"
         id:
           type: string
           nullable: true
         priority:
           type: integer
           format: int32
+          nullable: true
         brand:
           type: string
           nullable: true
@@ -248,6 +316,7 @@ components:
           nullable: true
         isDefault:
           type: boolean
+          nullable: true
         description:
           type: string
           nullable: true
@@ -285,23 +354,23 @@ components:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/AmountV1'
+          $ref: "#/components/schemas/AmountV1"
         state:
           type: string
           nullable: true
         transactionAggregate:
-          $ref: '#/components/schemas/TransactionAggregateV1'
+          $ref: "#/components/schemas/TransactionAggregateV1"
       additionalProperties: false
     PaymentDetailsV2:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/AmountV2'
+          $ref: "#/components/schemas/AmountV2"
         state:
           type: string
           nullable: true
-        transactionAggregate:
-          $ref: '#/components/schemas/TransactionAggregateV2'
+        aggregate:
+          $ref: "#/components/schemas/TransactionAggregateV2"
       additionalProperties: false
     PaymentMerchantInfo:
       type: object
@@ -355,7 +424,7 @@ components:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          $ref: "#/components/schemas/Amount"
         reference:
           type: string
           nullable: true
@@ -435,11 +504,11 @@ components:
           type: string
           nullable: true
         paymentDetails:
-          $ref: '#/components/schemas/PaymentDetailsV1'
+          $ref: "#/components/schemas/PaymentDetailsV1"
         userDetails:
-          $ref: '#/components/schemas/UserDetailsV1'
+          $ref: "#/components/schemas/UserDetailsV1"
         shippingDetails:
-          $ref: '#/components/schemas/ShippingDetailsV1'
+          $ref: "#/components/schemas/ShippingDetailsV1"
       additionalProperties: false
     SessionResponseV2:
       type: object
@@ -457,11 +526,13 @@ components:
           type: string
           nullable: true
         paymentDetails:
-          $ref: '#/components/schemas/PaymentDetailsV2'
+          $ref: "#/components/schemas/PaymentDetailsV2"
         userDetails:
-          $ref: '#/components/schemas/UserDetailsV2'
+          $ref: "#/components/schemas/UserDetailsV2"
         shippingDetails:
-          $ref: '#/components/schemas/ShippingDetailsV2'
+          $ref: "#/components/schemas/ShippingDetailsV2"
+        billingDetails:
+          $ref: "#/components/schemas/BillingDetailsV2"
       additionalProperties: false
     ShippingDetailsV1:
       type: object
@@ -497,6 +568,12 @@ components:
         lastName:
           type: string
           nullable: true
+        email:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
         streetAddress:
           type: string
           nullable: true
@@ -513,6 +590,7 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+      description: "Defines the shipping details of the recipient of the ordered goods.\r\nThe recipient may or may not be the same as the invoiced customer."
     ShippingOptionV1:
       type: object
       properties:
@@ -541,25 +619,25 @@ components:
       type: object
       properties:
         cancelledAmount:
-          $ref: '#/components/schemas/AmountV1'
+          $ref: "#/components/schemas/AmountV1"
         capturedAmount:
-          $ref: '#/components/schemas/AmountV1'
+          $ref: "#/components/schemas/AmountV1"
         refundedAmount:
-          $ref: '#/components/schemas/AmountV1'
+          $ref: "#/components/schemas/AmountV1"
         authorizedAmount:
-          $ref: '#/components/schemas/AmountV1'
+          $ref: "#/components/schemas/AmountV1"
       additionalProperties: false
     TransactionAggregateV2:
       type: object
       properties:
         cancelledAmount:
-          $ref: '#/components/schemas/AmountV2'
+          $ref: "#/components/schemas/AmountV2"
         capturedAmount:
-          $ref: '#/components/schemas/AmountV2'
+          $ref: "#/components/schemas/AmountV2"
         refundedAmount:
-          $ref: '#/components/schemas/AmountV2'
+          $ref: "#/components/schemas/AmountV2"
         authorizedAmount:
-          $ref: '#/components/schemas/AmountV2'
+          $ref: "#/components/schemas/AmountV2"
       additionalProperties: false
     UserDetailsV1:
       type: object
@@ -593,3 +671,5 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+      description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
+      deprecated: true
