@@ -6,8 +6,7 @@ Preliminary documentation. Subject to change
 
 - [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
-- [Example integration](#example-integration)
-      - [Sticky checkout example using query parameters](#sticky-checkout-example-using-query-parameters)
+- [Example integration](#example-integration) - [Sticky checkout example using query parameters](#sticky-checkout-example-using-query-parameters)
 - [System integration guidelines](#system-integration-guidelines)
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
     - [Partner signup API guidelines](#partner-signup-api-guidelines)
@@ -58,18 +57,50 @@ Request body:
 
 ```json
 {
-  "merchantInfo": {
-    "fallBackUrl": "https://example.com/vipps", //Will overwrite configuration on Merchant Profile
-    "callbackPrefix": "https://example.com/vipps/callbacks-for-payment-updates",
-    "returnUrl": "https://example.com/return/",
-    "callbackAuthorizationToken": "iOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImllX3FXQ1hoWHh0MXpJ"
-  },
-  "transaction": {
-    "currency": "NOK",
-    "amount": 20000, //Must be in Minor Units. The smallest unit of a currency.
-    "transactionText": "One pair of Vipps socks",
-    "orderId": "31gf1g413121"
-  }
+    "merchantInfo": {
+        "merchantSerialNumber": "123456",
+        "fallBackUrl": "https://example.com/vipps", //Will overwrite configuration on Merchant Profile
+        "callbackPrefix": "https://example.com/vipps/callbacks-for-payment-updates",
+        "callbackAuthorizationToken": "iOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImllX3FXQ1hoWHh0MXpJ",
+        "termsAndConditionsUrl": "https://example.com/vipps/termsAndConditions"
+    },
+    "transaction": {
+        "reference" : "31gf1g413121",
+        "paymentDescription": "One pair of Vipps socks",
+        "amount": {
+          "currency": "NOK",
+          "value": 20000, //Must be in Minor Units. The smallest unit of a currency.
+        }
+    },
+    "logistics": {
+        "dynamicOptionsCallback": "https://example.com/vipps/dynamiclogisticsoptions", // URL for dynamic logistics. If not given, only fixed logistics options will be used.
+        "fixedOptions": [
+          {
+            "id": "postenstore",
+            "isDefault": true,
+            "priority": 1,
+            "brand": "posten",
+            "product": "Pick-up in store",
+            "description": "Pick up your package at the local store"
+            "amount": {
+              "currency": "NOK",
+              "value": 3900 //Must be in Minor Units. The smallest unit of a currency.
+            },
+          },
+          {
+            "id": "postenmailbox",
+            "isDefault": false,
+            "priority": 2,
+            "brand": "posten",
+            "product": "Mailbox",
+            "description": "Receive your package in the mailbox"
+            "amount": {
+              "currency": "NOK",
+              "value": 2900 //Must be in Minor Units. The smallest unit of a currency.
+            },
+          }
+        ]
+    }
 }
 ```
 
@@ -316,7 +347,9 @@ Vipps demands that every notification webhook is responded to with a HTTP 202 re
 
 ## Shipping
 
-Per now we offer a static shipping feature where you can specify shipping options for the users in our create session API endpoint. Static shipping means a flat rate per shipping option regardless of the customer's address.
+Per now we offer a static shipping feature where you can specify shipping options for the users in our create session API endpoint. If no shipping options are provided, and Dynamic Shipping is not enabled, the customer will not be given any shipping options.
+
+Static shipping means a flat rate per shipping option regardless of the customer's address.
 We show a title, price and optional description and the ability to show optional logo from a limited set of logos from the most popular shipping providers.
 
 ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout-api/#/Session/post_session)
