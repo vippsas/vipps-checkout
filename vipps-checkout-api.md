@@ -2,17 +2,27 @@
 
 Vipps Checkout is designed to be a low friction, low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
+```
+New integrators should utilize the V2 endpoints for Checkout. As the V1 pilot endpoints are being deprecated
+```
+
 Preliminary documentation. Subject to change
 
 - [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
-- [Example integration](#example-integration) - [Sticky checkout example using query parameters](#sticky-checkout-example-using-query-parameters)
+- [Integration guidelines](#integration-guidelines)
+  - [Example requests](#example-requests)
+  - [SDK guidelines](#sdk-guidelines)
+  - [Merchant hosting of Session](#merchant-hosting-of-session)
+  - [Example Integration](#example-integration)
+      - [Sticky checkout example using query parameters](#sticky-checkout-example-using-query-parameters)
 - [System integration guidelines](#system-integration-guidelines)
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
     - [Partner signup API guidelines](#partner-signup-api-guidelines)
   - [System information guidelines](#system-information-guidelines)
   - [Polling integration](#polling-integration)
-  - [Example of polling response when checkout SessionState is SessionStarted. Transaction information, User information and Shipping information are not available in this state of the session.](#example-of-polling-response-when-checkout-sessionstate-is-sessionstarted-transaction-information-user-information-and-shipping-information-are-not-available-in-this-state-of-the-session)
+    - [Example of polling response when checkout SessionState is SessionStarted](#example-of-polling-response-when-checkout-sessionstate-is-sessionstarted)
+  - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
   - [Webhook integration](#webhook-integration)
   - [Example of webhook notification](#example-of-webhook-notification)
   - [Shipping](#shipping)
@@ -29,11 +39,15 @@ The standard flow for a Vipps Checkout consists of
 
 ![Checkout flow](resources/standard_flow.png)
 
-# Example integration
+# Integration guidelines
 
-First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server to server request to set up a Checkout session. An example implementation can be found [in the example-integration](#example-integration)
+In order to support this basic flow it is important to read the following documentation closely. You should always utilize the newest API Version as specified in the [swagger](https://vippsas.github.io/vipps-checkout-api/). You should also consult the [checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md) for a structured walkthrough of the expected integration points.
 
-Request a session token according to your needs, the full specification of the Checkout session endpoint can be found [here](https://vippsas.github.io/vipps-checkout-api/#/Session/post_session)
+## Example requests
+
+First you need to request a Vipps Checkout Session token from the Vipps APIs. The first thing you need to do is set up a server to server request to set up a Checkout session. An example reference request may be seen below.
+
+Request a session token according to your needs, the full specification of the Checkout session endpoint can be found [here](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session)
 
 A minimal example with example values:
 
@@ -116,7 +130,17 @@ Example response:
 
 _special note:_ Do not hard code the URLs as shown in the response above as these are subject to change for version bump at any time.
 
+## SDK guidelines
+
+Vipps Checkout provides an SDK that is _very_ highly recommended. The SDK provides a simple and effective toolset, it also automatically manages many corner cases, alleviating complexity from your integration. For concrete guidelines consult our [Example Integration](#example-integration).
+
+## Merchant hosting of Session
+
 Next up you need to make a request from your client-side code to your own application's endpoint where you request the Vipps Checkout `token`. This `token` can then be used along with `checkoutFrontendUrl` to generate the Vipps Checkout iframe in your frontend.
+
+_Special note:_ It is expected that the checkout frontend is not opened directly opened in it's own tab. The intended behavior is to open the session in an merchant hosted website inside an iframe using the SDK as described below.
+
+## Example Integration
 
 Here is an example integration written in JavaScript that will make a request to your back-end and embed an iframe:
 
@@ -217,7 +241,7 @@ var vippsCheckout = VippsCheckout({
 
 Vipps Checkout supports Partner key based authentication as described in our [ecom-api](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys)
 
-In the initiation request use your own credentials and send the Merchant-Serial-Number as described. Resulting in an on behalf of authentication if the Merchant as a valid connection to your solution.
+In the initiation request use your own credentials and send the Merchant-Serial-Number as described. Resulting in an on behalf of authentication if the Merchant has a valid connection to your solution.
 
 ### Partner signup API guidelines
 
@@ -239,21 +263,24 @@ If any of these are not applicable for your integration please substitute with N
 
 ## Polling integration
 
-Vipps Checkout will expose a polling endpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_session__sessionId_).
+Vipps Checkout will expose a polling endpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_).
 
-````
+```
 It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
 
-## Example of polling response when checkout SessionState is SessionStarted. Transaction information, User information and Shipping information are not available in this state of the session.
+```
+
+### Example of polling response when checkout SessionState is SessionStarted
+
+Transaction information, User information and Shipping information are not available in this state of the session.
 
 ```json
 {
-    "sessionId": "eoIjaGeiZA8gqMNvr8uXxg",
-    "orderId": "absbsbcb",
-    "sessionState": "SessionStarted"
+  "sessionId": "eoIjaGeiZA8gqMNvr8uXxg",
+  "orderId": "absbsbcb",
+  "sessionState": "SessionStarted"
 }
-
-````
+```
 
 ## Example of polling response when checkout SessionState any other state but not SessionStarted
 
@@ -352,7 +379,7 @@ Per now we offer a static shipping feature where you can specify shipping option
 Static shipping means a flat rate per shipping option regardless of the customer's address.
 We show a title, price and optional description and the ability to show optional logo from a limited set of logos from the most popular shipping providers.
 
-ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout-api/#/Session/post_session)
+ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session)
 
 ```json
 "shippingOptions": [
