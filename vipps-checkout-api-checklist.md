@@ -26,7 +26,7 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
       [how callback URLs are built](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#webhook-integration),
       make test calls to make sure you handle the `POST` requests correctly.
       Vipps does not have capacity to manually do this for you.
-  - [ ] Callback [`POST:[callbackPrefix]/checkout/v1/order/{orderId}`](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#example-of-webhook-notification)
+  - [ ] Callback [`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#example-of-webhook-notification)
 - [ ] Avoid Integration pitfalls
   - [ ] The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll Payments Details [`GET:/payments/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment) or Session Details [`GET:/checkout/v2/{sessionId}`](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_)
         as documented (this is part of the first item in this checklist, but it's still a common error). For pure payment status polling the ePayment API is recommended.
