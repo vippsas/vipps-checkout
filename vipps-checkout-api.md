@@ -1,4 +1,4 @@
-# Vipps Checkout guide
+ech# Vipps Checkout guide
 
 Vipps Checkout is designed to be a low friction, low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
@@ -8,14 +8,17 @@ New integrators should utilize the V2 endpoints for Checkout. As the V1 pilot en
 
 Preliminary documentation. Subject to change
 
-- [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
-- [Integration guidelines](#integration-guidelines)
+- [Checkout Features](#checkout-features)
   - [Example requests](#example-requests)
   - [SDK guidelines](#sdk-guidelines)
   - [Merchant hosting of Session](#merchant-hosting-of-session)
   - [Example Integration](#example-integration)
       - [Sticky checkout example using query parameters](#sticky-checkout-example-using-query-parameters)
+  - [Modularity of Vipps Checkout fields](#modularity-of-vipps-checkout-fields)
+    - [AddressFields false example](#addressfields-false-example)
+    - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
+    - [Combination with shipping](#combination-with-shipping)
 - [System integration guidelines](#system-integration-guidelines)
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
     - [Partner signup API guidelines](#partner-signup-api-guidelines)
@@ -39,7 +42,7 @@ The standard flow for a Vipps Checkout consists of
 
 ![Checkout flow](resources/standard_flow.png)
 
-# Integration guidelines
+# Checkout Features
 
 In order to support this basic flow it is important to read the following documentation closely. You should always utilize the newest API Version as specified in the [swagger](https://vippsas.github.io/vipps-checkout-api/). You should also consult the [checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md) for a structured walkthrough of the expected integration points.
 
@@ -203,7 +206,7 @@ Here is an example integration written in JavaScript that will make a request to
 </html>
 ```
 
-`VippsCheckout` comes from the SDK at `https://checkout.vipps.no/vippsCheckoutSDK.js` that got loaded in `<head>` (async loading of SDK not available). The SDK's purpose is to attatch the iFrame to the given container element and load Vipps Checkout within it.
+`VippsCheckout` comes from the SDK at `https://checkout.vipps.no/vippsCheckoutSDK.js` that got loaded in `<head>` (async loading of SDK not available). The SDK's purpose is to attach the iFrame to the given container element and load Vipps Checkout within it.
 
 The object argument to `VippsCheckout`
 
@@ -234,6 +237,47 @@ var vippsCheckout = VippsCheckout({
   vippsCheckout.redirectToCurrentPageWithToken(data.token)
 })
 ```
+
+## Modularity of Vipps Checkout fields
+
+```
+This is recently launched functionality. At the time of writing this should be considered pilot functionality. While fully functional please bear this in mind as you integrate.
+```
+
+Vipps Checkout supports adjusting the fields and values present in the Checkout. For example: you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify itself because the customer is already logged into your system.
+
+According to your needs the data collected can be adjusted. Specifically with the following fields added to the request as seen in our API spec [here](https://vippsas.github.io/vipps-checkout-api/).
+
+```json
+{
+  "addressFields": false,
+  "contactFields": false
+}
+```
+
+These are by default set to `true`, and if not specified will return the full address and contact details in the Checkout session.
+
+### AddressFields false example
+
+If you do not need the address from a user you can disable them leading to the following personal details form
+
+![Address_field_false_form](resources/addressfields_false_form.png)
+
+And the following payment form
+
+![Address_field_false_form](resources/addressfields_false_form_2.png)
+
+### Addressfields and ContactFields false example
+
+If you do not need the contact details for a customer you can disable them leading to the following session
+
+![payment_only](resources/addressfields_false_contactfields_false.png)
+
+### Combination with shipping
+
+These options may be combined with shipping if it fits your scenario. For example leading to this session
+
+![fields_false_with_shipping](resources/fields_false_with_shipping.png)
 
 # System integration guidelines
 
