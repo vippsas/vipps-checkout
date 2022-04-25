@@ -2,10 +2,6 @@ ech# Vipps Checkout guide
 
 Vipps Checkout is designed to be a low friction, low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
-```
-New integrators should utilize the V2 endpoints for Checkout. As the V1 pilot endpoints are being deprecated
-```
-
 Preliminary documentation. Subject to change
 
 - [Flow diagram](#flow-diagram)
@@ -23,13 +19,14 @@ Preliminary documentation. Subject to change
   - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
     - [Partner signup API guidelines](#partner-signup-api-guidelines)
   - [System information guidelines](#system-information-guidelines)
+  - [Transaction operations (Capture, Cancel, Refund)](#transaction-operations-capture-cancel-refund)
   - [Polling integration](#polling-integration)
     - [Example of polling response when checkout SessionState is SessionStarted](#example-of-polling-response-when-checkout-sessionstate-is-sessionstarted)
   - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
   - [Webhook integration](#webhook-integration)
   - [Example of webhook notification](#example-of-webhook-notification)
   - [Shipping](#shipping)
-  - [Dynamic Shipping](#dynamic-shipping)
+    - [Dynamic Shipping](#dynamic-shipping)
 
 # Flow diagram
 
@@ -304,6 +301,14 @@ In order to fully utilize the conditions and support of the Vipps platform it is
 | `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `1.4.1`             |
 
 If any of these are not applicable for your integration please substitute with NA for Not Applicable.
+
+## Transaction operations (Capture, Cancel, Refund)
+
+Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations should be done on the Ecommerce APIs described [in their official docs](https://github.com/vippsas/vipps-epayment-api). A guideline for the integration can be found [here](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). Note that initiation is handled by the Checkout product. Meaning you only need to follow the [Checkout Checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md).
+
+```
+Special note: Vipps Checkout only supports "Reserve-Capture", if you are on a "Direct-Capture" setup, please seek assistance in accordance with the https://github.com/vippsas/vipps-developers/blob/master/contact.md#how-to-contact-vipps-integration guidelines.
+```
 
 ## Polling integration
 
