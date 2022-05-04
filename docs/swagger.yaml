@@ -319,6 +319,9 @@ components:
           type: boolean
         addressFields:
           type: boolean
+        userFlow:
+          type: string
+          nullable: true
       additionalProperties: false
     CheckoutSessionInitiationResponse:
       type: object
