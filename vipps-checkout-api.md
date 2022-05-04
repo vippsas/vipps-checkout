@@ -27,6 +27,8 @@ Preliminary documentation. Subject to change
   - [Example of webhook notification](#example-of-webhook-notification)
   - [Shipping](#shipping)
     - [Dynamic Shipping](#dynamic-shipping)
+  - [Vipps side Transaction information](#vipps-side-transaction-information)
+    - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
   - [In-App Payment](#in-app-payment)
 
 # Flow diagram
@@ -508,7 +510,16 @@ The fallback options will be used in case the callback
 
 If no fallback options are provided the user will be presented with an error and cannot continue with the checkout.
 
-### In-App Payment
-Vipps Checkout can be used inside a Webview in an iOS or Android app to pay for goods and services. Note that both [iOS](https://developer.apple.com/app-store/review/guidelines/#in-app-purchase) and [Android](https://support.google.com/googleplay/android-developer/answer/9858738?visit_id=637872480005116174-1406461360&rd=1) only permits external payment solutions for certain use cases. Examples of permissible use cases include buying and renting physical goods.
+## Vipps side Transaction information
 
-In order to ensure that Checkout always works correctly in a WebView the session must be initiated with the UserFlow property set to "NATIVE_REDIRECT". This ensures that all users are redirected properly to the Vipps app and back to your app after when paying.
+You might want to find the Vipps transactionId value of a transaction. For example if you want to utilize Vipps assisted content monitoring as described [here](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md#vipps-assited-content-monitoring) or you might want to support account procedures.
+
+### Recommended integration (currently in pilot mode)
+
+In order to integrate with the receipts functionality you need to retrieve the pspreference in the "paymentAction": "AUTHORISATION" event from the [eventlog](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPaymentEventLog) endpoint. This is required if utilizing receipts with Vipps Checkout or Free standing card payments
+
+## In-App Payment
+
+Vipps Checkout can be used inside a Webview in an iOS or Android app to pay for goods and services.
+
+If you wish to have a `ReturnUrl` based on an app url (i.e app://payment/{id}) instead of an https url there are certain requirements. In order to ensure that Checkout always works correctly in a WebView the session must be initiated with the UserFlow property set to "NATIVE_REDIRECT". This ensures that all users are redirected properly to the Vipps app and back to your app after when paying.
