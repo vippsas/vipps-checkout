@@ -510,4 +510,5 @@ If no fallback options are provided the user will be presented with an error and
 
 ### In-App Payment
 Vipps Checkout can be used inside a Webview in an iOS or Android app to pay for goods and services. Note that both [iOS](https://developer.apple.com/app-store/review/guidelines/#in-app-purchase) and [Android](https://support.google.com/googleplay/android-developer/answer/9858738?visit_id=637872480005116174-1406461360&rd=1) only permits external payment solutions for certain use cases. Examples of permissible use cases include buying and renting physical goods.
+
 In order to ensure that Checkout always works correctly in a WebView the session must be initiated with the UserFlow property set to "NATIVE_REDIRECT". This ensures that all users are redirected properly to the Vipps app and back to your app after when paying.
