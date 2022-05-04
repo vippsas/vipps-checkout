@@ -27,7 +27,7 @@ Preliminary documentation. Subject to change
   - [Example of webhook notification](#example-of-webhook-notification)
   - [Shipping](#shipping)
     - [Dynamic Shipping](#dynamic-shipping)
-  - [In-App Payment](#inapppayment)
+  - [In-App Payment](#in-app-payment)
 
 # Flow diagram
 
