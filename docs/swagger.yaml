@@ -10,7 +10,7 @@ paths:
     post:
       tags:
         - Session
-      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
+      summary: "Creates a checkout session and returns a JWT (JSON Web Token)) which wraps the login URL,\r\necom landing page URL, free standing card page URL"
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
@@ -133,6 +133,7 @@ components:
   schemas:
     Amount:
       type: object
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       properties:
         currency:
           type: string
@@ -145,6 +146,7 @@ components:
       additionalProperties: false
     AmountV2:
       type: object
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       properties:
         value:
           type: integer
@@ -158,27 +160,35 @@ components:
       properties:
         firstName:
           type: string
+          example: Ada
           nullable: true
         lastName:
           type: string
+          example: Lovelace
           nullable: true
         phoneNumber:
           type: string
+          example: '91234567'
           nullable: true
         email:
           type: string
+          example: user@example.com
           nullable: true
         streetAddress:
           type: string
+          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
+          example: '0154'
           nullable: true
         region:
           type: string
+          example: 'Oslo'
           nullable: true
         country:
           type: string
+          example: 'Norway'
           nullable: true
       additionalProperties: false
       description: Defines the details of the invoiced customer (purchaser) of the order.
