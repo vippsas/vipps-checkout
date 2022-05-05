@@ -168,7 +168,7 @@ components:
           nullable: true
         phoneNumber:
           type: string
-          example: '91234567'
+          example: '4791234567'
           nullable: true
         email:
           type: string
@@ -188,7 +188,7 @@ components:
           nullable: true
         country:
           type: string
-          example: 'Norway'
+          example: 'NO'
           nullable: true
       additionalProperties: false
       description: Defines the details of the invoiced customer (purchaser) of the order.
@@ -200,6 +200,7 @@ components:
           format: int32
         currency:
           type: string
+          example: 'NOK'
           nullable: true
       additionalProperties: false
     CallbackSessionBillingDetails:
@@ -207,27 +208,35 @@ components:
       properties:
         firstName:
           type: string
+          example: Ada
           nullable: true
         lastName:
           type: string
+          example: Lovelace
           nullable: true
         email:
           type: string
+          example: user@example.com
           nullable: true
         phoneNumber:
           type: string
+          example: '4791234567'
           nullable: true
         streetAddress:
           type: string
+          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
+          example: '0154'
           nullable: true
         region:
           type: string
+          example: 'Oslo'
           nullable: true
         country:
           type: string
+          example: 'NO'
           nullable: true
       additionalProperties: false
     CallbackSessionDetailsDto:
