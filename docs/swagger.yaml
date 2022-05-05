@@ -247,12 +247,14 @@ components:
           nullable: true
         merchantSerialNumber:
           type: string
+          example: '123456'
           nullable: true
         sessionState:
           type: string
           nullable: true
         orderId:
           type: string
+          example: 'acme-shop-123-order123abc'
           nullable: true
         apiVersion:
           type: string
@@ -287,30 +289,39 @@ components:
       properties:
         firstName:
           type: string
+          example: Ada
           nullable: true
         lastName:
           type: string
+          example: Lovelace
           nullable: true
         email:
           type: string
+          example: user@example.com
           nullable: true
         phoneNumber:
           type: string
+          example: '4791234567'
           nullable: true
         streetAddress:
           type: string
+          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
+          example: '0154'
           nullable: true
         region:
           type: string
+          example: 'Oslo'
           nullable: true
         country:
           type: string
+          example: 'NO'
           nullable: true
         shippingMethodId:
           type: string
+          example: '123'
           nullable: true
       additionalProperties: false
     CancelSessionRequest:
@@ -360,15 +371,19 @@ components:
       properties:
         vipps-System-Name:
           type: string
+          example: 'Acme Enterprises Ecommerce DeLuxe'
           nullable: true
         vipps-System-Version:
           type: string
+          example: '3.1.2'
           nullable: true
         vipps-System-Plugin-Name:
           type: string
+          example: 'acme-webshop'
           nullable: true
         vipps-System-Plugin-Version:
           type: string
+          example: '4.5.6'
           nullable: true
       additionalProperties: false
     Logistics:
