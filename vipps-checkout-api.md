@@ -4,6 +4,12 @@ Vipps Checkout is designed to be a low friction, low complexity flow where Vipps
 
 Preliminary documentation. Subject to change
 
+API version: 1.0.0.
+
+Document version: 1.0.0.
+
+# Table of contents
+
 - [Flow diagram](#flow-diagram)
 - [Checkout Features](#checkout-features)
   - [Example requests](#example-requests)
@@ -214,7 +220,7 @@ The object argument to `VippsCheckout`
 {
   checkoutFrontendUrl, // Will be supplied from our create session endpoint
     iFrameContainerId, // The id of the html element to contain the Checkout iFrame
-    language; // Can be set to 'no' norwegian, or 'en' english. This is optional and will default to 'en' english if not specified
+    language; // Can be set to 'no' Norwegian, or 'en' english. This is optional and will default to 'en' English if not specified
   token; // The token from create session endpoint that is specific to each checkout. Optional when using token as queryParam flow as described below.
 }
 ```
@@ -240,9 +246,9 @@ var vippsCheckout = VippsCheckout({
 
 ## Modularity of Vipps Checkout fields
 
-```
-This is recently launched functionality. At the time of writing this should be considered pilot functionality. While fully functional please bear this in mind as you integrate.
-```
+**Please note:** This is recently launched functionality. At the time of writing
+this should be considered pilot functionality. While fully functional please bear
+this in mind as you integrate.
 
 Vipps Checkout supports adjusting the fields and values present in the Checkout. For example: you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify itself because the customer is already logged into your system.
 
@@ -393,7 +399,7 @@ The webhook will be sent to the following location.
 
 Where `callbackPrefix`and `orderId`is defined when setting up the session.
 
-Vipps demands that every notification webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. It is critical that the endpoint receiving the callback is robust. And can receive any additional data not specified in the minimum example and still be backwards compatible in accordance to our integration guidelines.
+Vipps demands that every notification webhook is responded to with a `HTTP 202 Accepted` response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. It is critical that the endpoint receiving the callback is robust. And can receive any additional data not specified in the minimum example and still be backwards compatible in accordance to our integration guidelines.
 
 ## Example of webhook notification
 
