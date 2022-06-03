@@ -238,13 +238,9 @@ var vippsCheckout = VippsCheckout({
 })
 ```
 
-## Modularity of Vipps Checkout fields
+## Vipps Checkout Elements
 
-```
-This is recently launched functionality. At the time of writing this should be considered pilot functionality. While fully functional please bear this in mind as you integrate.
-```
-
-Vipps Checkout supports adjusting the fields and values present in the Checkout. For example: you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify itself because the customer is already logged into your system.
+With Vipps Checkout Elements you can adjust the fields and values present in the Checkout. For example: you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify itself because the customer is already logged into your system.
 
 According to your needs the data collected can be adjusted. Specifically with the following fields added to the request as seen in our API spec [here](https://vippsas.github.io/vipps-checkout-api/).
 
