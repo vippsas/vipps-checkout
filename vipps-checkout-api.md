@@ -190,7 +190,7 @@ Here is an example integration written in JavaScript that will make a request to
             .then(function (data) {
               var vippsCheckout = VippsCheckout({
                 checkoutFrontendUrl: data.checkoutFrontendUrl,
-                iFrameContainerId: "checkout-frame-container",
+                iFrameContainerId: "vipps-checkout-frame-container",
                 language: "no",
                 token: data.token,
               });
