@@ -279,13 +279,10 @@ These options may be combined with shipping if it fits your scenario. For exampl
 
 ## Integration partner and plugin guidelines
 
-Vipps Checkout supports Partner key based authentication as described in our [ecom-api](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys)
+Vipps Checkout supports Partner key based authentication as described in our [technical guide to partners]([https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys](https://github.com/vippsas/vipps-partner#partner-keys))
 
 In the initiation request use your own credentials and send the Merchant-Serial-Number as described. Resulting in an on behalf of authentication if the Merchant has a valid connection to your solution.
 
-### Partner signup API guidelines
-
-If you are utilizing the [SignupAPI](https://github.com/vippsas/vipps-signup-api) you need to utilize the "Ecom access" key instead of using the default access token in the API calls. This API is considered deprecated by Vipps and should be migrated away from.
 
 ## System information guidelines
 
