@@ -1,6 +1,6 @@
 # Checkout integration checklist
 
-The Checkout API should be considered an aggregation API of Vipps services, while transaction operations is to be performed on the [epayment](<[tools/](https://vippsas.github.io/vipps-epayment-api/)>) API.
+The Checkout API should be considered an aggregation API of Vipps services, while transaction operations is to be performed on the [epayment](https://vippsas.github.io/vipps-epayment-api/) API.
 
 ## Checklist
 
@@ -11,7 +11,7 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
   - [ ] Cancel [`POST:payments/{reference}cancel`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/cancelPayment)
   - [ ] Full and partial Refund [`POST:payments/{reference}refund`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/refundPayment)
   - [ ] Details [`GET:/payments/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment)
-  - For examples of requests and responses, see the relevant API docs for [checkout](https://vippsas.github.io/vipps-checkout-api/) and [epayment](<[tools/](https://vippsas.github.io/vipps-epayment-api/)>).
+  - For examples of requests and responses, see the relevant API docs for [checkout](https://vippsas.github.io/vipps-checkout-api/) and [epayment](https://vippsas.github.io/vipps-epayment-api/).
 - [ ] Send the [Vipps HTTP headers](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#integration-partner-and-plugin-guidelines)
       in all API requests for better tracking and troubleshooting (mandatory for partners and platforms):
   - [ ] `Merchant-Serial-Number`
