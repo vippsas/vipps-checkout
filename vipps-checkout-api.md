@@ -1,9 +1,10 @@
-ech# Vipps Checkout guide
+# Vipps Checkout guide
 
 Vipps Checkout is designed to be a low friction, low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
 Preliminary documentation. Subject to change
 
+- [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
 - [Checkout Features](#checkout-features)
   - [Example requests](#example-requests)
