@@ -77,7 +77,7 @@ Request body:
 {
     "merchantInfo": {
         "merchantSerialNumber": "123456",
-        "fallBackUrl": "https://example.com/vipps", //Will overwrite configuration on Merchant Profile
+        "returnUrl": "https://example.com/vipps", //Will overwrite configuration on Merchant Profile
         "callbackPrefix": "https://example.com/vipps/callbacks-for-payment-updates",
         "callbackAuthorizationToken": "iOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImllX3FXQ1hoWHh0MXpJ",
         "termsAndConditionsUrl": "https://example.com/vipps/termsAndConditions"
