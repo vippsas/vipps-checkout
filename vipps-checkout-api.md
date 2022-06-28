@@ -27,6 +27,7 @@ Preliminary documentation. Subject to change
   - [Webhook integration](#webhook-integration)
   - [Example of webhook notification](#example-of-webhook-notification)
   - [Shipping](#shipping)
+    - [Static Shipping](#static-shipping)
     - [Dynamic Shipping](#dynamic-shipping)
   - [Vipps side Transaction information](#vipps-side-transaction-information)
     - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
