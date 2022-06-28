@@ -485,7 +485,7 @@ The callback is as follows:
 - `region` is the region.
 - `country` is the country.
 
-The merchant endpoint should return a list of shipping options on the same structure as for `fixedOptions`.
+The merchant endpoint should return a list of shipping options on the same structure as for `fixedOptions` (see section on [Static Shipping](#static-shipping)).
 
 ```json
 [
