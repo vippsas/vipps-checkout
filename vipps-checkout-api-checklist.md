@@ -23,10 +23,10 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
 - [ ] We recommend using Vipps Order management, as this is a massive benefit for the end user experience. It is mandatory for merchants using "Vipps Facilitated Content Monitoring" as described [here](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md#vipps-order-management-api-v1).
 - [ ] Correctly handle callbacks from Vipps, both for successful and unsuccessful payments.
       See the API documentation for
-      [how callback URLs are built](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#webhook-integration),
+      [how callback URLs are built](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#callback-handling),
       make test calls to make sure you handle the `POST` requests correctly.
       Vipps does not have capacity to manually do this for you.
-  - [ ] Callback [`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#example-of-webhook-notification)
+  - [ ] Callback [`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#example-of-callback)
 - [ ] Avoid Integration pitfalls
   - [ ] The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll Payments Details [`GET:/epayment/v1/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment) or Session Details [`GET:/checkout/v2/{sessionId}`](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_)
         as documented (this is part of the first item in this checklist, but it's still a common error). For pure payment status polling the ePayment API is recommended.

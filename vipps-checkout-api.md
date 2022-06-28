@@ -24,8 +24,8 @@ Preliminary documentation. Subject to change
   - [Polling integration](#polling-integration)
     - [Example of polling response when checkout SessionState is SessionStarted](#example-of-polling-response-when-checkout-sessionstate-is-sessionstarted)
   - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
-  - [Webhook integration](#webhook-integration)
-  - [Example of webhook notification](#example-of-webhook-notification)
+  - [Callback handling](#callback-handling)
+  - [Example of callback](#example-of-callback)
   - [Shipping](#shipping)
     - [Static Shipping](#static-shipping)
     - [Dynamic Shipping](#dynamic-shipping)
@@ -318,7 +318,7 @@ Special note: Vipps Checkout only supports "Reserve-Capture", if you are on a "D
 Vipps Checkout will expose a polling endpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_).
 
 ```
-It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
+It is very highly recommended for your system to combine both callback and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues callbacks may come with. This provides a more seamless customer experience.
 
 ```
 
@@ -383,19 +383,22 @@ Transaction information, User information and Shipping information are not avail
 }
 ```
 
-## Webhook integration
+## Callback handling
 
-Vipps Checkout will then send a webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification). The webhook request will include all the details generated from the Checkout session.
+After the user has completed their payment Vipps Checkout will send a callback as described in our [Callback example](#example-of-callback) to your defined callback URL. 
 
-The webhook will be sent to the following location.
+
+The callback will be sent to the following location.
 
 `{callbackPrefix}` + `/checkout/`+ `{apiVersion}` + `/order/`+ `{orderId}`
 
 Where `callbackPrefix`and `orderId`is defined when setting up the session.
 
-Vipps demands that every notification webhook is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. It is critical that the endpoint receiving the callback is robust. And can receive any additional data not specified in the minimum example and still be backwards compatible in accordance to our integration guidelines.
+Vipps demands that every callback is responded to with a HTTP 202 response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original callback. It is critical that the endpoint receiving the callback is robust. It should also be able to receive any additional data not specified in the minimum example so that it can be backwards compatible in accordance with our integration guidelines.
 
-## Example of webhook notification
+## Example of callback
+
+Sent after payment is completed with details about the Checkout session.
 
 ```json
 {
