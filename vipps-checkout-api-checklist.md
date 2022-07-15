@@ -6,11 +6,11 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
 
 - [ ] Integrate _all_ the [API endpoints](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#example-integration):
   - [ ] Initiate [`POST:checkout/v2/session`](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session)
-  - [ ] Details [`GET:/checkout/v2/{sessionId}`](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_)
+  - [ ] Details [`GET:checkout/v2/{sessionId}`](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_)
   - [ ] Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
   - [ ] Cancel [`POST:epayment/v1/{reference}cancel`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/cancelPayment)
   - [ ] Full and partial Refund [`POST:epayment/v1/{reference}refund`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/refundPayment)
-  - [ ] Details [`GET:/epayment/v1/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment)
+  - [ ] Details [`GET:epayment/v1/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment)
   - For examples of requests and responses, see the relevant API docs for [checkout](https://vippsas.github.io/vipps-checkout-api/) and [epayment](https://vippsas.github.io/vipps-epayment-api/).
 - [ ] Send the [Vipps HTTP headers](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#integration-partner-and-plugin-guidelines)
       in all API requests for better tracking and troubleshooting (mandatory for partners and platforms):
