@@ -517,6 +517,17 @@ The fallback options will be used in case the callback
 
 If no fallback options are provided the user will be presented with an error and cannot continue with the checkout.
 
+## Pickup points
+
+We currently provide support for Posten/Bring and PostNord pickup points. As of now, lockers etc. are not supported.
+The user selects the pickup point after picking their logistics option. The logistics option must have the isPickup field set to true for this to appear.
+We then return carrier's the pickup point ID, pickup point name and address. 
+
+Placeholders, we need to fix the placeholder logistics names: 
+
+![pickup_point_example](resources/pickup_point_example.png)
+![pickup_point_select](resources/pickup_point_select.png)
+
 ## Vipps side Transaction information
 
 You might want to find the Vipps transactionId value of a transaction. For example if you want to utilize Vipps assisted content monitoring as described [here](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md#vipps-assited-content-monitoring) or you might want to support account procedures.
