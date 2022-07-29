@@ -5,7 +5,7 @@ participant Merchant
 participant Vipps_frontend
 participant Vipps
 
-Merchant -> Vipps : Define webhook and Redirect urls
+Merchant -> Vipps : Define callback and Redirect urls
 
 note right
 This is done using the portal, any value sent in the session
@@ -16,7 +16,7 @@ User -> Merchant : Start shopping session, proceed to Checkout
 Merchant -> Vipps : Start checkout session
 
 note right 
-If desired the webhook/Redirect URLs can be defined here
+If desired the callback/Redirect URLs can be defined here
 taking precedence over any standard configuration
 values  
 end note
@@ -45,7 +45,7 @@ This is best practice, as a polling
 based approach gives a backup solution to any fault scenario
 end note
 
-Vipps -> Merchant : Send Checkout Result to webhook URL
+Vipps -> Merchant : Send Checkout Result to callback URL
 Vipps <-- Merchant : Accept
 
 note left

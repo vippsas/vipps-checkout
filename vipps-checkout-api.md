@@ -1,4 +1,4 @@
-ech# Vipps Checkout guide
+# Vipps Checkout guide
 
 Vipps Checkout is designed to be a low friction, low complexity flow where Vipps Checkout ensures a smooth and efficient checkout experience using the trusted Vipps technology and brand.
 
@@ -6,10 +6,11 @@ Preliminary documentation. Subject to change
 
 API version: 1.0.0.
 
-Document version: 1.0.0.
+Document version: 1.0.1.
 
 # Table of contents
 
+- [Vipps Checkout guide](#vipps-checkout-guide)
 - [Flow diagram](#flow-diagram)
 - [Checkout Features](#checkout-features)
   - [Example requests](#example-requests)
@@ -29,9 +30,10 @@ Document version: 1.0.0.
   - [Polling integration](#polling-integration)
     - [Example of polling response when checkout SessionState is SessionStarted](#example-of-polling-response-when-checkout-sessionstate-is-sessionstarted)
   - [Example of polling response when checkout SessionState any other state but not SessionStarted](#example-of-polling-response-when-checkout-sessionstate-any-other-state-but-not-sessionstarted)
-  - [Webhook integration](#webhook-integration)
-  - [Example of webhook notification](#example-of-webhook-notification)
+  - [Callback handling](#callback-handling)
+  - [Example of callback](#example-of-callback)
   - [Shipping](#shipping)
+    - [Static Shipping](#static-shipping)
     - [Dynamic Shipping](#dynamic-shipping)
   - [Vipps side Transaction information](#vipps-side-transaction-information)
     - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
@@ -82,7 +84,7 @@ Request body:
 {
     "merchantInfo": {
         "merchantSerialNumber": "123456",
-        "fallBackUrl": "https://example.com/vipps", //Will overwrite configuration on Merchant Profile
+        "returnUrl": "https://example.com/vipps", //Will overwrite configuration on Merchant Profile
         "callbackPrefix": "https://example.com/vipps/callbacks-for-payment-updates",
         "callbackAuthorizationToken": "iOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImllX3FXQ1hoWHh0MXpJ",
         "termsAndConditionsUrl": "https://example.com/vipps/termsAndConditions"
@@ -173,7 +175,7 @@ Here is an example integration written in JavaScript that will make a request to
       document
         .getElementById("checkout-button")
         .addEventListener("click", function () {
-          // Set the amount of the purchase here in oere
+          // Set the amount of the purchase here in øre
           var data = {
             amount: "1600",
           };
@@ -196,13 +198,13 @@ Here is an example integration written in JavaScript that will make a request to
             .then(function (data) {
               var vippsCheckout = VippsCheckout({
                 checkoutFrontendUrl: data.checkoutFrontendUrl,
-                iFrameContainerId: "checkout-frame-container",
+                iFrameContainerId: "vipps-checkout-frame-container",
                 language: "no",
                 token: data.token,
               });
             })
             .catch(function (error) {
-              // Handle atlest these two types of errors here:
+              // Handle at least these two types of errors here:
               // 1. Fetch to create session endpoint failed
               // 2. VippsCheckout SDK not loaded resulting in VippsCheckout not being defined
             });
@@ -244,13 +246,13 @@ var vippsCheckout = VippsCheckout({
 })
 ```
 
-## Modularity of Vipps Checkout fields
+## Vipps Checkout Elements
 
 **Please note:** This is recently launched functionality. At the time of writing
 this should be considered pilot functionality. While fully functional please bear
 this in mind as you integrate.
 
-Vipps Checkout supports adjusting the fields and values present in the Checkout. For example: you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify itself because the customer is already logged into your system.
+With Vipps Checkout Elements you can adjust the fields and values present in the Checkout. For example: you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify itself because the customer is already logged into your system.
 
 According to your needs the data collected can be adjusted. Specifically with the following fields added to the request as seen in our API spec [here](https://vippsas.github.io/vipps-checkout-api/).
 
@@ -313,7 +315,9 @@ If any of these are not applicable for your integration please substitute with N
 
 ## Transaction operations (Capture, Cancel, Refund)
 
-Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations should be done on the Ecommerce APIs described [in their official docs](https://github.com/vippsas/vipps-epayment-api). A guideline for the integration can be found [here](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). Note that initiation is handled by the Checkout product. Meaning you only need to follow the [Checkout Checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md).
+Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). A guideline for the integration can be found [here](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). You should use the same credentials as the ones you use with Checkout.
+
+Note that the Ecom API should not be used as it lacks full support for Card transactions.
 
 ```
 Special note: Vipps Checkout only supports "Reserve-Capture", if you are on a "Direct-Capture" setup, please seek assistance in accordance with the https://github.com/vippsas/vipps-developers/blob/master/contact.md#how-to-contact-vipps-integration guidelines.
@@ -324,7 +328,7 @@ Special note: Vipps Checkout only supports "Reserve-Capture", if you are on a "D
 Vipps Checkout will expose a polling endpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_).
 
 ```
-It is very highly recommended for your system to combine both webhook and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues webhooks may come with. This provides a more seamless customer experience.
+It is very highly recommended for your system to combine both callback and polling based integration. This combination helps prevent a lot of potential redirect edge cases as well as any reliability issues callbacks may come with. This provides a more seamless customer experience.
 
 ```
 
@@ -389,19 +393,22 @@ Transaction information, User information and Shipping information are not avail
 }
 ```
 
-## Webhook integration
+## Callback handling
 
-Vipps Checkout will then send a webhook to your defined URL as described in our [Webhooks example](#example-of-polling-response-and-webhook-notification). The webhook request will include all the details generated from the Checkout session.
+After the user has completed their payment Vipps Checkout will send a callback as described in our [Callback example](#example-of-callback) to your defined callback URL.
 
-The webhook will be sent to the following location.
+
+The callback will be sent to the following location.
 
 `{callbackPrefix}` + `/checkout/`+ `{apiVersion}` + `/order/`+ `{orderId}`
 
 Where `callbackPrefix`and `orderId`is defined when setting up the session.
 
-Vipps demands that every notification webhook is responded to with a `HTTP 202 Accepted` response. In the eventuality that any other response is sent Vipps will retry with an exponential back off until 202 is received again. During this exponential back off Vipps will pause any new notifications until a 202 is returned on the original webhook notification. It is critical that the endpoint receiving the callback is robust. And can receive any additional data not specified in the minimum example and still be backwards compatible in accordance to our integration guidelines.
+Vipps demands that every callback is responded to with a `HTTP 202 response`. In the eventuality that any other response is sent, Vipps will retry with an exponential back off until 202 is received again. During this exponential back off, Vipps will pause any new notifications until a 202 is returned on the original callback. It is critical that the endpoint receiving the callback is robust. It should also be able to receive any additional data not specified in the minimum example so that it can be backwards compatible in accordance with our integration guidelines.
 
-## Example of webhook notification
+## Example of callback
+
+Sent after payment is completed with details about the Checkout session.
 
 ```json
 {
@@ -432,10 +439,14 @@ Vipps demands that every notification webhook is responded to with a `HTTP 202 A
 
 ## Shipping
 
-Per now we offer a static shipping feature where you can specify shipping options for the users in our create session API endpoint. If no shipping options are provided, and Dynamic Shipping is not enabled, the customer will not be given any shipping options.
+We offer two methods of providing shipping methods - static and dynamic.
 
-Static shipping means a flat rate per shipping option regardless of the customer's address.
-We show a title, price and optional description and the ability to show optional logo from a limited set of logos from the most popular shipping providers.
+With static shipping, the available shipping methods are provided as part of the session initiation call. With dynamic shipping, you provide a url on session initiation that responds to a callback with shipping options. If neither shipping options nor a dynamic shipping callback url is provided during session initiation, the customer will not be given any shipping options in the Checkout.
+
+### Static Shipping
+
+Static shipping entails a flat rate per shipping option regardless of the customer's address.
+We show a title, price and optional description and the ability to show optional logo from a limited set of logos of the most popular shipping providers.
 
 ShippingOptions are provided in the create session endpoint. See [Swagger documentation for more details](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session)
 
@@ -466,7 +477,7 @@ ShippingOptions are provided in the create session endpoint. See [Swagger docume
 - `product` is the shipping option product name, and is typically used to distinguish different options that the logistics providers offer. Such as "pick-up in store", "home delivery" and "mailbox". This will be displayed in the title of the shipping option.
 - `description` is an optional explaining text that will show under the price. This can typically include estimates of delivery or other information.
 - `amount.currency` is the currency identificator according to ISO 4217.
-- `amount.value` is the amount in the lowest currency subdivision (øre/oere for NOK) as an integer.
+- `amount.value` is the amount in the lowest currency subdivision (øre for NOK) as an integer.
 
 ### Dynamic Shipping
 
@@ -487,7 +498,7 @@ The callback is as follows:
 - `region` is the region.
 - `country` is the country.
 
-The merchant endpoint should return a list of shipping options on the same structure as for `fixedOptions`.
+The merchant endpoint should return a list of shipping options on the same structure as for `fixedOptions` (see section on [Static Shipping](#static-shipping)).
 
 ```json
 [
@@ -522,7 +533,7 @@ You might want to find the Vipps transactionId value of a transaction. For examp
 
 ### Recommended integration (currently in pilot mode)
 
-In order to integrate with the receipts functionality you need to retrieve the pspreference in the "paymentAction": "AUTHORISATION" event from the [eventlog](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPaymentEventLog) endpoint. This is required if utilizing receipts with Vipps Checkout or Free standing card payments
+In order to integrate with the receipts functionality, you need to retrieve the pspreference in the "paymentAction": "AUTHORISATION" event from the [eventlog](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPaymentEventLog) endpoint. This is required if utilizing receipts with Vipps Checkout or Free standing card payments
 
 ## In-App Payment
 

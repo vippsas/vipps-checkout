@@ -8,6 +8,7 @@ You can peruse the API reference documentation here:
 
 - [Swagger](https://vippsas.github.io/vipps-checkout-api/)
 - [Vipps Checkout API guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
+- [Vipps Checkout API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration.
 - [Frequently Asked Questions](vipps-checkout-api-faq.md): Questions and answers
 - [Go directly to the product ordering page](https://portal.vipps.no/register/vippscheckout) if you want to start the onboarding process.
 
@@ -17,8 +18,6 @@ You can peruse the API reference documentation here:
 - [Vipps Developers](https://github.com/vippsas/vipps-developers): The starting point for Vipps developers.
 - [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): Information about API keys, product activation.
 - [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works.
-- [Vipps ecom API Checklist](vipps-ecom-api-checklist.md): For direct and POS integrations.
-- [Frequently Asked Questions](vipps-ecom-api-faq.md): Vipps ecom questions and answers.¨
 
 # Questions?
 
