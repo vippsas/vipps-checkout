@@ -169,7 +169,7 @@ Here is an example integration written in JavaScript. This will make a request t
     <section id="vipps-checkout-frame-container"></section>
     <script>
       var merchantBackendAppUrl =
-        "<THE BACK END OF THE MERCHANT TO RECEIVE CALLBACK>";
+        "<THE BACKEND OF THE MERCHANT TO RECEIVE CALLBACK>";
 
       // When clicking the "Checkout with Vipps" button
       document
@@ -180,7 +180,7 @@ Here is an example integration written in JavaScript. This will make a request t
             amount: "1600",
           };
 
-          // Call merchant back end which will again call Checkout back end to establish session
+          // Call merchant backend which will again call Checkout backend to establish session
           fetch(merchantBackendAppUrl + "/create-checkout-session", {
             method: "POST",
             headers: {
