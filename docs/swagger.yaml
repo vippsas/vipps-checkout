@@ -10,7 +10,7 @@ paths:
     post:
       tags:
         - Session
-      summary: "Creates a checkout session and returns a JWT (JSON Web Token)) which wraps the login URL,\r\necom landing page URL, free standing card page URL"
+      summary: "Creates a checkout session and returns a JWT (JSON Web Token)) which wraps the login URL,\r\necom landing page URL, free standing card page URL."
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
@@ -50,7 +50,7 @@ paths:
                       $ref: '#/components/schemas/MerchantLogisticsCallbackRequestDto'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Your server implementation should return this HTTP status code if the data was received successfully.
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -66,7 +66,7 @@ paths:
                       $ref: '#/components/schemas/CallbackSessionDetailsDto'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Your server implementation should return this HTTP status code if the data was received successfully.
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -75,7 +75,7 @@ paths:
     get:
       tags:
         - Session
-      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
+      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated."
       parameters:
         - name: sessionId
           in: path
@@ -103,7 +103,7 @@ paths:
     post:
       tags:
         - Session
-      summary: Cancels the current Checkout session if payment is not initiated
+      summary: Cancels the current Checkout session if payment is not initiated.
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
@@ -623,5 +623,5 @@ components:
           example: user@example.com
           nullable: true
       additionalProperties: false
-      description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
+      description: "Defines the user details of the recipient of the ordered goods.\r\n\r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead."
       deprecated: true
