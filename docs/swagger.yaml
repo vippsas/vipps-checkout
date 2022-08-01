@@ -10,7 +10,7 @@ paths:
     post:
       tags:
         - Session
-      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
+      summary: "Creates a checkout session and returns a JWT (JSON Web Token)) which wraps the login URL,\r\necom landing page URL, free standing card page URL."
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
@@ -50,7 +50,7 @@ paths:
                       $ref: '#/components/schemas/MerchantLogisticsCallbackRequestDto'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Your server implementation should return this HTTP status code if the data was received successfully.
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -66,7 +66,7 @@ paths:
                       $ref: '#/components/schemas/CallbackSessionDetailsDto'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Your server implementation should return this HTTP status code if the data was received successfully.
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -75,7 +75,7 @@ paths:
     get:
       tags:
         - Session
-      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
+      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated."
       parameters:
         - name: sessionId
           in: path
@@ -103,7 +103,7 @@ paths:
     post:
       tags:
         - Session
-      summary: Cancels the current Checkout session if payment is not initiated
+      summary: Cancels the current Checkout session if payment is not initiated.
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
@@ -133,6 +133,7 @@ components:
   schemas:
     Amount:
       type: object
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       properties:
         currency:
           type: string
@@ -145,6 +146,7 @@ components:
       additionalProperties: false
     AmountV2:
       type: object
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       properties:
         value:
           type: integer
@@ -158,27 +160,35 @@ components:
       properties:
         firstName:
           type: string
+          example: Ada
           nullable: true
         lastName:
           type: string
+          example: Lovelace
           nullable: true
         phoneNumber:
           type: string
+          example: '4791234567'
           nullable: true
         email:
           type: string
+          example: user@example.com
           nullable: true
         streetAddress:
           type: string
+          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
+          example: '0154'
           nullable: true
         region:
           type: string
+          example: 'Oslo'
           nullable: true
         country:
           type: string
+          example: 'NO'
           nullable: true
       additionalProperties: false
       description: Defines the details of the invoiced customer (purchaser) of the order.
@@ -190,6 +200,7 @@ components:
           format: int32
         currency:
           type: string
+          example: 'NOK'
           nullable: true
       additionalProperties: false
     CallbackSessionBillingDetails:
@@ -197,27 +208,35 @@ components:
       properties:
         firstName:
           type: string
+          example: Ada
           nullable: true
         lastName:
           type: string
+          example: Lovelace
           nullable: true
         email:
           type: string
+          example: user@example.com
           nullable: true
         phoneNumber:
           type: string
+          example: '4791234567'
           nullable: true
         streetAddress:
           type: string
+          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
+          example: '0154'
           nullable: true
         region:
           type: string
+          example: 'Oslo'
           nullable: true
         country:
           type: string
+          example: 'NO'
           nullable: true
       additionalProperties: false
     CallbackSessionDetailsDto:
@@ -228,12 +247,14 @@ components:
           nullable: true
         merchantSerialNumber:
           type: string
+          example: '123456'
           nullable: true
         sessionState:
           type: string
           nullable: true
         orderId:
           type: string
+          example: 'acme-shop-123-order123abc'
           nullable: true
         apiVersion:
           type: string
@@ -268,30 +289,39 @@ components:
       properties:
         firstName:
           type: string
+          example: Ada
           nullable: true
         lastName:
           type: string
+          example: Lovelace
           nullable: true
         email:
           type: string
+          example: user@example.com
           nullable: true
         phoneNumber:
           type: string
+          example: '4791234567'
           nullable: true
         streetAddress:
           type: string
+          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
+          example: '0154'
           nullable: true
         region:
           type: string
+          example: 'Oslo'
           nullable: true
         country:
           type: string
+          example: 'NO'
           nullable: true
         shippingMethodId:
           type: string
+          example: '123'
           nullable: true
       additionalProperties: false
     CancelSessionRequest:
@@ -341,15 +371,19 @@ components:
       properties:
         vipps-System-Name:
           type: string
+          example: 'Acme Enterprises Ecommerce DeLuxe'
           nullable: true
         vipps-System-Version:
           type: string
+          example: '3.1.2'
           nullable: true
         vipps-System-Plugin-Name:
           type: string
+          example: 'acme-webshop'
           nullable: true
         vipps-System-Plugin-Version:
           type: string
+          example: '4.5.6'
           nullable: true
       additionalProperties: false
     Logistics:
@@ -399,15 +433,19 @@ components:
       properties:
         client_id:
           type: string
+          example: 'fb492b5e-7907-4d83-ba20-c7fb60ca35de'
           nullable: true
         client_secret:
           type: string
+          example: 'Y8Kteew6GE2ZmeycEt6egg=='
           nullable: true
         ocp-Apim-Subscription-Key:
           type: string
+          example: '0f14ebcab0ec4b29ae0cb90d91b4a84a'
           nullable: true
         merchant-Serial-Number:
           type: string
+          example: '123456'
           nullable: true
       additionalProperties: false
     MerchantLogisticsCallbackRequestDto:
@@ -570,16 +608,20 @@ components:
       properties:
         firstName:
           type: string
+          example: Ada
           nullable: true
         lastName:
           type: string
+          example: Lovelace
           nullable: true
         phoneNumber:
           type: string
+          example: '4791234567'
           nullable: true
         email:
           type: string
+          example: user@example.com
           nullable: true
       additionalProperties: false
-      description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
+      description: "Defines the user details of the recipient of the ordered goods.\r\n\r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead."
       deprecated: true
