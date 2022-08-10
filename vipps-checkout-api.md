@@ -520,6 +520,7 @@ If no fallback options are provided the user will be presented with an error and
 ## Pickup points
 
 We currently provide support for Posten/Bring and PostNord pickup points. As of now, lockers etc. are not supported.
+To enable pickup points for a logistics option, the isPickup flag must be set to true.
 The user selects the pickup point after picking their logistics option. The logistics option must have the isPickup field set to true for this to appear.
 We then return carrier's the pickup point ID, pickup point name and address. 
 
