@@ -490,10 +490,6 @@ components:
           type: string
           description: 'An optional text that will show under the price. This can typically include estimates of delivery or other information. Example: "Pick up your package at the local store".'
           nullable: true
-        isPickup:
-          type: boolean
-          description: If Checkout should display pickup points.
-          nullable: true
       additionalProperties: false
       description: A logistics option to be presented to the customer
     MerchantAuthInfoHeadersV2:
