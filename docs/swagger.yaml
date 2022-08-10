@@ -10,27 +10,32 @@ paths:
     post:
       tags:
         - Session
-      summary: "Creates a checkout session and returns a JWT (JSON Web Token)) which wraps the login URL,\r\necom landing page URL, free standing card page URL."
+      summary: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page url, free standing card page url"
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+            allOf:
+              - $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
         - name: merchantAuthInfoHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+            allOf:
+              - $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+              allOf:
+                - $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
           text/json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+              allOf:
+                - $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
+              allOf:
+                - $ref: '#/components/schemas/CheckoutSessionInitiationRequestDtoV2'
       responses:
         '200':
           description: ''
@@ -50,7 +55,7 @@ paths:
                       $ref: '#/components/schemas/MerchantLogisticsCallbackRequestDto'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully.
+                  description: Your server implementation should return this HTTP status code if the data was received successfully
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -66,7 +71,7 @@ paths:
                       $ref: '#/components/schemas/CallbackSessionDetailsDto'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully.
+                  description: Your server implementation should return this HTTP status code if the data was received successfully
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -75,7 +80,7 @@ paths:
     get:
       tags:
         - Session
-      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated."
+      summary: "Retrieves sessionInfo from database when merchant polls.\r\nTransaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
       parameters:
         - name: sessionId
           in: path
@@ -85,11 +90,13 @@ paths:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+            allOf:
+              - $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
         - name: merchantAuthInfoHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+            allOf:
+              - $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
       responses:
         '200':
           description: ''
@@ -103,27 +110,32 @@ paths:
     post:
       tags:
         - Session
-      summary: Cancels the current Checkout session if payment is not initiated.
+      summary: Cancels the current Checkout session if payment is not initiated
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+            allOf:
+              - $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
         - name: merchantAuthInfoHeaders
           in: header
           schema:
-            $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+            allOf:
+              - $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelSessionRequest'
+              allOf:
+                - $ref: '#/components/schemas/CancelSessionRequest'
           text/json:
             schema:
-              $ref: '#/components/schemas/CancelSessionRequest'
+              allOf:
+                - $ref: '#/components/schemas/CancelSessionRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CancelSessionRequest'
+              allOf:
+                - $ref: '#/components/schemas/CancelSessionRequest'
       responses:
         '200':
           description: ''
@@ -133,11 +145,9 @@ components:
   schemas:
     Amount:
       type: object
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       properties:
         currency:
           type: string
-          nullable: true
         value:
           minimum: 0
           type: integer
@@ -146,49 +156,35 @@ components:
       additionalProperties: false
     AmountV2:
       type: object
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       properties:
         value:
           type: integer
           format: int32
         currency:
           type: string
-          nullable: true
       additionalProperties: false
     BillingDetailsV2:
       type: object
       properties:
         firstName:
           type: string
-          example: Ada
-          nullable: true
         lastName:
           type: string
-          example: Lovelace
-          nullable: true
         phoneNumber:
           type: string
-          example: '4791234567'
-          nullable: true
         email:
           type: string
-          example: user@example.com
-          nullable: true
         streetAddress:
           type: string
-          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
-          example: '0154'
           nullable: true
         region:
           type: string
-          example: 'Oslo'
           nullable: true
         country:
           type: string
-          example: 'NO'
           nullable: true
       additionalProperties: false
       description: Defines the details of the invoiced customer (purchaser) of the order.
@@ -200,43 +196,29 @@ components:
           format: int32
         currency:
           type: string
-          example: 'NOK'
-          nullable: true
       additionalProperties: false
     CallbackSessionBillingDetails:
       type: object
       properties:
         firstName:
           type: string
-          example: Ada
-          nullable: true
         lastName:
           type: string
-          example: Lovelace
-          nullable: true
         email:
           type: string
-          example: user@example.com
-          nullable: true
         phoneNumber:
           type: string
-          example: '4791234567'
-          nullable: true
         streetAddress:
           type: string
-          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
-          example: '0154'
           nullable: true
         region:
           type: string
-          example: 'Oslo'
           nullable: true
         country:
           type: string
-          example: 'NO'
           nullable: true
       additionalProperties: false
     CallbackSessionDetailsDto:
@@ -244,39 +226,36 @@ components:
       properties:
         sessionId:
           type: string
-          nullable: true
         merchantSerialNumber:
           type: string
-          example: '123456'
-          nullable: true
         sessionState:
           type: string
-          nullable: true
         orderId:
           type: string
-          example: 'acme-shop-123-order123abc'
-          nullable: true
         apiVersion:
           type: string
-          nullable: true
         billingDetails:
-          $ref: '#/components/schemas/CallbackSessionBillingDetails'
+          allOf:
+            - $ref: '#/components/schemas/CallbackSessionBillingDetails'
+          nullable: true
         shippingDetails:
-          $ref: '#/components/schemas/CallbackSessionShippingDetails'
+          allOf:
+            - $ref: '#/components/schemas/CallbackSessionShippingDetails'
+          nullable: true
         paymentDetails:
-          $ref: '#/components/schemas/CallbackSessionPaymentDetails'
+          allOf:
+            - $ref: '#/components/schemas/CallbackSessionPaymentDetails'
         callbackUrlPrefix:
           type: string
-          nullable: true
         callbackAuthorizationToken:
           type: string
-          nullable: true
       additionalProperties: false
     CallbackSessionPaymentDetails:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/CallbackSessionAmount'
+          allOf:
+            - $ref: '#/components/schemas/CallbackSessionAmount'
         state:
           type: string
           nullable: true
@@ -289,39 +268,30 @@ components:
       properties:
         firstName:
           type: string
-          example: Ada
           nullable: true
         lastName:
           type: string
-          example: Lovelace
           nullable: true
         email:
           type: string
-          example: user@example.com
           nullable: true
         phoneNumber:
           type: string
-          example: '4791234567'
           nullable: true
         streetAddress:
           type: string
-          example: 'Robert Levins gate 5'
           nullable: true
         postalCode:
           type: string
-          example: '0154'
           nullable: true
         region:
           type: string
-          example: 'Oslo'
           nullable: true
         country:
           type: string
-          example: 'NO'
           nullable: true
         shippingMethodId:
           type: string
-          example: '123'
           nullable: true
       additionalProperties: false
     CancelSessionRequest:
@@ -329,19 +299,24 @@ components:
       properties:
         sessionId:
           type: string
-          nullable: true
       additionalProperties: false
     CheckoutSessionInitiationRequestDtoV2:
       type: object
       properties:
         merchantInfo:
-          $ref: '#/components/schemas/PaymentMerchantInfo'
+          allOf:
+            - $ref: '#/components/schemas/PaymentMerchantInfo'
         transaction:
-          $ref: '#/components/schemas/PaymentTransaction'
+          allOf:
+            - $ref: '#/components/schemas/PaymentTransaction'
         logistics:
-          $ref: '#/components/schemas/Logistics'
+          allOf:
+            - $ref: '#/components/schemas/Logistics'
+          nullable: true
         prefillCustomer:
-          $ref: '#/components/schemas/PrefillCustomer'
+          allOf:
+            - $ref: '#/components/schemas/PrefillCustomer'
+          nullable: true
         customerInteraction:
           type: string
           nullable: true
@@ -358,33 +333,22 @@ components:
       properties:
         token:
           type: string
-          nullable: true
         checkoutFrontendUrl:
           type: string
-          nullable: true
         pollingUrl:
           type: string
-          nullable: true
       additionalProperties: false
     CheckoutSessionThirdPartyInformationHeaders:
       type: object
       properties:
         vipps-System-Name:
           type: string
-          example: 'Acme Enterprises Ecommerce DeLuxe'
-          nullable: true
         vipps-System-Version:
           type: string
-          example: '3.1.2'
-          nullable: true
         vipps-System-Plugin-Name:
           type: string
-          example: 'acme-webshop'
-          nullable: true
         vipps-System-Plugin-Version:
           type: string
-          example: '4.5.6'
-          nullable: true
       additionalProperties: false
     Logistics:
       type: object
@@ -402,12 +366,12 @@ components:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
         id:
           maxLength: 200
           minLength: 1
           type: string
-          nullable: true
         priority:
           minimum: 0
           type: integer
@@ -416,11 +380,9 @@ components:
         brand:
           maxLength: 255
           type: string
-          nullable: true
         product:
           maxLength: 255
           type: string
-          nullable: true
         isDefault:
           type: boolean
           nullable: true
@@ -433,60 +395,47 @@ components:
       properties:
         client_id:
           type: string
-          example: 'fb492b5e-7907-4d83-ba20-c7fb60ca35de'
-          nullable: true
         client_secret:
           type: string
-          example: 'Y8Kteew6GE2ZmeycEt6egg=='
-          nullable: true
         ocp-Apim-Subscription-Key:
           type: string
-          example: '0f14ebcab0ec4b29ae0cb90d91b4a84a'
-          nullable: true
         merchant-Serial-Number:
           type: string
-          example: '123456'
-          nullable: true
       additionalProperties: false
     MerchantLogisticsCallbackRequestDto:
       type: object
       properties:
         streetAddress:
           type: string
-          nullable: true
         postalCode:
           type: string
-          nullable: true
         region:
           type: string
-          nullable: true
         country:
           type: string
-          nullable: true
       additionalProperties: false
     PaymentDetailsV2:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/AmountV2'
+          allOf:
+            - $ref: '#/components/schemas/AmountV2'
         state:
           type: string
-          nullable: true
         aggregate:
-          $ref: '#/components/schemas/TransactionAggregateV2'
+          allOf:
+            - $ref: '#/components/schemas/TransactionAggregateV2'
+          nullable: true
       additionalProperties: false
     PaymentMerchantInfo:
       type: object
       properties:
         callbackPrefix:
           type: string
-          nullable: true
         returnUrl:
           type: string
-          nullable: false
         callbackAuthorizationToken:
           type: string
-          nullable: true
         termsAndConditionsUrl:
           type: string
           nullable: true
@@ -495,16 +444,15 @@ components:
       type: object
       properties:
         amount:
-          $ref: '#/components/schemas/Amount'
+          allOf:
+            - $ref: '#/components/schemas/Amount'
         reference:
           maxLength: 50
           minLength: 8
           pattern: '^[-a-zA-Z0-9]*$'
           type: string
-          nullable: true
         paymentDescription:
           type: string
-          nullable: true
       additionalProperties: false
     PrefillCustomer:
       required:
@@ -513,51 +461,53 @@ components:
       properties:
         firstName:
           type: string
-          nullable: true
         lastName:
           type: string
-          nullable: true
         email:
           type: string
-          nullable: true
         phoneNumber:
           type: string
         streetAddress:
           type: string
-          nullable: true
         city:
           type: string
-          nullable: true
         postalCode:
           type: string
-          nullable: true
         country:
           type: string
-          nullable: true
       additionalProperties: false
     SessionResponseV2:
       type: object
       properties:
         sessionId:
           type: string
-          nullable: true
         reference:
           type: string
-          nullable: true
         sessionState:
           type: string
-          nullable: true
         paymentMethod:
           type: string
           nullable: true
         paymentDetails:
-          $ref: '#/components/schemas/PaymentDetailsV2'
+          allOf:
+            - $ref: '#/components/schemas/PaymentDetailsV2'
+          nullable: true
         userDetails:
-          $ref: '#/components/schemas/UserDetailsV2'
+          allOf:
+            - $ref: '#/components/schemas/UserDetailsV2'
+          description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
+          nullable: true
+          deprecated: true
         shippingDetails:
-          $ref: '#/components/schemas/ShippingDetailsV2'
+          allOf:
+            - $ref: '#/components/schemas/ShippingDetailsV2'
+          description: "Defines the shipping details of the recipient of the ordered goods.\r\nThe recipient may or may not be the same as the invoiced customer."
+          nullable: true
         billingDetails:
-          $ref: '#/components/schemas/BillingDetailsV2'
+          allOf:
+            - $ref: '#/components/schemas/BillingDetailsV2'
+          description: Defines the details of the invoiced customer (purchaser) of the order.
+          nullable: true
       additionalProperties: false
     ShippingDetailsV2:
       type: object
@@ -595,33 +545,33 @@ components:
       type: object
       properties:
         cancelledAmount:
-          $ref: '#/components/schemas/AmountV2'
+          allOf:
+            - $ref: '#/components/schemas/AmountV2'
+          nullable: true
         capturedAmount:
-          $ref: '#/components/schemas/AmountV2'
+          allOf:
+            - $ref: '#/components/schemas/AmountV2'
+          nullable: true
         refundedAmount:
-          $ref: '#/components/schemas/AmountV2'
+          allOf:
+            - $ref: '#/components/schemas/AmountV2'
+          nullable: true
         authorizedAmount:
-          $ref: '#/components/schemas/AmountV2'
+          allOf:
+            - $ref: '#/components/schemas/AmountV2'
+          nullable: true
       additionalProperties: false
     UserDetailsV2:
       type: object
       properties:
         firstName:
           type: string
-          example: Ada
-          nullable: true
         lastName:
           type: string
-          example: Lovelace
-          nullable: true
         phoneNumber:
           type: string
-          example: '4791234567'
-          nullable: true
         email:
           type: string
-          example: user@example.com
-          nullable: true
       additionalProperties: false
-      description: "Defines the user details of the recipient of the ordered goods.\r\n\r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead."
+      description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
       deprecated: true
