@@ -2,6 +2,12 @@
 
 Vipps Checkout provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
 
+API version: 2.0.0.
+
+> **Note**:
+> Always use the most recent API version when integrating with Vipps Checkout.
+> All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
+
 # Table of contents
 
 - [Vipps Checkout guide](#vipps-checkout-guide)
@@ -51,15 +57,15 @@ Once a session is created, it is to be opened inside an iFrame embedded on the m
 
 ### SDK
 
-Vipps exposes an SDK to make opening the session on the merchant easy. It is highly recommended to use this.
+Vipps provides an SDK to make opening the session on the merchant easy. It is highly recommended to use this.
 
 ## Shipping
 
-In most situations a merchant wants to send good to a customer using a shipping provider. Vipp Checkout supports two different types of shipping configuration:
+In most situations a merchant wants to send goods to a customer using a shipping provider. Vipps Checkout supports two different types of shipping configurations:
 
 ### Static shipping
 
-The merchants defines a set of static shipping options that _are not_ dependant on the address of the customer. This means that the merchant has to find a reasonable price for each shipping option, taking into account that the final cost of that shipment might be either more or less than the requested amount.
+The merchant defines a set of static shipping options that _are not_ dependant on the address of the customer. This means that the merchant has to find a reasonable price for each shipping option, taking into account that the final cost of that shipment might be either more or less than the requested amount.
 
 ### Dynamic shipping
 
@@ -75,7 +81,7 @@ These fields are by default set to `true` and, if not specified, will return the
 
 ### AddressFields false example
 
-If you do not need the address from a user, you can disable leading them to the following personal details form.
+If you do not need the address from a user you can disable it, resulting in the following personal details form.
 
 ![Address_field_false_form](resources/addressfields_false_form.png)
 
@@ -85,19 +91,19 @@ And the following payment form
 
 ### Addressfields and ContactFields false example
 
-If you do not need the contact details for a customer you can disable them leading to the following session
+If you do not need the contact details for a customer you can disable it, resulting in the following session
 
 ![payment_only](resources/addressfields_false_contactfields_false.png)
 
 ### Combination with shipping
 
-These options may be combined with shipping if it fits your scenario. For example leading to this session:
+These options may be combined with shipping if it fits your scenario. For example resulting in the following session:
 
 ![fields_false_with_shipping](resources/fields_false_with_shipping.png)
 
 ## Remembering of customer data
 
-Vipps Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "remember me", the user is can opt in to having this information being persisted across different Vipps Checkout sessions on the same machine.
+Vipps Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different Vipps Checkout sessions on the same machine.
 
 # System integration guidelines
 
@@ -151,7 +157,7 @@ sequenceDiagram
 
 ## Step 1: Initiating a session
 
-The merchant backend calls the [session initiation endpoint](https://swagger)
+The merchant backend calls the [session initiation endpoint](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session)
 
 ```
 POST: https://api.vipps.no/checkout/v2/session
@@ -172,7 +178,7 @@ with headers
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
-All fields of the request body are described in our [swagger](https://swagger)
+All fields of the request body are described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session). The dynamic logistics callback is found by clicking the "Callback" tab in the Swagger.
 
 > **Note**:
 > When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
@@ -254,7 +260,7 @@ The SDK provides an alternative way to display the session, using a query parame
 
 If the query parameter `token` is present, and the token attribute in the argument object to VippsCheckout **is not** defined, the SDK will load the iFrame with the token from the query parameter.
 
-We provide a helper method that when called will redirect to the current page with the `token` queryParameter added to the URL. Initiatlize the `VippsCheckout` function outside of initiating a session
+We provide a helper method that, when called, will redirect to the current page with the `token` queryParameter added to the URL. Initiatlize the `VippsCheckout` function outside of initiating a session.
 
 > **Note**:
 > Make sure to initialize `VippsCheckout` outside of any user dependant execution blocks (like event handlers) to make sure that the iFrame is loaded every time a user lands on the page.
@@ -281,19 +287,19 @@ After the user has completed the checkout process the merchant will be notified 
 
 ### Callback Handling
 
-The callback will be sent to the following location
+The callback will be sent to a [callback endpoint (click on the "Callbacks" tab)](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session) implemented by the merchant
 
 ```
 POST: {callbackPrefix}/checkout/{apiVersion}/order/{orderId}
 ```
 
-where `callbackPrefix` and `orderId` (also referred to as `transaction.reference`) is defined when initiating a session. `callbackAuthorizationToken` provided by the merchant at session initiation will be attached as the `Authorization` header. Use this to authorize the caller.
+where `callbackPrefix` and `orderId` (also referred to as `transaction.reference`) are defined when initiating a session. `callbackAuthorizationToken` provided by the merchant at session initiation will be attached as the `Authorization` header. Use this to authorize the caller.
 
 Vipps demands that every callback is responded to with a `HTTP 202 response`. In the eventuality that any other response is sent, Vipps will retry with an exponential back off until 202 is received again. During this exponential back off, Vipps will pause any new notifications until a 202 is returned on the original callback. It is critical that the endpoint receiving the callback is robust. It should also be able to receive any additional data not specified in the minimum example so that it can be backwards compatible in accordance with our integration guidelines.
 
 ### Session polling
 
-Vipps Checkout will expose a polling endpoint as described in our [swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). The complete URL for polling is returned from the session creation endpoint as `pollingUrl`.
+Vipps Checkout will expose a polling endpoint as described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). The complete URL for polling is returned from the [session creation endpoint](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session) as `pollingUrl`.
 
 # Integration partner and plugin guidelines
 
