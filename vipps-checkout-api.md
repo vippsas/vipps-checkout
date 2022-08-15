@@ -4,6 +4,8 @@ Vipps Checkout provides an all-in-one solution for receiving payment for goods a
 
 API version: 2.0.0.
 
+Document version: 1.1.0.
+
 > **Note**:
 > Always use the most recent API version when integrating with Vipps Checkout.
 > All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
@@ -301,6 +303,10 @@ Vipps demands that every callback is responded to with a `HTTP 202 response`. In
 
 Vipps Checkout will expose a polling endpoint as described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). The complete URL for polling is returned from the [session creation endpoint](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session) as `pollingUrl`.
 
+### Transaction/Payment polling
+
+In order to determine the status of a payment, you must poll epayment as described [here](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment).
+
 # Integration partner and plugin guidelines
 
 Vipps Checkout supports [partner-key-based authentication](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys).
@@ -311,7 +317,7 @@ In the initiation request, use your own credentials and send the Merchant Serial
 
 If you are using the [SignupAPI](https://github.com/vippsas/vipps-signup-api), you need to use the "Ecom access" key instead of the default access token in the API calls. This API is considered deprecated by Vipps and should be migrated away from.
 
-# Transaction operations (Capture, Cancel, Refund)
+# Transaction operations (Capture, Cancel, Refund, Details)
 
 Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). A guideline for the integration can be found [here](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). You should use the same credentials as the ones you use with Checkout.
 
