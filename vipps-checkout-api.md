@@ -12,8 +12,6 @@ Document version: 1.1.0.
 
 # Table of contents
 
-- [Vipps Checkout guide](#vipps-checkout-guide)
-- [Flow diagram](#flow-diagram)
 - [Checkout Features](#checkout-features)
   - [Vipps Checkout API](#vipps-checkout-api)
   - [Vipps Checkout frontend](#vipps-checkout-frontend)
