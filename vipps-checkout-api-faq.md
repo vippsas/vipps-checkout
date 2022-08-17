@@ -1,6 +1,6 @@
 # FAQ
 
-### How are subsequent transaction operations (Capture/Cancel/refund) handled 
+### How are subsequent transaction operations (Capture/Cancel/refund) handled
 
 All subsequent transaction operations are fully supported in the Vipps epayment API. As described [here](https://github.com/vippsas/vipps-epayment-api)
 
@@ -10,7 +10,7 @@ Please feel free to make a PR with a question if something is unclear.
 
 ### What card types are supported?
 
-Visa and Mastercard.
+Visa and Mastercard. This includes any cards that are co-branded with VISA and Mastercard.
 
 ### Which issuer countries are supported?
 
@@ -18,4 +18,4 @@ Cards issued in the following countries are accepted: EEA/EØS (European Economi
 
 ### Is Visa Electron supported?
 
-Yes, if the Visa Electron card is activated for online purchases.
+Yes, if the Visa Electron card is enabled for online purchases.
