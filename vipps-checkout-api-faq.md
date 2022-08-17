@@ -15,3 +15,7 @@ Visa and Mastercard.
 ### Which issuer countries are supported?
 
 Cards issued in the following countries are accepted: EEA/EØS (European Economic Area), UK, Canada, USA, Australia and New Zealand.
+
+### Is Visa Electron supported?
+
+Yes, if the Visa Electron card is activated for online purchases.
