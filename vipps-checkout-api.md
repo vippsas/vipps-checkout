@@ -33,9 +33,10 @@ Document version: 1.1.0.
   - [Step 3: Handling the result of the session](#step-3-handling-the-result-of-the-session)
     - [Callback handling](#callback-handling)
     - [Session polling](#session-polling)
+    - [Step 3a: If a transaction is authorized, capture payment](#step-3a-if-a-transaction-is-authorized-capture-payment)
 - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
   - [Partner signup API guidelines](#partner-signup-api-guidelines)
-- [Transaction operations (Capture, Cancel, Refund)](#transaction-operations-capture-cancel-refund)
+- [Transaction operations (Capture, Cancel, Refund, Details)](#transaction-operations-capture-cancel-refund-details)
 - [Vipps side Transaction information](#vipps-side-transaction-information)
   - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
 
@@ -304,6 +305,17 @@ Vipps Checkout will expose a polling endpoint as described in our [Swagger](http
 ### Transaction/Payment polling
 
 In order to determine the status of a payment, you must poll epayment as described [here](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment).
+
+## Step 3a: If a transaction is authorized, capture payment
+
+If the state of session received in callback, or when polling, is `AUTHORISED`, the amount of the transaction was successfully _reserved_. In order to actually move the money and complete the payment, the transaction must be _captured_. Capture must be done in accordance with your terms and conditions with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
+
+A capture operation for the whole amount reserved is called a "full capture". A "partial capture" is a capture operation on only parts of the amount reserved and is e.g. used if only parts of an order could be fulfilled. Captures cannot be made on an amount larger than the reservation.
+
+Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
+
+>**Note**:
+> A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](https://github.com/vippsas/vipps-checkout-api/edit/main/vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
 
 # Integration partner and plugin guidelines
 
