@@ -307,9 +307,9 @@ In order to determine the status of a payment, you must poll epayment as describ
 
 ## Step 3a: If a transaction is authorized, capture payment
 
-If the state of session is `AUTHORISED`, the amount of the transaction was successfully _reserved_. In order to actually move the money and complete the payment, the transaction must be _captured_. If you ship physical goods, capture is not to be done until the shipment is sent to the customer. Otherwise, capture can happen anytime after the reservation happened as long as the customer has received what has been paid for. E.g. if you sell digital concert tickets and send them by email directly after a purchase.
+If the state of session is `AUTHORISED`, the amount of the transaction was successfully _reserved_. In order to actually move the money and complete the payment, the transaction must be _captured_. Capture must be done in accordance with you terms and conditions with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
 
-A capture operation for the whole amount reserved is called a "full capture". A "partial capture" is a capture operation on only parts of the amount reserved and is e.g. used if only parts of an order could be fulfilled. Captures cannot be made on a amounts larger than the reservation.
+A capture operation for the whole amount reserved is called a "full capture". A "partial capture" is a capture operation on only parts of the amount reserved and is e.g. used if only parts of an order could be fulfilled. Captures cannot be made on an amount larger than the reservation.
 
 Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
 
