@@ -305,6 +305,17 @@ Vipps Checkout will expose a polling endpoint as described in our [Swagger](http
 
 In order to determine the status of a payment, you must poll epayment as described [here](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment).
 
+## Step 3a: If a transaction is authorized, capture payment
+
+If the state of session is `AUTHORISED`, the amount of the transaction was successfully _reserved_. In order to actually move the money and complete the payment, the transaction must be _captured_. If you ship physical goods, capture is not to be done until the shipment is sent to the customer. Otherwise, capture can happen anytime after the reservation happened as long as the customer has received what has been paid for. E.g. if you sell digital concert tickets and send them by email directly after a purchase.
+
+A capture operation for the whole amount reserved is called a "full capture". A "partial capture" is a capture operation on only parts of the amount reserved and is e.g. used if only parts of an order could be fulfilled. Captures cannot be made on a amounts larger than the reservation.
+
+Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
+
+>**Note**:
+> A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](https://github.com/vippsas/vipps-checkout-api/edit/main/vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
+
 # Integration partner and plugin guidelines
 
 Vipps Checkout supports [partner-key-based authentication](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys).
