@@ -15,77 +15,77 @@ paths:
       parameters:
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
-          description: ''
+          description: ""
           schema:
             allOf:
-              - $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+              - $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
             description: Information about the merchant system.
         - name: merchantAuthInfoHeaders
           in: header
-          description: ''
+          description: ""
           schema:
             allOf:
-              - $ref: '#/components/schemas/MerchantAuthInfoHeaders'
+              - $ref: "#/components/schemas/MerchantAuthInfoHeaders"
             description: Headers required to retrieve an access token.
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/InitiateSessionRequest'
+                - $ref: "#/components/schemas/InitiateSessionRequest"
               description: Request to set up a Checkout session
           text/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/InitiateSessionRequest'
+                - $ref: "#/components/schemas/InitiateSessionRequest"
               description: Request to set up a Checkout session
           application/*+json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/InitiateSessionRequest'
+                - $ref: "#/components/schemas/InitiateSessionRequest"
               description: Request to set up a Checkout session
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InitiateSessionResponse'
+                $ref: "#/components/schemas/InitiateSessionResponse"
       callbacks:
         Dynamic logistics:
-          '{$request.body#/logistics/dynamicOptionsCallback}':
+          "{$request.body#/logistics/dynamicOptionsCallback}":
             post:
               summary: Callback for dynamic merchant logistics options
               requestBody:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/MerchantLogisticsCallbackRequest'
+                      $ref: "#/components/schemas/MerchantLogisticsCallbackRequest"
               responses:
-                '200':
+                "200":
                   description: Your server implementation should return this HTTP status code if the data was received successfully
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
                   description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure.
         Payment completed:
-          '{$request.body#/merchantInfo/callbackPrefix}/checkout/v2/order/{$request.body#/transaction/reference}':
+          "{$request.body#/merchantInfo/callbackPrefix}/checkout/v2/order/{$request.body#/transaction/reference}":
             post:
               summary: Callback for session completed
               requestBody:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/CallbackSessionDetails'
+                      $ref: "#/components/schemas/CallbackSessionDetails"
               responses:
-                '200':
+                "200":
                   description: Your server implementation should return this HTTP status code if the data was received successfully
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
                   description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure.
-  '/v2/session/{sessionId}':
+  "/v2/session/{sessionId}":
     get:
       tags:
         - Session
@@ -100,26 +100,26 @@ paths:
             type: string
         - name: checkoutSessionThirdPartyInformationHeaders
           in: header
-          description: ''
+          description: ""
           schema:
             allOf:
-              - $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+              - $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
             description: Information about the merchant system.
         - name: merchantAuthInfoHeaders
           in: header
-          description: ''
+          description: ""
           schema:
             allOf:
-              - $ref: '#/components/schemas/MerchantAuthInfoHeaders'
+              - $ref: "#/components/schemas/MerchantAuthInfoHeaders"
             description: Headers required to retrieve an access token.
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetSessionResponse'
-        '404':
+                $ref: "#/components/schemas/GetSessionResponse"
+        "404":
           description: The specified session id is unknown.
   /v2/session/cancel:
     post:
@@ -131,35 +131,35 @@ paths:
           in: header
           schema:
             allOf:
-              - $ref: '#/components/schemas/CheckoutSessionThirdPartyInformationHeaders'
+              - $ref: "#/components/schemas/CheckoutSessionThirdPartyInformationHeaders"
             description: Information about the merchant system.
         - name: merchantAuthInfoHeaders
           in: header
           schema:
             allOf:
-              - $ref: '#/components/schemas/MerchantAuthInfoHeaders'
+              - $ref: "#/components/schemas/MerchantAuthInfoHeaders"
             description: Headers required to retrieve an access token.
       requestBody:
         content:
           application/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/CancelSessionRequest'
+                - $ref: "#/components/schemas/CancelSessionRequest"
               description: Request to cancel the session.
           text/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/CancelSessionRequest'
+                - $ref: "#/components/schemas/CancelSessionRequest"
               description: Request to cancel the session.
           application/*+json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/CancelSessionRequest'
+                - $ref: "#/components/schemas/CancelSessionRequest"
               description: Request to cancel the session.
       responses:
-        '200':
-          description: ''
-        '404':
+        "200":
+          description: ""
+        "404":
           description: The specified session id is unknown.
 components:
   schemas:
@@ -197,7 +197,7 @@ components:
         currency:
           type: string
       additionalProperties: false
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+      description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
     CallbackSessionBillingDetails:
       type: object
       properties:
@@ -238,17 +238,17 @@ components:
           type: string
         billingDetails:
           allOf:
-            - $ref: '#/components/schemas/CallbackSessionBillingDetails'
+            - $ref: "#/components/schemas/CallbackSessionBillingDetails"
           description: Defines the details of the billing
           nullable: true
         shippingDetails:
           allOf:
-            - $ref: '#/components/schemas/CallbackSessionShippingDetails'
+            - $ref: "#/components/schemas/CallbackSessionShippingDetails"
           description: Defines the details of the shipping
           nullable: true
         paymentDetails:
           allOf:
-            - $ref: '#/components/schemas/CallbackSessionPaymentDetails'
+            - $ref: "#/components/schemas/CallbackSessionPaymentDetails"
           description: Defines the details of the payment.
         callbackUrlPrefix:
           type: string
@@ -261,15 +261,15 @@ components:
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/CallbackSessionAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/CallbackSessionAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         state:
           allOf:
-            - $ref: '#/components/schemas/PaymentState'
+            - $ref: "#/components/schemas/PaymentState"
           nullable: true
         paymentMethod:
           allOf:
-            - $ref: '#/components/schemas/PaymentMethod'
+            - $ref: "#/components/schemas/PaymentMethod"
           nullable: true
       additionalProperties: false
       description: Defines the details of the payment.
@@ -336,27 +336,27 @@ components:
           type: string
         paymentMethod:
           allOf:
-            - $ref: '#/components/schemas/PaymentMethod'
+            - $ref: "#/components/schemas/PaymentMethod"
           nullable: true
         paymentDetails:
           allOf:
-            - $ref: '#/components/schemas/PaymentDetails'
+            - $ref: "#/components/schemas/PaymentDetails"
           description: Defines the details of the payment.
           nullable: true
         userDetails:
           allOf:
-            - $ref: '#/components/schemas/UserDetails'
+            - $ref: "#/components/schemas/UserDetails"
           description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
           nullable: true
           deprecated: true
         shippingDetails:
           allOf:
-            - $ref: '#/components/schemas/ShippingDetails'
+            - $ref: "#/components/schemas/ShippingDetails"
           description: "Defines the shipping details of the recipient of the ordered goods.\r\nThe recipient may or may not be the same as the invoiced customer."
           nullable: true
         billingDetails:
           allOf:
-            - $ref: '#/components/schemas/BillingDetails'
+            - $ref: "#/components/schemas/BillingDetails"
           description: Defines the details of the invoiced customer (purchaser) of the order.
           nullable: true
       additionalProperties: false
@@ -366,18 +366,18 @@ components:
       properties:
         merchantInfo:
           allOf:
-            - $ref: '#/components/schemas/PaymentMerchantInfo'
+            - $ref: "#/components/schemas/PaymentMerchantInfo"
         transaction:
           allOf:
-            - $ref: '#/components/schemas/PaymentTransaction'
+            - $ref: "#/components/schemas/PaymentTransaction"
         logistics:
           allOf:
-            - $ref: '#/components/schemas/Logistics'
+            - $ref: "#/components/schemas/Logistics"
           description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup. \r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options. \r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
           nullable: true
         prefillCustomer:
           allOf:
-            - $ref: '#/components/schemas/PrefillCustomer'
+            - $ref: "#/components/schemas/PrefillCustomer"
           description: Information about the customer to be prefilled
           nullable: true
         customerInteraction:
@@ -412,7 +412,7 @@ components:
         fixedOptions:
           type: array
           items:
-            $ref: '#/components/schemas/LogisticsOption'
+            $ref: "#/components/schemas/LogisticsOption"
           nullable: true
       additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup. \r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options. \r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
@@ -421,8 +421,8 @@ components:
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/RequestAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/RequestAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         id:
           maxLength: 200
           minLength: 1
@@ -477,14 +477,14 @@ components:
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/ResponseAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/ResponseAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         state:
           allOf:
-            - $ref: '#/components/schemas/PaymentState'
+            - $ref: "#/components/schemas/PaymentState"
         aggregate:
           allOf:
-            - $ref: '#/components/schemas/TransactionAggregate'
+            - $ref: "#/components/schemas/TransactionAggregate"
           description: Defines the details of the transaction
           nullable: true
       additionalProperties: false
@@ -518,12 +518,13 @@ components:
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/RequestAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/RequestAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         reference:
           maxLength: 50
           minLength: 8
-          pattern: '^[-a-zA-Z0-9]*$'
+          pattern: "^[-a-zA-Z0-9]*$"
+          example: string
           type: string
         paymentDescription:
           type: string
@@ -562,7 +563,7 @@ components:
           format: int32
           nullable: true
       additionalProperties: false
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+      description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
     ResponseAmount:
       type: object
       properties:
@@ -572,7 +573,7 @@ components:
           type: integer
           format: int32
       additionalProperties: false
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+      description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
     ShippingDetails:
       type: object
       properties:
@@ -610,23 +611,23 @@ components:
       properties:
         cancelledAmount:
           allOf:
-            - $ref: '#/components/schemas/ResponseAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/ResponseAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
           nullable: true
         capturedAmount:
           allOf:
-            - $ref: '#/components/schemas/ResponseAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/ResponseAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
           nullable: true
         refundedAmount:
           allOf:
-            - $ref: '#/components/schemas/ResponseAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/ResponseAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
           nullable: true
         authorizedAmount:
           allOf:
-            - $ref: '#/components/schemas/ResponseAmount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: "#/components/schemas/ResponseAmount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
           nullable: true
       additionalProperties: false
       description: Defines the details of the transaction
