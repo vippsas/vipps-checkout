@@ -74,3 +74,16 @@ Next, just add the JavaScript library and the code snippet for the _badge_:
 ```
 
 <img src="./resources/osm-woocommerce.png" alt="WooCommerce integration" width="600"/>
+
+### Magento
+
+To add the _badge_ to your product in Magento, find your product in Magento Admin > Catalog > Products and open it for edit. Go to Content, Short Description, hide the editor and copy paste in the following:
+
+```html
+<script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>
+<vipps-badge variant="purple"></vipps-badge>
+```
+
+Finally, you have to save changes using the "Save Changes"-button in the upper right corner.
+
+<img src="./resources/osm-magento.png" alt="Magento integration" width="600"/>
