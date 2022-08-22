@@ -88,7 +88,7 @@ To add the _badge_ to your product in Magento, find your product in Magento Admi
 
 ### Shopify
 
-To add the _badge_ to your product in Shopify, find your product in Shopify Admin > Producs and open it. Press the "Show Html"-button and copy paste in the following
+To add the _badge_ to your product in Shopify, find your product in Shopify Admin > Producs and open it. Press the "Show Html"-button and copy paste in the following:
 
 ```html
 <script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>
