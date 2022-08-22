@@ -32,7 +32,7 @@ All attributes are optional.
 
 | Attribute    | Description                                                                                                                                             | Default |
 |:-------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
-| variant      | The color variant of the badge.<br/>Supported values: `white`, orange`, `gray`, `light-orange`, `purple`.                                               | `white` |
+| variant      | The color variant of the badge.<br/>Supported values: `white`, `orange`, `gray`, `light-orange`, `purple`.                                               | `white` |
 | language     | ISO 639-1 alpha-2 language code.<br />Supported values: `en`, `no`.                                                                                     | `no`    |
 | vipps-senere | Set this to `true` if your business supports the "Vipps Senere"-product.                                                                                | `false` |
 | amount       | The payable amount in NOK. Amounts are specified in minor units.<br/>For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |         |
