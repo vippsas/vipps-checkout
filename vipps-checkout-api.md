@@ -179,7 +179,7 @@ The last four headers (starting with `Vipps-System-`) are meant to identify your
 
 All fields of the request body are described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session). The dynamic logistics callback is found by clicking the "Callback" tab in the Swagger.
 
-**Please note**: When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
+**Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
 
 The response object consists of a `token` and a `checkoutFrontendUrl`, which are used in the next step
 
