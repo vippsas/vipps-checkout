@@ -310,7 +310,7 @@ A capture operation for the whole amount reserved is called a "full capture". A 
 
 Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
 
-**Please note**: A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
+**Please note:** A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
 
 # Integration partner and plugin guidelines
 
