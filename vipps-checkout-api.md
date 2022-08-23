@@ -280,7 +280,7 @@ var vippsCheckout = VippsCheckout({
 
 After the user has completed the checkout process the merchant will be notified with transaction details through a _callback_ and _polling_
 
-**Please note**: It is highly recommended to implement polling in addition to callback. Vipps **does not** guarantee delivery of the callback.
+**Please note:** It is highly recommended to implement polling in addition to callback. Vipps **does not** guarantee delivery of the callback.
 
 ### Callback Handling
 
