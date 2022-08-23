@@ -208,10 +208,12 @@ The SDK exposes a global function called `VippsCheckout`. Initialize this with t
 | --------------------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
 | `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                             | No       |
 | `iFrameContainerId`   | The id of the html element to contain the Checkout iFrame                                                         | No       |
-| `token`               | Token identifying the session                                                                                     | Yes      |
+| `token`               | Token identifying the session. Comes from session creation response.                                              | No       |
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
 
-Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js
+Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js.
+> ** Note **:
+> To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The javascript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the Javascript on the frontend, and then in that backend call the Checkout create session endpoint so you don’t leak the keys.
 
 ```html
 <html>
@@ -228,7 +230,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
       document
         .getElementById("checkout-button")
         .addEventListener("click", function () {
-          // Relay an initiate session request to Vipps Checkout API trough merchants backend
+          // Relay an initiate session request to Vipps Checkout API through the merchant's backend
           fetch("<MERCHANT BACKEND CREATE SESSION URL>", {
             method: "POST",
           })
