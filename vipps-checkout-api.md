@@ -6,9 +6,7 @@ API version: 2.0.0.
 
 Document version: 1.1.0.
 
-> **Note**:
-> Always use the most recent API version when integrating with Vipps Checkout.
-> All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
+**Please note**: Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
 
 # Table of contents
 
@@ -181,8 +179,7 @@ The last four headers (starting with `Vipps-System-`) are meant to identify your
 
 All fields of the request body are described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session). The dynamic logistics callback is found by clicking the "Callback" tab in the Swagger.
 
-> **Note**:
-> When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
+**Please note**: When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
 
 The response object consists of a `token` and a `checkoutFrontendUrl`, which are used in the next step
 
@@ -212,8 +209,8 @@ The SDK exposes a global function called `VippsCheckout`. Initialize this with t
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
 
 Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js.
-> **Note**:
-> To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The javascript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the Javascript on the frontend, and then in that backend call the Checkout create session endpoint so you don’t leak the keys.
+
+**Please note**: To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The javascript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the Javascript on the frontend, and then in that backend call the Checkout create session endpoint so you don’t leak the keys.
 
 ```html
 <html>
@@ -254,8 +251,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
 </html>
 ```
 
-> **Note**:
-> The Vipps Checkout frontend **is not** supposed to be open in its own browser window/tab. The only exception to this is when using Vipps Checkout inside a Webview in a native mobile application.
+**Please note**: The Vipps Checkout frontend **is not** supposed to be open in its own browser window/tab. The only exception to this is when using Vipps Checkout inside a Webview in a native mobile application.
 
 ### Sticky checkout session
 
@@ -265,8 +261,7 @@ If the query parameter `token` is present, and the token attribute in the argume
 
 We provide a helper method that, when called, will redirect to the current page with the `token` queryParameter added to the URL. Initiatlize the `VippsCheckout` function outside of initiating a session.
 
-> **Note**:
-> Make sure to initialize `VippsCheckout` outside of any user dependant execution blocks (like event handlers) to make sure that the iFrame is loaded every time a user lands on the page.
+**Please note**: Make sure to initialize `VippsCheckout` outside of any user dependant execution blocks (like event handlers) to make sure that the iFrame is loaded every time a user lands on the page.
 
 ```js
 // Globally defined
@@ -285,8 +280,7 @@ var vippsCheckout = VippsCheckout({
 
 After the user has completed the checkout process the merchant will be notified with transaction details through a _callback_ and _polling_
 
-> **Note**:
-> It is highly recommended to implement polling in addition to callback. Vipps **does not** guarantee delivery of the callback.
+**Please note**: It is highly recommended to implement polling in addition to callback. Vipps **does not** guarantee delivery of the callback.
 
 ### Callback Handling
 
@@ -316,8 +310,7 @@ A capture operation for the whole amount reserved is called a "full capture". A 
 
 Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
 
->**Note**:
-> A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
+**Please note**: A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
 
 # Integration partner and plugin guidelines
 
@@ -333,11 +326,9 @@ If you are using the [SignupAPI](https://github.com/vippsas/vipps-signup-api), y
 
 Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). A guideline for the integration can be found [here](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). You should use the same credentials as the ones you use with Checkout.
 
-> **Note**:
-> that the Ecom API should not be used as it lacks full support for Card transactions.
+**Please note**: That the Ecom API should not be used as it lacks full support for Card transactions.
 
-> **Note**:
-> Vipps Checkout only supports "Reserve-Capture". If you are on a "Direct-Capture" setup, please seek assistance in accordance with the https://github.com/vippsas/vipps-developers/blob/master/contact.md#how-to-contact-vipps-integration guidelines.
+**Please note**: Vipps Checkout only supports "Reserve-Capture". If you are on a "Direct-Capture" setup, please seek assistance in accordance with the https://github.com/vippsas/vipps-developers/blob/master/contact.md#how-to-contact-vipps-integration guidelines.
 
 # Vipps side Transaction information
 
