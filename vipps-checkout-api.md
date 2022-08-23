@@ -261,7 +261,7 @@ If the query parameter `token` is present, and the token attribute in the argume
 
 We provide a helper method that, when called, will redirect to the current page with the `token` queryParameter added to the URL. Initiatlize the `VippsCheckout` function outside of initiating a session.
 
-**Please note**: Make sure to initialize `VippsCheckout` outside of any user dependant execution blocks (like event handlers) to make sure that the iFrame is loaded every time a user lands on the page.
+**Please note:** Make sure to initialize `VippsCheckout` outside of any user dependant execution blocks (like event handlers) to make sure that the iFrame is loaded every time a user lands on the page.
 
 ```js
 // Globally defined
