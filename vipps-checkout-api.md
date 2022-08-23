@@ -251,7 +251,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
 </html>
 ```
 
-**Please note**: The Vipps Checkout frontend **is not** supposed to be open in its own browser window/tab. The only exception to this is when using Vipps Checkout inside a Webview in a native mobile application.
+**Please note:** The Vipps Checkout frontend **is not** supposed to be open in its own browser window/tab. The only exception to this is when using Vipps Checkout inside a Webview in a native mobile application.
 
 ### Sticky checkout session
 
