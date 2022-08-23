@@ -328,7 +328,7 @@ Vipps Checkout should be considered an extension of existing other Vipps commerc
 
 **Please note:** That the eCom API should not be used as it lacks full support for Card transactions.
 
-**Please note**: Vipps Checkout only supports "Reserve-Capture". If you are on a "Direct-Capture" setup, please seek assistance in accordance with the https://github.com/vippsas/vipps-developers/blob/master/contact.md#how-to-contact-vipps-integration guidelines.
+**Please note:** Vipps Checkout only supports "Reserve-Capture". If you are on a "Direct-Capture" setup, please seek assistance in accordance with the https://github.com/vippsas/vipps-developers/blob/master/contact.md#how-to-contact-vipps-integration guidelines.
 
 # Vipps side Transaction information
 
