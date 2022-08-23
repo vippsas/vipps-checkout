@@ -6,7 +6,7 @@ API version: 2.0.0.
 
 Document version: 1.1.0.
 
-**Please note**: Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
+**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
 
 # Table of contents
 
