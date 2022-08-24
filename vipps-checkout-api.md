@@ -33,6 +33,7 @@ Document version: 1.1.0.
   - [Step 3: Handling the result of the session](#step-3-handling-the-result-of-the-session)
     - [Callback handling](#callback-handling)
     - [Session polling](#session-polling)
+    - [Determine status of payment](#determine-status-of-payment)
     - [Step 3a: If a transaction is authorized, capture payment](#step-3a-if-a-transaction-is-authorized-capture-payment)
 - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
   - [Partner signup API guidelines](#partner-signup-api-guidelines)
@@ -306,7 +307,7 @@ Vipps Checkout will expose a polling endpoint as described in our [Swagger](http
 
 ### Determine status of payment
 
-The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in either the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occured, the state is `TERMINATED`. Please refer to the [Swagger schema](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
+The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occured, the state is `TERMINATED`. Please refer to the [Swagger schema](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
 If you want more granular information about the payment, you can call the [underlying API](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment) that Vipps Checkout itself uses.
 
