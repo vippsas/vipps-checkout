@@ -304,9 +304,12 @@ Vipps demands that every callback is responded to with a `HTTP 202 response`. In
 
 Vipps Checkout will expose a polling endpoint as described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). The complete URL for polling is returned from the [session creation endpoint](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session) as `pollingUrl`.
 
-### Transaction/Payment polling
+### Determine status of payment
 
-In order to determine the status of a payment, you must poll epayment as described [here](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment).
+The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in either the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occured, the state is `TERMINATED`. Please refer to the [Swagger schema](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
+
+If you want more granular information about the payment, you can call the [underlying API](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment) that Vipps Checkout itself uses.
+
 
 ## Step 3a: If a transaction is authorized, capture payment
 
