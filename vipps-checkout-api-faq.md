@@ -6,6 +6,12 @@ All subsequent transaction operations are fully supported in the Vipps epayment 
 
 Please feel free to make a PR with a question if something is unclear.
 
+## Testing
+
+### I can't test card payments in Merchant Test (MT) environment, is there something wrong?
+
+We currently don't support card payments in test environment, only payments using Vipps MT app. If you need to do verification, we suggest doing a NOK 1 payment in production, and do a subsequent refund, which will make the funds available again within a week.
+
 ## When paying by card
 
 ### What card types are supported?
