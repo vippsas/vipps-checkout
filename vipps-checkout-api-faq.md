@@ -12,6 +12,8 @@ Please feel free to make a PR with a question if something is unclear.
 
 We currently don't support card payments in test environment, only payments using Vipps MT app. If you need to do verification, we suggest doing a NOK 1 payment in production, and do a subsequent refund, which will make the funds available again within a week.
 
+The only difference between a Vipps wallet payment and card payment is that *paymentMethod* is *Wallet* or *Card*.
+
 ## When paying by card
 
 ### What card types are supported?
