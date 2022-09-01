@@ -1,4 +1,11 @@
-# Vipps Checkout
+<!-- START_METADATA
+---
+title: API Guide
+sidebar_position: 10
+---
+END_METADATA -->
+
+# Vipps Checkout guide
 
 Vipps Checkout provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
 
@@ -7,6 +14,8 @@ API version: 2.0.0.
 Document version: 1.1.0.
 
 **Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
+
+<!-- START_TOC -->
 
 # Table of contents
 
@@ -33,11 +42,13 @@ Document version: 1.1.0.
     - [Session polling](#session-polling)
     - [Determine status of payment](#determine-status-of-payment)
     - [Step 3a: If a transaction is authorized, capture payment](#step-3a-if-a-transaction-is-authorized-capture-payment)
-- [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
-  - [Partner signup API guidelines](#partner-signup-api-guidelines)
+  - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
+    - [Partner signup API guidelines](#partner-signup-api-guidelines)
 - [Transaction operations (Capture, Cancel, Refund, Details)](#transaction-operations-capture-cancel-refund-details)
-- [Vipps side Transaction information](#vipps-side-transaction-information)
-  - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
+  - [Vipps side Transaction information](#vipps-side-transaction-information)
+    - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
+
+<!-- END_TOC -->
 
 # Checkout Features
 
@@ -220,7 +231,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
     <script src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
   </head>
   <body>
-    <button type="button" id="checkout-button">Checkout with Vipps</button>
+      <button type="button" id="checkout-button">Checkout with Vipps</button>
     <section id="vipps-checkout-frame-container">
       <!-- This is where the iFrame will be embedded -->
     </section>

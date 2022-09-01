@@ -1,3 +1,10 @@
+<!-- START_METADATA
+---
+title: FAQ
+sidebar_position: 24
+---
+END_METADATA -->
+
 # FAQ
 
 ### How are subsequent transaction operations (Capture/Cancel/refund) handled
