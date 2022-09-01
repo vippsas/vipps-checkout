@@ -42,11 +42,12 @@ Document version: 1.1.0.
     - [Session polling](#session-polling)
     - [Determine status of payment](#determine-status-of-payment)
     - [Step 3a: If a transaction is authorized, capture payment](#step-3a-if-a-transaction-is-authorized-capture-payment)
-  - [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
-    - [Partner signup API guidelines](#partner-signup-api-guidelines)
+- [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
+  - [Partner signup API guidelines](#partner-signup-api-guidelines)
 - [Transaction operations (Capture, Cancel, Refund, Details)](#transaction-operations-capture-cancel-refund-details)
-  - [Vipps side Transaction information](#vipps-side-transaction-information)
-    - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
+- [Vipps side Transaction information](#vipps-side-transaction-information)
+  - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
+
 
 <!-- END_TOC -->
 
