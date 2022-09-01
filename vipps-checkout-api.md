@@ -232,7 +232,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
     <script src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
   </head>
   <body>
-      <button type="button" id="checkout-button">Checkout with Vipps</button>
+    <button type="button" id="checkout-button">Checkout with Vipps</button>
     <section id="vipps-checkout-frame-container">
       <!-- This is where the iFrame will be embedded -->
     </section>
