@@ -3,7 +3,7 @@
 Vipps On-Site Messaging contains a _badges_ in different variants that can be used to let your customers know that Vipps payment is accepted.
 
 To be able to use the badge on your site you need to add the Vipps On-Site Messaging JavaScript library.
-The library should preferable be added between your page's `<head>...</head>`-tags and only once per page:
+The library should preferably be added between your page's `<head>...</head>`-tags and only once per page:
 
 ```html
 <script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>
@@ -20,7 +20,8 @@ The badge comes in five variants with different color-pallets to suite your webs
 
 You can find a demo and examples of all the variants [here](https://checkout.vipps.no/on-site-messaging/v1).
 
-<img src="./resources/osm-badge.png" alt="Vipps Badge" width="480"/>
+![Vipps Badge](resources/osm-badge.png)
+
 
 ```html
 <vipps-badge variant="gray"></vipps-badge>
@@ -73,7 +74,7 @@ Next, just add the JavaScript library and the code snippet for the _badge_:
 <vipps-badge variant="purple"></vipps-badge>
 ```
 
-<img src="./resources/osm-woocommerce.png" alt="WooCommerce integration" width="600"/>
+![WooCommerce integration](resources/osm-woocommerce.png)
 
 ### Magento
 
@@ -84,7 +85,8 @@ To add the _badge_ to your product in Magento, find your product in Magento Admi
 <vipps-badge variant="purple"></vipps-badge>
 ```
 
-<img src="./resources/osm-magento.png" alt="Magento integration" width="600"/>
+![Magento integration](resources/osm-magento.png)
+
 
 ### Shopify
 
@@ -95,4 +97,4 @@ To add the _badge_ to your product in Shopify, find your product in Shopify Admi
 <vipps-badge variant="purple"></vipps-badge>
 ```
 
-<img src="./resources/osm-shopify.png" alt="Shopify integration" width="600"/>
+![Shopify integration](resources/osm-shopify.png)

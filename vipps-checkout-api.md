@@ -45,7 +45,7 @@ Explains the high level features of Vipps Checkout.
 
 ## Vipps Checkout API
 
-Vipps Checkout works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interract with a session. These include:
+Vipps Checkout works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
 
 - session initiation
 - session status
@@ -53,7 +53,7 @@ Vipps Checkout works around the concept of a _session_, which has a time to live
 
 ## Vipps Checkout frontend
 
-Once a session is created, it is to be opened inside an iFrame embedded on the merchant website. The iFrame loads a web application that fetches all neccessary information about the session from Vipps.
+Once a session is created, it is to be opened inside an iFrame embedded on the merchant website. The iFrame loads a web application that fetches all necessary information about the session from Vipps.
 
 ### SDK
 
@@ -167,10 +167,10 @@ with headers
 
 | Header                        | Description                                                                           | Example value       |
 | ----------------------------- | ------------------------------------------------------------------------------------- | ------------------- |
-| `Merchant-Serial-Number`      | Vipps assigned unique number for a merchant. Found in [Vipps portal](portal.vipps.no) |                     |
-| `Client_Id`                   | Client Id. Found in [Vipps portal](portal.vipps.no)                                   |
-| `Client_Secret`               | Client Secret. Found in [Vipps portal](portal.vipps.no)                               |
-| `Ocp-Apim-Subscription-Key`   | Subscription key. Found in [Vipps portal](portal.vipps.no)                            |
+| `Merchant-Serial-Number`      | Vipps assigned unique number for a merchant. Found in [Vipps portal](https://portal.vipps.no) |                     |
+| `Client_Id`                   | Client Id. Found in [Vipps portal](https://portal.vipps.no)                                   |
+| `Client_Secret`               | Client Secret. Found in [Vipps portal](https://portal.vipps.no)                               |
+| `Ocp-Apim-Subscription-Key`   | Subscription key. Found in [Vipps portal](https://portal.vipps.no)                            |
 | `Vipps-System-Name`           | The name of the ecommerce solution                                                    | `woocommerce`       |
 | `Vipps-System-Version`        | The version number of the ecommerce solution                                          | `5.4`               |
 | `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                      | `vipps-woocommerce` |
@@ -188,7 +188,7 @@ The response object consists of a `token` and a `checkoutFrontendUrl`, which are
 
 Vipps Checkout can be used in an iOS or Android app to pay for goods and services. The Vipps Checkout frontend may then be opened directly inside a Webview, instead of as an iFrame inside a merchant website.
 
-In this situation the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of https. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps application, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consitently after payment.
+In this situation the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of https. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps application, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consistently after payment.
 
 ## Step 2: Displaying the session
 
@@ -260,7 +260,7 @@ The SDK provides an alternative way to display the session, using a query parame
 
 If the query parameter `token` is present, and the token attribute in the argument object to VippsCheckout **is not** defined, the SDK will load the iFrame with the token from the query parameter.
 
-We provide a helper method that, when called, will redirect to the current page with the `token` queryParameter added to the URL. Initiatlize the `VippsCheckout` function outside of initiating a session.
+We provide a helper method that, when called, will redirect to the current page with the `token` queryParameter added to the URL. Initialize the `VippsCheckout` function outside of initiating a session.
 
 **Please note:** Make sure to initialize `VippsCheckout` outside of any user dependant execution blocks (like event handlers) to make sure that the iFrame is loaded every time a user lands on the page.
 
@@ -301,7 +301,7 @@ Vipps Checkout will expose a polling endpoint as described in our [Swagger](http
 
 ### Determine status of payment
 
-The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occured, the state is `TERMINATED`. Please refer to the [Swagger schema](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_) for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
+The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [Swagger schema](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_) for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
 If you want more granular information about the payment, you can call the [underlying API](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment) that Vipps Checkout itself uses.
 
