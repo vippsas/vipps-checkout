@@ -25,7 +25,7 @@ paths:
           description: ''
           schema:
             allOf:
-              - $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+              - $ref: '#/components/schemas/MerchantAuthInfoHeaders'
             description: Headers required to retrieve an access token.
       requestBody:
         description: ''
@@ -33,17 +33,17 @@ paths:
           application/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/CheckoutSessionInitiationRequestV2'
+                - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
           text/json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/CheckoutSessionInitiationRequestV2'
+                - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
           application/*+json:
             schema:
               allOf:
-                - $ref: '#/components/schemas/CheckoutSessionInitiationRequestV2'
+                - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
       responses:
         '200':
@@ -51,7 +51,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckoutSessionInitiationResponse'
+                $ref: '#/components/schemas/InitiateSessionResponse'
       callbacks:
         Dynamic logistics:
           '{$request.body#/logistics/dynamicOptionsCallback}':
@@ -110,7 +110,7 @@ paths:
           description: ''
           schema:
             allOf:
-              - $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+              - $ref: '#/components/schemas/MerchantAuthInfoHeaders'
             description: Headers required to retrieve an access token.
       responses:
         '200':
@@ -118,7 +118,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionResponseV2'
+                $ref: '#/components/schemas/GetSessionResponse'
         '404':
           description: The specified session id is unknown.
   /v2/session/cancel:
@@ -137,7 +137,7 @@ paths:
           in: header
           schema:
             allOf:
-              - $ref: '#/components/schemas/MerchantAuthInfoHeadersV2'
+              - $ref: '#/components/schemas/MerchantAuthInfoHeaders'
             description: Headers required to retrieve an access token.
       requestBody:
         content:
@@ -163,62 +163,28 @@ paths:
           description: The specified session id is unknown.
 components:
   schemas:
-    Amount:
-      type: object
-      properties:
-        currency:
-          type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK"'
-        value:
-          minimum: 0
-          type: integer
-          description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int32
-          nullable: true
-      additionalProperties: false
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
-    AmountV2:
-      type: object
-      properties:
-        value:
-          type: integer
-          description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int32
-        currency:
-          type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK"'
-      additionalProperties: false
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
-    BillingDetailsV2:
+    BillingDetails:
       type: object
       properties:
         firstName:
           type: string
-          description: 'Example: "Ada"'
         lastName:
           type: string
-          description: 'Example: "Lovelace"'
         phoneNumber:
           type: string
-          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
         email:
           type: string
-          description: 'Example: "user@example.com"'
         streetAddress:
           type: string
-          description: 'Example: "Robert Levins gate 5"'
           nullable: true
         postalCode:
           type: string
-          description: 'Example: "0154"'
           nullable: true
         region:
           type: string
-          description: 'Example: "Oslo"'
           nullable: true
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
           nullable: true
       additionalProperties: false
       description: Defines the details of the invoiced customer (purchaser) of the order.
@@ -227,11 +193,9 @@ components:
       properties:
         value:
           type: integer
-          description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
           format: int32
         currency:
           type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK"'
       additionalProperties: false
       description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
     CallbackSessionBillingDetails:
@@ -239,31 +203,23 @@ components:
       properties:
         firstName:
           type: string
-          description: 'Example: "Ada"'
         lastName:
           type: string
-          description: 'Example: "Lovelace"'
         email:
           type: string
-          description: 'Example: "user@example.com"'
         phoneNumber:
           type: string
-          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
         streetAddress:
           type: string
-          description: 'Example: "Robert Levins gate 5"'
           nullable: true
         postalCode:
           type: string
-          description: 'Example: "0154"'
           nullable: true
         region:
           type: string
-          description: 'Example: "Oslo"'
           nullable: true
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
           nullable: true
       additionalProperties: false
       description: Defines the details of the billing
@@ -272,39 +228,32 @@ components:
       properties:
         sessionId:
           type: string
-          description: 'The Id of the session. Example: "123123".'
         merchantSerialNumber:
           type: string
-          description: 'The merchant serial number for the sale unit. Example: "59474"'
         sessionState:
           type: string
-          description: 'The state of the session. Example: "SessionStarted"'
         orderId:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
         apiVersion:
           type: string
-          description: 'Example: "2"'
         billingDetails:
           allOf:
             - $ref: '#/components/schemas/CallbackSessionBillingDetails'
-          description: ''
+          description: Defines the details of the billing
           nullable: true
         shippingDetails:
           allOf:
             - $ref: '#/components/schemas/CallbackSessionShippingDetails'
-          description: ''
+          description: Defines the details of the shipping
           nullable: true
         paymentDetails:
           allOf:
             - $ref: '#/components/schemas/CallbackSessionPaymentDetails'
-          description: ''
+          description: Defines the details of the payment.
         callbackUrlPrefix:
           type: string
-          description: 'Merchant base URL for callbacks. Example: "https://example.com/vipps/callbacks-for-payment-updates"'
         callbackAuthorizationToken:
           type: string
-          description: 'The token will be supplied by the callback to the merchant as a header. Example: "OiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImllX3FXQ1hoWHh0MXpJ"'
       additionalProperties: false
       description: Details provided in the session completed callback
     CallbackSessionPaymentDetails:
@@ -313,14 +262,14 @@ components:
         amount:
           allOf:
             - $ref: '#/components/schemas/CallbackSessionAmount'
-          description: ''
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
         state:
-          type: string
-          description: Example "Initiate"
+          allOf:
+            - $ref: '#/components/schemas/PaymentState'
           nullable: true
         paymentMethod:
-          type: string
-          description: '"wallet" or "card".'
+          allOf:
+            - $ref: '#/components/schemas/PaymentMethod'
           nullable: true
       additionalProperties: false
       description: Defines the details of the payment.
@@ -329,39 +278,30 @@ components:
       properties:
         firstName:
           type: string
-          description: 'Example: "Ada"'
           nullable: true
         lastName:
           type: string
-          description: 'Example: "Lovelace"'
           nullable: true
         email:
           type: string
-          description: 'Example: "user@example.com"'
           nullable: true
         phoneNumber:
           type: string
-          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
           nullable: true
         streetAddress:
           type: string
-          description: 'Example: "Robert Levins gate 5"'
           nullable: true
         postalCode:
           type: string
-          description: 'Example: "0154"'
           nullable: true
         region:
           type: string
-          description: 'Example: "Oslo"'
           nullable: true
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
           nullable: true
         shippingMethodId:
           type: string
-          description: 'Id of the shipping method. Example: "123abc"'
           nullable: true
       additionalProperties: false
       description: Defines the details of the shipping
@@ -370,89 +310,109 @@ components:
       properties:
         sessionId:
           type: string
-          description: 'The Id of the session to cancel. Example: "123123".'
       additionalProperties: false
       description: Request to cancel the session.
-    CheckoutSessionInitiationRequestV2:
-      type: object
-      properties:
-        merchantInfo:
-          allOf:
-            - $ref: '#/components/schemas/PaymentMerchantInfo'
-          description: ''
-        transaction:
-          allOf:
-            - $ref: '#/components/schemas/PaymentTransaction'
-          description: ''
-        logistics:
-          allOf:
-            - $ref: '#/components/schemas/Logistics'
-          description: ''
-          nullable: true
-        prefillCustomer:
-          allOf:
-            - $ref: '#/components/schemas/PrefillCustomer'
-          description: 'If customer information is known, it can be prefilled.'
-          nullable: true
-        customerInteraction:
-          type: string
-          description: 'If customer is physically present: "customer_present", otherwise: "customer_not_present".'
-          nullable: true
-        contactFields:
-          type: boolean
-          description: 'If false; disables contact information for the customer in the checkout. If false, AddressFields must also be false.'
-        addressFields:
-          type: boolean
-          description: 'If false; disables address information for the customer in the checkout. If true, ContactFields must also be true.'
-        userFlow:
-          type: string
-          description: 'One of the following: "WEB_REDIRECT", "NATIVE_REDIRECT". To ensure having a return URL based on an app URL, use "NATIVE_REDIRECT".'
-          nullable: true
-      additionalProperties: false
-      description: Request to set up a Checkout session
-    CheckoutSessionInitiationResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: 'The token to be provided to Checkout. Example: "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJUdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIiwic2Vzc2lvblBvbGxpbmdVUkwiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvY2hlY2tvdXQvc2Vzc2lvbi9UdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIn0.ln7VzZkNvUGu0HhyA_a8IbXQN35WhDBmCYC9IvyYL-I"'
-        checkoutFrontendUrl:
-          type: string
-          description: 'The URL of the checkout frontend. Example: "https://vippscheckout.vipps.no/v1/".'
-        pollingUrl:
-          type: string
-          description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
-      additionalProperties: false
-      description: Response from initiating a session.
     CheckoutSessionThirdPartyInformationHeaders:
       type: object
       properties:
         vipps-System-Name:
           type: string
-          description: 'The name of the ecommerce solution. Example: "Acme Enterprises Ecommerce DeLuxe".'
         vipps-System-Version:
           type: string
-          description: 'The version number of the ecommerce solution. Example: "3.1.2".'
         vipps-System-Plugin-Name:
           type: string
-          description: 'The name of the ecommerce plugin. Example: "acme-webshop".'
         vipps-System-Plugin-Version:
           type: string
-          description: 'The version number of the ecommerce plugin. Example: "4.5.6".'
       additionalProperties: false
       description: Information about the merchant system.
+    GetSessionResponse:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        reference:
+          type: string
+        sessionState:
+          type: string
+        paymentMethod:
+          allOf:
+            - $ref: '#/components/schemas/PaymentMethod'
+          nullable: true
+        paymentDetails:
+          allOf:
+            - $ref: '#/components/schemas/PaymentDetails'
+          description: Defines the details of the payment.
+          nullable: true
+        userDetails:
+          allOf:
+            - $ref: '#/components/schemas/UserDetails'
+          description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
+          nullable: true
+          deprecated: true
+        shippingDetails:
+          allOf:
+            - $ref: '#/components/schemas/ShippingDetails'
+          description: "Defines the shipping details of the recipient of the ordered goods.\r\nThe recipient may or may not be the same as the invoiced customer."
+          nullable: true
+        billingDetails:
+          allOf:
+            - $ref: '#/components/schemas/BillingDetails'
+          description: Defines the details of the invoiced customer (purchaser) of the order.
+          nullable: true
+      additionalProperties: false
+      description: Session information
+    InitiateSessionRequest:
+      type: object
+      properties:
+        merchantInfo:
+          allOf:
+            - $ref: '#/components/schemas/PaymentMerchantInfo'
+        transaction:
+          allOf:
+            - $ref: '#/components/schemas/PaymentTransaction'
+        logistics:
+          allOf:
+            - $ref: '#/components/schemas/Logistics'
+          description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup. \r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options. \r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
+          nullable: true
+        prefillCustomer:
+          allOf:
+            - $ref: '#/components/schemas/PrefillCustomer'
+          description: Information about the customer to be prefilled
+          nullable: true
+        customerInteraction:
+          type: string
+          nullable: true
+        contactFields:
+          type: boolean
+        addressFields:
+          type: boolean
+        userFlow:
+          type: string
+          nullable: true
+      additionalProperties: false
+      description: Request to set up a Checkout session
+    InitiateSessionResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        checkoutFrontendUrl:
+          type: string
+        pollingUrl:
+          type: string
+      additionalProperties: false
+      description: Response from initiating a session.
     Logistics:
       type: object
       properties:
         dynamicOptionsCallback:
           type: string
-          description: 'Merchant''s Callback URL for providing dynamic logistics options based on customer address. Example: "https://example.com/vipps/dynamiclogisticsoption".'
           nullable: true
         fixedOptions:
           type: array
           items:
             $ref: '#/components/schemas/LogisticsOption'
-          description: Fixed list of logistics options.
           nullable: true
       additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup. \r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options. \r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
@@ -461,56 +421,42 @@ components:
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: ''
+            - $ref: '#/components/schemas/RequestAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
         id:
           maxLength: 200
           minLength: 1
           type: string
-          description: Unique identifier for the shipping option and is returned in the callback and polling endpoint. Example:"postenservicepakke".
         priority:
           minimum: 0
           type: integer
-          description: 'Allows specifying the order of the options explicitly by ascending order. Example: "2".'
           format: int32
           nullable: true
         brand:
           maxLength: 255
           type: string
-          description: 'The logistics provider. This is used to display a logo next to the shipping option. Currently "posten", "helthjem" and "postnord" logos are supported. If none of these are given, a generic logo will be displayed instead.'
         product:
           maxLength: 255
           type: string
-          description: 'The shipping option product name. Is used to distinguish different options that the logistics providers offer (e.g., "pick-up in store", "home delivery", "mailbox"). This will be displayed in the title of the shipping option.'
         isDefault:
           type: boolean
-          description: 'If the option should be pre-checked for the customer. Only one option should have this as true. If no option has IsDefault=true, the option with the lowest priority number is chosen as default.'
           nullable: true
         description:
           type: string
-          description: 'An optional text that will show under the price. This can typically include estimates of delivery or other information. Example: "Pick up your package at the local store".'
-          nullable: true
-        isPickupPoint:
-          type: boolean
-          description: If Checkout should display pickup points.
           nullable: true
       additionalProperties: false
       description: A logistics option to be presented to the customer
-    MerchantAuthInfoHeadersV2:
+    MerchantAuthInfoHeaders:
       type: object
       properties:
         client_id:
           type: string
-          description: 'Client ID for the merchant (the "username"). Found in the Vipps portal. Example: "fb492b5e-7907-4d83-bc20-c7fb60ca35de".'
         client_secret:
           type: string
-          description: 'Client Secret for the merchant (the "password"). Found in the Vipps portal. Example: "Y8Kteew6GE3ZmeycEt6egg==".'
         ocp-Apim-Subscription-Key:
           type: string
-          description: 'Vipps Subscription key for the API product. Found in the Vipps portal. Example: "0f14ebcab0eb4b29ae0cb90d91b4a84a".'
         merchant-Serial-Number:
           type: string
-          description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
       additionalProperties: false
       description: Headers required to retrieve an access token.
     MerchantLogisticsCallbackRequest:
@@ -518,32 +464,28 @@ components:
       properties:
         streetAddress:
           type: string
-          description: 'Example: "Robert Levins gate 5"'
         postalCode:
           type: string
-          description: 'Example: "0154"'
         region:
           type: string
-          description: 'Example: "Oslo"'
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
       additionalProperties: false
       description: Information about the customer address used when retrieving dynamic logistics options.
-    PaymentDetailsV2:
+    PaymentDetails:
       type: object
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/AmountV2'
-          description: ''
+            - $ref: '#/components/schemas/ResponseAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
         state:
-          type: string
-          description: Example "Initiate"
+          allOf:
+            - $ref: '#/components/schemas/PaymentState'
         aggregate:
           allOf:
-            - $ref: '#/components/schemas/TransactionAggregateV2'
-          description: ''
+            - $ref: '#/components/schemas/TransactionAggregate'
+          description: Defines the details of the transaction
           nullable: true
       additionalProperties: false
       description: Defines the details of the payment.
@@ -552,34 +494,39 @@ components:
       properties:
         callbackPrefix:
           type: string
-          description: 'Merchant base URL for callbacks. Example: "https://example.com/vipps/callbacks-for-payment-updates".'
         returnUrl:
           type: string
-          description: 'Complete URL for redirecting customers to when the checkout is finished. Example: "https://example.com/vipps".'
         callbackAuthorizationToken:
           type: string
-          description: 'The token will be supplied by the callback to the merchant as a header. Example: "iOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImllX3FXQ1hoWHh0MXpJ".'
         termsAndConditionsUrl:
           type: string
-          description: 'Complete URL to the merchant''s terms and conditions. Example: "https://example.com/vipps/termsAndConditions".'
           nullable: true
       additionalProperties: false
+    PaymentMethod:
+      enum:
+        - Wallet
+        - Card
+      type: string
+    PaymentState:
+      enum:
+        - CREATED
+        - AUTHORISED
+        - TERMINATED
+      type: string
     PaymentTransaction:
       type: object
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: ''
+            - $ref: '#/components/schemas/RequestAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
         reference:
           maxLength: 50
           minLength: 8
           pattern: '^[-a-zA-Z0-9]*$'
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
         paymentDescription:
           type: string
-          description: 'Description visible to the customer during payment. Example: "One pair of Vipps socks".'
       additionalProperties: false
     PrefillCustomer:
       required:
@@ -588,150 +535,112 @@ components:
       properties:
         firstName:
           type: string
-          description: 'Example: "Ada"'
         lastName:
           type: string
-          description: 'Example: "Lovelace"'
         email:
           type: string
-          description: 'Example: "user@example.com"'
         phoneNumber:
           type: string
-          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
         streetAddress:
           type: string
-          description: 'Example: "Robert Levins gate 5"'
         city:
           type: string
-          description: 'Example: "Oslo"'
         postalCode:
           type: string
-          description: 'Example: "0154"'
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
       additionalProperties: false
       description: Information about the customer to be prefilled
-    SessionResponseV2:
+    RequestAmount:
       type: object
       properties:
-        sessionId:
+        currency:
           type: string
-          description: 'The Id of the session. Example: "123123".'
-        reference:
-          type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
-        sessionState:
-          type: string
-          description: 'The state of the session. Example: "SessionStarted"'
-        paymentMethod:
-          type: string
-          description: '"wallet" or "card".'
-          nullable: true
-        paymentDetails:
-          allOf:
-            - $ref: '#/components/schemas/PaymentDetailsV2'
-          description: ''
-          nullable: true
-        userDetails:
-          allOf:
-            - $ref: '#/components/schemas/UserDetailsV2'
-          description: ''
-          nullable: true
-          deprecated: true
-        shippingDetails:
-          allOf:
-            - $ref: '#/components/schemas/ShippingDetailsV2'
-          description: ''
-          nullable: true
-        billingDetails:
-          allOf:
-            - $ref: '#/components/schemas/BillingDetailsV2'
-          description: ''
+        value:
+          minimum: 0
+          type: integer
+          format: int32
           nullable: true
       additionalProperties: false
-      description: Session information
-    ShippingDetailsV2:
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+    ResponseAmount:
+      type: object
+      properties:
+        currency:
+          type: string
+        value:
+          type: integer
+          format: int32
+      additionalProperties: false
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+    ShippingDetails:
       type: object
       properties:
         firstName:
           type: string
-          description: 'Example: "Ada"'
           nullable: true
         lastName:
           type: string
-          description: 'Example: "Lovelace"'
           nullable: true
         email:
           type: string
-          description: 'Example: "user@example.com"'
           nullable: true
         phoneNumber:
           type: string
-          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
           nullable: true
         streetAddress:
           type: string
-          description: 'Example: "Robert Levins gate 5"'
           nullable: true
         postalCode:
           type: string
-          description: 'Example: "0154"'
           nullable: true
         region:
           type: string
-          description: 'Example: "Oslo"'
           nullable: true
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
           nullable: true
         shippingMethodId:
           type: string
-          description: 'Id of the shipping method. Example: "123abc".'
           nullable: true
       additionalProperties: false
       description: "Defines the shipping details of the recipient of the ordered goods.\r\nThe recipient may or may not be the same as the invoiced customer."
-    TransactionAggregateV2:
+    TransactionAggregate:
       type: object
       properties:
         cancelledAmount:
           allOf:
-            - $ref: '#/components/schemas/AmountV2'
-          description: ''
+            - $ref: '#/components/schemas/ResponseAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
         capturedAmount:
           allOf:
-            - $ref: '#/components/schemas/AmountV2'
-          description: ''
+            - $ref: '#/components/schemas/ResponseAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
         refundedAmount:
           allOf:
-            - $ref: '#/components/schemas/AmountV2'
-          description: ''
+            - $ref: '#/components/schemas/ResponseAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
         authorizedAmount:
           allOf:
-            - $ref: '#/components/schemas/AmountV2'
-          description: ''
+            - $ref: '#/components/schemas/ResponseAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
       additionalProperties: false
       description: Defines the details of the transaction
-    UserDetailsV2:
+    UserDetails:
       type: object
       properties:
         firstName:
           type: string
-          description: 'Example: "Ada"'
         lastName:
           type: string
-          description: 'Example: "Lovelace"'
         phoneNumber:
           type: string
-          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
         email:
           type: string
-          description: 'Example: "user@example.com"'
       additionalProperties: false
       description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nUserDetailsV2 is deprecated. Use ShippingDetailsV2 instead"
       deprecated: true

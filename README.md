@@ -1,4 +1,11 @@
-# Vipps-Checkout
+<!-- START_METADATA
+---
+title: Introduction
+sidebar_position: 1
+---
+END_METADATA -->
+
+# Vipps Checkout
 
 Vipps Checkout is a Vipps product delivering a complete checkout experience, including gathering userinfo, shipping and payment processing.
 
@@ -18,6 +25,7 @@ You can peruse the API reference documentation here:
 - [Vipps Developers](https://github.com/vippsas/vipps-developers): The starting point for Vipps developers.
 - [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): Information about API keys, product activation.
 - [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works.
+- [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md) for how to use our on-site messaging SDK.
 
 # Questions?
 
