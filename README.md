@@ -1,4 +1,11 @@
-# Vipps-Checkout
+<!-- START_METADATA
+---
+title: Introduction
+sidebar_position: 1
+---
+END_METADATA -->
+
+# Vipps Checkout
 
 Vipps Checkout is a Vipps product delivering a complete checkout experience, including gathering userinfo, shipping and payment processing.
 
