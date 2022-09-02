@@ -83,6 +83,17 @@ The merchant defines a set of static shipping options that _are not_ dependant o
 
 The merchant defines a _dynamic options callback URL_, which is called by Vipps Checkout every time a customer updates their address. The callback endpoint receives the updated address, and the merchant decides on a set of shipping options to display to the user.
 
+## Pickup points
+
+We currently provide support for Posten/Bring and PostNord pickup points. As of now, lockers etc. are not supported.
+To enable pickup points for a logistics option, the isPickupPoint flag must be set to true.
+
+The user selects the pickup point after picking their logistics option. The logistics option must have the isPickupPoint field set to true for this to appear.
+We then return carrier's pickup point ID, pickup point name and address.
+
+![pickup_point_example](resources/pickup_point_example.png)
+![pickup_point_select](resources/pickup_point_select.png)
+
 ## Vipps Checkout Elements
 
 With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system.
