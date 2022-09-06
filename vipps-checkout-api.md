@@ -337,7 +337,7 @@ A capture operation for the whole amount reserved is called a "full capture". A 
 
 Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
 
-**Please note:** A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
+**Please note:** A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
 
 # Integration partner and plugin guidelines
 
@@ -351,7 +351,7 @@ If you are using the [SignupAPI](https://github.com/vippsas/vipps-signup-api), y
 
 # Transaction operations (Capture, Cancel, Refund, Details)
 
-Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](https://github.com/vippsas/vipps-checkout-api/blob/main/vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). A guideline for the integration can be found [here](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). You should use the same credentials as the ones you use with Checkout.
+Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). A guideline for the integration can be found [here](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). You should use the same credentials as the ones you use with Checkout.
 
 **Please note:** That the eCom API should not be used as it lacks full support for Card transactions.
 
@@ -359,7 +359,7 @@ Vipps Checkout should be considered an extension of existing other Vipps commerc
 
 # Vipps side Transaction information
 
-You might want to find the Vipps `transactionId` value of a transaction. This can be used, for example, to utilize [Vipps-assisted content monitoring](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md#vipps-assited-content-monitoring) or to support account procedures.
+You might want to find the Vipps `transactionId` value of a transaction. This can be used, for example, to utilize [Vipps-assisted content monitoring](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md#vipps-assisted-content-monitoring) or to support account procedures.
 
 ## Recommended integration (currently in pilot mode)
 
