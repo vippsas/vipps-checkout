@@ -5,7 +5,7 @@ sidebar_position: 15
 ---
 END_METADATA -->
 
-# Vipps On-Site Messaging
+# Vipps on-site messaging
 
 Vipps On-Site Messaging contains a _badges_ in different variants that can be used to let your customers know that Vipps payment is accepted.
 
