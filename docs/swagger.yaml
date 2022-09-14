@@ -343,15 +343,6 @@ components:
           description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
       additionalProperties: false
       description: Response from initiating a session.
-    Integrations:
-      type: object
-      properties:
-        porterbuddy:
-          allOf:
-            - $ref: '#/components/schemas/Porterbuddy'
-          description: Configuration required to enable Porterbuddy logistics options
-          nullable: true
-      additionalProperties: false
     Logistics:
       type: object
       properties:
@@ -364,11 +355,6 @@ components:
           items:
             $ref: '#/components/schemas/LogisticsOption'
           description: Fixed list of logistics options.
-          nullable: true
-        integrations:
-          allOf:
-            - $ref: '#/components/schemas/Integrations'
-          description: Some optional checkout features require carrier-specific configuration
           nullable: true
       additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
@@ -409,10 +395,6 @@ components:
         isPickupPoint:
           type: boolean
           description: If Checkout should display pickup points.
-          nullable: true
-        isPorterbuddy:
-          type: boolean
-          description: If this is a Porterbuddy shipping option.
           nullable: true
       additionalProperties: false
       description: A logistics option to be presented to the customer
@@ -567,35 +549,6 @@ components:
           description: 'Pickup point''s country. Example: NO'
       additionalProperties: false
       description: The pickup point the customer selected .
-    Porterbuddy:
-      type: object
-      properties:
-        publicToken:
-          type: string
-          description: The public key provided to you by Porterbuddy
-        apiKey:
-          type: string
-          description: The API key provided to you by Porterbuddy
-        originAddress:
-          allOf:
-            - $ref: '#/components/schemas/PorterbuddyAddress'
-          description: Your address where Porterbuddy will pick up the parcels
-      additionalProperties: false
-      description: Configuration required to enable Porterbuddy logistics options
-    PorterbuddyAddress:
-      type: object
-      properties:
-        streetName:
-          type: string
-        streetNumber:
-          type: string
-        postalCode:
-          type: string
-        city:
-          type: string
-        country:
-          type: string
-      additionalProperties: false
     PrefillCustomer:
       required:
         - phoneNumber
