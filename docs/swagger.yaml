@@ -251,17 +251,6 @@ components:
           description: 'The currency identificator according to ISO 4217. Example: "NOK"'
       additionalProperties: false
       description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
-    ExtendedSessionState:
-      enum:
-        - SessionStarted
-        - PaymentInitiationPending
-        - PaymentInitiated
-        - PaymentInitiationFailed
-        - PaymentSuccessful
-        - PaymentFailed
-        - SessionTerminated
-        - SessionExpired
-      type: string
     GetSessionResponse:
       type: object
       properties:
@@ -368,7 +357,7 @@ components:
           description: Fixed list of logistics options.
           nullable: true
       additionalProperties: false
-      description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup. \r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options. \r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
+      description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOption:
       type: object
       properties:
@@ -454,10 +443,10 @@ components:
           description: 'The merchant serial number for the sale unit. Example: "59474"'
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations"'
         sessionState:
           allOf:
-            - $ref: '#/components/schemas/ExtendedSessionState'
+            - $ref: '#/components/schemas/PaymentCallbackState'
           description: 'The state of the session. Example: "SessionStarted"'
         paymentMethod:
           allOf:
@@ -485,6 +474,11 @@ components:
           nullable: true
       additionalProperties: false
       description: Details provided in the session completed callback
+    PaymentCallbackState:
+      enum:
+        - PaymentSuccessful
+        - PaymentFailed
+      type: string
     PaymentMerchantInfo:
       type: object
       properties:
