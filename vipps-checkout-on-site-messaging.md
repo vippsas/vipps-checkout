@@ -23,12 +23,11 @@ If you don't have access to edit your websites code directly you can also place 
 The On-Site Messaging library contains an easy to integrate _badge_ with tailor made message for use in your online store.
 The badge comes in five variants with different color-pallets to suite your website.
 
-#### Example
+### Example
 
 You can find a demo and examples of all the variants [here](https://checkout.vipps.no/on-site-messaging/v1).
 
 ![Vipps Badge](resources/osm-badge.png)
-
 
 ```html
 <vipps-badge variant="gray"></vipps-badge>
@@ -40,10 +39,10 @@ All attributes are optional.
 
 | Attribute    | Description                                                                                                                                             | Default |
 |:-------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
-| variant      | The color variant of the badge.<br/>Supported values: `white`, `orange`, `gray`, `light-orange`, `purple`.                                               | `white` |
-| language     | ISO 639-1 alpha-2 language code.<br />Supported values: `en`, `no`.                                                                                     | `no`    |
+| variant      | The color variant of the badge. Supported values: `white`, `orange`, `gray`, `light-orange`, `purple`.                                                  | `white` |
+| language     | ISO 639-1 alpha-2 language code. Supported values: `en`, `no`.                                                                                     | `no`    |
 | vipps-senere | Set this to `true` if your business supports the "Vipps Senere"-product.                                                                                | `false` |
-| amount       | The payable amount in NOK. Amounts are specified in minor units.<br/>For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |         |
+| amount       | The payable amount in NOK. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |         |
 
 #### Customization
 
@@ -94,10 +93,9 @@ To add the _badge_ to your product in Magento, find your product in Magento Admi
 
 ![Magento integration](resources/osm-magento.png)
 
-
 ### Shopify
 
-To add the _badge_ to your product in Shopify, find your product in Shopify Admin > Producs and open it. Press the "Show Html"-button and copy paste in the following:
+To add the _badge_ to your product in Shopify, find your product in Shopify Admin > Products and open it. Press the "Show Html"-button and copy paste in the following:
 
 ```html
 <script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>

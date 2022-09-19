@@ -28,8 +28,7 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 * [Vipps Checkout API guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
 * [Vipps Checkout API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration.
-* [Redoc](https://vippsas.github.io/vipps-developer-docs/api/checkout) or [Swagger](https://vippsas.github.io/vipps-checkout-api/): OpenAPI Reference Specifications.
-
+* [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout): Checkout API Reference Specifications.
 
 ## Questions?
 
@@ -40,7 +39,6 @@ For more information, see:
 * [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works.
 * [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md) for how to use our on-site messaging SDK.
 * [Go directly to the product ordering page](https://portal.vipps.no/register/vippscheckout) if you want to start the onboarding process.
-
 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
