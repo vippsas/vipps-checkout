@@ -28,6 +28,8 @@ Document version: 1.1.0.
   - [Shipping](#shipping)
     - [Static shipping](#static-shipping)
     - [Dynamic shipping](#dynamic-shipping)
+    - [Pickup points](#pickup-points)
+    - [Porterbuddy integration](#porterbuddy-integration)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
     - [AddressFields false example](#addressfields-false-example)
     - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
@@ -112,15 +114,15 @@ sequenceDiagram
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session with Porterbuddy credentials
   API->>Merchant: Response containing token identifying the session
-  Merchant-->>User:
+  Merchant-->>User: 
   User->>API: Selects Porterbuddy shipping option
   API->>Porterbuddy: Retrieves delivery times for address
-  Porterbuddy-->>API:
-  API-->>User:
+  Porterbuddy-->>API: 
+  API-->>User: 
   User->>User: Selects delivery time
   User->>API: Completes payment
   API->>Porterbuddy: Books shipment
-  Porterbuddy-->>API:
+  Porterbuddy-->>API: 
 
   alt If booking fails
     API->>Merchant: Cancels payment and sends callback
