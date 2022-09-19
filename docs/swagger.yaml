@@ -64,7 +64,13 @@ paths:
                       $ref: '#/components/schemas/MerchantLogisticsCallbackRequestBody'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Your server implementation should return this HTTP status code if the data was received successfully.
+                  content:
+                    application/json:
+                      schema:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/MerchantCallbackLogisticsOptions'
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -80,7 +86,7 @@ paths:
                       $ref: '#/components/schemas/PaymentCallbackRequestDto'
               responses:
                 '200':
-                  description: Your server implementation should return this HTTP status code if the data was received successfully
+                  description: Your server implementation should return this HTTP status code if the data was received successfully.
                 4XX:
                   description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
                 5XX:
@@ -415,6 +421,31 @@ components:
           description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
       additionalProperties: false
       description: Headers required to retrieve an access token.
+    MerchantCallbackLogisticsOptions:
+      type: object
+      properties:
+        amount:
+          allOf:
+            - $ref: '#/components/schemas/CommonAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+        id:
+          type: string
+        priority:
+          type: integer
+          format: int32
+        brand:
+          type: string
+        product:
+          type: string
+        isDefault:
+          type: boolean
+        description:
+          type: string
+          nullable: true
+        isPickupPoint:
+          type: boolean
+          nullable: true
+      additionalProperties: false
     MerchantLogisticsCallbackRequestBody:
       type: object
       properties:
