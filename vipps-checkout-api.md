@@ -11,7 +11,7 @@ Vipps Checkout provides an all-in-one solution for receiving payment for goods a
 
 API version: 2.0.0.
 
-Document version: 1.1.0.
+Document version: 1.1.1.
 
 **Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
