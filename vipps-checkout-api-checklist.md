@@ -12,13 +12,13 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
 ## Checklist
 
 - [ ] Integrate _all_ the [API endpoints](vipps-checkout-api.md):
-  - [ ] Initiate [`POST:checkout/v2/session`](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session)
-  - [ ] Details [`GET:checkout/v2/{sessionId}`](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_)
+  - [ ] Initiate [`POST:checkout/v2/session`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post)
+  - [ ] Details [`GET:checkout/v2/session/{sessionId}`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get)
   - [ ] Full and partial Capture [`POST:epayment/v1/{reference}/capture`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/capturePayment)
   - [ ] Cancel [`POST:epayment/v1/{reference}cancel`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/cancelPayment)
   - [ ] Full and partial Refund [`POST:epayment/v1/{reference}refund`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/refundPayment)
   - [ ] Details [`GET:epayment/v1/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment)
-  - For examples of requests and responses, see the relevant API docs for [checkout](https://vippsas.github.io/vipps-checkout-api/) and [epayment](https://vippsas.github.io/vipps-epayment-api/).
+  - For examples of requests and responses, see the relevant API docs for [checkout](https://vippsas.github.io/vipps-developer-docs/api/checkout) and [epayment](https://vippsas.github.io/vipps-epayment-api/).
 - [ ] Send the [Vipps HTTP headers](vipps-checkout-api.md#integration-partner-and-plugin-guidelines)
       in all API requests for better tracking and troubleshooting (mandatory for partners and platforms):
   - [ ] `Merchant-Serial-Number`
@@ -35,7 +35,7 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
       Vipps does not have capacity to manually do this for you.
   - [ ] Callback [`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](vipps-checkout-api.md#example-of-callback)
 - [ ] Avoid Integration pitfalls
-  - [ ] The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll Payments Details [`GET:/epayment/v1/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment) or Session Details [`GET:/checkout/v2/{sessionId}`](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_)
+  - [ ] The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll Payments Details [`GET:/epayment/v1/{reference}`](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPayment) or Session Details [`GET:/checkout/v2/{sessionId}`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get)
         as documented (this is part of the first item in this checklist, but it's still a common error). For pure payment status polling the ePayment API is recommended.
   - [ ] The merchant must handle that the `fallback` URL is opened in the default browser on the phone,
         and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc.
