@@ -102,7 +102,7 @@ We then return carrier's pickup point ID, pickup point name and address.
 Porterbuddy is a shipping provider that offers home delivery to a time slot selected by the customer. To enable it, the merchant must:
 
 1. Provide Porterbuddy credentials in the logistics.integrations.porterbuddy object in session initiation.
-2. Provide a logistics option with "IsPorterbuddy" flag set to true and amount.value set to zero.
+2. Provide a logistics option with "IsPorterbuddy" flag set to true. The amount.value of the logistics option must also be set to zero as the price is determined dynamically based on delivery window.
 
 ```mermaid
 sequenceDiagram
