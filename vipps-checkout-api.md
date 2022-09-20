@@ -11,9 +11,9 @@ Vipps Checkout provides an all-in-one solution for receiving payment for goods a
 
 API version: 2.0.0.
 
-Document version: 1.1.0.
+Document version: 1.1.1.
 
-**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-checkout-api/).
+**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [Swagger documentation](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
 <!-- START_TOC -->
 
@@ -217,9 +217,9 @@ sequenceDiagram
 
 ## Step 1: Initiating a session
 
-The merchant backend calls the [session initiation endpoint](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session)
+The merchant backend calls the [session initiation endpoint](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post)
 
-```
+```http
 POST: https://api.vipps.no/checkout/v2/session
 ```
 
@@ -238,7 +238,7 @@ with headers
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
-All fields of the request body are described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session). The dynamic logistics callback is found by clicking the "Callback" tab in the Swagger.
+All fields of the request body are described in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post). 
 
 **Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
 
@@ -345,9 +345,9 @@ After the user has completed the checkout process the merchant will be notified 
 
 ### Callback Handling
 
-The callback will be sent to a [callback endpoint (click on the "Callbacks" tab)](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session) implemented by the merchant
+The callback will be sent to a [callback endpoint (click on the "Callbacks" tab)](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post) implemented by the merchant
 
-```
+```http
 POST: {callbackPrefix}/checkout/{apiVersion}/order/{orderId}
 ```
 
@@ -357,11 +357,11 @@ Vipps demands that every callback is responded to with a `HTTP 202 response`. In
 
 ### Session polling
 
-Vipps Checkout will expose a polling endpoint as described in our [Swagger](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_). The complete URL for polling is returned from the [session creation endpoint](https://vippsas.github.io/vipps-checkout-api/#/Session/post_v2_session) as `pollingUrl`.
+Vipps Checkout will expose a polling endpoint as described in our [Swagger](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get). The complete URL for polling is returned from the [session creation endpoint](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post) as `pollingUrl`.
 
 ### Determine status of payment
 
-The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [Swagger schema](https://vippsas.github.io/vipps-checkout-api/#/Session/get_v2_session__sessionId_) for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
+The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [Swagger schema](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get) for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
 If you want more granular information about the payment, you can call the [underlying API](https://vippsas.github.io/vipps-epayment-api/index.html#tag/QueryPayments/operation/getPayment) that Vipps Checkout itself uses.
 

@@ -7,7 +7,7 @@ END_METADATA -->
 
 # FAQ
 
-### How are subsequent transaction operations (Capture/Cancel/refund) handled
+## How are subsequent transaction operations (Capture/Cancel/refund) handled
 
 All subsequent transaction operations are fully supported in the Vipps epayment API. As described [here](https://github.com/vippsas/vipps-epayment-api)
 
