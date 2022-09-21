@@ -26,6 +26,8 @@ Document version: 1.1.1.
   - [Shipping](#shipping)
     - [Static shipping](#static-shipping)
     - [Dynamic shipping](#dynamic-shipping)
+    - [Pickup points](#pickup-points)
+    - [Porterbuddy integration](#porterbuddy-integration)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
     - [AddressFields false example](#addressfields-false-example)
     - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
@@ -82,7 +84,7 @@ The merchant defines a set of static shipping options that _are not_ dependant o
 
 The merchant defines a _dynamic options callback URL_, which is called by Vipps Checkout every time a customer updates their address. The callback endpoint receives the updated address, and the merchant decides on a set of shipping options to display to the user.
 
-## Pickup points
+### Pickup points
 
 We currently provide support for Posten/Bring and PostNord pickup points. As of now, lockers etc. are not supported.
 To enable pickup points for a logistics option, the isPickupPoint flag must be set to true.
@@ -92,6 +94,42 @@ We then return carrier's pickup point ID, pickup point name and address.
 
 ![pickup_point_example](resources/pickup_point_example.png)
 ![pickup_point_select](resources/pickup_point_select.png)
+
+### Porterbuddy integration
+
+Porterbuddy is a shipping provider that offers home delivery to a time slot selected by the customer. To enable it, the merchant must:
+
+1. Provide Porterbuddy credentials in the logistics.integrations.porterbuddy object in session initiation.
+2. Provide a logistics option with "IsPorterbuddy" flag set to true. The amount.value of the logistics option must also be set to zero as the price is determined dynamically based on delivery window.
+
+```mermaid
+sequenceDiagram
+  actor User
+  participant API as Vipps Checkout API
+  participant Merchant
+  participant Porterbuddy
+
+  User->>Merchant: Start shopping session, proceed to checkout
+  Merchant->>API: Start checkout session with Porterbuddy credentials
+  API->>Merchant: Response containing token identifying the session
+  Merchant-->>User: 
+  User->>API: Selects Porterbuddy shipping option
+  API->>Porterbuddy: Retrieves delivery times for address
+  Porterbuddy-->>API: 
+  API-->>User: 
+  User->>User: Selects delivery time
+  User->>API: Completes payment
+  API->>Porterbuddy: Books shipment
+  Porterbuddy-->>API: 
+
+  alt If booking fails
+    API->>Merchant: Cancels payment and sends callback
+  else If booking succeeds
+    API->>Merchant: Marks payment as succeeded and sends callback
+  end
+```
+
+![porterbuddy_example](resources/porterbuddy_example.png)
 
 ## Vipps Checkout Elements
 
@@ -187,16 +225,16 @@ POST: https://api.vipps.no/checkout/v2/session
 
 with headers
 
-| Header                        | Description                                                                           | Example value       |
-| ----------------------------- | ------------------------------------------------------------------------------------- | ------------------- |
+| Header                        | Description                                                                                   | Example value       |
+| ----------------------------- | --------------------------------------------------------------------------------------------- | ------------------- |
 | `Merchant-Serial-Number`      | Vipps assigned unique number for a merchant. Found in [Vipps portal](https://portal.vipps.no) |                     |
 | `Client_Id`                   | Client Id. Found in [Vipps portal](https://portal.vipps.no)                                   |
 | `Client_Secret`               | Client Secret. Found in [Vipps portal](https://portal.vipps.no)                               |
 | `Ocp-Apim-Subscription-Key`   | Subscription key. Found in [Vipps portal](https://portal.vipps.no)                            |
-| `Vipps-System-Name`           | The name of the ecommerce solution                                                    | `woocommerce`       |
-| `Vipps-System-Version`        | The version number of the ecommerce solution                                          | `5.4`               |
-| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                      | `vipps-woocommerce` |
-| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                            | `1.4.1`             |
+| `Vipps-System-Name`           | The name of the ecommerce solution                                                            | `woocommerce`       |
+| `Vipps-System-Version`        | The version number of the ecommerce solution                                                  | `5.4`               |
+| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                              | `vipps-woocommerce` |
+| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                                    | `1.4.1`             |
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 

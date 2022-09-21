@@ -74,13 +74,13 @@ paths:
                         items:
                           $ref: '#/components/schemas/MerchantCallbackLogisticsOptions'
                 4XX:
-                  description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
+                  description: 'If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. '
                 5XX:
-                  description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure.
+                  description: 'If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. '
         Payment completed:
           '{$request.body#/merchantInfo/callbackPrefix}/checkout/v2/order/{$request.body#/transaction/reference}':
             post:
-              summary: Callback for session completed
+              summary: Callback for session completed.
               requestBody:
                 content:
                   application/json:
@@ -90,9 +90,9 @@ paths:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
                 4XX:
-                  description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure.
+                  description: 'If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. '
                 5XX:
-                  description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure.
+                  description: 'If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. '
   '/v2/session/{sessionId}':
     get:
       tags:
@@ -351,6 +351,15 @@ components:
           description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
       additionalProperties: false
       description: Response from initiating a session.
+    Integrations:
+      type: object
+      properties:
+        porterbuddy:
+          allOf:
+            - $ref: '#/components/schemas/Porterbuddy'
+          description: Configuration required to enable Porterbuddy logistics options
+          nullable: true
+      additionalProperties: false
     Logistics:
       type: object
       properties:
@@ -363,6 +372,11 @@ components:
           items:
             $ref: '#/components/schemas/LogisticsOption'
           description: Fixed list of logistics options.
+          nullable: true
+        integrations:
+          allOf:
+            - $ref: '#/components/schemas/Integrations'
+          description: Some optional checkout features require carrier-specific configuration
           nullable: true
       additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
@@ -403,6 +417,10 @@ components:
         isPickupPoint:
           type: boolean
           description: If Checkout should display pickup points.
+          nullable: true
+        isPorterbuddy:
+          type: boolean
+          description: If this is a Porterbuddy shipping option.
           nullable: true
       additionalProperties: false
       description: A logistics option to be presented to the customer
@@ -445,6 +463,9 @@ components:
           type: string
           nullable: true
         isPickupPoint:
+          type: boolean
+          nullable: true
+        isPorterbuddy:
           type: boolean
           nullable: true
       additionalProperties: false
@@ -582,6 +603,51 @@ components:
           description: 'Pickup point''s country. Example: NO'
       additionalProperties: false
       description: The pickup point the customer selected .
+    Porterbuddy:
+      type: object
+      properties:
+        publicToken:
+          type: string
+          description: The public key provided to you by Porterbuddy
+        apiKey:
+          type: string
+          description: The API key provided to you by Porterbuddy
+        origin:
+          allOf:
+            - $ref: '#/components/schemas/PorterbuddyOrigin'
+          description: Information about the sender
+      additionalProperties: false
+      description: Configuration required to enable Porterbuddy logistics options
+    PorterbuddyOrigin:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of your store
+        email:
+          type: string
+          description: Your email address where Porterbuddy booking confirmation will be sent
+        phoneNumber:
+          type: string
+          description: Your phone number where Porterbuddy may send you important messages
+        address:
+          allOf:
+            - $ref: '#/components/schemas/PorterbuddyOriginAddress'
+          description: Your address where Porterbuddy will pick up the parcels
+      additionalProperties: false
+      description: Details about the sender of the Porterbuddy parcels
+    PorterbuddyOriginAddress:
+      type: object
+      properties:
+        streetAddress:
+          type: string
+        postalCode:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+      additionalProperties: false
     PrefillCustomer:
       required:
         - phoneNumber
