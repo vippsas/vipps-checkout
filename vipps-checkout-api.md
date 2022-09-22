@@ -39,6 +39,7 @@ Document version: 1.1.1.
     - [Configuration for use inside a native mobile application](#configuration-for-use-inside-a-native-mobile-application)
   - [Step 2: Displaying the session to the user](#step-2-displaying-the-session)
     - [Sticky checkout session](#sticky-checkout-session)
+    - [SDK events](#sdk-events)
   - [Step 3: Handling the result of the session](#step-3-handling-the-result-of-the-session)
     - [Callback handling](#callback-handling)
     - [Session polling](#session-polling)
@@ -353,9 +354,9 @@ Available events:
 | `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                     |
 | `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                     |
 
-### Types
+#### Types
 
-#### ShippingOption
+##### ShippingOption
 
 | Parameter     | Type                             | Description                                                                 |
 |---------------|----------------------------------|-----------------------------------------------------------------------------|
@@ -364,14 +365,14 @@ Available events:
 | `product`     | `string`                         | The brand specific product (for example "Servicepakke" or "Home delivery"). |
 | `price`       | `Money`                          | The price of the shipping option.                                           |
 
-#### Money
+##### Money
 
 | Parameter                | Type     | Description                                                                                                 |
 |--------------------------|----------|-------------------------------------------------------------------------------------------------------------|
 | `fractionalDenomination` | `number` | Value of in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |
 | `currency`               | `string` | Three letter ISO-4217 currency code.                                                                        |
 
-#### Address
+##### Address
 
 | Parameter   | Type     |
 |-------------|----------|
@@ -384,7 +385,7 @@ Available events:
 | `phone`     | `string` |
 | `zip`       | `string` |
 
-### Example
+#### Example
 
 ```js
 
