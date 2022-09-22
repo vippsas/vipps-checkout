@@ -1,8 +1,10 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: API Guide
 sidebar_position: 10
+
 ---
+
 END_METADATA -->
 
 # Vipps Checkout guide
@@ -113,15 +115,15 @@ sequenceDiagram
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session with Porterbuddy credentials
   API->>Merchant: Response containing token identifying the session
-  Merchant-->>User: 
+  Merchant-->>User:
   User->>API: Selects Porterbuddy shipping option
   API->>Porterbuddy: Retrieves delivery times for address
-  Porterbuddy-->>API: 
-  API-->>User: 
+  Porterbuddy-->>API:
+  API-->>User:
   User->>User: Selects delivery time
   User->>API: Completes payment
   API->>Porterbuddy: Books shipment
-  Porterbuddy-->>API: 
+  Porterbuddy-->>API:
 
   alt If booking fails
     API->>Merchant: Cancels payment and sends callback
@@ -169,6 +171,8 @@ Vipps Checkout supports easy fetching of user info with the built-in Vipps Login
 # System integration guidelines
 
 Be sure to always use the most updated version of the API when integrating.
+
+See also: [quick start guide](vipps-checkout-api-quick-start.md).
 
 ## Flow diagram
 
@@ -239,7 +243,7 @@ with headers
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
-All fields of the request body are described in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post). 
+All fields of the request body are described in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post).
 
 **Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
 
@@ -263,13 +267,13 @@ Load the SDK in the `<head>` section of the merchant website.
 
 The SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters
 
-| Parameter             | Description                                                                                                      | Optional |
-|-----------------------|------------------------------------------------------------------------------------------------------------------| -------- |
-| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                            | No       |
-| `iFrameContainerId`   | The id of the html element to contain the Checkout iFrame                                                        | No       |
-| `token`               | Token identifying the session. Comes from session creation response.                                             | No       |
+| Parameter             | Description                                                                                                       | Optional |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
+| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                             | No       |
+| `iFrameContainerId`   | The id of the html element to contain the Checkout iFrame                                                         | No       |
+| `token`               | Token identifying the session. Comes from session creation response.                                              | No       |
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
-| `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                  | Yes      |
+| `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                   | Yes      |
 
 Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js.
 
@@ -341,25 +345,25 @@ var vippsCheckout = VippsCheckout({
 
 ### SDK events
 
-You can listen to changes in Checkout by supplying callbacks to the `on` option in the SDK. 
+You can listen to changes in Checkout by supplying callbacks to the `on` option in the SDK.
 Each key in the map supplied to `on` corresponds to an event and accepts a call callback-function with a `data` parameter as a value.
 
 Available events:
 
-| Parameter                      | Description                                                                                             | Type                                                                                                                                             |
-|--------------------------------|---------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| `shipping_option_selected`     | Is triggered when the user selects a shipping option or `undefined` when shipping option is deselected. | `ShippingOption` &#124; `undefined`                                                                                                              |
-| `total_amount_changed`         | Is triggered when the total amount changes (for example when a shipping option is selected).            | `Money`                                                                                                                                          |
-| `session_status_changed`       | Is triggered when on changes in session status (for example when payment is started).                   | "SessionStarted" &#124; "PaymentInitiated" &#124; "PaymentSuccessful" &#124; "PaymentFailed" &#124; "SessionTerminated" &#124; "SessionExpired"  |
-| `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                     |
-| `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                     |
+| Parameter                      | Description                                                                                             | Type                                                                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `shipping_option_selected`     | Is triggered when the user selects a shipping option or `undefined` when shipping option is deselected. | `ShippingOption` &#124; `undefined`                                                                                                             |
+| `total_amount_changed`         | Is triggered when the total amount changes (for example when a shipping option is selected).            | `Money`                                                                                                                                         |
+| `session_status_changed`       | Is triggered when on changes in session status (for example when payment is started).                   | "SessionStarted" &#124; "PaymentInitiated" &#124; "PaymentSuccessful" &#124; "PaymentFailed" &#124; "SessionTerminated" &#124; "SessionExpired" |
+| `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                    |
+| `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                    |
 
 #### Types
 
 ##### ShippingOption
 
 | Parameter     | Type                             | Description                                                                 |
-|---------------|----------------------------------|-----------------------------------------------------------------------------|
+| ------------- | -------------------------------- | --------------------------------------------------------------------------- |
 | `brand`       | `string`                         | The name of the brand of the option (for example "Posten" or "PostNord").   |
 | `description` | `description` &#124; `undefined` | The description of the shipping option.                                     |
 | `product`     | `string`                         | The brand specific product (for example "Servicepakke" or "Home delivery"). |
@@ -368,14 +372,14 @@ Available events:
 ##### Money
 
 | Parameter                | Type     | Description                                                                                                 |
-|--------------------------|----------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
 | `fractionalDenomination` | `number` | Value of in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |
 | `currency`               | `string` | Three letter ISO-4217 currency code.                                                                        |
 
 ##### Address
 
 | Parameter   | Type     |
-|-------------|----------|
+| ----------- | -------- |
 | `address`   | `string` |
 | `city`      | `string` |
 | `country`   | `string` |
@@ -388,33 +392,30 @@ Available events:
 #### Example
 
 ```js
-
 window.VippsCheckout = {
   checkoutFrontendUrl: data.checkoutFrontendUrl,
   iFrameContainerId: "vipps-checkout-frame-container",
   language: "no",
   token: data.token,
   on: {
-    "shipping_option_selected": function(data) {
+    shipping_option_selected: function (data) {
       // Do something when the shipping option is selected
     },
-    "total_amount_changed": function(data) {
+    total_amount_changed: function (data) {
       // Do something when the total amount changed
     },
-    "session_status_changed": function(data) {
+    session_status_changed: function (data) {
       // Do something when status changed
     },
-    "shipping_address_changed": function(data) {
+    shipping_address_changed: function (data) {
       // Do something when shipping address changed
     },
-    "customer_information_changed": function(data) {
+    customer_information_changed: function (data) {
       // Do something when customer information changed
     },
   },
 };
-
 ```
-
 
 ## Step 3: Handling the result of the session
 

@@ -1,24 +1,28 @@
 <!-- START_METADATA
 
-title: Postman
+title: Quick start
 sidebar_position: 60
 
 ---
 
 END_METADATA -->
 
-# Postman
+# Quick start
 
-[Postman](https://www.getpostman.com/) is a common tool for working with REST APIs.
-We offer a [Postman Collection](https://www.getpostman.com/collection) to make development easier.
-See the [Postman documentation](https://www.getpostman.com/docs/) for more information about using Postman.
+<!-- START_TOC -->
 
-By following the steps below, you can make calls to all the
-endpoints, and see the full `request` and `response` for each call.
+## Table of Contents
 
-We also have a short [getting started guide to Postman](https://github.com/vippsas/vipps-developers/blob/master/vipps-quick-start-guides.md).
+- [Postman](#postman)
+  - [Step 1: Get the Postman collection](#step-1-get-the-postman-collection)
+  - [Step 2: Import the Postman environment](#step-2-import-the-postman-environment)
+  - [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
+- [Make API calls](#make-api-calls)
+<!-- END_TOC -->
 
-## Setting up Postman
+Document version 1.0.2.
+
+## Postman
 
 ### Step 1: Get the Postman Collection
 
@@ -27,12 +31,12 @@ Import the collection by following the steps below:
 1. Click `Import` in the upper-left corner.
 2. Import the [vipps-checkout-api-postman-collection.json](tools/vipps-checkout-api-postman-collection.json) file.
 
-### Step 2: Import the Postman Environment
+### Step 2: Import the Postman environment
 
 1. Click `Import` in the upper-left corner.
 2. Import the [vipps-checkout-api-postman-environment.json](tools/vipps-checkout-api-postman-environment.json) file.
 
-### Step 3: Setup Postman Environment
+### Step 3: Set up Postman environment
 
 1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
 1. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
@@ -42,7 +46,7 @@ Import the collection by following the steps below:
    - `Ocp-Apim-Subscription-Key`
    - `merchantSerialNumber`
 
-### Step 4: Run tests
+## Make API calls
 
 1. Go to request `Creates a Checkout Session`. Fill in the request body.
 1. Send the filled in request `Creates a Checkout Session`.
@@ -54,6 +58,10 @@ Import the collection by following the steps below:
 1. Go to request `Cancels the current Checkout session if payment is not initiated`.
 1. In the url, replace the `:sessionId` with the sessionId.
 1. Check that you get an OK response.
+
+See the
+[API reference](https://vippsas.github.io/vipps-developer-docs/api/checkout)
+for details about the calls.
 
 ## Questions?
 
