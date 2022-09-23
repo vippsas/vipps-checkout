@@ -1,10 +1,8 @@
-## <!-- START_METADATA
-
+<!-- START_METADATA
+---
 title: Introduction
 sidebar_position: 1
-
 ---
-
 END_METADATA -->
 
 # Vipps Checkout
