@@ -170,6 +170,8 @@ Vipps Checkout supports easy fetching of user info with the built-in Vipps Login
 
 Be sure to always use the most updated version of the API when integrating.
 
+See also: [quick start guide](vipps-checkout-api-quick-start.md).
+
 ## Flow diagram
 
 The standard flow for a Vipps Checkout consists of
@@ -388,7 +390,6 @@ Available events:
 #### Example
 
 ```js
-
 window.VippsCheckout = {
   checkoutFrontendUrl: data.checkoutFrontendUrl,
   iFrameContainerId: "vipps-checkout-frame-container",
@@ -412,7 +413,6 @@ window.VippsCheckout = {
     },
   },
 };
-
 ```
 
 

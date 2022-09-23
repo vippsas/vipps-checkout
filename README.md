@@ -26,7 +26,8 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## Checkout API
 
-* [API guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
+* [API Quick Start](vipps-checkout-api-quick-start.md): Quick Start.
+* [API Guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
 * [API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration.
 * [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout): Checkout API Reference Specifications.
 
