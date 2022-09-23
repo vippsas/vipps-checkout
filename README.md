@@ -28,20 +28,20 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## Checkout API
 
-- [API Quick Start](vipps-checkout-api-quick-start.md): Quick Start.
-- [API Guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
-- [API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration.
-- [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout): Checkout API Reference Specifications.
+* [API Quick Start](vipps-checkout-api-quick-start.md): Quick Start.
+* [API Guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
+* [API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration.
+* [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout): Checkout API Reference Specifications.
 
 ## Questions?
 
 For more information, see:
 
-- [Frequently Asked Questions](vipps-checkout-api-faq.md): Questions and answers.
-- [Vipps plugins](https://github.com/vippsas/vipps-plugins): Open source plugins for various web solutions.
-- [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works.
-- [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md) for how to use our on-site messaging SDK.
-- [Go directly to the product ordering page](https://portal.vipps.no/register/vippscheckout) if you want to start the onboarding process.
+* [Frequently Asked Questions](vipps-checkout-api-faq.md): Questions and answers.
+* [Vipps plugins](https://github.com/vippsas/vipps-plugins): Open source plugins for various web solutions.
+* [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works.
+* [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md) for how to use our on-site messaging SDK.
+* [Go directly to the product ordering page](https://portal.vipps.no/register/vippscheckout) if you want to start the onboarding process.
 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
