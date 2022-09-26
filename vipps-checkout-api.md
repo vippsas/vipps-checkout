@@ -13,7 +13,7 @@ API version: 2.0.0.
 
 Document version: 1.1.2.
 
-**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API REference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
+**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
 <!-- START_TOC -->
 
@@ -466,7 +466,7 @@ If you are using the [SignupAPI](https://github.com/vippsas/vipps-signup-api), y
 
 # Transaction operations (Capture, Cancel, Refund, Details)
 
-Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). See the [guideline for the integration can be found](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md#getting-started-with-the-vipps-merchant-payments-api). You should use the same credentials as the ones you use with Checkout.
+Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). See the [guideline for the integration can be found](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md). You should use the same credentials as the ones you use with Checkout.
 
 **Please note:** That the eCom API should not be used as it lacks full support for Card transactions.
 
