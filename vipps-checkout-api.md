@@ -362,6 +362,7 @@ Available events:
 
 | Parameter     | Type                             | Description                                                                 |
 |---------------|----------------------------------|-----------------------------------------------------------------------------|
+| `id`          | `string`                         | The merchants shipping option identification.                               |
 | `brand`       | `string`                         | The name of the brand of the option (for example "Posten" or "PostNord").   |
 | `description` | `description` &#124; `undefined` | The description of the shipping option.                                     |
 | `product`     | `string`                         | The brand specific product (for example "Servicepakke" or "Home delivery"). |
@@ -491,4 +492,3 @@ In order to integrate with the receipts functionality, you need to retrieve the 
 [refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
 [adjust-authorization-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
 [force-approve-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove/operation/forceApprove
-
