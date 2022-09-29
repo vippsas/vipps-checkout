@@ -56,6 +56,7 @@ Save the following files to your computer:
    * `client_secret`
    * `Ocp-Apim-Subscription-Key`
    * `merchantSerialNumber`
+1. For now, you also need to fill out values for all the parameters in the body of the calls, but we will provide example values soon.
 
 ## Make API calls
 
