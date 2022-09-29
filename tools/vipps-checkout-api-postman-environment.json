@@ -18,7 +18,7 @@
       "enabled": true
     },
     {
-      "key": "Merchant-Serial-Number",
+      "key": "merchantSerialNumber",
       "value": "<Go To Vipps Portal->Select the Developer tab->Select Test or Production Keys->Copy the Merchant Serial Number from the Sale Unit you copied the keys from>",
       "type": "default",
       "enabled": true
