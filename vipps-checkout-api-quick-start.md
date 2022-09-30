@@ -65,28 +65,28 @@ You can update any of the other environment variables. Be aware of this:
 
 ## Make API calls
 
-See the
-[API reference](https://vippsas.github.io/vipps-developer-docs/api/checkout)
-for details about the calls.
-
 ### Create a checkout session
 
-1. Go to request `Creates a Checkout Session`. Fill in the request body.
-1. Send the filled in request `Creates a Checkout Session`.
-1. Check that the response is OK.
-1. In the response body - find the `pollingUrl`. Copy the part after the last / - this is the sessionId.
+1. Send request `Create a Checkout Session`. This starts a simple session by using
+   [`POST:/v2/session`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post).
+
+   The `reference` and `sessionId` variables are automatically set in the environment
+   of this Postman example and can be used for subsequent calls relating to this session.
 
 ## Retrieve the session information
 
-1. Go to request `Retrieves sessionInfo from database when merchant polls`.
-1. In the url, replace the `:sessionId` with the sessionId.
-1. Check that you get an OK response.
+1. Send request `Get session info`. This retrieves the session information by using
+   [`GET:/v2/session/{sessionId}`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get).
+   The `sessionId` variable was previously set in the environment.
+
+   You will see the details appear in the lower pane.
 
 ## Cancel the current checkout session
 
-1. Go to request `Cancels the current Checkout session if payment is not initiated`.
-1. In the url, replace the `:sessionId` with the sessionId.
-1. Check that you get an OK response.
+1. Send request `Cancel current session` to cancel the current Checkout session, if payment is not initiated.
+
+   The `sessionId` variable, previously set in the environment, is sent in the body of
+   [`GET:/v2/session/cancel`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1cancel/post).
 
 ## Questions?
 

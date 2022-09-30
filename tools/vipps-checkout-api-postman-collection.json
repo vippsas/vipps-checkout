@@ -9,7 +9,7 @@
 			"name": "v2/session",
 			"item": [
 				{
-					"name": "Creates a Checkout session",
+					"name": "Create a Checkout session",
 					"event": [
 						{
 							"listen": "test",
@@ -103,7 +103,7 @@
 					"response": []
 				},
 				{
-					"name": "Retrieves sessionInfo from database when merchant polls.",
+					"name": "Get session info",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -160,7 +160,7 @@
 					"response": []
 				},
 				{
-					"name": "Cancels the current Checkout session if payment is not initiated",
+					"name": "Cancel current session",
 					"request": {
 						"method": "POST",
 						"header": [
