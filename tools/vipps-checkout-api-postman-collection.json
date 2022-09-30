@@ -28,25 +28,25 @@
               {
                 "disabled": false,
                 "key": "Vipps-System-Name",
-                "value": "{{Vipps-System-Name}}",
+                "value": "{{vipps_system_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Version",
-                "value": "{{Vipps-System-Version}}",
+                "value": "{{vipps_system_version}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Name",
-                "value": "{{Vipps-System-Plugin-Name}}",
+                "value": "{{vipps_system_plugin_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Version",
-                "value": "{{Vipps-System-Plugin-Version}}",
+                "value": "{{vipps_system_plugin_version}}",
                 "description": ""
               },
               {
@@ -114,25 +114,25 @@
                   {
                     "disabled": false,
                     "key": "Vipps-System-Name",
-                    "value": "{{Vipps-System-Name}}",
+                    "value": "{{vipps_system_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Version",
-                    "value": "{{Vipps-System-Version}}",
+                    "value": "{{vipps_system_version}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Name",
-                    "value": "{{Vipps-System-Plugin-Name}}",
+                    "value": "{{vipps_system_plugin_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Version",
-                    "value": "{{Vipps-System-Plugin-Version}}",
+                    "value": "{{vipps_system_plugin_version}}",
                     "description": ""
                   },
                   {
@@ -222,25 +222,25 @@
               {
                 "disabled": false,
                 "key": "Vipps-System-Name",
-                "value": "{{Vipps-System-Name}}",
+                "value": "{{vipps_system_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Version",
-                "value": "{{Vipps-System-Version}}",
+                "value": "{{vipps_system_version}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Name",
-                "value": "{{Vipps-System-Plugin-Name}}",
+                "value": "{{vipps_system_plugin_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Version",
-                "value": "{{Vipps-System-Plugin-Version}}",
+                "value": "{{vipps_system_plugin_version}}",
                 "description": ""
               },
               {
@@ -304,25 +304,25 @@
                   {
                     "disabled": false,
                     "key": "Vipps-System-Name",
-                    "value": "{{Vipps-System-Name}}",
+                    "value": "{{vipps_system_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Version",
-                    "value": "{{Vipps-System-Version}}",
+                    "value": "{{vipps_system_version}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Name",
-                    "value": "{{Vipps-System-Plugin-Name}}",
+                    "value": "{{vipps_system_plugin_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Version",
-                    "value": "{{Vipps-System-Plugin-Version}}",
+                    "value": "{{vipps_system_plugin_version}}",
                     "description": ""
                   },
                   {
@@ -393,25 +393,25 @@
                   {
                     "disabled": false,
                     "key": "Vipps-System-Name",
-                    "value": "{{Vipps-System-Name}}",
+                    "value": "{{vipps_system_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Version",
-                    "value": "{{Vipps-System-Version}}",
+                    "value": "{{vipps_system_version}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Name",
-                    "value": "{{Vipps-System-Plugin-Name}}",
+                    "value": "{{vipps_system_plugin_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Version",
-                    "value": "{{Vipps-System-Plugin-Version}}",
+                    "value": "{{vipps_system_plugin_version}}",
                     "description": ""
                   },
                   {
@@ -482,25 +482,25 @@
               {
                 "disabled": false,
                 "key": "Vipps-System-Name",
-                "value": "{{Vipps-System-Name}}",
+                "value": "{{vipps_system_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Version",
-                "value": "{{Vipps-System-Version}}",
+                "value": "{{vipps_system_version}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Name",
-                "value": "{{Vipps-System-Plugin-Name}}",
+                "value": "{{vipps_system_plugin_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Version",
-                "value": "{{Vipps-System-Plugin-Version}}",
+                "value": "{{vipps_system_plugin_version}}",
                 "description": ""
               },
               {
@@ -565,25 +565,25 @@
                   {
                     "disabled": false,
                     "key": "Vipps-System-Name",
-                    "value": "{{Vipps-System-Name}}",
+                    "value": "{{vipps_system_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Version",
-                    "value": "{{Vipps-System-Version}}",
+                    "value": "{{vipps_system_version}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Name",
-                    "value": "{{Vipps-System-Plugin-Name}}",
+                    "value": "{{vipps_system_plugin_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Version",
-                    "value": "{{Vipps-System-Plugin-Version}}",
+                    "value": "{{vipps_system_plugin_version}}",
                     "description": ""
                   },
                   {
@@ -654,25 +654,25 @@
                   {
                     "disabled": false,
                     "key": "Vipps-System-Name",
-                    "value": "{{Vipps-System-Name}}",
+                    "value": "{{vipps_system_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Version",
-                    "value": "{{Vipps-System-Version}}",
+                    "value": "{{vipps_system_version}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Name",
-                    "value": "{{Vipps-System-Plugin-Name}}",
+                    "value": "{{vipps_system_plugin_name}}",
                     "description": ""
                   },
                   {
                     "disabled": false,
                     "key": "Vipps-System-Plugin-Version",
-                    "value": "{{Vipps-System-Plugin-Version}}",
+                    "value": "{{vipps_system_plugin_version}}",
                     "description": ""
                   },
                   {
