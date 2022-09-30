@@ -25,7 +25,7 @@ Use the Checkout API to create a checkout session, retrieve session information 
 
 <!-- END_TOC -->
 
-Document version 1.0.4.
+Document version 1.1.0.
 
 ## Postman
 
@@ -39,7 +39,7 @@ Review
 Save the following files to your computer:
 
 * [Vipps Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
-* [Vipps Checkout API Postman environment](tools/vipps-checkout-api-postman-environment.json)
+* [Vipps API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Vipps Postman files
 
@@ -51,12 +51,17 @@ Save the following files to your computer:
 
 1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
 1. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
-1. Fill in the `Current Value` for the following fields to get started. For the first three keys, go to *Vipps Portal > Utvikler -> Test Keys.*
-   * `client_id`
-   * `client_secret`
-   * `Ocp-Apim-Subscription-Key`
-   * `merchantSerialNumber`
-1. For now, you also need to fill out values for all the parameters in the body of the calls, but we will provide example values soon.
+1. Fill in the `Current Value` for the following fields to get started. For the first keys, go to *Vipps Portal > Utvikler -> Test Keys.*
+   * `client_id` - Merchant key is required for getting the access token.
+   * `client_secret` - Merchant key is required for getting the access token.
+   * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
+   * `merchantSerialNumber` - Merchant id.
+   * `internationalMobileNumber` - The mobile number for the test app profile you have received or registered, including country code.
+
+You can update any of the other environment variables. Be aware of this:
+
+* Any currency amount must be an Integer value minimum 100 in øre.
+* Most URLs must be `https`.
 
 ## Make API calls
 
