@@ -7,7 +7,7 @@ END_METADATA -->
 
 # Quick start
 
-Use the Checkout API to create a checkout session, retrieve session information from the database, and cancel the current checkout session.
+Use the Checkout API to create a checkout session, retrieve session information, and cancel the current checkout session.
 
 <!-- START_TOC -->
 
@@ -25,21 +25,21 @@ Use the Checkout API to create a checkout session, retrieve session information 
 
 <!-- END_TOC -->
 
-Document version 1.0.4.
+Document version 1.1.0.
 
 ## Postman
 
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-quick-start-guides) for information about getting your test environment set up.
+[Vipps quick start guides](https://github.com/vippsas/vipps-developers/blob/master/vipps-quick-start-guides.md) for information about getting your test environment set up.
 
 ### Step 1: Get the Vipps Postman collection and environment
 
 Save the following files to your computer:
 
 * [Vipps Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
-* [Vipps Checkout API Postman environment](tools/vipps-checkout-api-postman-environment.json)
+* [Vipps API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Vipps Postman files
 
@@ -51,37 +51,42 @@ Save the following files to your computer:
 
 1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
 1. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
-1. Fill in the `Current Value` for the following fields to get started. For the first three keys, go to *Vipps Portal > Utvikler -> Test Keys.*
-   * `client_id`
-   * `client_secret`
-   * `Ocp-Apim-Subscription-Key`
-   * `merchantSerialNumber`
-1. For now, you also need to fill out values for all the parameters in the body of the calls, but we will provide example values soon.
+1. Fill in the `Current Value` for the following fields to get started. For the first keys, go to *Vipps Portal > Utvikler -> Test Keys.*
+   * `client_id` - Merchant key is required for getting the access token.
+   * `client_secret` - Merchant key is required for getting the access token.
+   * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
+   * `merchantSerialNumber` - Merchant id.
+   * `internationalMobileNumber` - The mobile number for the test app profile you have received or registered, including country code.
+
+You can update any of the other environment variables. Be aware of this:
+
+* Any currency amount must be an Integer value minimum 100 in øre.
+* Most URLs must be `https`.
 
 ## Make API calls
 
-See the
-[API reference](https://vippsas.github.io/vipps-developer-docs/api/checkout)
-for details about the calls.
-
 ### Create a checkout session
 
-1. Go to request `Creates a Checkout Session`. Fill in the request body.
-1. Send the filled in request `Creates a Checkout Session`.
-1. Check that the response is OK.
-1. In the response body - find the `pollingUrl`. Copy the part after the last / - this is the sessionId.
+1. Send request `Create a Checkout Session`. This starts a simple session by using
+   [`POST:/v2/session`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session/post).
+
+   The `reference` and `sessionId` variables are automatically set in the environment
+   of this Postman example and can be used for subsequent calls relating to this session.
 
 ## Retrieve the session information
 
-1. Go to request `Retrieves sessionInfo from database when merchant polls`.
-1. In the url, replace the `:sessionId` with the sessionId.
-1. Check that you get an OK response.
+1. Send request `Get session info`. This retrieves the session information by using
+   [`GET:/v2/session/{sessionId}`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get).
+   The `sessionId` variable was previously set in the environment.
+
+   You will see the details appear in the lower pane.
 
 ## Cancel the current checkout session
 
-1. Go to request `Cancels the current Checkout session if payment is not initiated`.
-1. In the url, replace the `:sessionId` with the sessionId.
-1. Check that you get an OK response.
+1. Send request `Cancel current session` to cancel the current Checkout session, if payment is not initiated.
+
+   The `sessionId` variable, previously set in the environment, is sent in the body of
+   [`GET:/v2/session/cancel`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v2~1session~1cancel/post).
 
 ## Questions?
 
