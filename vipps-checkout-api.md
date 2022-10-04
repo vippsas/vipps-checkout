@@ -477,7 +477,7 @@ When you initiate a payment it will be reserved until you capture it. Reserved m
 
 When you initiate a payment it will be reserved until you capture it. The capture can be done a few seconds later, or several days later.
 
-*Direct Capture*, where a transaction is automatically captured upon reservation *is not* supported in Vipps Checkout, and transactions will fail.
+*Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
 
 For more info on the difference, see [Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md#reservations-and-captures)
 
