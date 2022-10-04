@@ -479,7 +479,7 @@ When you initiate a payment it will be reserved until you capture it. The captur
 
 *Direct Capture*, where a transaction is automatically captured upon reservation *is not* supported in Vipps Checkout, and transactions will fail.
 
-For more info on the difference, see [Vipps ecom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md#reservations-and-captures)
+For more info on the difference, see [Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md#reservations-and-captures)
 
 # Vipps side Transaction information
 
