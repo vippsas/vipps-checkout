@@ -475,7 +475,7 @@ Vipps Checkout should be considered an extension of existing other Vipps commerc
 
 When you initiate a payment, it will be reserved until you capture it. Reserved means the customer has approved the payment. The funds are still in the customer's account, but not available to spend on other things. Capture means the funds are moved from customer's account to merchant's account.
 
-When you initiate a payment it will be reserved until you capture it. The capture can be done a few seconds later, or several days later.
+When you initiate a payment, it will be reserved until you capture it. The capture can be done a few seconds later, or several days later.
 
 *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
 
