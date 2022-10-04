@@ -8,11 +8,11 @@ END_METADATA -->
 
 # Vipps Checkout
 
-Vipps Checkout is a Vipps product delivering a complete checkout experience, including gathering userinfo, shipping and payment processing.
+Vipps Checkout is a Vipps product delivering a complete checkout experience, handling payment processing, shipping and gathering userinfo.
 
 For information and to order the product go to:
 
-* [Product information in Norwegian](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/checkout/).
+* [Product information in Norwegian](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/checkout/)
 
 Go directly to the
 [product ordering page](https://portal.vipps.no/register/vippscheckout)
@@ -27,7 +27,7 @@ See the disclaimer: <https://vippsas.github.io/vipps-developer-docs/docs/example
 
 ## How it works
 
-* [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works.
+* [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works
 
 ## Getting started
 
