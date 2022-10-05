@@ -471,7 +471,15 @@ Vipps Checkout should be considered an extension of existing other Vipps commerc
 
 **Please note:** That the eCom API should not be used as it lacks full support for Card transactions.
 
-**Please note:** Vipps Checkout only supports "Reserve-Capture". If you are on a "Direct-Capture" setup, please seek assistance in accordance with the [guidelines](https://github.com/vippsas/vipps-developers/blob/master/contact.md).
+## Vipps Checkout only supports Reserve/Capture
+
+When you initiate a payment, it will be reserved until you capture it. Reserved means the customer has approved the payment. The funds are still in the customer's account, but not available to spend on other things. Capture means the funds are moved from customer's account to merchant's account.
+
+When you initiate a payment, it will be reserved until you capture it. The capture can be done a few seconds later, or several days later.
+
+*Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
+
+For more info on the difference, see [Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md#reservations-and-captures)
 
 # Vipps side Transaction information
 
