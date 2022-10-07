@@ -1,5 +1,7 @@
 openapi: 3.0.1
 info:
+  description: >-
+    For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).
   title: checkout-backend-external.API
   version: v2
 servers:
