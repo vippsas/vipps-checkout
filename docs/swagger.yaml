@@ -912,4 +912,4 @@ components:
           type: string
           description: 'Example: "user@example.com"'
       additionalProperties: false
-      description: Defines the details of the user.
+      description: Defines the details of the user. 
