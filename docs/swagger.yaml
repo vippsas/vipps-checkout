@@ -483,10 +483,6 @@ components:
           type: string
           description: 'One of the following: "WEB_REDIRECT", "NATIVE_REDIRECT". To ensure having a return URL based on an app URL, use "NATIVE_REDIRECT".'
           nullable: true
-        requireUserInfo:
-          type: boolean
-          description: 'Requires the customer to consent to share their email and openid sub with the merchant to be able to make a wallet payment (default: false).'
-          nullable: true
       additionalProperties: false
       description: Request to set up a Checkout session
     InitiateSessionResponse:
