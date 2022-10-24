@@ -1,8 +1,7 @@
 openapi: 3.0.1
 info:
-  description: >-
-    For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).
-  title: checkout-backend-external.API
+  title: checkout-backend-merchant.API
+  description: 'For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).'
   version: v2
 servers:
   - url: https://apitest.vipps.no/checkout
@@ -20,41 +19,49 @@ paths:
           schema:
             type: string
             default: '{{vipps_system_name}}'
+            example: Acme Enterprises Ecommerce DeLuxe
         - name: Vipps-System-Version
           in: header
           schema:
             type: string
             default: '{{vipps_system_version}}'
+            example: '3.1.2'
         - name: Vipps-System-Plugin-Name
           in: header
           schema:
             type: string
             default: '{{vipps_system_plugin_name}}'
+            example: acme-webshop
         - name: Vipps-System-Plugin-Version
           in: header
           schema:
             type: string
             default: '{{vipps_system_plugin_version}}'
+            example: '4.5.6'
         - name: client_id
           in: header
           schema:
             type: string
             default: '{{client_id}}'
+            example: fb492b5e-7907-4d83-bc20-c7fb60ca35de
         - name: client_secret
           in: header
           schema:
             type: string
             default: '{{client_secret}}'
+            example: Y8Kteew6GE3ZmeycEt6egg==
         - name: Ocp-Apim-Subscription-Key
           in: header
           schema:
             type: string
             default: '{{Ocp-Apim-Subscription-Key}}'
+            example: 0f14ebcab0eb4b29ae0cb90d91b4a84a
         - name: Merchant-Serial-Number
           in: header
           schema:
             type: string
             default: '{{merchantSerialNumber}}'
+            example: '123456'
       requestBody:
         description: ''
         content:
@@ -63,19 +70,37 @@ paths:
               allOf:
                 - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
-            example: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+            examples:
+              Swagger:
+                summary: Swagger
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"Butikk AS","email":"butikk.as@email.no","phoneNumber":"+4748644347","address":{"streetAddress":"Dronning Eufemias gate 11","postalCode":"0150","city":"Oslo","country":"Norge"}}}}},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+              Postman:
+                summary: Postman
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
           text/json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
-            example: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+            examples:
+              Swagger:
+                summary: Swagger
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"Butikk AS","email":"butikk.as@email.no","phoneNumber":"+4748644347","address":{"streetAddress":"Dronning Eufemias gate 11","postalCode":"0150","city":"Oslo","country":"Norge"}}}}},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+              Postman:
+                summary: Postman
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
           application/*+json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
-            example: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+            examples:
+              Swagger:
+                summary: Swagger
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"Butikk AS","email":"butikk.as@email.no","phoneNumber":"+4748644347","address":{"streetAddress":"Dronning Eufemias gate 11","postalCode":"0150","city":"Oslo","country":"Norge"}}}}},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+              Postman:
+                summary: Postman
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
       responses:
         '200':
           description: Success
@@ -83,6 +108,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InitiateSessionResponse'
+              example: {"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJUdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIiwic2Vzc2lvblBvbGxpbmdVUkwiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvY2hlY2tvdXQvc2Vzc2lvbi9UdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIn0.ln7VzZkNvUGu0HhyA_a8IbXQN35WhDBmCYC9IvyYL-I","checkoutFrontendUrl":"https://vippscheckout.vipps.no/v1/","pollingUrl":"https://api.vipps.no/checkout/v1/session/31gf1g413121"}
       callbacks:
         Dynamic logistics:
           '{$request.body#/logistics/dynamicOptionsCallback}':
@@ -131,7 +157,7 @@ paths:
       parameters:
         - name: sessionId
           in: path
-          description: 'The Id of the session. Example: "123123".'
+          description: 'The Id of the session. Example: "v52EtjZriRmGiKiAKHByK2".'
           required: true
           schema:
             type: string
@@ -141,41 +167,49 @@ paths:
           schema:
             type: string
             default: '{{vipps_system_name}}'
+            example: Acme Enterprises Ecommerce DeLuxe
         - name: Vipps-System-Version
           in: header
           schema:
             type: string
             default: '{{vipps_system_version}}'
+            example: '3.1.2'
         - name: Vipps-System-Plugin-Name
           in: header
           schema:
             type: string
             default: '{{vipps_system_plugin_name}}'
+            example: acme-webshop
         - name: Vipps-System-Plugin-Version
           in: header
           schema:
             type: string
             default: '{{vipps_system_plugin_version}}'
+            example: '4.5.6'
         - name: client_id
           in: header
           schema:
             type: string
             default: '{{client_id}}'
+            example: fb492b5e-7907-4d83-bc20-c7fb60ca35de
         - name: client_secret
           in: header
           schema:
             type: string
             default: '{{client_secret}}'
+            example: Y8Kteew6GE3ZmeycEt6egg==
         - name: Ocp-Apim-Subscription-Key
           in: header
           schema:
             type: string
             default: '{{Ocp-Apim-Subscription-Key}}'
+            example: 0f14ebcab0eb4b29ae0cb90d91b4a84a
         - name: Merchant-Serial-Number
           in: header
           schema:
             type: string
             default: '{{merchantSerialNumber}}'
+            example: '123456'
       responses:
         '200':
           description: Success
@@ -183,6 +217,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetSessionResponse'
+              example: {"sessionId":"v52EtjZriRmGiKiAKHByK2","reference":"acme-shop-123-order123abc","sessionState":"SessionStarted","paymentMethod":"Wallet","paymentDetails":{"amount":{"value":10000,"currency":"NOK"},"state":"AUTHORISED"},"shippingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO","shippingMethodId":"postenservicepakke1","pickupPoint":{"id":"123","name":"Storo Storsenter","address":"Vitaminveien 7","postalCode":"0485","city":"OSLO","country":"NO"}},"billingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO"}}
         '404':
           description: The specified session id is unknown.
   /v2/session/cancel:
@@ -196,41 +231,49 @@ paths:
           schema:
             type: string
             default: '{{vipps_system_name}}'
+            example: Acme Enterprises Ecommerce DeLuxe
         - name: Vipps-System-Version
           in: header
           schema:
             type: string
             default: '{{vipps_system_version}}'
+            example: '3.1.2'
         - name: Vipps-System-Plugin-Name
           in: header
           schema:
             type: string
             default: '{{vipps_system_plugin_name}}'
+            example: acme-webshop
         - name: Vipps-System-Plugin-Version
           in: header
           schema:
             type: string
             default: '{{vipps_system_plugin_version}}'
+            example: '4.5.6'
         - name: client_id
           in: header
           schema:
             type: string
             default: '{{client_id}}'
+            example: fb492b5e-7907-4d83-bc20-c7fb60ca35de
         - name: client_secret
           in: header
           schema:
             type: string
             default: '{{client_secret}}'
+            example: Y8Kteew6GE3ZmeycEt6egg==
         - name: Ocp-Apim-Subscription-Key
           in: header
           schema:
             type: string
             default: '{{Ocp-Apim-Subscription-Key}}'
+            example: 0f14ebcab0eb4b29ae0cb90d91b4a84a
         - name: Merchant-Serial-Number
           in: header
           schema:
             type: string
             default: '{{merchantSerialNumber}}'
+            example: '123456'
       requestBody:
         content:
           application/json:
@@ -238,19 +281,37 @@ paths:
               allOf:
                 - $ref: '#/components/schemas/CancelSessionRequest'
               description: Request to cancel the session.
-            example: {"sessionId":"{{sessionId}}"}
+            examples:
+              Swagger:
+                summary: Swagger
+                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
+              Postman:
+                summary: Postman
+                value: {"sessionId":"{{sessionId}}"}
           text/json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/CancelSessionRequest'
               description: Request to cancel the session.
-            example: {"sessionId":"{{sessionId}}"}
+            examples:
+              Swagger:
+                summary: Swagger
+                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
+              Postman:
+                summary: Postman
+                value: {"sessionId":"{{sessionId}}"}
           application/*+json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/CancelSessionRequest'
               description: Request to cancel the session.
-            example: {"sessionId":"{{sessionId}}"}
+            examples:
+              Swagger:
+                summary: Swagger
+                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
+              Postman:
+                summary: Postman
+                value: {"sessionId":"{{sessionId}}"}
       responses:
         '200':
           description: Success
@@ -314,7 +375,7 @@ components:
       properties:
         sessionId:
           type: string
-          description: 'The Id of the session to cancel. Example: "123123".'
+          description: 'The Id of the session to cancel. Example: "v52EtjZriRmGiKiAKHByK2"'
       additionalProperties: false
       description: Request to cancel the session.
     CheckoutSessionThirdPartyInformationHeaders:
@@ -597,7 +658,7 @@ components:
         sessionState:
           allOf:
             - $ref: '#/components/schemas/PaymentCallbackState'
-          description: 'The state of the session. Example: "SessionStarted"'
+          description: 'The state of the session. Example: "PaymentSuccessful"'
         paymentMethod:
           allOf:
             - $ref: '#/components/schemas/PaymentMethod'
