@@ -56,7 +56,7 @@ Save the following files to your computer:
    * `client_secret` - Merchant key is required for getting the access token.
    * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
    * `merchantSerialNumber` - Merchant id.
-   * `internationalMobileNumber` - The mobile number for the test app profile you have received or registered, including country code.
+   * `internationalMobileNumber` - The mobile number for the test app profile you have received or registered, including country code. Do not include the `+`.
 
 You can update any of the other environment variables. Be aware of this:
 
@@ -72,6 +72,9 @@ You can update any of the other environment variables. Be aware of this:
 
    The `reference` and `sessionId` variables are automatically set in the environment
    of this Postman example and can be used for subsequent calls relating to this session.
+
+   To display the session, you will need to load the Vipps Checkout SDK in your website, as described in
+   [API Guide: Displaying the session](vipps-checkout-api.md#step-2-displaying-the-session).
 
 ## Retrieve the session information
 
