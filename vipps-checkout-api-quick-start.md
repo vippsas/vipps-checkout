@@ -73,6 +73,9 @@ You can update any of the other environment variables. Be aware of this:
    The `reference` and `sessionId` variables are automatically set in the environment
    of this Postman example and can be used for subsequent calls relating to this session.
 
+   To display the session, you will need to load the Vipps Checkout SDK in your website, as described in
+   [API Guide: Displaying the session](vipps-checkout-api.md#step-2-displaying-the-session).
+
 ## Retrieve the session information
 
 1. Send request `Get session info`. This retrieves the session information by using
