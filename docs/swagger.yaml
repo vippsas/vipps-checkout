@@ -71,36 +71,36 @@ paths:
                 - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
             examples:
-              Swagger:
-                summary: Swagger
-                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"Butikk AS","email":"butikk.as@email.no","phoneNumber":"+4748644347","address":{"streetAddress":"Dronning Eufemias gate 11","postalCode":"0150","city":"Oslo","country":"Norge"}}}}},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
               Postman:
                 summary: Postman
-                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+              Swagger:
+                summary: Swagger
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
           text/json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
             examples:
-              Swagger:
-                summary: Swagger
-                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"Butikk AS","email":"butikk.as@email.no","phoneNumber":"+4748644347","address":{"streetAddress":"Dronning Eufemias gate 11","postalCode":"0150","city":"Oslo","country":"Norge"}}}}},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
               Postman:
                 summary: Postman
-                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+              Swagger:
+                summary: Swagger
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
           application/*+json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/InitiateSessionRequest'
               description: Request to set up a Checkout session
             examples:
-              Swagger:
-                summary: Swagger
-                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"Butikk AS","email":"butikk.as@email.no","phoneNumber":"+4748644347","address":{"streetAddress":"Dronning Eufemias gate 11","postalCode":"0150","city":"Oslo","country":"Norge"}}}}},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
               Postman:
                 summary: Postman
-                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
+              Swagger:
+                summary: Swagger
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"Norge"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
       responses:
         '200':
           description: Success
@@ -119,6 +119,10 @@ paths:
                   application/json:
                     schema:
                       $ref: '#/components/schemas/MerchantLogisticsCallbackRequestBody'
+                    examples:
+                      Swagger:
+                        summary: Swagger
+                        value: '{"StreetAddress":"Robert Levins gate 5","PostalCode":"0150","Region":"Oslo","Country":"NO"}'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
@@ -141,6 +145,10 @@ paths:
                   application/json:
                     schema:
                       $ref: '#/components/schemas/PaymentCallbackRequestDto'
+                    examples:
+                      Swagger:
+                        summary: Swagger
+                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","Instabox":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
@@ -282,36 +290,36 @@ paths:
                 - $ref: '#/components/schemas/CancelSessionRequest'
               description: Request to cancel the session.
             examples:
-              Swagger:
-                summary: Swagger
-                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
               Postman:
                 summary: Postman
                 value: {"sessionId":"{{sessionId}}"}
+              Swagger:
+                summary: Swagger
+                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
           text/json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/CancelSessionRequest'
               description: Request to cancel the session.
             examples:
-              Swagger:
-                summary: Swagger
-                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
               Postman:
                 summary: Postman
                 value: {"sessionId":"{{sessionId}}"}
+              Swagger:
+                summary: Swagger
+                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
           application/*+json:
             schema:
               allOf:
                 - $ref: '#/components/schemas/CancelSessionRequest'
               description: Request to cancel the session.
             examples:
-              Swagger:
-                summary: Swagger
-                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
               Postman:
                 summary: Postman
                 value: {"sessionId":"{{sessionId}}"}
+              Swagger:
+                summary: Swagger
+                value: {"sessionId":"v52EtjZriRmGiKiAKHByK2"}
       responses:
         '200':
           description: Success
@@ -499,6 +507,31 @@ components:
           description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
       additionalProperties: false
       description: Response from initiating a session.
+    Instabox:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: The client id provided to you by Instabox
+        clientSecret:
+          type: string
+          description: The client secret provided to you by Instabox
+      additionalProperties: false
+      description: Configuration required to enable Instabox logistics options
+    InstaboxBookingDetails:
+      type: object
+      properties:
+        availabilityToken:
+          type: string
+          description: Identifies when the delivery options were fetched
+        serviceType:
+          type: string
+          description: Identifies the service (For example "EXPRESS")
+        sortCode:
+          type: string
+          description: Identifies the location
+      additionalProperties: false
+      description: Details needed to book an instabox order
     Integrations:
       type: object
       properties:
@@ -506,6 +539,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/Porterbuddy'
           description: Configuration required to enable Porterbuddy logistics options
+          nullable: true
+        instabox:
+          allOf:
+            - $ref: '#/components/schemas/Instabox'
+          description: Configuration required to enable Instabox logistics options
           nullable: true
       additionalProperties: false
     Logistics:
@@ -569,6 +607,10 @@ components:
         isPorterbuddy:
           type: boolean
           description: If this is a Porterbuddy shipping option. Can not be used with AddressFields set to false
+          nullable: true
+        isInstabox:
+          type: boolean
+          description: If this is an Instabox shipping option. Can not be used with AddressFields set to false
           nullable: true
       additionalProperties: false
       description: A logistics option to be presented to the customer
@@ -760,6 +802,11 @@ components:
         country:
           type: string
           description: 'Pickup point''s country. Example: NO'
+        instabox:
+          allOf:
+            - $ref: '#/components/schemas/InstaboxBookingDetails'
+          description: Instabox details
+          nullable: true
       additionalProperties: false
       description: The pickup point the customer selected .
     Porterbuddy:
@@ -835,7 +882,7 @@ components:
           type: string
           description: 'Can be either country code or country name. Example: "NO"'
       additionalProperties: false
-      description: Information about the customer to be prefilled
+      description: "Information about the customer to be prefilled.\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
     RequestAmount:
       type: object
       properties:
