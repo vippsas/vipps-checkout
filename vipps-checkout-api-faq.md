@@ -34,3 +34,13 @@ Cards issued in the following countries are accepted: EEA/EØS (European Economi
 ### Is Visa Electron supported?
 
 Yes, if the Visa Electron card is enabled for online purchases.
+
+## Shipping
+
+### Can I have "Pick-up in store" as shipping option with Vipps Checkout?
+
+Yes. 
+
+Vipps Checkout will basically display whatever shipping methods defined byt the webshop, so if you want Vipps Checkout to display "Pick up at the Royal Norwegian Castle" we will do it if we get that message over our API.
+
+For WooCommerce based webshops, this is done in the shipping configuration part of WooCommerce admin: https://[_your webshop URL_]/wp-admin/admin.php?page=wc-settings&tab=shipping
