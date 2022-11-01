@@ -41,7 +41,7 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
         and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc.
         See the API guide:
         [Recommendations regarding handling redirects](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#recommendations-regarding-handling-redirects).
-        See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)
+        See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://github.com/vippsas/vipps-developers/blob/master/faqs/common-problems-faq.md#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)
   - [ ] The Vipps branding must be according to the
         [Vipps design guidelines](https://github.com/vippsas/vipps-design-guidelines).
   - [ ] Make sure your customer service, etc has all the tools and information they need
@@ -63,4 +63,3 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
 [refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
 [adjust-authorization-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
 [force-approve-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove/operation/forceApprove
-

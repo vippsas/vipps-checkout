@@ -11,7 +11,7 @@ Vipps Checkout provides an all-in-one solution for receiving payment for goods a
 
 API version: 2.0.0.
 
-Document version: 1.1.2.
+Document version: 1.1.3.
 
 **Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
@@ -343,7 +343,7 @@ var vippsCheckout = VippsCheckout({
 
 ### SDK events
 
-You can listen to changes in Checkout by supplying callbacks to the `on` option in the SDK. 
+You can listen to changes in Checkout by supplying callbacks to the `on` option in the SDK.
 Each key in the map supplied to `on` corresponds to an event and accepts a call callback-function with a `data` parameter as a value.
 
 Available events:
@@ -457,7 +457,7 @@ Full and partial Capture [`POST:epayment/v1/{reference}/capture`][capture-paymen
 
 # Integration partner and plugin guidelines
 
-Vipps Checkout supports [partner-key-based authentication](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys).
+Vipps Checkout supports [partner-key-based authentication](https://github.com/vippsas/vipps-partner/blob/main/partner-keys.md).
 
 In the initiation request, use your own credentials and send the Merchant Serial Number as described. This results in an on-behalf-of authentication if the merchant has a valid connection to your solution.
 
@@ -479,7 +479,7 @@ When you initiate a payment, it will be reserved until you capture it. The captu
 
 *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
 
-For more info on the difference, see [Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md#reservations-and-captures)
+For more info on the difference, see [FAQs: Reservations and capture](https://github.com/vippsas/vipps-developers/blob/master/faqs/reserve-and-capture-faq.md)
 
 # Vipps side Transaction information
 
