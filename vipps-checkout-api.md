@@ -53,11 +53,11 @@ Document version: 1.1.2.
 
 <!-- END_TOC -->
 
-# Checkout Features
+## Checkout Features
 
 Explains the high level features of Vipps Checkout.
 
-## Vipps Checkout API
+### Vipps Checkout API
 
 Vipps Checkout works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
 
@@ -65,27 +65,27 @@ Vipps Checkout works around the concept of a _session_, which has a time to live
 - session status
 - session cancellation
 
-## Vipps Checkout frontend
+### Vipps Checkout frontend
 
 Once a session is created, it is to be opened inside an iFrame embedded on the merchant website. The iFrame loads a web application that fetches all necessary information about the session from Vipps.
 
-### SDK
+#### SDK
 
 Vipps provides an SDK to make opening the session on the merchant easy. It is highly recommended to use this.
 
-## Shipping
+### Shipping
 
 In most situations a merchant wants to send goods to a customer using a shipping provider. Vipps Checkout supports two different types of shipping configurations:
 
-### Static shipping
+#### Static shipping
 
 The merchant defines a set of static shipping options that _are not_ dependant on the address of the customer. This means that the merchant has to find a reasonable price for each shipping option, taking into account that the final cost of that shipment might be either more or less than the requested amount.
 
-### Dynamic shipping
+#### Dynamic shipping
 
 The merchant defines a _dynamic options callback URL_, which is called by Vipps Checkout every time a customer updates their address. The callback endpoint receives the updated address, and the merchant decides on a set of shipping options to display to the user.
 
-### Pickup points
+#### Pickup points
 
 We currently provide support for Posten/Bring and PostNord pickup points. As of now, lockers etc. are not supported.
 To enable pickup points for a logistics option, the isPickupPoint flag must be set to true.
@@ -96,7 +96,7 @@ We then return carrier's pickup point ID, pickup point name and address.
 ![pickup_point_example](resources/pickup_point_example.png)
 ![pickup_point_select](resources/pickup_point_select.png)
 
-### Porterbuddy integration
+#### Porterbuddy integration
 
 Porterbuddy is a shipping provider that offers home delivery to a time slot selected by the customer. To enable it, the merchant must:
 
@@ -132,7 +132,7 @@ sequenceDiagram
 
 ![porterbuddy_example](resources/porterbuddy_example.png)
 
-## Vipps Checkout Elements
+### Vipps Checkout Elements
 
 With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system.
 
@@ -140,7 +140,7 @@ The data collected can be adjusted according to your needs with the fields `addr
 
 These fields are by default set to `true` and, if not specified, will return the full address and contact details in the Checkout session.
 
-### AddressFields false example
+#### AddressFields false example
 
 If you do not need the address from a user you can disable it, resulting in the following personal details form.
 
@@ -150,29 +150,29 @@ And the following payment form
 
 ![Address_field_false_form](resources/addressfields_false_form_2.png)
 
-### Addressfields and ContactFields false example
+#### Addressfields and ContactFields false example
 
 If you do not need the contact details for a customer you can disable it, resulting in the following session
 
 ![payment_only](resources/addressfields_false_contactfields_false.png)
 
-### Combination with shipping
+#### Combination with shipping
 
 These options may be combined with shipping if it fits your scenario. For example resulting in the following session:
 
 ![fields_false_with_shipping](resources/fields_false_with_shipping.png)
 
-## Remembering of customer data
+### Remembering of customer data
 
 Vipps Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different Vipps Checkout sessions on the same machine.
 
-# System integration guidelines
+## System integration guidelines
 
 Be sure to always use the most updated version of the API when integrating.
 
 See also: [quick start guide](vipps-checkout-api-quick-start.md).
 
-## Flow diagram
+### Flow diagram
 
 The standard flow for a Vipps Checkout consists of
 
@@ -218,7 +218,7 @@ sequenceDiagram
   API->>Merchant: Receive callback/webhook result on session
 ```
 
-## Step 1: Initiating a session
+### Step 1: Initiating a session
 
 The merchant backend calls the [session initiation endpoint][create-checkout-session-endpoint]
 
@@ -247,13 +247,13 @@ All fields of the request body are described in our [API Reference][create-check
 
 The response object consists of a `token` and a `checkoutFrontendUrl`, which are used in the next step
 
-### Configuration for use inside a native mobile application
+#### Configuration for use inside a native mobile application
 
 Vipps Checkout can be used in an iOS or Android app to pay for goods and services. The Vipps Checkout frontend may then be opened directly inside a Webview, instead of as an iFrame inside a merchant website.
 
 In this situation the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of https. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps application, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consistently after payment.
 
-## Step 2: Displaying the session
+### Step 2: Displaying the session
 
 Load the SDK in the `<head>` section of the merchant website.
 
@@ -318,7 +318,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
 
 **Please note:** The Vipps Checkout frontend **is not** supposed to be open in its own browser window/tab. The only exception to this is when using Vipps Checkout inside a Webview in a native mobile application.
 
-### Sticky checkout session
+#### Sticky checkout session
 
 The SDK provides an alternative way to display the session, using a query parameter in the URL. This makes the session "sticky", meaning that the same session will open after a page refresh.
 
@@ -341,7 +341,7 @@ var vippsCheckout = VippsCheckout({
 })
 ```
 
-### SDK events
+#### SDK events
 
 You can listen to changes in Checkout by supplying callbacks to the `on` option in the SDK. 
 Each key in the map supplied to `on` corresponds to an event and accepts a call callback-function with a `data` parameter as a value.
@@ -356,9 +356,9 @@ Available events:
 | `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                     |
 | `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                     |
 
-#### Types
+##### Types
 
-##### ShippingOption
+###### ShippingOption
 
 | Parameter     | Type                             | Description                                                                 |
 |---------------|----------------------------------|-----------------------------------------------------------------------------|
@@ -368,14 +368,14 @@ Available events:
 | `product`     | `string`                         | The brand specific product (for example "Servicepakke" or "Home delivery"). |
 | `price`       | `Money`                          | The price of the shipping option.                                           |
 
-##### Money
+###### Money
 
 | Parameter                | Type     | Description                                                                                                 |
 |--------------------------|----------|-------------------------------------------------------------------------------------------------------------|
 | `fractionalDenomination` | `number` | Value of in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |
 | `currency`               | `string` | Three letter ISO-4217 currency code.                                                                        |
 
-##### Address
+###### Address
 
 | Parameter   | Type     |
 |-------------|----------|
@@ -388,7 +388,7 @@ Available events:
 | `phone`     | `string` |
 | `zip`       | `string` |
 
-#### Example
+##### Example
 
 ```js
 window.VippsCheckout = {
@@ -417,13 +417,13 @@ window.VippsCheckout = {
 ```
 
 
-## Step 3: Handling the result of the session
+### Step 3: Handling the result of the session
 
 After the user has completed the checkout process the merchant will be notified with transaction details through a _callback_ and _polling_
 
 **Please note:** It is highly recommended to implement polling in addition to callback. Vipps **does not** guarantee delivery of the callback.
 
-### Callback Handling
+#### Callback Handling
 
 The callback will be sent to a [callback endpoint (click on the "Callbacks" tab)][create-checkout-session-endpoint] implemented by the merchant
 
@@ -435,17 +435,17 @@ where `callbackPrefix` and `orderId` (also referred to as `transaction.reference
 
 Vipps demands that every callback is responded to with a `HTTP 202 response`. In the eventuality that any other response is sent, Vipps will retry with an exponential back off until 202 is received again. During this exponential back off, Vipps will pause any new notifications until a 202 is returned on the original callback. It is critical that the endpoint receiving the callback is robust. It should also be able to receive any additional data not specified in the minimum example so that it can be backwards compatible in accordance with our integration guidelines.
 
-### Session polling
+#### Session polling
 
 Vipps Checkout will expose a polling endpoint as described in our [Swagger][retrieve-sessioninfo-endpoint]. The complete URL for polling is returned from the [session creation endpoint][create-checkout-session-endpoint] as `pollingUrl`.
 
-### Determine status of payment
+#### Determine status of payment
 
 The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [Swagger schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
 If you want more granular information about the payment, you can call the [underlying API][get-payment-endpoint] that Vipps Checkout itself uses.
 
-## Step 3a: If a transaction is authorized, capture payment
+### Step 3a: If a transaction is authorized, capture payment
 
 If the payment state of a session received in callback, or when polling, is `AUTHORISED`, the amount of the transaction was successfully _reserved_. In order to actually move the money and complete the payment, the transaction must be _captured_. Capture must be done in accordance with your terms and conditions with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
 
@@ -455,23 +455,23 @@ Full and partial Capture [`POST:epayment/v1/{reference}/capture`][capture-paymen
 
 **Please note:** A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See [Transaction operations](vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
 
-# Integration partner and plugin guidelines
+## Integration partner and plugin guidelines
 
 Vipps Checkout supports [partner-key-based authentication](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#partner-keys).
 
 In the initiation request, use your own credentials and send the Merchant Serial Number as described. This results in an on-behalf-of authentication if the merchant has a valid connection to your solution.
 
-## Partner signup API guidelines
+### Partner signup API guidelines
 
 If you are using the [SignupAPI](https://github.com/vippsas/vipps-signup-api), you need to use the "Ecom access" key instead of the default access token in the API calls. This API is considered deprecated by Vipps and should be migrated away from.
 
-# Transaction operations (Capture, Cancel, Refund, Details)
+## Transaction operations (Capture, Cancel, Refund, Details)
 
 Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). See the [guideline for the integration can be found](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md). You should use the same credentials as the ones you use with Checkout.
 
 **Please note:** That the eCom API should not be used as it lacks full support for Card transactions.
 
-## Vipps Checkout only supports Reserve/Capture
+### Vipps Checkout only supports Reserve/Capture
 
 When you initiate a payment, it will be reserved until you capture it. Reserved means the customer has approved the payment. The funds are still in the customer's account, but not available to spend on other things. Capture means the funds are moved from customer's account to merchant's account.
 
@@ -481,11 +481,11 @@ When you initiate a payment, it will be reserved until you capture it. The captu
 
 For more info on the difference, see [Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md#reservations-and-captures)
 
-# Vipps side Transaction information
+## Vipps side Transaction information
 
 You might want to find the Vipps `transactionId` value of a transaction. This can be used, for example, to utilize [Vipps-assisted content monitoring](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md#vipps-assisted-content-monitoring) or to support account procedures.
 
-## Recommended integration (currently in pilot mode)
+### Recommended integration (currently in pilot mode)
 
 In order to integrate with the receipts functionality, you need to retrieve the pspreference in the "paymentAction": "AUTHORISATION" event from the [eventlog][get-payment-event-log-endpoint] endpoint. This is required when utilizing receipts with Vipps Checkout or Free standing card payments
 
