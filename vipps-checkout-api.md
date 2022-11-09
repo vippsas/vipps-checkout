@@ -270,7 +270,7 @@ with headers
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
-All fields of the request body are described in our [API Reference][create-checkout-session-endpoint].
+All fields of the request body are described in our [API Reference][create-checkout-session-endpoint]. 
 
 **Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
 
@@ -294,13 +294,13 @@ Load the SDK in the `<head>` section of the merchant website.
 
 The SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters
 
-| Parameter             | Description                                                                                                       | Optional |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
-| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                             | No       |
-| `iFrameContainerId`   | The id of the html element to contain the Checkout iFrame                                                         | No       |
-| `token`               | Token identifying the session. Comes from session creation response.                                              | No       |
+| Parameter             | Description                                                                                                      | Optional |
+|-----------------------|------------------------------------------------------------------------------------------------------------------| -------- |
+| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                            | No       |
+| `iFrameContainerId`   | The id of the html element to contain the Checkout iFrame                                                        | No       |
+| `token`               | Token identifying the session. Comes from session creation response.                                             | No       |
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
-| `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                   | Yes      |
+| `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                  | Yes      |
 
 Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js.
 
@@ -377,20 +377,20 @@ Each key in the map supplied to `on` corresponds to an event and accepts a call 
 
 Available events:
 
-| Parameter                      | Description                                                                                             | Type                                                                                                                                            |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `shipping_option_selected`     | Is triggered when the user selects a shipping option or `undefined` when shipping option is deselected. | `ShippingOption` &#124; `undefined`                                                                                                             |
-| `total_amount_changed`         | Is triggered when the total amount changes (for example when a shipping option is selected).            | `Money`                                                                                                                                         |
-| `session_status_changed`       | Is triggered when on changes in session status (for example when payment is started).                   | "SessionStarted" &#124; "PaymentInitiated" &#124; "PaymentSuccessful" &#124; "PaymentFailed" &#124; "SessionTerminated" &#124; "SessionExpired" |
-| `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                    |
-| `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                    |
+| Parameter                      | Description                                                                                             | Type                                                                                                                                             |
+|--------------------------------|---------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `shipping_option_selected`     | Is triggered when the user selects a shipping option or `undefined` when shipping option is deselected. | `ShippingOption` &#124; `undefined`                                                                                                              |
+| `total_amount_changed`         | Is triggered when the total amount changes (for example when a shipping option is selected).            | `Money`                                                                                                                                          |
+| `session_status_changed`       | Is triggered when on changes in session status (for example when payment is started).                   | "SessionStarted" &#124; "PaymentInitiated" &#124; "PaymentSuccessful" &#124; "PaymentFailed" &#124; "SessionTerminated" &#124; "SessionExpired"  |
+| `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                     |
+| `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                     |
 
 #### Types
 
 ##### ShippingOption
 
 | Parameter     | Type                             | Description                                                                 |
-| ------------- | -------------------------------- | --------------------------------------------------------------------------- |
+|---------------|----------------------------------|-----------------------------------------------------------------------------|
 | `id`          | `string`                         | The merchants shipping option identification.                               |
 | `brand`       | `string`                         | The name of the brand of the option (for example "Posten" or "PostNord").   |
 | `description` | `description` &#124; `undefined` | The description of the shipping option.                                     |
@@ -400,14 +400,14 @@ Available events:
 ##### Money
 
 | Parameter                | Type     | Description                                                                                                 |
-| ------------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
+|--------------------------|----------|-------------------------------------------------------------------------------------------------------------|
 | `fractionalDenomination` | `number` | Value of in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |
 | `currency`               | `string` | Three letter ISO-4217 currency code.                                                                        |
 
 ##### Address
 
 | Parameter   | Type     |
-| ----------- | -------- |
+|-------------|----------|
 | `address`   | `string` |
 | `city`      | `string` |
 | `country`   | `string` |
@@ -426,24 +426,25 @@ window.VippsCheckout = {
   language: "no",
   token: data.token,
   on: {
-    shipping_option_selected: function (data) {
+    "shipping_option_selected": function(data) {
       // Do something when the shipping option is selected
     },
-    total_amount_changed: function (data) {
+    "total_amount_changed": function(data) {
       // Do something when the total amount changed
     },
-    session_status_changed: function (data) {
+    "session_status_changed": function(data) {
       // Do something when status changed
     },
-    shipping_address_changed: function (data) {
+    "shipping_address_changed": function(data) {
       // Do something when shipping address changed
     },
-    customer_information_changed: function (data) {
+    "customer_information_changed": function(data) {
       // Do something when customer information changed
     },
   },
 };
 ```
+
 
 ## Step 3: Handling the result of the session
 
@@ -505,7 +506,7 @@ When you initiate a payment, it will be reserved until you capture it. Reserved 
 
 When you initiate a payment, it will be reserved until you capture it. The capture can be done a few seconds later, or several days later.
 
-_Direct Capture_, where a transaction is automatically captured upon reservation, _is not_ supported in Vipps Checkout, and transactions will fail.
+*Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
 
 For more info on the difference, see [FAQs: Reservations and capture](https://github.com/vippsas/vipps-developers/blob/master/faqs/reserve-and-capture-faq.md)
 
