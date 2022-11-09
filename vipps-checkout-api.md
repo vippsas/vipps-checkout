@@ -135,7 +135,7 @@ sequenceDiagram
 
 #### Instabox integration
 
-Instabox is a shipping provider that offers among others delivery to a locker location selected by the customer. To enable it, the merchant must:
+Instabox is a shipping provider that offers delivery to a locker location selected by the customer. To enable it, the merchant must:
 
 1. Provide Instabox credentials in the logistics.integrations.instabox object in session initiation.
 2. Provide a logistics option with "IsInstabox" flag set to true.
