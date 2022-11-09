@@ -28,6 +28,7 @@ Document version: 1.1.4.
     - [Dynamic shipping](#dynamic-shipping)
     - [Pickup points](#pickup-points)
     - [Porterbuddy integration](#porterbuddy-integration)
+    - [Instabox integration](#instabox-integration)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
     - [AddressFields false example](#addressfields-false-example)
     - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
@@ -87,7 +88,7 @@ The merchant defines a _dynamic options callback URL_, which is called by Vipps 
 
 #### Pickup points
 
-We currently provide support for Posten/Bring and PostNord pickup points. As of now, lockers etc. are not supported.
+We currently provide support for Posten/Bring, PostNord, and Instabox pickup points. As of now, we do not support lockers etc. in Posten/Bring and Postnord.
 To enable pickup points for a logistics option, the isPickupPoint flag must be set to true.
 
 The user selects the pickup point after picking their logistics option. The logistics option must have the isPickupPoint field set to true for this to appear.
@@ -113,15 +114,15 @@ sequenceDiagram
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session with Porterbuddy credentials
   API->>Merchant: Response containing token identifying the session
-  Merchant-->>User: 
+  Merchant-->>User:
   User->>API: Selects Porterbuddy shipping option
   API->>Porterbuddy: Retrieves delivery times for address
-  Porterbuddy-->>API: 
-  API-->>User: 
+  Porterbuddy-->>API:
+  API-->>User:
   User->>User: Selects delivery time
   User->>API: Completes payment
   API->>Porterbuddy: Books shipment
-  Porterbuddy-->>API: 
+  Porterbuddy-->>API:
 
   alt If booking fails
     API->>Merchant: Cancels payment and sends callback
@@ -131,6 +132,34 @@ sequenceDiagram
 ```
 
 ![porterbuddy_example](resources/porterbuddy_example.png)
+
+#### Instabox integration
+
+Instabox is a shipping provider that offers delivery to a locker location selected by the customer. To enable it, the merchant must:
+
+1. Provide Instabox credentials in the logistics.integrations.instabox object in session initiation.
+2. Provide a logistics option with "IsInstabox" flag set to true.
+
+```mermaid
+sequenceDiagram
+  actor User
+  participant API as Vipps Checkout API
+  participant Merchant
+  participant Instabox
+
+  User->>Merchant: Start shopping session, proceed to checkout
+  Merchant->>API: Start checkout session with Instabox credentials
+  Merchant-->>User:
+  User->>API: Selects Instabox shipping option
+  API->>Instabox: Retrieves available locker locations for address
+  Instabox-->>API:
+  API-->>User:
+  User->>User: Selects locker location
+  User->>API: Completes payment
+  API->>Instabox: Prebooks order
+  Instabox-->>API:
+  API->>Merchant: Marks payment as succeeded and sends callback
+```
 
 ### Vipps Checkout Elements
 
