@@ -145,15 +145,11 @@ sequenceDiagram
 
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session with Instabox credentials
-  Merchant-->>User:
   User->>API: Selects Instabox shipping option
   API->>Instabox: Retrieves available locker locations for address
-  Instabox-->>API:
-  API-->>User:
   User->>User: Selects locker location
   User->>API: Completes payment
   API->>Instabox: Prebooks order
-  Instabox-->>API:
   API->>Merchant: Marks payment as succeeded and sends callback
 ```
 
