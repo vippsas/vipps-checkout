@@ -114,16 +114,12 @@ sequenceDiagram
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session with Porterbuddy credentials
   API->>Merchant: Response containing token identifying the session
-  Merchant-->>User:
   User->>API: Selects Porterbuddy shipping option
   API->>Porterbuddy: Retrieves delivery times for address
-  Porterbuddy-->>API:
-  API-->>User:
   User->>User: Selects delivery time
   User->>API: Completes payment
   API->>Porterbuddy: Books shipment
-  Porterbuddy-->>API:
-
+  
   alt If booking fails
     API->>Merchant: Cancels payment and sends callback
   else If booking succeeds
@@ -149,15 +145,11 @@ sequenceDiagram
 
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session with Instabox credentials
-  Merchant-->>User:
   User->>API: Selects Instabox shipping option
   API->>Instabox: Retrieves available locker locations for address
-  Instabox-->>API:
-  API-->>User:
   User->>User: Selects locker location
   User->>API: Completes payment
   API->>Instabox: Prebooks order
-  Instabox-->>API:
   API->>Merchant: Marks payment as succeeded and sends callback
 ```
 
