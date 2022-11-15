@@ -1,241 +1,233 @@
 {
-	"info": {
-		"_postman_id": "74d0bb11-c7f7-45de-b99c-fb79f586fdae",
-		"name": "Checkout API v2 - Collection",
-		"description": "For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "v2/session",
-			"item": [
-				{
-					"name": "Create a Checkout session",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"if(pm.response.code === 200) { \r",
-									"    var jsonData = pm.response.json();\r",
-									"    var str = jsonData.pollingUrl\r",
-									"    var str2 = str.split('session/')[1]\r",
-									"    pm.environment.set('sessionId', str2);\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.environment.set('orderId',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Vipps-System-Name",
-								"value": "{{vipps_system_name}}"
-							},
-							{
-								"key": "Vipps-System-Version",
-								"value": "{{vipps_system_version}}"
-							},
-							{
-								"key": "Vipps-System-Plugin-Name",
-								"value": "{{vipps_system_plugin_name}}"
-							},
-							{
-								"key": "Vipps-System-Plugin-Version",
-								"value": "{{vipps_system_plugin_version}}"
-							},
-							{
-								"key": "client_id",
-								"value": "{{client_id}}"
-							},
-							{
-								"key": "client_secret",
-								"value": "{{client_secret}}"
-							},
-							{
-								"key": "Ocp-Apim-Subscription-Key",
-								"value": "{{Ocp-Apim-Subscription-Key}}"
-							},
-							{
-								"key": "Merchant-Serial-Number",
-								"value": "{{merchantSerialNumber}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"merchantInfo\": {\n    \"callbackPrefix\": \"{{callbackPrefix}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"currency\": \"{{currency}}\",\n      \"value\": 1000\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"amount\": {\n          \"currency\": \"{{currency}}\",\n          \"value\": 300\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"brand\": \"Posten\",\n        \"product\": \"home delivery\",\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\",\n        \"isPickupPoint\": false,\n        \"isPorterbuddy\": false,\n        \"isInstabox\": false\n      },\n      {\n        \"amount\": {\n          \"currency\": \"{{currency}}\",\n          \"value\": 300\n        },\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"brand\": \"Posten\",\n        \"product\": \"pick-up in store\",\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\",\n        \"isPickupPoint\": true,\n        \"isPorterbuddy\": false,\n        \"isInstabox\": false\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"customerInteraction\": \"customer_not_present\",\n  \"contactFields\": true,\n  \"addressFields\": true\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/checkout/v2/session",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"checkout",
-								"v2",
-								"session"
-							]
-						},
-						"description": "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page URL, free standing card page URL."
-					},
-					"response": []
-				},
-				{
-					"name": "Get session info",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Vipps-System-Name",
-								"value": "{{vipps_system_name}}"
-							},
-							{
-								"key": "Vipps-System-Version",
-								"value": "{{vipps_system_version}}"
-							},
-							{
-								"key": "Vipps-System-Plugin-Name",
-								"value": "{{vipps_system_plugin_name}}"
-							},
-							{
-								"key": "Vipps-System-Plugin-Version",
-								"value": "{{vipps_system_plugin_version}}"
-							},
-							{
-								"key": "client_id",
-								"value": "{{client_id}}"
-							},
-							{
-								"key": "client_secret",
-								"value": "{{client_secret}}"
-							},
-							{
-								"key": "Ocp-Apim-Subscription-Key",
-								"value": "{{Ocp-Apim-Subscription-Key}}"
-							},
-							{
-								"key": "Merchant-Serial-Number",
-								"value": "{{merchantSerialNumber}}"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/checkout/v2/session/:sessionId",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"checkout",
-								"v2",
-								"session",
-								":sessionId"
-							],
-							"variable": [
-								{
-									"key": "sessionId",
-									"value": "{{sessionId}}",
-									"description": "(Required) The Id of the session. Example: \"v52EtjZriRmGiKiAKHByK2\"."
-								}
-							]
-						},
-						"description": "Transaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
-					},
-					"response": []
-				},
-				{
-					"name": "Cancel current session",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Vipps-System-Name",
-								"value": "{{vipps_system_name}}"
-							},
-							{
-								"key": "Vipps-System-Version",
-								"value": "{{vipps_system_version}}"
-							},
-							{
-								"key": "Vipps-System-Plugin-Name",
-								"value": "{{vipps_system_plugin_name}}"
-							},
-							{
-								"key": "Vipps-System-Plugin-Version",
-								"value": "{{vipps_system_plugin_version}}"
-							},
-							{
-								"key": "client_id",
-								"value": "{{client_id}}"
-							},
-							{
-								"key": "client_secret",
-								"value": "{{client_secret}}"
-							},
-							{
-								"key": "Ocp-Apim-Subscription-Key",
-								"value": "{{Ocp-Apim-Subscription-Key}}"
-							},
-							{
-								"key": "Merchant-Serial-Number",
-								"value": "{{merchantSerialNumber}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"sessionId\": \"{{sessionId}}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/checkout/v2/session/cancel",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"checkout",
-								"v2",
-								"session",
-								"cancel"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "item": [
+    {
+      "id": "cf5ab180-26c4-4b07-a9f8-044ae9ea4353",
+      "name": "v2/session",
+      "item": [
+        {
+          "id": "871cbdfc-6a0b-41f4-8ac2-5dd0163113ec",
+          "name": "Create a Checkout session",
+          "request": {
+            "name": "Create a Checkout session",
+            "description": {
+              "content": "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page URL, free standing card page URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "session"
+              ],
+              "host": [
+                "{{base_url}}/checkout"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Vipps-System-Name",
+                "value": "{{vipps_system_name}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Vipps-System-Version",
+                "value": "{{vipps_system_version}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Vipps-System-Plugin-Name",
+                "value": "{{vipps_system_plugin_name}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Vipps-System-Plugin-Version",
+                "value": "{{vipps_system_plugin_version}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "client_id",
+                "value": "{{client_id}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "client_secret",
+                "value": "{{client_secret}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{Ocp-Apim-Subscription-Key}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Merchant-Serial-Number",
+                "value": "{{merchantSerialNumber}}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantInfo\": {\n    \"callbackPrefix\": \"{{callbackPrefix}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"currency\": \"{{currency}}\",\n      \"value\": 1000\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"amount\": {\n          \"currency\": \"{{currency}}\",\n          \"value\": 300\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"brand\": \"Posten\",\n        \"product\": \"home delivery\",\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\",\n        \"isPickupPoint\": false,\n        \"isPorterbuddy\": false,\n        \"isInstabox\": false\n      },\n      {\n        \"amount\": {\n          \"currency\": \"{{currency}}\",\n          \"value\": 300\n        },\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"brand\": \"Posten\",\n        \"product\": \"pick-up in store\",\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\",\n        \"isPickupPoint\": true,\n        \"isPorterbuddy\": false,\n        \"isInstabox\": false\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"customerInteraction\": \"customer_not_present\",\n  \"contactFields\": true,\n  \"addressFields\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if(pm.response.code === 200) { \r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    var str = jsonData.pollingUrl\r",
+                  "    var str2 = str.split('session/')[1]\r",
+                  "    pm.environment.set('sessionId', str2);\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.environment.set('orderId',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7548e96f-9f20-4d8f-8fc5-b1ff0254996c",
+          "name": "Get session info",
+          "request": {
+            "name": "Get session info",
+            "description": {
+              "content": "Transaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "session",
+                ":sessionId"
+              ],
+              "host": [
+                "{{base_url}}/checkout"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "{{sessionId}}",
+                  "key": "sessionId",
+                  "description": "(Required) The Id of the session. Example: \"v52EtjZriRmGiKiAKHByK2\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Vipps-System-Name",
+                "value": "{{vipps_system_name}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Vipps-System-Version",
+                "value": "{{vipps_system_version}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Vipps-System-Plugin-Name",
+                "value": "{{vipps_system_plugin_name}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Vipps-System-Plugin-Version",
+                "value": "{{vipps_system_plugin_version}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "client_id",
+                "value": "{{client_id}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "client_secret",
+                "value": "{{client_secret}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{Ocp-Apim-Subscription-Key}}",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "key": "Merchant-Serial-Number",
+                "value": "{{merchantSerialNumber}}",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "info": {
+    "_postman_id": "86944fd6-da20-45e2-96c8-30059924f2e8",
+    "name": "Checkout API v2 - Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).",
+      "type": "text/plain"
+    }
+  }
 }
