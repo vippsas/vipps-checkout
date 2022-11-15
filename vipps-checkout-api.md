@@ -458,11 +458,11 @@ Vipps demands that every callback is responded to with a `HTTP 202 response`. In
 
 #### Session polling
 
-Vipps Checkout will expose a polling endpoint as described in our [Swagger][retrieve-sessioninfo-endpoint]. The complete URL for polling is returned from the [session creation endpoint][create-checkout-session-endpoint] as `pollingUrl`.
+Vipps Checkout will expose a [polling endpoint][retrieve-sessioninfo-endpoint]. The complete URL for polling is returned from the [session creation endpoint][create-checkout-session-endpoint] as `pollingUrl`.
 
 #### Determine status of payment
 
-The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [Swagger schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
+The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [OpenAPI schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
 If you want more granular information about the payment, you can call the [underlying API][get-payment-endpoint] that Vipps Checkout itself uses.
 
@@ -478,17 +478,17 @@ Full and partial Capture [`POST:epayment/v1/{reference}/capture`][capture-paymen
 
 ## Integration partner and plugin guidelines
 
-Vipps Checkout supports [partner-key-based authentication](https://github.com/vippsas/vipps-partner/blob/main/partner-keys.md).
+Vipps Checkout supports [partner-key-based authentication](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/partner-keys).
 
 In the initiation request, use your own credentials and send the Merchant Serial Number as described. This results in an on-behalf-of authentication if the merchant has a valid connection to your solution.
 
 ### Partner signup API guidelines
 
-If you are using the [SignupAPI](https://github.com/vippsas/vipps-signup-api), you need to use the "Ecom access" key instead of the default access token in the API calls. This API is considered deprecated by Vipps and should be migrated away from.
+If you are using the [SignupAPI](https://github.com/vippsas/vipps-signup-api), you need to use the "Ecom access" key instead of the old access token. This API is considered deprecated by Vipps and should be migrated away from.
 
 ## Transaction operations (Capture, Cancel, Refund, Details)
 
-Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://github.com/vippsas/vipps-epayment-api). See the [guideline for the integration can be found](https://github.com/vippsas/vipps-epayment-api/blob/main/docs/api/Getting-Started.md). You should use the same credentials as the ones you use with Checkout.
+Vipps Checkout should be considered an extension of existing other Vipps commerce functionality. This means that transaction operations other than payment initiation, which is handled by Checkout (see [Checkout Checklist](vipps-checkout-api-checklist.md)), should be done on the ePayment API described [in their official docs](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/). See the [guideline for the integration can be found](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api//blob/main/docs/api/Getting-Started.md). You should use the same credentials as the ones you use with Checkout.
 
 **Please note:** That the eCom API should not be used as it lacks full support for Card transactions.
 
@@ -500,15 +500,15 @@ When you initiate a payment, it will be reserved until you capture it. The captu
 
 *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
 
-For more info on the difference, see [FAQs: Reservations and capture](https://github.com/vippsas/vipps-developers/blob/master/faqs/reserve-and-capture-faq.md)
+For more info on the difference, see [FAQs: Reservations and capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/reserve-and-capture-faq)
 
 ## Vipps side Transaction information
 
-You might want to find the Vipps `transactionId` value of a transaction. This can be used, for example, to utilize [Vipps-assisted content monitoring](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md#vipps-assisted-content-monitoring) or to support account procedures.
+You might want to find the Vipps `transactionId` value of a transaction. This can be used, for example, to utilize [Vipps-assisted content monitoring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) or to support account procedures.
 
 ### Recommended integration (currently in pilot mode)
 
-In order to integrate with the receipts functionality, you need to retrieve the pspreference in the "paymentAction": "AUTHORISATION" event from the [eventlog][get-payment-event-log-endpoint] endpoint. This is required when utilizing receipts with Vipps Checkout or Free standing card payments
+In order to integrate with the receipts functionality, you need to retrieve the psp reference in the "paymentAction": "AUTHORISATION" event from the [eventlog][get-payment-event-log-endpoint] endpoint. This is required when utilizing receipts with Vipps Checkout or Free standing card payments
 
 [create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session/post
 [retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get
