@@ -318,7 +318,7 @@ components:
           description: 'The Id of the session. Example: "123123".'
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         sessionState:
           allOf:
             - $ref: '#/components/schemas/BasicSessionState'
@@ -591,7 +591,7 @@ components:
           description: 'The merchant serial number for the sale unit. Example: "59474"'
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations"'
+          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid"'
         sessionState:
           allOf:
             - $ref: '#/components/schemas/PaymentCallbackState'
@@ -669,7 +669,7 @@ components:
           minLength: 8
           pattern: '^[-a-zA-Z0-9]*$'
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         paymentDescription:
           maxLength: 100
           minLength: 1
