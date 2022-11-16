@@ -54,7 +54,7 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
 [create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session/post
 [retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get
 [cancel-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session~1cancel/post
-[epayment-api-reference-url]: https://vippsas.github.io/vipps-epayment-api/
+[epayment-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/epayment
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
 [get-payment-event-log-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
