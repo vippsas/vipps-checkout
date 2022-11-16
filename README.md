@@ -29,12 +29,12 @@ See the disclaimer: <https://vippsas.github.io/vipps-developer-docs/docs/example
 
 ## How it works
 
-* [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works
+* [How It Works](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api-howitworks): An overview of how the eCommerce API works
 
 ## Getting started
 
 See
-[Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md)
+[Getting Started](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 ## Checkout API
@@ -49,8 +49,8 @@ for information about API keys, product activation, how to make API calls, etc.
 ## Questions?
 
 We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
-a [pull request](https://github.com/vippsas/vipps-checkout-api/pulls),
+Please create an [issue](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/issues),
+a [pull request](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/pulls),
 or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
 Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).

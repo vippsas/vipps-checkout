@@ -49,7 +49,7 @@ Document version 1.0.0.
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
 
 All subsequent transaction operations are fully supported in the
-[Vipps epayment API](https://github.com/vippsas/vipps-epayment-api).
+[Vipps epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/).
 
 See the [Vipps FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/) for common
 questions about captures, reservations, and refunds.
@@ -91,8 +91,8 @@ For WooCommerce-based webshops, this is done in the shipping configuration part 
 ## Questions?
 
 We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
-a [pull request](https://github.com/vippsas/vipps-checkout-api/pulls),
+Please create an [issue](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/issues),
+a [pull request](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/pulls),
 or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
 Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).

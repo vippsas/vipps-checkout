@@ -32,7 +32,7 @@ Document version 1.1.1.
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://github.com/vippsas/vipps-developers/blob/master/developer-resources/quick-start-guides.md) for information about getting your test environment set up.
+[Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/developer-resources/quick-start-guides) for information about getting your test environment set up.
 
 ### Step 1: Get the Vipps Postman collection and environment
 
@@ -94,8 +94,8 @@ You can update any of the other environment variables. Be aware of this:
 ## Questions?
 
 We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
-a [pull request](https://github.com/vippsas/vipps-checkout-api/pulls),
+Please create an [issue](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/issues),
+a [pull request](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/pulls),
 or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
 Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).

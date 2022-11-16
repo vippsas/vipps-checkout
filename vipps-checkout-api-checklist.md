@@ -26,8 +26,8 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
   - [ ] `Vipps-System-Version`
   - [ ] `Vipps-System-Plugin-Name`
   - [ ] `Vipps-System-Plugin-Version`
-- [ ] Follow the [orderId recommendations](https://github.com/vippsas/vipps-developers/blob/master/common-topics/orderid.md).
-- [ ] We recommend using Vipps Order management, as this is a massive benefit for the end user experience. It is mandatory for merchants using ["Vipps Facilitated Content Monitoring"](https://github.com/vippsas/vipps-order-management-api/blob/main/vipps-order-management-api.md).
+- [ ] Follow the [orderId recommendations](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid).
+- [ ] We recommend using Vipps Order management, as this is a massive benefit for the end user experience. It is mandatory for merchants using ["Vipps Facilitated Content Monitoring"](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api).
 - [ ] Correctly handle callbacks from Vipps, both for successful and unsuccessful payments.
       See the API documentation for
       [how callback URLs are built](vipps-checkout-api.md#callback-handling),
@@ -40,8 +40,8 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
   - [ ] The merchant must handle that the `fallback` URL is opened in the default browser on the phone,
         and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc.
         See the API guide:
-        [Recommendations regarding handling redirects](https://github.com/vippsas/vipps-developers/blob/master/common-topics/redirects.md).
-        See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://github.com/vippsas/vipps-developers/blob/master/faqs/common-problems-faq.md#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)
+        [Recommendations regarding handling redirects](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/redirects).
+        See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/common-problems-faq#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)
   - [ ] The Vipps branding must be according to the
         [Vipps design guidelines](https://github.com/vippsas/vipps-design-guidelines).
   - [ ] Make sure your customer service, etc has all the tools and information they need
