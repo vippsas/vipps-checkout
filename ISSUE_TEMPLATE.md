@@ -1,8 +1,19 @@
-<!--
-BEFORE YOU SUBMIT AN ISSUE
+<!-- START_METADATA
+---
+title: Issue template
+sidebar_position: 30
+draft: true
+---
+END_METADATA -->
 
-⚠️ The fastest way to get help or get in touch with us is if you have any problems is through the Vipps technical documentation ⚠️
-https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact
+<!--
+
+⚠️ The fastest way to get help or get in touch with us is if you have any problems is through the  ⚠️
+[Vipps technical documentation](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact)
+
+# Issue Template
+
+BEFORE YOU SUBMIT AN ISSUE
 
 Almost all requests we get are already covered in the technical documentation.
 Please check the FAQs (Frequently Asked Questions), or use the search functionality
