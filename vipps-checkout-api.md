@@ -11,7 +11,7 @@ Vipps Checkout provides an all-in-one solution for receiving payment for goods a
 
 API version: 2.0.0.
 
-Document version: 1.1.4.
+Document version: 1.1.5.
 
 **Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
@@ -72,7 +72,13 @@ Once a session is created, it is to be opened inside an iFrame embedded on the m
 
 #### SDK
 
-Vipps provides an SDK to make opening the session on the merchant easy. It is highly recommended to use this.
+Vipps provides an
+[SDK](#step-2-displaying-the-session)
+to make opening the session on the merchant easy.
+
+It is _**strongly**_ recommended to use the SDK.
+If you do not use the SDK your implementation will require far more coding,
+and you will not get improvements and bugfixes we do in the SDK.
 
 ### Shipping
 
@@ -119,7 +125,7 @@ sequenceDiagram
   User->>User: Selects delivery time
   User->>API: Completes payment
   API->>Porterbuddy: Books shipment
-  
+
   alt If booking fails
     API->>Merchant: Cancels payment and sends callback
   else If booking succeeds
@@ -262,7 +268,7 @@ with headers
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
-All fields of the request body are described in our [API Reference][create-checkout-session-endpoint]. 
+All fields of the request body are described in our [API Reference][create-checkout-session-endpoint].
 
 **Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
 
