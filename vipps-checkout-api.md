@@ -72,9 +72,10 @@ Once a session is created, it is to be opened inside an iFrame embedded on the m
 
 #### SDK
 
-Vipps provides an
-[SDK](#step-2-displaying-the-session)
-to make opening the session on the merchant easy.
+Vipps provides an SDK to make opening the session on the merchant easy
+(the SDK is
+[explained in detail](#step-2-displaying-the-session)
+later in this guide).
 
 It is _**strongly**_ recommended to use the SDK.
 If you do not use the SDK your implementation will require far more coding,
