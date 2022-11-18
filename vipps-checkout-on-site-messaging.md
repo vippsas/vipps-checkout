@@ -54,12 +54,22 @@ If the badge is too small or too large to fit your content, you can override the
 <vipps-badge vipps-senere variant="purple" style="font-size: 1.5rem;"></vipps-badge>
 ```
 
-Which will scale the badge to 1.5x the size of the root font-size. You may also use `px` or `em` values to scale the _badge_.
+Which will scale the _badge_ to 1.5x the size of the root font-size. You may also use `px` or `em` values to scale the _badge_.
 
-Use `text-align` to align the badge:
+The _badge_ is an `inline` element by default, which means it will stay on the same line as sibling elements.
+
+So to center or fill the _badge_ you have to set `display: block` on the element to prevent it from being `inline`.
+
+Use `text-align` with `display:block` to align the _badge_:
 
 ```html
-<vipps-badge vipps-senere amount="100000" variant="purple" style="text-align: center;"></vipps-badge>
+<vipps-badge vipps-senere amount="100000" variant="purple" style="display: block; text-align: center;"></vipps-badge>
+```
+
+Or `width: 100%` to fill the parent container:
+
+```html
+<vipps-badge vipps-senere amount="100000" variant="purple" style="display: block; width: 100%;"></vipps-badge>
 ```
 
 ## Integrations
