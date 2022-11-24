@@ -49,8 +49,8 @@ for information about API keys, product activation, how to make API calls, etc.
 ## Questions?
 
 We're always happy to help with code or other questions you might have!
-Please create an [issue](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/issues),
-a [pull request](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/pulls),
+Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
+a [pull request](https://github.com/vippsas/vipps-checkout-api/pulls),
 or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
 Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
