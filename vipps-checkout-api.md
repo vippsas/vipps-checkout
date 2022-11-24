@@ -29,6 +29,7 @@ Document version: 1.1.5.
     - [Pickup points](#pickup-points)
     - [Porterbuddy integration](#porterbuddy-integration)
     - [Instabox integration](#instabox-integration)
+  - [Vipps Checkout Direct](#vipps-checkout-direct)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
     - [AddressFields false example](#addressfields-false-example)
     - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
@@ -160,6 +161,11 @@ sequenceDiagram
   API->>Merchant: Marks payment as succeeded and sends callback
 ```
 
+### Vipps Checkout Direct
+
+With Vipps Checkout Direct you can easily implement an express checkout experience directly from a single product without going through a shopping cart. Vipps Checkout Direct decouples you from needing to embed the iFrame and lets us handle everything at checkout.vipps.no before returning the customer to your shop after a payment is finished. To use Vipps Checkout Direct, follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
+
+
 ### Vipps Checkout Elements
 
 With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system.
@@ -290,6 +296,10 @@ Load the SDK in the `<head>` section of the merchant website.
   <script src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
 </head>
 ```
+
+#### Alternative 1: Classic implementation where Vipps Checkout is embedded in an iFrame on your site
+
+This is the standard flow where Vipps Checkout is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Vipps Checkout Direct](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
 
 The SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters
 
@@ -443,6 +453,56 @@ window.VippsCheckout = {
   },
 };
 ```
+
+#### Alternative 2: Vipps Checkout Direct - we handle the checkout and redirect the user back to you
+
+If you want to checkout a single item directly we offer Vipps Checkout Direct. Hook this flow up on a button directly on a product, and we handle the rest by redirecting the user to checkout.vipps.no where we handle the checkout. We will return the customer back to your site when finished.
+
+The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this with the following parameters
+
+| Parameter             | Description                                                                                                      | Optional |
+|-----------------------|------------------------------------------------------------------------------------------------------------------| -------- |
+| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                            | No       |
+| `token`               | Token identifying the session. Comes from session creation response.                                             | No       |
+| `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
+
+**Please note:** To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The javascript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the Javascript on the frontend, and then in that backend call the Checkout create session endpoint so you don’t leak the keys.
+
+```html
+<html>
+  <head>
+    <title>Merchant website</title>
+    <script src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
+  </head>
+  <body>
+    <button type="button" id="checkout-button">Checkout with Vipps</button>
+    <script>
+      document
+        .getElementById("checkout-button")
+        .addEventListener("click", function () {
+          // Relay an initiate session request to Vipps Checkout API through the merchant's backend
+          fetch("<MERCHANT BACKEND CREATE SESSION URL>", {
+            method: "POST",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              VippsCheckoutDirect({
+                checkoutFrontendUrl: data.checkoutFrontendUrl,
+                language: "no",
+                token: data.token,
+              });
+            })
+            .catch((error) => {
+              // Handle at least these two types of errors here:
+              // 1. Fetch to create session endpoint failed
+              // 2. VippsCheckout SDK not loaded resulting in VippsCheckout not being defined
+            });
+        });
+    </script>
+  </body>
+</html>
+```
+**Please note:** The `VippsCheckoutDirect` method in the SDK can be used instead of `VippsCheckout` as per. alternative 1 if you want to buypass the iFrame flow and let Vipps handle the checkout completely.
 
 
 ### Step 3: Handling the result of the session
