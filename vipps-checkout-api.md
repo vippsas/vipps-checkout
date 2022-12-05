@@ -29,12 +29,15 @@ Document version: 1.1.5.
     - [Pickup points](#pickup-points)
     - [Porterbuddy integration](#porterbuddy-integration)
     - [Instabox integration](#instabox-integration)
+    - [Helthjem integration](#helthjem-integration)
   - [Vipps Checkout Direct](#vipps-checkout-direct)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
     - [AddressFields false example](#addressfields-false-example)
     - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
     - [Combination with shipping](#combination-with-shipping)
   - [Remembering of customer data](#remembering-of-customer-data)
+  - [Receipts](#receipts)
+    - [Receipts and Assisted Content Monitoring](#receipts-and-assisted-content-monitoring)
 - [System integration guidelines](#system-integration-guidelines)
   - [Flow diagram](#flow-diagram)
   - [Step 1: Initiating a session](#step-1-initiating-a-session)
@@ -96,7 +99,7 @@ The merchant defines a _dynamic options callback URL_, which is called by Vipps 
 
 #### Pickup points
 
-We currently provide support for Posten/Bring, PostNord, and Instabox pickup points. As of now, we do not support lockers etc. in Posten/Bring and Postnord.
+We currently provide support for Posten/Bring, PostNord, Instabox and Helthjem pickup points. As of now, we do not support lockers etc. in Posten/Bring and Postnord.
 To enable pickup points for a logistics option, the isPickupPoint flag must be set to true.
 
 The user selects the pickup point after picking their logistics option. The logistics option must have the isPickupPoint field set to true for this to appear.
@@ -161,10 +164,34 @@ sequenceDiagram
   API->>Merchant: Marks payment as succeeded and sends callback
 ```
 
+#### Helthjem integration
+
+**(v3 only)**
+
+Helthjem is a shipping provider that offers delivery to a pickuppoint selected by the customer (and also to the doormat, but there is no integration for that yet). To enable it, the merchant must:
+
+1. Provide Helthjem credentials in the logistics.integrations.helthjem object in session initiation.
+2. Provide a logistics option with brand name "Helthjem" and type "PICKUP_POINT".
+
+```mermaid
+sequenceDiagram
+  actor User
+  participant API as Vipps Checkout API
+  participant Merchant
+  participant Helthjem
+
+  User->>Merchant: Start shopping session, proceed to checkout
+  Merchant->>API: Start checkout session with Helthjem credentials
+  User->>API: Selects Helthjem shipping option
+  API->>Helthjem: Retrieves available pickup points for address
+  User->>User: Selects pickup point
+  User->>API: Completes payment
+  API->>Merchant: Marks payment as succeeded and sends callback
+```
+
 ### Vipps Checkout Direct
 
 With Vipps Checkout Direct you can easily implement an express checkout experience directly from a single product without going through a shopping cart. Vipps Checkout Direct decouples you from needing to embed the iFrame and lets us handle everything at checkout.vipps.no before returning the customer to your shop after a payment is finished. To use Vipps Checkout Direct, follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
-
 
 ### Vipps Checkout Elements
 
@@ -199,6 +226,26 @@ These options may be combined with shipping if it fits your scenario. For exampl
 ### Remembering of customer data
 
 Vipps Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different Vipps Checkout sessions on the same machine.
+
+### Receipts
+
+Vipps Checkout **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
+
+To enable Checkout to create receipts, the "OrderSummary" property in the session initiation must be set. Detailed information is available in the OpenAPI spec [session initiation endpoint][create-checkout-session-endpoint]
+
+Receipt information is a combination of a list of OrderLines and a BottomLine. An OrderLine is a description of each item present in the order. The BottomLine contains information regarding the order as a whole.
+It is possible to specify shipping costs in one or more OrderLines in the session initiation.
+If shipping is handled in Checkout, and not free, an orderline with the shipping cost will be automatically added, **even if** shipping costs are specified in the session initiation.
+
+If set up properly in the "OrderSummary" property in the session initiation, the receipt will be created when payment is initiated (by sending it to Order Managent API), and will be visible in the customer's app when the payment is successfully completed.
+Further details regarding receipts in [The Order Management API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#receipts)
+
+#### Receipts and Assisted Content Monitoring
+
+Vipps offers [assisted content monitoring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) as a way for Merchants to deal with the regulatory demands of content monitoring.
+For some merchants Vipps can utilize the merchant's webpage for content monitoring, continuously verifying that the actual products being sold coincides with the expected products.
+If you, as a merchant, do not have a permanent website that can be utilized for content monitoring, for example you do not have a user facing website or the website is ephemeral/short lived then you must utilize Vipps Assisted Content Monitoring.
+In order to comply with Vipps Assisted Content Monitoring all transactions must be posted to the Order Management receipts functionality described in this section.
 
 ## System integration guidelines
 
