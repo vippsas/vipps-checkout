@@ -14,12 +14,8 @@
               "type": "text/plain"
             },
             "url": {
-              "path": [
-                "session"
-              ],
-              "host": [
-                "{{base_url}}/checkout/v3"
-              ],
+              "path": ["session"],
+              "host": ["{{base_url}}/checkout/v3"],
               "query": [],
               "variable": []
             },
@@ -133,13 +129,8 @@
               "type": "text/plain"
             },
             "url": {
-              "path": [
-                "session",
-                ":reference"
-              ],
-              "host": [
-                "{{base_url}}/checkout/v3"
-              ],
+              "path": ["session", ":reference"],
+              "host": ["{{base_url}}/checkout/v3"],
               "query": [],
               "variable": [
                 {

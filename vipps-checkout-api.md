@@ -142,7 +142,7 @@ sequenceDiagram
 
 #### Instabox integration
 
-Instabox is a shipping provider that offers delivery to a locker location selected by the customer. To enable it, the merchant must:
+Instabox is a shipping provider that offers delivery to a locker location selected by the customer. To enable it:
 
 1. Provide Instabox credentials in the logistics.integrations.instabox object in session initiation.
 2. Provide a logistics option with "IsInstabox" flag set to true.
@@ -168,7 +168,7 @@ sequenceDiagram
 
 **(v3 only)**
 
-Helthjem is a shipping provider that offers delivery to a pickuppoint selected by the customer (and also to the doormat, but there is no integration for that yet). To enable it, the merchant must:
+Helthjem is a shipping provider that offers delivery to a pick-up-point selected by the customer. To enable it:
 
 1. Provide Helthjem credentials in the logistics.integrations.helthjem object in session initiation.
 2. Provide a logistics option with brand name "Helthjem" and type "PICKUP_POINT".
