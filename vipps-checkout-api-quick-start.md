@@ -72,7 +72,7 @@ You can update any of the other environment variables. Be aware of this:
 1. Send request `Create a Checkout Session`. This starts a simple session by using
    [`POST:/v3/session`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v3~1session/post).
 
-   The `reference` and `sessionId` variables are automatically set in the environment
+   The `reference` variable is automatically set in the environment
    of this Postman example and can be used for subsequent calls relating to this session.
 
    To display the session, you will need to load the Vipps Checkout SDK in your website, as described in
@@ -81,8 +81,8 @@ You can update any of the other environment variables. Be aware of this:
 ## Retrieve the session information
 
 1. Send request `Get session info`. This retrieves the session information by using
-   [`GET:/v3/session/{sessionId}`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v3~1session~1%7BsessionId%7D/get).
-   The `sessionId` variable was previously set in the environment.
+   [`GET:/v3/session/{reference}`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v3~1session~1%7Breference%7D/get).
+   The `reference` variable was previously set in the environment.
 
    You will see the details appear in the lower pane.
 
