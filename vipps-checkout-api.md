@@ -203,7 +203,7 @@ With Vipps Checkout Elements, you can adjust the fields and values present in th
 
 The data collected can be adjusted according to your needs with the configuration.elements in the session initiation request.
 
-If not specified, it will return the full address and contact details in the Checkout session.
+If not specified, the complete address and contact details will be gathered.
 
 #### AddressFields false example
 
