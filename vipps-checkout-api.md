@@ -207,7 +207,7 @@ If not specified, it will return the full address and contact details in the Che
 
 #### AddressFields false example
 
-If you do not need the address from a user you can disable it using Elements set to PaymentAndContactInfo, resulting in the following personal details form.
+If you do not need the address from a user you can disable it using Elements set to `PaymentAndContactInfo`, resulting in the following personal details form.
 
 ![Address_field_false_form](resources/addressfields_false_form.png)
 
