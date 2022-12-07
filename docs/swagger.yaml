@@ -877,7 +877,6 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: "#/components/schemas/LogisticsOptionBase"
               - $ref: "#/components/schemas/PostenLogisticsOption"
               - $ref: "#/components/schemas/PostnordLogisticsOption"
               - $ref: "#/components/schemas/PorterbuddyLogisticsOption"
