@@ -217,7 +217,7 @@ And the following payment form
 
 #### Addressfields and ContactFields false example
 
-If you do not need the contact details for a customer you can disable it using Elements PaymentOnly, resulting in the following session
+If you do not need the contact details for a customer you can disable it using Elements `PaymentOnly`, resulting in the following session
 
 ![payment_only](resources/addressfields_false_contactfields_false.png)
 
