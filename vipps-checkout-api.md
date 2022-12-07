@@ -17,6 +17,8 @@ Document version: 1.2.0.
 
 **Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
+**Migrating to V3?** Consult our [Nigration Guide](vipps-checkout-api-migration-v3.md).
+
 <!-- START_TOC -->
 
 # Table of contents

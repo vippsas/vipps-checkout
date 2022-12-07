@@ -34,7 +34,7 @@ We have also added a new field Countries which allows merchants to specify which
 
 ### CallbackUrl
 
-callbackUrlPrefix has been replaced by callbackUrl so that you send in the whole url where you want the "Payment Completed" callback.
+callbackUrlPrefix has been replaced by callbackUrl so that you send in the whole url to where you want the "Payment Completed" callback.
 
 ### Strongly typed fields
 
