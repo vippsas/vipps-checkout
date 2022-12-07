@@ -458,6 +458,8 @@ window.VippsCheckout = {
 
 If you want to checkout a single item directly we offer Vipps Checkout Direct. Hook this flow up on a button directly on a product, and we handle the rest by redirecting the user to checkout.vipps.no where we handle the checkout. We will return the customer back to your site when finished.
 
+We also have a [button](vipps-checkout-button.md) with the Vipps look and feel that you can use (if you so choose) to make the integration super easy on your product page!
+
 The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this with the following parameters
 
 | Parameter             | Description                                                                                                      | Optional |
@@ -472,10 +474,11 @@ The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this 
 <html>
   <head>
     <title>Merchant website</title>
-    <script src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
+    <script async type="text/javascript" src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
+    <script async type="text/javascript" src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"></script>
   </head>
   <body>
-    <button type="button" id="checkout-button">Checkout with Vipps</button>
+    <vipps-checkout-button id="checkout-button" variant="orange" branded="true"></vipps-checkout-button>
     <script>
       document
         .getElementById("checkout-button")
