@@ -532,13 +532,13 @@ Vipps Checkout will expose a [polling endpoint][retrieve-sessioninfo-endpoint]. 
 
 #### Determine status of payment
 
-The status of the Payment can be either `CREATED, AUTHORISED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORISED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [OpenAPI schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
+The status of the Payment can be either `CREATED, AUTHORZSED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORIZED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [OpenAPI schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
 If you want more granular information about the payment, you can call the [underlying API][get-payment-endpoint] that Vipps Checkout itself uses.
 
 ### Step 3a: If a transaction is authorized, capture payment
 
-If the payment state of a session received in callback, or when polling, is `AUTHORISED`, the amount of the transaction was successfully _reserved_. In order to actually move the money and complete the payment, the transaction must be _captured_. Capture must be done in accordance with your terms and conditions with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
+If the payment state of a session received in callback, or when polling, is `AUTHORIZED`, the amount of the transaction was successfully _reserved_. In order to actually move the money and complete the payment, the transaction must be _captured_. Capture must be done in accordance with your terms and conditions with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
 
 A capture operation for the whole amount reserved is called a "full capture". A "partial capture" is a capture operation on only parts of the amount reserved and is e.g. used if only parts of an order could be fulfilled. Captures cannot be made on an amount larger than the reservation.
 
