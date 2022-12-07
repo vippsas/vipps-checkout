@@ -1,11 +1,11 @@
 {
   "item": [
     {
-      "id": "cf5ab180-26c4-4b07-a9f8-044ae9ea4353",
-      "name": "v2/session",
+      "id": "94888716-a2a5-4e12-a727-213d9b752f39",
+      "name": "session",
       "item": [
         {
-          "id": "871cbdfc-6a0b-41f4-8ac2-5dd0163113ec",
+          "id": "3f13f8f1-0cd5-467a-8cd2-2a277dd24298",
           "name": "Create a Checkout session",
           "request": {
             "name": "Create a Checkout session",
@@ -14,13 +14,8 @@
               "type": "text/plain"
             },
             "url": {
-              "path": [
-                "v2",
-                "session"
-              ],
-              "host": [
-                "{{base_url}}/checkout"
-              ],
+              "path": ["session"],
+              "host": ["{{base_url}}/checkout/v3"],
               "query": [],
               "variable": []
             },
@@ -86,7 +81,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"merchantInfo\": {\n    \"callbackPrefix\": \"{{callbackPrefix}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"currency\": \"{{currency}}\",\n      \"value\": 1000\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"amount\": {\n          \"currency\": \"{{currency}}\",\n          \"value\": 300\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"brand\": \"Posten\",\n        \"product\": \"home delivery\",\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\",\n        \"isPickupPoint\": false,\n        \"isPorterbuddy\": false,\n        \"isInstabox\": false\n      },\n      {\n        \"amount\": {\n          \"currency\": \"{{currency}}\",\n          \"value\": 300\n        },\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"brand\": \"Posten\",\n        \"product\": \"pick-up in store\",\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\",\n        \"isPickupPoint\": true,\n        \"isPorterbuddy\": false,\n        \"isInstabox\": false\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"customerInteraction\": \"customer_not_present\",\n  \"contactFields\": true,\n  \"addressFields\": true\n}",
+              "raw": "{\n  \"merchantInfo\": {\n    \"callbackUrl\": \"{{callbackUrl}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"value\": 1000,\n      \"currency\": \"{{currency}}\"\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"brand\": \"POSTEN\",\n        \"isPickupPoint\": false,\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\"\n      },\n      {\n        \"brand\": \"POSTEN\",\n        \"isPickupPoint\": true,\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\"\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"configuration\": {\n    \"customerInteraction\": \"CUSTOMER_NOT_PRESENT\",\n    \"elements\": \"Full\",\n    \"countries\": {\n      \"supported\": [\n        \"NO\",\n        \"SE\",\n        \"DK\"\n      ]\n    }\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -103,8 +98,8 @@
                   "if(pm.response.code === 200) { \r",
                   "    var jsonData = pm.response.json();\r",
                   "    var str = jsonData.pollingUrl\r",
-                  "    var str2 = str.split('session/')[1]\r",
-                  "    pm.environment.set('sessionId', str2);\r",
+                  "    var str2 = str.split(\"session/\")[1]\r",
+                  "    pm.environment.set(\"sessionId\", str2);\r",
                   "}"
                 ],
                 "type": "text/javascript"
@@ -114,7 +109,7 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  "pm.environment.set('orderId',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
+                  "pm.environment.set(\"orderId\",pm.environment.get(\"merchantSerialNumber\") + (new Date()).getTime());"
                 ],
                 "type": "text/javascript"
               }
@@ -125,7 +120,7 @@
           }
         },
         {
-          "id": "7548e96f-9f20-4d8f-8fc5-b1ff0254996c",
+          "id": "904c9288-f010-49ab-ac76-fa5480ca06b9",
           "name": "Get session info",
           "request": {
             "name": "Get session info",
@@ -134,22 +129,16 @@
               "type": "text/plain"
             },
             "url": {
-              "path": [
-                "v2",
-                "session",
-                ":sessionId"
-              ],
-              "host": [
-                "{{base_url}}/checkout"
-              ],
+              "path": ["session", ":reference"],
+              "host": ["{{base_url}}/checkout/v3"],
               "query": [],
               "variable": [
                 {
                   "disabled": false,
                   "type": "any",
-                  "value": "{{sessionId}}",
-                  "key": "sessionId",
-                  "description": "(Required) The Id of the session. Example: \"v52EtjZriRmGiKiAKHByK2\"."
+                  "value": "{{reference}}",
+                  "key": "reference",
+                  "description": "(Required) The reference of the session. Example: \"123123\"."
                 }
               ]
             },
@@ -222,8 +211,8 @@
   ],
   "event": [],
   "info": {
-    "_postman_id": "86944fd6-da20-45e2-96c8-30059924f2e8",
-    "name": "Checkout API v2 - Collection",
+    "_postman_id": "bd283c75-95d8-47f2-9d05-8c090571af13",
+    "name": "Checkout API v3 - Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).",

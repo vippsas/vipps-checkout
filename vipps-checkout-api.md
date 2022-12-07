@@ -1,17 +1,19 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: API Guide
 sidebar_position: 10
+
 ---
+
 END_METADATA -->
 
 # Vipps Checkout guide
 
 Vipps Checkout provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
 
-API version: 2.0.0.
+API version: 3.0.0.
 
-Document version: 1.1.5.
+Document version: 1.2.0.
 
 **Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
@@ -165,18 +167,17 @@ sequenceDiagram
 
 With Vipps Checkout Direct you can easily implement an express checkout experience directly from a single product without going through a shopping cart. Vipps Checkout Direct decouples you from needing to embed the iFrame and lets us handle everything at checkout.vipps.no before returning the customer to your shop after a payment is finished. To use Vipps Checkout Direct, follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
 
-
 ### Vipps Checkout Elements
 
 With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system.
 
-The data collected can be adjusted according to your needs with the fields `addressFields` and `contactFields` in the session initiation request.
+The data collected can be adjusted according to your needs with the configuration.elements in the session initiation request.
 
-These fields are by default set to `true` and, if not specified, will return the full address and contact details in the Checkout session.
+If not specified, it will return the full address and contact details in the Checkout session.
 
 #### AddressFields false example
 
-If you do not need the address from a user you can disable it, resulting in the following personal details form.
+If you do not need the address from a user you can disable it using Elements set to PaymentAndContactInfo, resulting in the following personal details form.
 
 ![Address_field_false_form](resources/addressfields_false_form.png)
 
@@ -186,7 +187,7 @@ And the following payment form
 
 #### Addressfields and ContactFields false example
 
-If you do not need the contact details for a customer you can disable it, resulting in the following session
+If you do not need the contact details for a customer you can disable it using Elements PaymentOnly, resulting in the following session
 
 ![payment_only](resources/addressfields_false_contactfields_false.png)
 
@@ -257,7 +258,7 @@ sequenceDiagram
 The merchant backend calls the [session initiation endpoint][create-checkout-session-endpoint]
 
 ```http
-POST: https://api.vipps.no/checkout/v2/session
+POST: https://api.vipps.no/checkout/v3/session
 ```
 
 with headers
@@ -303,13 +304,13 @@ This is the standard flow where Vipps Checkout is embedded on your site typicall
 
 The SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters
 
-| Parameter             | Description                                                                                                      | Optional |
-|-----------------------|------------------------------------------------------------------------------------------------------------------| -------- |
-| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                            | No       |
-| `iFrameContainerId`   | The id of the html element to contain the Checkout iFrame                                                        | No       |
-| `token`               | Token identifying the session. Comes from session creation response.                                             | No       |
+| Parameter             | Description                                                                                                       | Optional |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
+| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                             | No       |
+| `iFrameContainerId`   | The id of the html element to contain the Checkout iFrame                                                         | No       |
+| `token`               | Token identifying the session. Comes from session creation response.                                              | No       |
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
-| `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                  | Yes      |
+| `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                   | Yes      |
 
 Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js.
 
@@ -386,20 +387,20 @@ Each key in the map supplied to `on` corresponds to an event and accepts a call 
 
 Available events:
 
-| Parameter                      | Description                                                                                             | Type                                                                                                                                             |
-|--------------------------------|---------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| `shipping_option_selected`     | Is triggered when the user selects a shipping option or `undefined` when shipping option is deselected. | `ShippingOption` &#124; `undefined`                                                                                                              |
-| `total_amount_changed`         | Is triggered when the total amount changes (for example when a shipping option is selected).            | `Money`                                                                                                                                          |
-| `session_status_changed`       | Is triggered when on changes in session status (for example when payment is started).                   | "SessionStarted" &#124; "PaymentInitiated" &#124; "PaymentSuccessful" &#124; "PaymentFailed" &#124; "SessionTerminated" &#124; "SessionExpired"  |
-| `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                     |
-| `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                     |
+| Parameter                      | Description                                                                                             | Type                                                                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `shipping_option_selected`     | Is triggered when the user selects a shipping option or `undefined` when shipping option is deselected. | `ShippingOption` &#124; `undefined`                                                                                                             |
+| `total_amount_changed`         | Is triggered when the total amount changes (for example when a shipping option is selected).            | `Money`                                                                                                                                         |
+| `session_status_changed`       | Is triggered when on changes in session status (for example when payment is started).                   | "SessionStarted" &#124; "PaymentInitiated" &#124; "PaymentSuccessful" &#124; "PaymentFailed" &#124; "SessionTerminated" &#124; "SessionExpired" |
+| `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                    |
+| `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                    |
 
 ##### Types
 
 ###### ShippingOption
 
 | Parameter     | Type                             | Description                                                                 |
-|---------------|----------------------------------|-----------------------------------------------------------------------------|
+| ------------- | -------------------------------- | --------------------------------------------------------------------------- |
 | `id`          | `string`                         | The merchants shipping option identification.                               |
 | `brand`       | `string`                         | The name of the brand of the option (for example "Posten" or "PostNord").   |
 | `description` | `description` &#124; `undefined` | The description of the shipping option.                                     |
@@ -409,14 +410,14 @@ Available events:
 ###### Money
 
 | Parameter                | Type     | Description                                                                                                 |
-|--------------------------|----------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
 | `fractionalDenomination` | `number` | Value of in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |
 | `currency`               | `string` | Three letter ISO-4217 currency code.                                                                        |
 
 ###### Address
 
 | Parameter   | Type     |
-|-------------|----------|
+| ----------- | -------- |
 | `address`   | `string` |
 | `city`      | `string` |
 | `country`   | `string` |
@@ -435,19 +436,19 @@ window.VippsCheckout = {
   language: "no",
   token: data.token,
   on: {
-    "shipping_option_selected": function(data) {
+    shipping_option_selected: function (data) {
       // Do something when the shipping option is selected
     },
-    "total_amount_changed": function(data) {
+    total_amount_changed: function (data) {
       // Do something when the total amount changed
     },
-    "session_status_changed": function(data) {
+    session_status_changed: function (data) {
       // Do something when status changed
     },
-    "shipping_address_changed": function(data) {
+    shipping_address_changed: function (data) {
       // Do something when shipping address changed
     },
-    "customer_information_changed": function(data) {
+    customer_information_changed: function (data) {
       // Do something when customer information changed
     },
   },
@@ -460,10 +461,10 @@ If you want to checkout a single item directly we offer Vipps Checkout Direct. H
 
 The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this with the following parameters
 
-| Parameter             | Description                                                                                                      | Optional |
-|-----------------------|------------------------------------------------------------------------------------------------------------------| -------- |
-| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                            | No       |
-| `token`               | Token identifying the session. Comes from session creation response.                                             | No       |
+| Parameter             | Description                                                                                                       | Optional |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
+| `checkoutFrontendUrl` | Specifies where to load the iFrame content from. Comes from session creation response                             | No       |
+| `token`               | Token identifying the session. Comes from session creation response.                                              | No       |
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
 
 **Please note:** To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The javascript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the Javascript on the frontend, and then in that backend call the Checkout create session endpoint so you don’t leak the keys.
@@ -502,8 +503,8 @@ The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this 
   </body>
 </html>
 ```
-**Please note:** The `VippsCheckoutDirect` method in the SDK can be used instead of `VippsCheckout` as per. alternative 1 if you want to buypass the iFrame flow and let Vipps handle the checkout completely.
 
+**Please note:** The `VippsCheckoutDirect` method in the SDK can be used instead of `VippsCheckout` as per. alternative 1 if you want to buypass the iFrame flow and let Vipps handle the checkout completely.
 
 ### Step 3: Handling the result of the session
 
@@ -565,7 +566,7 @@ When you initiate a payment, it will be reserved until you capture it. Reserved 
 
 When you initiate a payment, it will be reserved until you capture it. The capture can be done a few seconds later, or several days later.
 
-*Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
+_Direct Capture_, where a transaction is automatically captured upon reservation, _is not_ supported in Vipps Checkout, and transactions will fail.
 
 For more info on the difference, see [FAQs: Reservations and capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/reserve-and-capture-faq)
 
@@ -577,9 +578,8 @@ You might want to find the Vipps `transactionId` value of a transaction. This ca
 
 In order to integrate with the receipts functionality, you need to retrieve the psp reference in the "paymentAction": "AUTHORISATION" event from the [eventlog][get-payment-event-log-endpoint] endpoint. This is required when utilizing receipts with Vipps Checkout or Free standing card payments
 
-[create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session/post
-[retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get
-[cancel-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session~1cancel/post
+[create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v3~1session/post
+[retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v3~1session~1%7BsessionId%7D/get
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
 [get-payment-event-log-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
