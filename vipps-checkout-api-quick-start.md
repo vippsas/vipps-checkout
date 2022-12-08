@@ -1,10 +1,8 @@
 <!-- START_METADATA
-
+---
 title: Quick start
 sidebar_position: 5
-
 ---
-
 END_METADATA -->
 
 # Quick start

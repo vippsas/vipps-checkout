@@ -1,10 +1,8 @@
 <!-- START_METADATA
-
+---
 title: V3-migration
 sidebar_position: 25
-
 ---
-
 END_METADATA -->
 
 # Migrating from Checkout V2 to V3

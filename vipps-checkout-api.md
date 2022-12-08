@@ -1,10 +1,8 @@
 <!-- START_METADATA
-
+---
 title: API Guide
 sidebar_position: 10
-
 ---
-
 END_METADATA -->
 
 # Vipps Checkout guide
