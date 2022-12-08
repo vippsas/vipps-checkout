@@ -1,10 +1,8 @@
 <!-- START_METADATA
-
+---
 title: Checklist
 sidebar_position: 23
-
 ---
-
 END_METADATA -->
 
 # Checkout integration checklist
