@@ -1,8 +1,10 @@
 <!-- START_METADATA
----
+
 title: Checklist
 sidebar_position: 23
+
 ---
+
 END_METADATA -->
 
 # Checkout integration checklist
@@ -12,8 +14,8 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
 ## Checklist
 
 - [ ] Integrate _all_ the [API endpoints](vipps-checkout-api.md):
-  - [ ] Initiate [`POST:checkout/v2/session`][create-checkout-session-endpoint]
-  - [ ] Details [`GET:checkout/v2/session/{sessionId}`][retrieve-sessioninfo-endpoint]
+  - [ ] Initiate [`POST:checkout/v3/session`][create-checkout-session-endpoint]
+  - [ ] Details [`GET:checkout/v3/session/{reference}`][retrieve-sessioninfo-endpoint]
   - [ ] Full and partial Capture [`POST:epayment/v1/{reference}/capture`][capture-payment-endpoint]
   - [ ] Cancel [`POST:epayment/v1/{reference}cancel`][cancel-payment-endpoint]
   - [ ] Full and partial Refund [`POST:epayment/v1/{reference}refund`][refund-payment-endpoint]
@@ -35,7 +37,7 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
       Vipps does not have capacity to manually do this for you.
   - [ ] Callback [`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](vipps-checkout-api.md#example-of-callback)
 - [ ] Avoid Integration pitfalls
-  - [ ] The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll Payments Details [`GET:/epayment/v1/{reference}`][get-payment-endpoint] or Session Details [`GET:/checkout/v2/{sessionId}`][retrieve-sessioninfo-endpoint]
+  - [ ] The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll Payments Details [`GET:/epayment/v1/{reference}`][get-payment-endpoint] or Session Details [`GET:/checkout/v3/{reference}`][retrieve-sessioninfo-endpoint]
         as documented (this is part of the first item in this checklist, but it's still a common error). For pure payment status polling the ePayment API is recommended.
   - [ ] The merchant must handle that the `fallback` URL is opened in the default browser on the phone,
         and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc.
@@ -51,9 +53,8 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
         for normal work.
 
 [checkout-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/checkout
-[create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session/post
-[retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session~1%7BsessionId%7D/get
-[cancel-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v2~1session~1cancel/post
+[create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v3~1session/post
+[retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v3~1session~1%7BsessionId%7D/get
 [epayment-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/epayment
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment

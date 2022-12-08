@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
-  title: checkout-backend-merchant-v3.API
+  title: checkout-backend-merchant.API
   description: 'For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).'
-  version: v3
+  version: v2
 servers:
-  - url: https://apitest.vipps.no/checkout/v3
-  - url: https://api.vipps.no/checkout/v3
+  - url: https://apitest.vipps.no/checkout
+  - url: https://api.vipps.no/checkout
 paths:
-  /session:
+  /v2/session:
     post:
       tags:
         - Session
@@ -73,10 +73,10 @@ paths:
             examples:
               Postman:
                 summary: Postman
-                value: {"merchantInfo":{"callbackUrl":"{{callbackUrl}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"value":1000,"currency":"{{currency}}"},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"brand":"POSTEN","amount":{"value":300,"currency":"{{currency}}"},"id":"postenservicepakke1","priority":1,"isDefault":true,"description":"Your package is delivered to your home."},{"brand":"POSTEN","type":"PICKUP_POINT","amount":{"value":300,"currency":"{{currency}}"},"id":"postenservicepakke2","priority":2,"isDefault":false,"description":"Pick up your package at the local store."}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"configuration":{"customerInteraction":"CUSTOMER_NOT_PRESENT","elements":"Full","countries":{"supported":["NO","SE","DK"]}}}
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
               Swagger:
                 summary: Swagger
-                value: {"merchantInfo":{"callbackUrl":"https://example.com/vipps/payment-callback","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"value":2000,"currency":"NOK"},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"brand":"POSTEN","amount":{"value":5000,"currency":"NOK"},"id":"postenservicepakke1","priority":1,"isDefault":true,"description":"Your package is delivered to your home."},{"brand":"POSTEN","type":"PICKUP_POINT","amount":{"value":300,"currency":"NOK"},"id":"postenservicepakke2","priority":2,"isDefault":false,"description":"Pick up your package at the local store."}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"NO"},"configuration":{"customerInteraction":"CUSTOMER_NOT_PRESENT","elements":"Full","countries":{"supported":["NO","SE","DK"]}}}
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"NO"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
           text/json:
             schema:
               allOf:
@@ -85,10 +85,10 @@ paths:
             examples:
               Postman:
                 summary: Postman
-                value: {"merchantInfo":{"callbackUrl":"{{callbackUrl}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"value":1000,"currency":"{{currency}}"},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"brand":"POSTEN","amount":{"value":300,"currency":"{{currency}}"},"id":"postenservicepakke1","priority":1,"isDefault":true,"description":"Your package is delivered to your home."},{"brand":"POSTEN","type":"PICKUP_POINT","amount":{"value":300,"currency":"{{currency}}"},"id":"postenservicepakke2","priority":2,"isDefault":false,"description":"Pick up your package at the local store."}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"configuration":{"customerInteraction":"CUSTOMER_NOT_PRESENT","elements":"Full","countries":{"supported":["NO","SE","DK"]}}}
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
               Swagger:
                 summary: Swagger
-                value: {"merchantInfo":{"callbackUrl":"https://example.com/vipps/payment-callback","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"value":2000,"currency":"NOK"},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"brand":"POSTEN","amount":{"value":5000,"currency":"NOK"},"id":"postenservicepakke1","priority":1,"isDefault":true,"description":"Your package is delivered to your home."},{"brand":"POSTEN","type":"PICKUP_POINT","amount":{"value":300,"currency":"NOK"},"id":"postenservicepakke2","priority":2,"isDefault":false,"description":"Pick up your package at the local store."}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"NO"},"configuration":{"customerInteraction":"CUSTOMER_NOT_PRESENT","elements":"Full","countries":{"supported":["NO","SE","DK"]}}}
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"NO"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
           application/*+json:
             schema:
               allOf:
@@ -97,10 +97,10 @@ paths:
             examples:
               Postman:
                 summary: Postman
-                value: {"merchantInfo":{"callbackUrl":"{{callbackUrl}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"value":1000,"currency":"{{currency}}"},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"brand":"POSTEN","amount":{"value":300,"currency":"{{currency}}"},"id":"postenservicepakke1","priority":1,"isDefault":true,"description":"Your package is delivered to your home."},{"brand":"POSTEN","type":"PICKUP_POINT","amount":{"value":300,"currency":"{{currency}}"},"id":"postenservicepakke2","priority":2,"isDefault":false,"description":"Pick up your package at the local store."}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"configuration":{"customerInteraction":"CUSTOMER_NOT_PRESENT","elements":"Full","countries":{"supported":["NO","SE","DK"]}}}
+                value: {"merchantInfo":{"callbackPrefix":"{{callbackPrefix}}","returnUrl":"{{fallBack}}","callbackAuthorizationToken":"{{$guid}}","termsAndConditionsUrl":"{{termsAndConditionsUrl}}"},"transaction":{"amount":{"currency":"{{currency}}","value":1000},"reference":"{{orderId}}","paymentDescription":"{{transactionTextInitiate}}"},"logistics":{"dynamicOptionsCallback":"{{dynamicOptionsCallbackUrl}}","fixedOptions":[{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke1","priority":1,"brand":"Posten","product":"home delivery","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"{{currency}}","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"pick-up in store","isDefault":false,"description":"Pick up your package at the local store.","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}],"integrations":{"porterbuddy":{"publicToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","apiKey":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni ","origin":{"name":"{{firstName}} {{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","address":{"streetAddress":"{{streetAddress}}","postalCode":"{{postalCode}}","city":"{{city}}","country":"{{country}}"}}}}},"prefillCustomer":{"firstName":"{{firstName}}","lastName":"{{lastName}}","email":"{{email}}","phoneNumber":"{{internationalMobileNumber}}","streetAddress":"{{streetAddress}}","city":"{{city}}","postalCode":"{{postalCode}}","country":"{{country}}"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
               Swagger:
                 summary: Swagger
-                value: {"merchantInfo":{"callbackUrl":"https://example.com/vipps/payment-callback","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"value":2000,"currency":"NOK"},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"brand":"POSTEN","amount":{"value":5000,"currency":"NOK"},"id":"postenservicepakke1","priority":1,"isDefault":true,"description":"Your package is delivered to your home."},{"brand":"POSTEN","type":"PICKUP_POINT","amount":{"value":300,"currency":"NOK"},"id":"postenservicepakke2","priority":2,"isDefault":false,"description":"Pick up your package at the local store."}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"NO"},"configuration":{"customerInteraction":"CUSTOMER_NOT_PRESENT","elements":"Full","countries":{"supported":["NO","SE","DK"]}}}
+                value: {"merchantInfo":{"callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps","returnUrl":"https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc","callbackAuthorizationToken":"c172ad8d-9499-41d4-b8ff-c689be6455e9","termsAndConditionsUrl":"https://example.com/vipps/terms-and-conditions"},"transaction":{"amount":{"currency":"NOK","value":2000},"reference":"store-order-123","paymentDescription":"One pair of socks"},"logistics":{"dynamicOptionsCallback":"https://example.com/vipps/dynamiclogisticsoption","fixedOptions":[{"amount":{"currency":"NOK","value":5000},"id":"postenservicepakke1","priority":1,"brand":"Bring","product":"Package to home","isDefault":true,"description":"Your package is delivered to your home.","isPickupPoint":false,"isPorterbuddy":false,"isInstabox":false},{"amount":{"currency":"NOK","value":300},"id":"postenservicepakke2","priority":2,"brand":"Posten","product":"Package to pickup point","isDefault":false,"description":"Pick up your package at a pickup point","isPickupPoint":true,"isPorterbuddy":false,"isInstabox":false}]},"prefillCustomer":{"firstName":"Ola","lastName":"Nordmann","email":"ola.nordmann@vipps.no","phoneNumber":"+4748644347","streetAddress":"Robert Levins gate 5","city":"Oslo","postalCode":"0150","country":"NO"},"customerInteraction":"customer_not_present","contactFields":true,"addressFields":true}
       responses:
         '200':
           description: Success
@@ -108,6 +108,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InitiateSessionResponse'
+              example: {"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJUdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIiwic2Vzc2lvblBvbGxpbmdVUkwiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvY2hlY2tvdXQvc2Vzc2lvbi9UdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIn0.ln7VzZkNvUGu0HhyA_a8IbXQN35WhDBmCYC9IvyYL-I","checkoutFrontendUrl":"https://vippscheckout.vipps.no/v1/","pollingUrl":"https://api.vipps.no/checkout/v1/session/31gf1g413121"}
       callbacks:
         Dynamic logistics:
           '{$request.body#/logistics/dynamicOptionsCallback}':
@@ -118,6 +119,10 @@ paths:
                   application/json:
                     schema:
                       $ref: '#/components/schemas/MerchantLogisticsCallbackRequestBody'
+                    examples:
+                      Swagger:
+                        summary: Swagger
+                        value: '{"StreetAddress":"Robert Levins gate 5","PostalCode":"0150","Region":"Oslo","Country":"NO"}'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
@@ -126,7 +131,7 @@ paths:
                       schema:
                         type: array
                         items:
-                          $ref: '#/components/schemas/LogisticsOptionBase'
+                          $ref: '#/components/schemas/MerchantCallbackLogisticsOptions'
                 4XX:
                   description: 'If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. '
                 5XX:
@@ -139,7 +144,11 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/SessionResponse'
+                      $ref: '#/components/schemas/PaymentCallbackRequestDto'
+                    examples:
+                      Swagger:
+                        summary: Swagger
+                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","Instabox":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
@@ -147,20 +156,20 @@ paths:
                   description: 'If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. '
                 5XX:
                   description: 'If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. '
-  '/session/{reference}':
+  '/v2/session/{sessionId}':
     get:
       tags:
         - Session
       summary: Get session info
       description: "Transaction information, user information and shipping information are included in the response\r\nif the SessionState is PaymentInitiated"
       parameters:
-        - name: reference
+        - name: sessionId
           in: path
-          description: 'The reference of the session. Example: "123123".'
+          description: 'The Id of the session. Example: "v52EtjZriRmGiKiAKHByK2".'
           required: true
           schema:
             type: string
-            default: '{{reference}}'
+            default: '{{sessionId}}'
         - name: Vipps-System-Name
           in: header
           schema:
@@ -215,24 +224,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionResponse'
+                $ref: '#/components/schemas/GetSessionResponse'
+              example: {"sessionId":"v52EtjZriRmGiKiAKHByK2","reference":"acme-shop-123-order123abc","sessionState":"SessionStarted","paymentMethod":"Wallet","paymentDetails":{"amount":{"value":10000,"currency":"NOK"},"state":"AUTHORISED"},"shippingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO","shippingMethodId":"postenservicepakke1","pickupPoint":{"id":"123","name":"Storo Storsenter","address":"Vitaminveien 7","postalCode":"0485","city":"OSLO","country":"NO"}},"billingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO"}}
         '404':
           description: The specified session id is unknown.
 components:
   schemas:
-    Amount:
-      type: object
-      properties:
-        value:
-          minimum: 0
-          type: integer
-          description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int32
-        currency:
-          type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK"'
-      additionalProperties: false
-      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+    BasicSessionState:
+      enum:
+        - SessionStarted
+        - SessionTerminated
+      type: string
     BillingDetails:
       type: object
       properties:
@@ -256,7 +258,7 @@ components:
           type: string
           description: 'Example: "0154"'
           nullable: true
-        city:
+        region:
           type: string
           description: 'Example: "Oslo"'
           nullable: true
@@ -266,35 +268,19 @@ components:
           nullable: true
       additionalProperties: false
       description: Defines the details of the billing
-    CheckoutConfig:
+    CallbackPaymentDetails:
       type: object
       properties:
-        customerInteraction:
+        amount:
           allOf:
-            - $ref: '#/components/schemas/CustomerInteraction'
-          description: 'If customer is physically present: "customer_present", otherwise: "customer_not_present".'
-          nullable: true
-        elements:
+            - $ref: '#/components/schemas/CommonAmount'
+          description: ''
+        state:
           allOf:
-            - $ref: '#/components/schemas/Elements'
-          description: Adjust the fields and values present in the Checkout.
-          nullable: true
-        countries:
-          allOf:
-            - $ref: '#/components/schemas/Countries'
-          description: Countries to allow during session
-          nullable: true
-        userFlow:
-          allOf:
-            - $ref: '#/components/schemas/UserFlow'
-          description: 'One of the following: "WEB_REDIRECT", "NATIVE_REDIRECT". To ensure having a return URL based on an app URL, use "NATIVE_REDIRECT".'
-          nullable: true
-        requireUserInfo:
-          type: boolean
-          description: 'Requires the customer to consent to share their email and openid sub with the merchant to be able to make a wallet payment (default: false).'
-          nullable: true
+            - $ref: '#/components/schemas/PaymentState'
+          description: ''
       additionalProperties: false
-      description: ''
+      description: Defines the details of the payment.
     CheckoutSessionThirdPartyInformationHeaders:
       type: object
       properties:
@@ -312,65 +298,59 @@ components:
           description: 'The version number of the ecommerce plugin. Example: "4.5.6".'
       additionalProperties: false
       description: Information about the merchant system.
-    Countries:
+    CommonAmount:
       type: object
       properties:
-        supported:
-          type: array
-          items:
-            type: string
-          description: 'List of allowed countries in ISO-3166 Alpha 2. If specified, the customer will only be able to select these countries. Example ["NO", "SE", "DK"]'
-      additionalProperties: false
-      description: ''
-    CustomerInteraction:
-      enum:
-        - CUSTOMER_PRESENT
-        - CUSTOMER_NOT_PRESENT
-      type: string
-    Elements:
-      enum:
-        - Full
-        - PaymentAndContactInfo
-        - PaymentOnly
-      type: string
-    ExternalSessionState:
-      enum:
-        - SessionCreated
-        - PaymentInitiated
-        - SessionExpired
-        - PaymentSuccessful
-        - PaymentTerminated
-      type: string
-    Helthjem:
-      type: object
-      properties:
-        username:
-          type: string
-          description: The Username provided to you by Helthjem
-        password:
-          type: string
-          description: The Password provided to you by Helthjem
-        shopId:
+        value:
           type: integer
-          description: The ShopId provided to you by Helthjem
+          description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
           format: int32
+        currency:
+          type: string
+          description: 'The currency identificator according to ISO 4217. Example: "NOK"'
       additionalProperties: false
-      description: Configuration required to enable Helthjem logistics options
-    HelthjemLogisticsOption:
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+    GetSessionResponse:
       type: object
-      allOf:
-        - $ref: '#/components/schemas/LogisticsOptionBase'
       properties:
-        type:
+        sessionId:
+          type: string
+          description: 'The Id of the session. Example: "123123".'
+        reference:
+          type: string
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
+        sessionState:
           allOf:
-            - $ref: '#/components/schemas/HelthjemLogisticsType'
+            - $ref: '#/components/schemas/BasicSessionState'
+          description: 'The state of the session. Example: "SessionStarted". The state of the payment is in PaymentDetails.State.'
+        paymentMethod:
+          allOf:
+            - $ref: '#/components/schemas/PaymentMethod'
+          description: ''
+          nullable: true
+        paymentDetails:
+          allOf:
+            - $ref: '#/components/schemas/ResponsePaymentDetails'
+          description: ''
+          nullable: true
+        userDetails:
+          allOf:
+            - $ref: '#/components/schemas/ResponseUserDetails'
+          description: ''
+          nullable: true
+          deprecated: true
+        shippingDetails:
+          allOf:
+            - $ref: '#/components/schemas/ShippingDetails'
+          description: Defines the details of the shipping
+          nullable: true
+        billingDetails:
+          allOf:
+            - $ref: '#/components/schemas/BillingDetails'
+          description: Defines the details of the billing
           nullable: true
       additionalProperties: false
-    HelthjemLogisticsType:
-      enum:
-        - HOME_DELIVERY
-        - PICKUP_POINT
-      type: string
+      description: Session information
     InitiateSessionRequest:
       type: object
       properties:
@@ -392,10 +372,19 @@ components:
             - $ref: '#/components/schemas/PrefillCustomer'
           description: 'If customer information is known, it can be prefilled.'
           nullable: true
-        configuration:
-          allOf:
-            - $ref: '#/components/schemas/CheckoutConfig'
-          description: ''
+        customerInteraction:
+          type: string
+          description: 'If customer is physically present: "customer_present", otherwise: "customer_not_present".'
+          nullable: true
+        contactFields:
+          type: boolean
+          description: 'If false; disables contact information for the customer in the checkout. If false, AddressFields must also be false.'
+        addressFields:
+          type: boolean
+          description: 'If false; disables address information for the customer in the checkout. If true, ContactFields must also be true.'
+        userFlow:
+          type: string
+          description: 'One of the following: "WEB_REDIRECT", "NATIVE_REDIRECT". To ensure having a return URL based on an app URL, use "NATIVE_REDIRECT".'
           nullable: true
       additionalProperties: false
       description: Request to set up a Checkout session
@@ -438,11 +427,6 @@ components:
           description: Identifies the location
       additionalProperties: false
       description: Details needed to book an instabox order
-    InstaboxLogisticsOption:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/LogisticsOptionBase'
-      additionalProperties: false
     Integrations:
       type: object
       properties:
@@ -456,11 +440,6 @@ components:
             - $ref: '#/components/schemas/Instabox'
           description: Configuration required to enable Instabox logistics options
           nullable: true
-        helthjem:
-          allOf:
-            - $ref: '#/components/schemas/Helthjem'
-          description: Configuration required to enable Helthjem logistics options
-          nullable: true
       additionalProperties: false
     Logistics:
       type: object
@@ -472,14 +451,7 @@ components:
         fixedOptions:
           type: array
           items:
-            oneOf:
-              - $ref: '#/components/schemas/LogisticsOptionBase'
-              - $ref: '#/components/schemas/PostenLogisticsOption'
-              - $ref: '#/components/schemas/PostnordLogisticsOption'
-              - $ref: '#/components/schemas/PorterbuddyLogisticsOption'
-              - $ref: '#/components/schemas/InstaboxLogisticsOption'
-              - $ref: '#/components/schemas/HelthjemLogisticsOption'
-              - $ref: '#/components/schemas/OtherLogisticsOption'
+            $ref: '#/components/schemas/LogisticsOption'
           description: Fixed list of logistics options.
           nullable: true
         integrations:
@@ -489,27 +461,54 @@ components:
           nullable: true
       additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
-    LogisticsOptionBase:
+    LogisticsOption:
       type: object
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: '#/components/schemas/RequestAmount'
+          description: ''
         id:
           maxLength: 200
           minLength: 1
           type: string
+          description: Unique identifier for the shipping option and is returned in the callback and polling endpoint. Example:"postenservicepakke".
         priority:
           minimum: 0
           type: integer
+          description: 'Allows specifying the order of the options explicitly by ascending order. Example: "2".'
           format: int32
+          nullable: true
+        brand:
+          maxLength: 255
+          type: string
+          description: 'The logistics provider. This is used to display a logo next to the shipping option. Currently "posten", "helthjem" and "postnord" logos are supported. If none of these are given, a generic logo will be displayed instead.'
+        product:
+          maxLength: 255
+          type: string
+          description: 'The shipping option product name. Is used to distinguish different options that the logistics providers offer (e.g., "pick-up in store", "home delivery", "mailbox"). This will be displayed in the title of the shipping option.'
         isDefault:
           type: boolean
+          description: 'If the option should be pre-checked for the customer. Only one option should have this as true. If no option has IsDefault=true, the option with the lowest priority number is chosen as default.'
+          nullable: true
         description:
           type: string
+          description: 'An optional text that will show under the price. This can typically include estimates of delivery or other information. Example: "Pick up your package at the local store".'
+          nullable: true
+        isPickupPoint:
+          type: boolean
+          description: If Checkout should display pickup points. Can not be used with AddressFields set to false
+          nullable: true
+        isPorterbuddy:
+          type: boolean
+          description: If this is a Porterbuddy shipping option. Can not be used with AddressFields set to false
+          nullable: true
+        isInstabox:
+          type: boolean
+          description: If this is an Instabox shipping option. Can not be used with AddressFields set to false
           nullable: true
       additionalProperties: false
+      description: A logistics option to be presented to the customer
     MerchantAuthInfoHeaders:
       required:
         - client_id
@@ -536,6 +535,34 @@ components:
           description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
       additionalProperties: false
       description: Headers required to retrieve an access token.
+    MerchantCallbackLogisticsOptions:
+      type: object
+      properties:
+        amount:
+          allOf:
+            - $ref: '#/components/schemas/CommonAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+        id:
+          type: string
+        priority:
+          type: integer
+          format: int32
+        brand:
+          type: string
+        product:
+          type: string
+        isDefault:
+          type: boolean
+        description:
+          type: string
+          nullable: true
+        isPickupPoint:
+          type: boolean
+          nullable: true
+        isPorterbuddy:
+          type: boolean
+          nullable: true
+      additionalProperties: false
     MerchantLogisticsCallbackRequestBody:
       type: object
       properties:
@@ -553,148 +580,61 @@ components:
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
       additionalProperties: false
       description: Information about the customer address used when retrieving dynamic logistics options.
-    OrderBottomLine:
-      required:
-        - currency
+    PaymentCallbackRequestDto:
       type: object
       properties:
-        currency:
-          maxLength: 3
-          minLength: 3
+        sessionId:
           type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK".'
-        tipAmount:
-          type: integer
-          description: Tip amount for the order. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int64
-          nullable: true
-        giftCardAmount:
-          type: integer
-          description: Amount paid by gift card or coupon. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int64
-          nullable: true
-        terminalId:
+          description: 'The Id of the session. Example: "123123".'
+        merchantSerialNumber:
           type: string
-          description: Identifier of the terminal / point of sale.
-          nullable: true
-      additionalProperties: false
-    OrderLine:
-      required:
-        - id
-        - name
-        - taxPercentage
-        - totalAmount
-        - totalAmountExcludingTax
-        - totalTaxAmount
-      type: object
-      properties:
-        name:
-          maxLength: 2048
-          minLength: 1
+          description: 'The merchant serial number for the sale unit. Example: "59474"'
+        reference:
           type: string
-          description: The name of the product in the order line.
-        id:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: The product ID.
-        totalAmount:
-          minimum: 0
-          type: integer
-          description: 'Total amount of the order line, including tax and discount. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.'
-          format: int64
-        totalAmountExcludingTax:
-          minimum: 0
-          type: integer
-          description: Total amount of order line with discount excluding tax. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int64
-        totalTaxAmount:
-          minimum: 0
-          type: integer
-          description: Total tax amount paid for the order line. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int64
-        taxPercentage:
-          maximum: 100
-          minimum: 0
-          type: integer
-          description: Tax percentage for the order line.
-          format: int32
-        unitInfo:
+          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid"'
+        sessionState:
           allOf:
-            - $ref: '#/components/schemas/OrderUnitInfo'
-          description: If no quantity info is provided the order line will default to 1 pcs.
-          nullable: true
-        discount:
-          type: integer
-          description: Total discount for the order line. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
-          format: int64
-          nullable: true
-        productUrl:
-          type: string
-          description: URL linking back to the product at the merchant.
-          nullable: true
-        isReturn:
-          type: boolean
-          description: Flag for marking the orderline as returned. This will make it count negative towards all the sums in BottomLine.
-          nullable: true
-        isShipping:
-          type: boolean
-          description: Flag for marking the orderline as a shipping line. This will be shown differently in the app.
-          nullable: true
-      additionalProperties: false
-    OrderSummary:
-      required:
-        - orderLines
-      type: object
-      properties:
-        orderLines:
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderLine'
-          description: The order lines contain descriptions of each item present in the order.
-        orderBottomLine:
+            - $ref: '#/components/schemas/PaymentCallbackState'
+          description: 'The state of the session. Example: "PaymentSuccessful"'
+        paymentMethod:
           allOf:
-            - $ref: '#/components/schemas/OrderBottomLine'
-          description: Contains information regarding the order as a whole.
-      additionalProperties: false
-    OrderUnitInfo:
-      required:
-        - quantityUnit
-        - unitPrice
-      type: object
-      properties:
-        unitPrice:
-          minimum: 0
-          type: integer
-          description: 'Total price per unit, including tax and excluding discount. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.'
-          format: int64
-        quantity:
-          type: string
-          description: Quantity given as a integer or fraction (only for cosmetics).
-        quantityUnit:
+            - $ref: '#/components/schemas/PaymentMethod'
+          description: '"Wallet" or "Card"'
+          nullable: true
+        paymentDetails:
           allOf:
-            - $ref: '#/components/schemas/QuantityUnit'
-          description: Available units for quantity. Will default to PCS if not set.
+            - $ref: '#/components/schemas/CallbackPaymentDetails'
+          description: ''
+        userDetails:
+          allOf:
+            - $ref: '#/components/schemas/UserDetails'
+          description: ''
+          nullable: true
+        shippingDetails:
+          allOf:
+            - $ref: '#/components/schemas/ShippingDetails'
+          description: ''
+          nullable: true
+        billingDetails:
+          allOf:
+            - $ref: '#/components/schemas/BillingDetails'
+          description: ''
+          nullable: true
       additionalProperties: false
-    OtherLogisticsOption:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/LogisticsOptionBase'
-      properties:
-        title:
-          maxLength: 200
-          minLength: 1
-          type: string
-      additionalProperties: false
+      description: Details provided in the session completed callback
+    PaymentCallbackState:
+      enum:
+        - PaymentSuccessful
+        - PaymentFailed
+      type: string
     PaymentMerchantInfo:
       required:
         - returnUrl
       type: object
       properties:
-        callbackUrl:
+        callbackPrefix:
           type: string
-          description: 'Complete URL for receiving callbacks. Example: "https://exmaple.com/vipps/payment-callback/'
+          description: 'Merchant base URL for callbacks. Example: "https://example.com/vipps/callbacks-for-payment-updates".'
         returnUrl:
           type: string
           description: 'Complete URL for redirecting customers to when the checkout is finished. Example: "https://example.com/vipps".'
@@ -714,7 +654,7 @@ components:
     PaymentState:
       enum:
         - CREATED
-        - AUTHORIZED
+        - AUTHORISED
         - TERMINATED
       type: string
     PaymentTransaction:
@@ -722,24 +662,19 @@ components:
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
+            - $ref: '#/components/schemas/RequestAmount'
+          description: ''
         reference:
           maxLength: 50
           minLength: 8
           pattern: '^[-a-zA-Z0-9]*$'
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         paymentDescription:
           maxLength: 100
           minLength: 1
           type: string
           description: 'Description visible to the customer during payment. Example: "One pair of Vipps socks".'
-        orderSummary:
-          allOf:
-            - $ref: '#/components/schemas/OrderSummary'
-          description: 'Contain descriptions of each item present in the order, and an order bottom line for information regarding the order as a whole.'
-          nullable: true
       additionalProperties: false
     PickupPoint:
       type: object
@@ -784,11 +719,6 @@ components:
           description: Information about the sender
       additionalProperties: false
       description: Configuration required to enable Porterbuddy logistics options
-    PorterbuddyLogisticsOption:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/LogisticsOptionBase'
-      additionalProperties: false
     PorterbuddyOrigin:
       type: object
       properties:
@@ -819,34 +749,6 @@ components:
         country:
           type: string
       additionalProperties: false
-    PostenLogisticsOption:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/LogisticsOptionBase'
-      properties:
-        type:
-          allOf:
-            - $ref: '#/components/schemas/PostenLogisticsType'
-          nullable: true
-      additionalProperties: false
-    PostenLogisticsType:
-      enum:
-        - PICKUP_POINT
-      type: string
-    PostnordLogisticsOption:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/LogisticsOptionBase'
-      properties:
-        type:
-          allOf:
-            - $ref: '#/components/schemas/PostnordLogisticsType'
-          nullable: true
-      additionalProperties: false
-    PostnordLogisticsType:
-      enum:
-        - PICKUP_POINT
-      type: string
     PrefillCustomer:
       type: object
       properties:
@@ -873,24 +775,30 @@ components:
           description: 'Example: "0154"'
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
+          description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
       additionalProperties: false
-      description: "Information about the customer to be prefilled\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
-    QuantityUnit:
-      enum:
-        - PCS
-        - KG
-        - KM
-        - MINUTE
-        - LITRE
-      type: string
+      description: "Information about the customer to be prefilled.\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
+    RequestAmount:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: 'The currency identifier according to ISO 4217. Example: "NOK"'
+        value:
+          minimum: 0
+          type: integer
+          description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
     ResponsePaymentDetails:
       type: object
       properties:
         amount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: ''
+            - $ref: '#/components/schemas/CommonAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
         state:
           allOf:
             - $ref: '#/components/schemas/PaymentState'
@@ -902,50 +810,24 @@ components:
           nullable: true
       additionalProperties: false
       description: Defines the details of the payment.
-    SessionResponse:
+    ResponseUserDetails:
       type: object
       properties:
-        sessionId:
+        firstName:
           type: string
-          description: 'The Id of the session. Example: "v52EtjZriRmGiKiAKHByK2".'
-        merchantSerialNumber:
+          description: 'Example: "Ada"'
+        lastName:
           type: string
-          description: 'The merchant''s serial number. Example: "123456"'
-          nullable: true
-        reference:
+          description: 'Example: "Lovelace"'
+        phoneNumber:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
-        sessionState:
-          allOf:
-            - $ref: '#/components/schemas/ExternalSessionState'
-          description: 'The state of the session. Example: "SessionStarted". The state of the payment is in PaymentDetails.State.'
-        paymentMethod:
-          allOf:
-            - $ref: '#/components/schemas/PaymentMethod'
-          description: ''
-          nullable: true
-        paymentDetails:
-          allOf:
-            - $ref: '#/components/schemas/ResponsePaymentDetails'
-          description: ''
-          nullable: true
-        userInfo:
-          allOf:
-            - $ref: '#/components/schemas/UserInfo'
-          description: ''
-          nullable: true
-        shippingDetails:
-          allOf:
-            - $ref: '#/components/schemas/ShippingDetails'
-          description: ''
-          nullable: true
-        billingDetails:
-          allOf:
-            - $ref: '#/components/schemas/BillingDetails'
-          description: ''
-          nullable: true
+          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
+        email:
+          type: string
+          description: 'Example: "user@example.com"'
       additionalProperties: false
-      description: Session information
+      description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nResponseUserDetails is deprecated. Use ShippingDetailsV2 instead"
+      deprecated: true
     ShippingDetails:
       type: object
       properties:
@@ -973,7 +855,7 @@ components:
           type: string
           description: 'Example: "0154"'
           nullable: true
-        city:
+        region:
           type: string
           description: 'Example: "Oslo"'
           nullable: true
@@ -997,40 +879,40 @@ components:
       properties:
         cancelledAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: ''
+            - $ref: '#/components/schemas/CommonAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
         capturedAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: ''
+            - $ref: '#/components/schemas/CommonAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
         refundedAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: ''
+            - $ref: '#/components/schemas/CommonAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
         authorizedAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
-          description: ''
+            - $ref: '#/components/schemas/CommonAmount'
+          description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
       additionalProperties: false
       description: Defines the details of the transaction
-    UserFlow:
-      enum:
-        - WEB_REDIRECT
-        - NATIVE_REDIRECT
-      type: string
-    UserInfo:
+    UserDetails:
       type: object
       properties:
-        sub:
+        firstName:
           type: string
-          description: The openid sub that uniquely identifies a Vipps user.
+          description: 'Example: "Ada"'
+        lastName:
+          type: string
+          description: 'Example: "Lovelace"'
+        phoneNumber:
+          type: string
+          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
         email:
           type: string
           description: 'Example: "user@example.com"'
-          nullable: true
       additionalProperties: false
-      description: Data from the UserInfo endpoint. Will only be present if UserInfo flow is used.
+      description: Defines the details of the user.
