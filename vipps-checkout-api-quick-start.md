@@ -1,4 +1,4 @@
-## <!-- START_METADATA
+<!-- START_METADATA
 
 title: Quick start
 sidebar_position: 5

@@ -1,4 +1,4 @@
-## <!-- START_METADATA
+<!-- START_METADATA
 
 title: Checklist
 sidebar_position: 23

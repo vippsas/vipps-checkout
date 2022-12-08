@@ -1,4 +1,4 @@
-## <!-- START_METADATA
+<!-- START_METADATA
 
 title: V3-migration
 sidebar_position: 25
