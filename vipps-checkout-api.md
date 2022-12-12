@@ -223,7 +223,6 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
         .getElementById("checkout-button")
         .addEventListener("click", function () {
           // Relay an initiate session request to Vipps Checkout API through the merchant's backend
-          // As you need to use secret credentials to initiate a session, you need to initiate the session from your own backend.
           fetch("<MERCHANT BACKEND CREATE SESSION URL>", {
             method: "POST",
           })
