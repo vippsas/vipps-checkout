@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: V3-migration
+title: V2 to V3 migration guide
 sidebar_position: 25
 ---
 END_METADATA -->
