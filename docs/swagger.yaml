@@ -1091,8 +1091,6 @@ components:
           type: string
       additionalProperties: false
     PaymentMerchantInfo:
-      required:
-        - returnUrl
       type: object
       properties:
         callbackUrl:
