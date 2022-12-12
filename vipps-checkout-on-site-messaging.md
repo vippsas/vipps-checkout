@@ -1,9 +1,16 @@
-# Vipps On-Site Messaging
+<!-- START_METADATA
+---
+title: On-Site Messaging
+sidebar_position: 15
+---
+END_METADATA -->
+
+# Vipps on-site messaging
 
 Vipps On-Site Messaging contains a _badges_ in different variants that can be used to let your customers know that Vipps payment is accepted.
 
 To be able to use the badge on your site you need to add the Vipps On-Site Messaging JavaScript library.
-The library should preferable be added between your page's `<head>...</head>`-tags and only once per page:
+The library should preferably be added between your page's `<head>...</head>`-tags and only once per page:
 
 ```html
 <script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>
@@ -16,11 +23,11 @@ If you don't have access to edit your websites code directly you can also place 
 The On-Site Messaging library contains an easy to integrate _badge_ with tailor made message for use in your online store.
 The badge comes in five variants with different color-pallets to suite your website.
 
-#### Example
+### Example
 
 You can find a demo and examples of all the variants [here](https://checkout.vipps.no/on-site-messaging/v1).
 
-<img src="./resources/osm-badge.png" alt="Vipps Badge" width="480"/>
+![Vipps Badge](resources/osm-badge.png)
 
 ```html
 <vipps-badge variant="gray"></vipps-badge>
@@ -32,10 +39,10 @@ All attributes are optional.
 
 | Attribute    | Description                                                                                                                                             | Default |
 |:-------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
-| variant      | The color variant of the badge.<br/>Supported values: `white`, `orange`, `gray`, `light-orange`, `purple`.                                               | `white` |
-| language     | ISO 639-1 alpha-2 language code.<br />Supported values: `en`, `no`.                                                                                     | `no`    |
+| variant      | The color variant of the badge. Supported values: `white`, `orange`, `gray`, `light-orange`, `purple`.                                                  | `white` |
+| language     | ISO 639-1 alpha-2 language code. Supported values: `en`, `no`.                                                                                     | `no`    |
 | vipps-senere | Set this to `true` if your business supports the "Vipps Senere"-product.                                                                                | `false` |
-| amount       | The payable amount in NOK. Amounts are specified in minor units.<br/>For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |         |
+| amount       | The payable amount in NOK. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |         |
 
 #### Customization
 
@@ -47,12 +54,22 @@ If the badge is too small or too large to fit your content, you can override the
 <vipps-badge vipps-senere variant="purple" style="font-size: 1.5rem;"></vipps-badge>
 ```
 
-Which will scale the badge to 1.5x the size of the root font-size. You may also use `px` or `em` values to scale the _badge_.
+Which will scale the _badge_ to 1.5x the size of the root font-size. You may also use `px` or `em` values to scale the _badge_.
 
-Use `text-align` to align the badge:
+The _badge_ is an `inline` element by default, which means it will stay on the same line as sibling elements.
+
+So to center or fill the _badge_ you have to set `display: block` on the element to prevent it from being `inline`.
+
+Use `text-align` with `display:block` to align the _badge_:
 
 ```html
-<vipps-badge vipps-senere amount="100000" variant="purple" style="text-align: center;"></vipps-badge>
+<vipps-badge vipps-senere amount="100000" variant="purple" style="display: block; text-align: center;"></vipps-badge>
+```
+
+Or `width: 100%` to fill the parent container:
+
+```html
+<vipps-badge vipps-senere amount="100000" variant="purple" style="display: block; width: 100%;"></vipps-badge>
 ```
 
 ## Integrations
@@ -73,7 +90,7 @@ Next, just add the JavaScript library and the code snippet for the _badge_:
 <vipps-badge variant="purple"></vipps-badge>
 ```
 
-<img src="./resources/osm-woocommerce.png" alt="WooCommerce integration" width="600"/>
+![WooCommerce integration](resources/osm-woocommerce.png)
 
 ### Magento
 
@@ -84,15 +101,15 @@ To add the _badge_ to your product in Magento, find your product in Magento Admi
 <vipps-badge variant="purple"></vipps-badge>
 ```
 
-<img src="./resources/osm-magento.png" alt="Magento integration" width="600"/>
+![Magento integration](resources/osm-magento.png)
 
 ### Shopify
 
-To add the _badge_ to your product in Shopify, find your product in Shopify Admin > Producs and open it. Press the "Show Html"-button and copy paste in the following:
+To add the _badge_ to your product in Shopify, find your product in Shopify Admin > Products and open it. Press the "Show Html"-button and copy paste in the following:
 
 ```html
 <script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>
 <vipps-badge variant="purple"></vipps-badge>
 ```
 
-<img src="./resources/osm-shopify.png" alt="Shopify integration" width="600"/>
+![Shopify integration](resources/osm-shopify.png)

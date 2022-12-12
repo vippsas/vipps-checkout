@@ -1,25 +1,56 @@
-# Vipps-Checkout
+<!-- START_METADATA
+---
+title: Introduction
+sidebar_position: 1
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+END_METADATA -->
 
-Vipps Checkout is a Vipps product delivering a complete checkout experience, including gathering userinfo, shipping and payment processing.
+# Vipps Checkout
 
-This repository contains all the information you need to fully utilize the Vipps Checkout product.
+Vipps Checkout is a Vipps product delivering a complete checkout experience, handling payment processing, shipping and gathering userinfo.
 
-You can peruse the API reference documentation here:
+For information and to order the product go to:
 
-- [Swagger](https://vippsas.github.io/vipps-checkout-api/)
-- [Vipps Checkout API guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
-- [Vipps Checkout API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration.
-- [Frequently Asked Questions](vipps-checkout-api-faq.md): Questions and answers
-- [Go directly to the product ordering page](https://portal.vipps.no/register/vippscheckout) if you want to start the onboarding process.
+* [Product information in Norwegian](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/checkout/)
 
-# Other useful Vipps developer resources
+Go directly to the
+[product ordering page](https://portal.vipps.no/register/vippscheckout)
+if you want to start the onboarding process.
 
-- [Vipps på Nett](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/).
-- [Vipps Developers](https://github.com/vippsas/vipps-developers): The starting point for Vipps developers.
-- [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): Information about API keys, product activation.
-- [How It Works](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-howitworks.md): An overview of how the eCommerce API works.
-- [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md) for how to use our on-site messaging SDK.
+<!-- START_COMMENT -->
 
-# Questions?
+💥 Preview the new documentation pages here: <https://vippsas.github.io/vipps-developer-docs/>.
+See the disclaimer: <https://vippsas.github.io/vipps-developer-docs/docs/examples/>.
 
-We're always happy to help any questions you might have, [contact info can be found here](https://github.com/vippsas/vipps-developers/blob/master/contact.md).
+<!-- END_COMMENT -->
+
+## How it works
+
+* [How It Works](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api-howitworks): An overview of how the eCommerce API works
+
+## Getting started
+
+See
+[Getting Started](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
+for information about API keys, product activation, how to make API calls, etc.
+
+## Checkout API
+
+* [API Quick Start](vipps-checkout-api-quick-start.md): Quick Start.
+* [API Guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API.
+* [API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration.
+* [API FAQ](vipps-checkout-api-faq.md): Questions and answers.
+* [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout): Checkout API Reference Specifications.
+* [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md) for how to use our on-site messaging SDK.
+
+## Questions?
+
+We're always happy to help with code or other questions you might have!
+Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
+a [pull request](https://github.com/vippsas/vipps-checkout-api/pulls),
+or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
+
+Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
