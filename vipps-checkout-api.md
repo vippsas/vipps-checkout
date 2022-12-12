@@ -20,8 +20,8 @@ Document version: 1.1.0.
     - [Static shipping](#static-shipping)
     - [Dynamic shipping](#dynamic-shipping)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
-    - [AddressFields false example](#addressfields-false-example)
-    - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
+    - ["PaymentAndContactInfo" example](#"paymentandcontactinfo-example")
+    - ["PaymentOnly" example](#"paymentonly"-example")
     - [Combination with shipping](#combination-with-shipping)
   - [Remembering of customer data](#remembering-of-customer-data)
 - [System integration guidelines](#system-integration-guidelines)
@@ -56,10 +56,6 @@ Vipps Checkout works around the concept of a _session_, which has a time to live
 
 Once a session is created, it is to be opened inside an iFrame embedded on the merchant website. The iFrame loads a web application that fetches all neccessary information about the session from Vipps.
 
-### SDK
-
-Vipps provides an SDK to make opening the session on the merchant easy. It is highly recommended to use this.
-
 ## Shipping
 
 In most situations a merchant wants to send goods to a customer using a shipping provider. Vipps Checkout supports two different types of shipping configurations:
@@ -74,13 +70,9 @@ The merchant defines a _dynamic options callback URL_, which is called by Vipps 
 
 ## Vipps Checkout Elements
 
-With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system.
+With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system. 
 
-The data collected can be adjusted according to your needs with the fields `addressFields` and `contactFields` in the session initiation request.
-
-These fields are by default set to `true` and, if not specified, will return the full address and contact details in the Checkout session.
-
-### AddressFields false example
+### "PaymentAndContactInfo" example
 
 If you do not need the address from a user you can disable it, resulting in the following personal details form.
 
@@ -90,7 +82,7 @@ And the following payment form
 
 ![Address_field_false_form](resources/addressfields_false_form_2.png)
 
-### Addressfields and ContactFields false example
+### "PaymentOnly" example
 
 If you do not need the contact details for a customer you can disable it, resulting in the following session
 
@@ -228,7 +220,8 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
       document
         .getElementById("checkout-button")
         .addEventListener("click", function () {
-          // Relay an initiate session request to Vipps Checkout API trough merchants backend
+          // Relay an initiate session request to Vipps Checkout API through the merchant's backend
+          // As you need to use secret credentials to initiate a session, you need to initiate the session from your own backend.
           fetch("<MERCHANT BACKEND CREATE SESSION URL>", {
             method: "POST",
           })
