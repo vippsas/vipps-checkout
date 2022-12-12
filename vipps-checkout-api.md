@@ -21,7 +21,7 @@ Document version: 1.1.0.
     - [Dynamic shipping](#dynamic-shipping)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
     - ["PaymentAndContactInfo" example](#paymentandcontactinfo-example)
-    - ["PaymentOnly" example](#paymentonly-example")
+    - ["PaymentOnly" example](#paymentonly-example)
     - [Combination with shipping](#combination-with-shipping)
   - [Remembering of customer data](#remembering-of-customer-data)
 - [System integration guidelines](#system-integration-guidelines)
