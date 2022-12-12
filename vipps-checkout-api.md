@@ -72,6 +72,8 @@ The merchant defines a _dynamic options callback URL_, which is called by Vipps 
 
 With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system. 
 
+The elements mode is set by configuration.Elements in initiate session.
+
 ### "PaymentAndContactInfo" example
 
 If you do not need the address from a user you can disable it, resulting in the following personal details form.
