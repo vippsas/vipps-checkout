@@ -21,7 +21,6 @@ Use the Checkout API to create a checkout session, retrieve session information,
 - [Make API calls](#make-api-calls)
   - [Create a checkout session](#create-a-checkout-session)
   - [Retrieve the session information](#retrieve-the-session-information)
-  - [Cancel the current checkout session](#cancel-the-current-checkout-session)
 
 <!-- END_TOC -->
 

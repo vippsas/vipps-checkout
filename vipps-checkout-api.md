@@ -197,7 +197,7 @@ With Vipps Checkout Direct you can easily implement an express checkout experien
 
 ### Vipps Checkout Elements
 
-With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customer to identify themself because they are already logged into your system.
+With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customers to identify themselves because they are already logged into your system.
 
 The data collected can be adjusted according to your needs with the configuration.elements in the session initiation request.
 
@@ -237,9 +237,9 @@ To enable Checkout to create receipts, the "OrderSummary" property in the sessio
 
 Receipt information is a combination of a list of OrderLines and a BottomLine. An OrderLine is a description of each item present in the order. The BottomLine contains information regarding the order as a whole.
 It is possible to specify shipping costs in one or more OrderLines in the session initiation.
-If shipping is handled in Checkout, and not free, an orderline with the shipping cost will be automatically added, **even if** shipping costs are specified in the session initiation.
+If shipping is handled in Checkout and is not free, an order line with the shipping cost will be automatically added, **even if** shipping costs are specified in the session initiation.
 
-If set up properly in the "OrderSummary" property in the session initiation, the receipt will be created when payment is initiated (by sending it to Order Managent API), and will be visible in the customer's app when the payment is successfully completed.
+If set up properly in the "OrderSummary" property in the session initiation, the receipt will be created when payment is initiated (by sending it to Order Management API), and will be visible in the customer's app when the payment is successfully completed.
 Further details regarding receipts in [The Order Management API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#receipts)
 
 #### Receipts and Assisted Content Monitoring
@@ -555,7 +555,7 @@ The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this 
 </html>
 ```
 
-**Please note:** The `VippsCheckoutDirect` method in the SDK can be used instead of `VippsCheckout` as per. alternative 1 if you want to buypass the iFrame flow and let Vipps handle the checkout completely.
+**Please note:** The `VippsCheckoutDirect` method in the SDK can be used instead of `VippsCheckout` as per. alternative 1 if you want to bypass the iFrame flow and let Vipps handle the checkout completely.
 
 ### Step 3: Handling the result of the session
 
@@ -581,7 +581,7 @@ Vipps Checkout will expose a [polling endpoint][retrieve-sessioninfo-endpoint]. 
 
 #### Determine status of payment
 
-The status of the Payment can be either `CREATED, AUTHORZSED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORIZED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [OpenAPI schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
+The status of the Payment can be either `CREATED, AUTHORIZED, TERMINATED`, and can be found inside the `PaymentDetails` object in both the callback or session polling response. Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example when a customer successfully pays, the `PaymentDetails.state` is `AUTHORIZED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired or an error occurred, the state is `TERMINATED`. Please refer to the [OpenAPI schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
 If you want more granular information about the payment, you can call the [underlying API][get-payment-endpoint] that Vipps Checkout itself uses.
 
