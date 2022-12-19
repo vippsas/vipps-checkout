@@ -307,7 +307,7 @@ components:
           format: int32
         currency:
           type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK"'
+          description: 'The currency identifier according to ISO 4217. Example: "NOK"'
       additionalProperties: false
       description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
     GetSessionResponse:
