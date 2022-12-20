@@ -12,7 +12,7 @@ paths:
       tags:
         - Session
       summary: Create a Checkout session
-      description: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page URL, free standing card page URL."
+      description: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\nePayments landing page URL, free standing card page URL."
       parameters:
         - name: Vipps-System-Name
           in: header
@@ -318,7 +318,7 @@ components:
           description: 'The Id of the session. Example: "123123".'
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
         sessionState:
           allOf:
             - $ref: '#/components/schemas/BasicSessionState'
@@ -385,6 +385,10 @@ components:
         userFlow:
           type: string
           description: 'One of the following: "WEB_REDIRECT", "NATIVE_REDIRECT". To ensure having a return URL based on an app URL, use "NATIVE_REDIRECT".'
+          nullable: true
+        requireUserInfo:
+          type: boolean
+          description: 'Requires the customer to consent to share their email and openid sub with the merchant to be able to make a wallet payment (default: false).'
           nullable: true
       additionalProperties: false
       description: Request to set up a Checkout session
@@ -591,7 +595,7 @@ components:
           description: 'The merchant serial number for the sale unit. Example: "59474"'
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid"'
+          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations"'
         sessionState:
           allOf:
             - $ref: '#/components/schemas/PaymentCallbackState'
@@ -636,6 +640,7 @@ components:
           type: string
           description: 'Merchant base URL for callbacks. Example: "https://example.com/vipps/callbacks-for-payment-updates".'
         returnUrl:
+          minLength: 1
           type: string
           description: 'Complete URL for redirecting customers to when the checkout is finished. Example: "https://example.com/vipps".'
         callbackAuthorizationToken:
@@ -669,7 +674,7 @@ components:
           minLength: 8
           pattern: '^[-a-zA-Z0-9]*$'
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
         paymentDescription:
           maxLength: 100
           minLength: 1
@@ -825,6 +830,10 @@ components:
         email:
           type: string
           description: 'Example: "user@example.com"'
+        userInfoSub:
+          type: string
+          description: 'If the UserInfo payment flow is used, this field will contain the openid sub.'
+          nullable: true
       additionalProperties: false
       description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nResponseUserDetails is deprecated. Use ShippingDetailsV2 instead"
       deprecated: true
@@ -914,5 +923,9 @@ components:
         email:
           type: string
           description: 'Example: "user@example.com"'
+        userInfoSub:
+          type: string
+          description: 'If the UserInfo payment flow is used, this field will contain the openid sub.'
+          nullable: true
       additionalProperties: false
       description: Defines the details of the user.

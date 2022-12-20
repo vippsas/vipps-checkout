@@ -1,21 +1,22 @@
 {
   "item": [
     {
-      "id": "94888716-a2a5-4e12-a727-213d9b752f39",
+      "id": "8153c657-e758-4a05-9b88-cac3ec0486a9",
       "name": "session",
       "item": [
         {
-          "id": "3f13f8f1-0cd5-467a-8cd2-2a277dd24298",
+          "id": "af4cfc57-1f71-47ec-a22e-02fc8f0d495e",
           "name": "Create a Checkout session",
           "request": {
             "name": "Create a Checkout session",
-            "description": {
-              "content": "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page URL, free standing card page URL.",
-              "type": "text/plain"
-            },
+            "description": {},
             "url": {
-              "path": ["session"],
-              "host": ["{{base_url}}/checkout/v3"],
+              "path": [
+                "session"
+              ],
+              "host": [
+                "{{base_url}}/checkout/v3"
+              ],
               "query": [],
               "variable": []
             },
@@ -81,7 +82,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"merchantInfo\": {\n    \"callbackUrl\": \"{{callbackUrl}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"value\": 1000,\n      \"currency\": \"{{currency}}\"\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"brand\": \"POSTEN\",\n        \"isPickupPoint\": false,\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\"\n      },\n      {\n        \"brand\": \"POSTEN\",\n        \"isPickupPoint\": true,\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\"\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"configuration\": {\n    \"customerInteraction\": \"CUSTOMER_NOT_PRESENT\",\n    \"elements\": \"Full\",\n    \"countries\": {\n      \"supported\": [\n        \"NO\",\n        \"SE\",\n        \"DK\"\n      ]\n    }\n  }\n}",
+              "raw": "{\n  \"merchantInfo\": {\n    \"callbackUrl\": \"{{callbackUrl}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"value\": 1000,\n      \"currency\": \"{{currency}}\"\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"brand\": \"POSTEN\",\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\"\n      },\n      {\n        \"brand\": \"POSTEN\",\n        \"type\": \"PICKUP_POINT\",\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\"\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"configuration\": {\n    \"customerInteraction\": \"CUSTOMER_NOT_PRESENT\",\n    \"elements\": \"Full\",\n    \"countries\": {\n      \"supported\": [\n        \"NO\",\n        \"SE\",\n        \"DK\"\n      ]\n    }\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -120,7 +121,7 @@
           }
         },
         {
-          "id": "904c9288-f010-49ab-ac76-fa5480ca06b9",
+          "id": "c5342172-24b6-488e-a122-a577d89ad1c0",
           "name": "Get session info",
           "request": {
             "name": "Get session info",
@@ -129,8 +130,13 @@
               "type": "text/plain"
             },
             "url": {
-              "path": ["session", ":reference"],
-              "host": ["{{base_url}}/checkout/v3"],
+              "path": [
+                "session",
+                ":reference"
+              ],
+              "host": [
+                "{{base_url}}/checkout/v3"
+              ],
               "query": [],
               "variable": [
                 {
@@ -211,7 +217,7 @@
   ],
   "event": [],
   "info": {
-    "_postman_id": "bd283c75-95d8-47f2-9d05-8c090571af13",
+    "_postman_id": "a4ff3cf4-e56b-448d-8251-8120304c06f9",
     "name": "Checkout API v3 - Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
