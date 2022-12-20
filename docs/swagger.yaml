@@ -566,7 +566,7 @@ components:
           maxLength: 3
           minLength: 3
           type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK".'
+          description: 'The currency identifier according to ISO 4217. Example: "NOK".'
         tipAmount:
           type: integer
           description: Tip amount for the order. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
@@ -734,7 +734,7 @@ components:
           minLength: 8
           pattern: '^[-a-zA-Z0-9]*$'
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         paymentDescription:
           maxLength: 100
           minLength: 1
@@ -923,7 +923,7 @@ components:
           nullable: true
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         sessionState:
           allOf:
             - $ref: '#/components/schemas/ExternalSessionState'
