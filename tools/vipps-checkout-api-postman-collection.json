@@ -142,7 +142,7 @@
                 {
                   "disabled": false,
                   "type": "any",
-                  "value": "{{reference}}",
+                  "value": "{{orderId}}",
                   "key": "reference",
                   "description": "(Required) The reference of the session. Example: \"123123\"."
                 }
