@@ -12,7 +12,7 @@ paths:
       tags:
         - Session
       summary: Create a Checkout session
-      description: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\necom landing page URL, free standing card page URL."
+      description: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\nePayments landing page URL, free standing card page URL."
       parameters:
         - name: Vipps-System-Name
           in: header
@@ -386,6 +386,10 @@ components:
           type: string
           description: 'One of the following: "WEB_REDIRECT", "NATIVE_REDIRECT". To ensure having a return URL based on an app URL, use "NATIVE_REDIRECT".'
           nullable: true
+        requireUserInfo:
+          type: boolean
+          description: 'Requires the customer to consent to share their email and openid sub with the merchant to be able to make a wallet payment (default: false).'
+          nullable: true
       additionalProperties: false
       description: Request to set up a Checkout session
     InitiateSessionResponse:
@@ -636,6 +640,7 @@ components:
           type: string
           description: 'Merchant base URL for callbacks. Example: "https://example.com/vipps/callbacks-for-payment-updates".'
         returnUrl:
+          minLength: 1
           type: string
           description: 'Complete URL for redirecting customers to when the checkout is finished. Example: "https://example.com/vipps".'
         callbackAuthorizationToken:
@@ -825,6 +830,10 @@ components:
         email:
           type: string
           description: 'Example: "user@example.com"'
+        userInfoSub:
+          type: string
+          description: 'If the UserInfo payment flow is used, this field will contain the openid sub.'
+          nullable: true
       additionalProperties: false
       description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nResponseUserDetails is deprecated. Use ShippingDetailsV2 instead"
       deprecated: true
@@ -914,5 +923,9 @@ components:
         email:
           type: string
           description: 'Example: "user@example.com"'
+        userInfoSub:
+          type: string
+          description: 'If the UserInfo payment flow is used, this field will contain the openid sub.'
+          nullable: true
       additionalProperties: false
       description: Defines the details of the user.
