@@ -3,7 +3,6 @@
 title: V2 to V3 migration guide
 sidebar_position: 25
 pagination_next: null
-pagination_prev: null
 ---
 END_METADATA -->
 

@@ -2,7 +2,6 @@
 ---
 title: FAQ
 sidebar_position: 24
-pagination_next: null
 ---
 END_METADATA -->
 
