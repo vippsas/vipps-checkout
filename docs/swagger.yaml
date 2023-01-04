@@ -165,7 +165,7 @@ paths:
           required: true
           schema:
             type: string
-            default: '{{reference}}'
+            default: '{{orderId}}'
         - name: Vipps-System-Name
           in: header
           schema:
@@ -362,6 +362,8 @@ components:
       additionalProperties: false
       description: Configuration required to enable Helthjem logistics options
     HelthjemLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
@@ -370,6 +372,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/HelthjemLogisticsType'
           nullable: true
+        brand:
+          pattern: HELTHJEM
+          type: string
+          default: HELTHJEM
       additionalProperties: false
     HelthjemLogisticsType:
       enum:
@@ -444,9 +450,16 @@ components:
       additionalProperties: false
       description: Details needed to book an instabox order
     InstaboxLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
+      properties:
+        brand:
+          pattern: INSTABOX
+          type: string
+          default: INSTABOX
       additionalProperties: false
     Integrations:
       type: object
@@ -494,8 +507,19 @@ components:
       additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOptionBase:
+      required:
+        - brand
       type: object
       properties:
+        brand:
+          enum:
+            - POSTEN
+            - POSTNORD
+            - PORTERBUDDY
+            - INSTABOX
+            - HELTHJEM
+            - OTHER
+          type: string
         amount:
           allOf:
             - $ref: '#/components/schemas/Amount'
@@ -514,6 +538,15 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+      discriminator:
+        propertyName: brand
+        mapping:
+          POSTEN: '#/components/schemas/PostenLogisticsOption'
+          POSTNORD: '#/components/schemas/PostnordLogisticsOption'
+          PORTERBUDDY: '#/components/schemas/PorterbuddyLogisticsOption'
+          INSTABOX: '#/components/schemas/InstaboxLogisticsOption'
+          HELTHJEM: '#/components/schemas/HelthjemLogisticsOption'
+          OTHER: '#/components/schemas/OtherLogisticsOption'
     MerchantAuthInfoHeaders:
       required:
         - client_id
@@ -682,6 +715,8 @@ components:
           description: Available units for quantity. Will default to PCS if not set.
       additionalProperties: false
     OtherLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
@@ -690,6 +725,10 @@ components:
           maxLength: 200
           minLength: 1
           type: string
+        brand:
+          pattern: OTHER
+          type: string
+          default: OTHER
       additionalProperties: false
     PaymentMerchantInfo:
       required:
@@ -790,9 +829,16 @@ components:
       additionalProperties: false
       description: Configuration required to enable Porterbuddy logistics options
     PorterbuddyLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
+      properties:
+        brand:
+          pattern: PORTERBUDDY
+          type: string
+          default: PORTERBUDDY
       additionalProperties: false
     PorterbuddyOrigin:
       type: object
@@ -829,6 +875,8 @@ components:
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
       additionalProperties: false
     PostenLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
@@ -837,12 +885,18 @@ components:
           allOf:
             - $ref: '#/components/schemas/PostenLogisticsType'
           nullable: true
+        brand:
+          pattern: POSTEN
+          type: string
+          default: POSTEN
       additionalProperties: false
     PostenLogisticsType:
       enum:
         - PICKUP_POINT
       type: string
     PostnordLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
@@ -851,6 +905,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/PostnordLogisticsType'
           nullable: true
+        brand:
+          pattern: POSTNORD
+          type: string
+          default: POSTNORD
       additionalProperties: false
     PostnordLogisticsType:
       enum:
