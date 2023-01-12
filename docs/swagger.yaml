@@ -372,6 +372,9 @@ components:
           allOf:
             - $ref: '#/components/schemas/HelthjemLogisticsType'
           nullable: true
+        customType:
+          type: string
+          nullable: true
         brand:
           pattern: HELTHJEM
           type: string
@@ -456,11 +459,22 @@ components:
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
       properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/InstaboxLogisticsType'
+          nullable: true
+        customType:
+          type: string
+          nullable: true
         brand:
           pattern: INSTABOX
           type: string
           default: INSTABOX
       additionalProperties: false
+    InstaboxLogisticsType:
+      enum:
+        - PICKUP_POINT
+      type: string
     Integrations:
       type: object
       properties:
@@ -717,6 +731,7 @@ components:
     OtherLogisticsOption:
       required:
         - brand
+        - title
       type: object
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
@@ -835,11 +850,22 @@ components:
       allOf:
         - $ref: '#/components/schemas/LogisticsOptionBase'
       properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/PorterbuddyLogisticsType'
+          nullable: true
+        customType:
+          type: string
+          nullable: true
         brand:
           pattern: PORTERBUDDY
           type: string
           default: PORTERBUDDY
       additionalProperties: false
+    PorterbuddyLogisticsType:
+      enum:
+        - HOME_DELIVERY
+      type: string
     PorterbuddyOrigin:
       type: object
       properties:
@@ -885,6 +911,9 @@ components:
           allOf:
             - $ref: '#/components/schemas/PostenLogisticsType'
           nullable: true
+        customType:
+          type: string
+          nullable: true
         brand:
           pattern: POSTEN
           type: string
@@ -904,6 +933,9 @@ components:
         type:
           allOf:
             - $ref: '#/components/schemas/PostnordLogisticsType'
+          nullable: true
+        customType:
+          type: string
           nullable: true
         brand:
           pattern: POSTNORD
