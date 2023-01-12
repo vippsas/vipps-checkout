@@ -9,7 +9,7 @@ END_METADATA -->
 
 Use the Checkout API to create a checkout session, retrieve session information, and cancel the current checkout session.
 
-<!-- START_TOC -->
+<!-- START_COMMENT -->
 
 ## Table of Contents
 
@@ -22,9 +22,8 @@ Use the Checkout API to create a checkout session, retrieve session information,
   - [Create a checkout session](#create-a-checkout-session)
   - [Retrieve the session information](#retrieve-the-session-information)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
-Document version 1.1.1.
 
 ## Postman
 

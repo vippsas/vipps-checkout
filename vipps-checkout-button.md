@@ -20,7 +20,7 @@ The library should preferably be added between your page's `<head>...</head>`-ta
 
 If you don't have access to edit your websites code directly you can also place the JavaScript library just before the _button_.
 
-### Example
+## Example
 
 You can find a demo and examples of all the variants [here](https://checkout.vipps.no/checkout-button/v1).
 
@@ -30,7 +30,7 @@ You can find a demo and examples of all the variants [here](https://checkout.vip
 <vipps-checkout-button variant="orange" branded="true"></vipps-checkout-button>
 ```
 
-#### Attributes
+### Attributes
 
 All attributes are optional.
 
@@ -42,7 +42,7 @@ All attributes are optional.
 | stretched | Will fill the whole with of the parent container when set to `true`               | `false`  |
 | branded   | Brand with the Vipps-logo                                                         | `false`  |
 
-#### Customization
+### Customization
 
 You can customize the placement and size of the _button_ by either applying your own CSS-style with the `class` or `style` attribute.
 

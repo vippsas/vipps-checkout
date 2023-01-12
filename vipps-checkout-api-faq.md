@@ -5,15 +5,7 @@ sidebar_position: 24
 ---
 END_METADATA -->
 
-
 # Vipps Checkout API: Frequently Asked Questions
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).
-
-<!-- END_COMMENT -->
 
 Here are the Checkout API FAQs.
 See the
@@ -24,9 +16,7 @@ For more common Vipps questions, see:
 
 * [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/)
 
-Document version 1.0.0.
-
-<!-- START_TOC -->
+<!-- START_COMMENT -->
 
 ## Table of contents
 
@@ -42,7 +32,7 @@ Document version 1.0.0.
   * [Can I have "Pick-up in store" as shipping option with Vipps Checkout?](#can-i-have-pick-up-in-store-as-shipping-option-with-vipps-checkout)
 * [Questions?](#questions)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
 ## Capture, Reservations, and Refunds
 

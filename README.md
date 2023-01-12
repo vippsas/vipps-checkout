@@ -22,8 +22,7 @@ if you want to start the onboarding process.
 
 <!-- START_COMMENT -->
 
-💥 Preview the new documentation pages here: <https://vippsas.github.io/vipps-developer-docs/>.
-See the disclaimer: <https://vippsas.github.io/vipps-developer-docs/docs/examples/>.
+💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
 
 <!-- END_COMMENT -->
 
