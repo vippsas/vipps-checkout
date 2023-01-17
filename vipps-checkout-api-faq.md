@@ -14,7 +14,7 @@ for more details.
 
 For more common Vipps questions, see:
 
-* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/)
+* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
 
 <!-- START_COMMENT -->
 
@@ -39,9 +39,9 @@ For more common Vipps questions, see:
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
 
 All subsequent transaction operations are fully supported in the
-[Vipps epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/).
+[Vipps epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
 
-See the [Vipps FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/) for common
+See the [Vipps FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs) for common
 questions about captures, reservations, and refunds.
 
 ## Testing
