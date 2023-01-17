@@ -81,12 +81,3 @@ You can update any of the other environment variables. Be aware of this:
    The `reference` variable was previously set in the environment.
 
    You will see the details appear in the lower pane.
-
-## Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
-a [pull request](https://github.com/vippsas/vipps-checkout-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
