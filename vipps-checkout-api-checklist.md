@@ -5,11 +5,11 @@ sidebar_position: 23
 ---
 END_METADATA -->
 
-# Checkout integration checklist
+# Checklist
 
 The Checkout API should be considered an aggregation API of Vipps services, while transaction operations is to be performed on the [epayment][epayment-api-reference-url] API.
 
-## Checklist
+## Checklist for full integration
 
 - [ ] Integrate _all_ the [API endpoints](vipps-checkout-api.md):
   - [ ] Initiate [`POST:checkout/v3/session`][create-checkout-session-endpoint]

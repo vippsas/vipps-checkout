@@ -5,7 +5,7 @@ sidebar_position: 24
 ---
 END_METADATA -->
 
-# Vipps Checkout API: Frequently Asked Questions
+# FAQs
 
 Here are the Checkout API FAQs.
 See the
@@ -17,6 +17,8 @@ For more common Vipps questions, see:
 * [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
 
 <!-- START_COMMENT -->
+
+💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
 
 ## Table of contents
 
@@ -33,7 +35,7 @@ For more common Vipps questions, see:
 
 <!-- END_COMMENT -->
 
-## Capture, Reservations, and Refunds
+## Capture, reservations, and refunds
 
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
 

@@ -5,7 +5,7 @@ sidebar_position: 15
 ---
 END_METADATA -->
 
-# Vipps Checkout Button
+# Checkout button
 
 Make it super easy for customers to checkout out straight from a product page with Checkout Direct and our "Buy now" checkout-_button_!
 
@@ -20,7 +20,7 @@ The library should preferably be added between your page's `<head>...</head>`-ta
 
 If you don't have access to edit your websites code directly you can also place the JavaScript library just before the _button_.
 
-## Example
+## Example button
 
 You can find a demo and examples of all the variants [here](https://checkout.vipps.no/checkout-button/v1).
 
@@ -68,7 +68,7 @@ Use `text-align` with `display:block` to align the _button_:
 
 Read more about integrating with Vipps Checkout Direct [here](vipps-checkout-api.md#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you).
 
-### Example
+### Example integration
 
 ```html
 <html>

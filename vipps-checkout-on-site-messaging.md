@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: On-Site Messaging
+title: On-site messaging
 sidebar_position: 15
 ---
 END_METADATA -->
@@ -23,7 +23,7 @@ If you don't have access to edit your websites code directly you can also place 
 The On-Site Messaging library contains an easy to integrate _badge_ with tailor made message for use in your online store.
 The badge comes in five variants with different color-pallets to suite your website.
 
-### Example
+### Example badge
 
 You can find a demo and examples of all the variants [here](https://checkout.vipps.no/on-site-messaging/v1).
 
