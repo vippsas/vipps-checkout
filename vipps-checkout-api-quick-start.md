@@ -11,19 +11,20 @@ Use the Checkout API to create a checkout session, retrieve session information,
 
 <!-- START_COMMENT -->
 
-## Table of Contents
+💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
+
+## Table of contents
 
 - [Postman](#postman)
   - [Prerequisites](#prerequisites)
-  - [Step 1: Get the Vipps Postman collection and environment](#step-1-get-the-vipps-postman-collection-and-environment)
-  - [Step 2: Import the Vipps Postman files](#step-2-import-the-vipps-postman-files)
+  - [Step 1: Get the Vipps collection and environment](#step-1-get-the-vipps-collection-and-environment)
+  - [Step 2: Import the Vipps files](#step-2-import-the-postman-files)
   - [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
 - [Make API calls](#make-api-calls)
   - [Create a checkout session](#create-a-checkout-session)
   - [Retrieve the session information](#retrieve-the-session-information)
 
 <!-- END_COMMENT -->
-
 
 ## Postman
 
@@ -32,14 +33,14 @@ Use the Checkout API to create a checkout session, retrieve session information,
 Review
 [Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides) for information about getting your test environment set up.
 
-### Step 1: Get the Vipps Postman collection and environment
+### Step 1: Get the Vipps collection and environment
 
 Save the following files to your computer:
 
 - [Vipps Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
 - [Vipps API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
-### Step 2: Import the Vipps Postman files
+### Step 2: Import the Postman files
 
 1. In Postman, click _Import_ in the upper-left corner.
 1. In the dialog that opens, with _File_ selected, click _Upload Files_.

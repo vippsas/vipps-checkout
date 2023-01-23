@@ -77,6 +77,6 @@ If requireUserInfo is set to true in session initiation, user info will instead 
 
 `billingDetails.country` and `shippingDetails.country` were previously derived from the free-text field filled in by the customer. We have now changed this to always be two-letter codes that adhere to the [ISO-3166-1 Alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
 
-## Cancel Session
+## Cancel session
 
 The cancel session endpoint has been removed.

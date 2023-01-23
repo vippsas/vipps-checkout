@@ -5,7 +5,7 @@ sidebar_position: 10
 ---
 END_METADATA -->
 
-# Vipps Checkout guide
+# API guide
 
 Vipps Checkout provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
 
