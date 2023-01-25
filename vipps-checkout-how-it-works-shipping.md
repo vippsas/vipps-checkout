@@ -32,7 +32,7 @@ An enriching feature can be chosen by setting the `type` property on the logisti
 
 ### Pickup point
 
-The pickup point feature is enabled for by setting `type: "PICKUP_POINT"`. The title will become `{providerName} pick-up point` (e.g. "Posten pick-up point). The consumer gets to choose an available pickup point based on the address. Vipps relays the selected option as part of the content in the "session completed callback".
+The pickup point feature is enabled by setting `type: "PICKUP_POINT"`. The title will become `{providerName} pick-up point` (e.g. "Posten pick-up point). The consumer gets to choose an available pickup point based on the address. Vipps relays the selected option as part of the content in the "session completed callback".
 
 ![Pickup point animation](resources/shipping_pickup-point.gif)
 
