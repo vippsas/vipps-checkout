@@ -26,7 +26,7 @@ For some of the providers we offer enriching features, including:
 - Pickup point
 - Home delivery
 
-These features change the user interface to allow for more specific selection of delivery time or place, where some of the features require you (the merchant) to provide credentials. Credentials are provided in the `logistics.integrations` property at session initiation.
+These features change the user interface to allow for more specific selection of delivery time or place, where some of the features require you (the merchant) to provide credentials. Credentials are provided in the `logistics.integrations` property at session initiation, and are used to perform a "pre booking" (i.e. reserve a timeslot) for some of the shipping providers.
 
 An enriching feature can be chosen by setting the `type` property on the logistics option, again referring to the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) for which features are available for each shipping provider.
 
@@ -39,7 +39,5 @@ The pickup point feature is enabled by setting `type: "PICKUP_POINT"`. The title
 ### Home delivery
 
 The home delivery feature is enabled by setting `type: "HOME_DELIVERY"`. The title will become `{providerName} home delivery` (e.g. "Porterbuddy home delivery") by default. The consumer gets to choose an available delivery window based on the address. Vipps relays the selected option as part of the content in the "session completed callback".
-
-**Please note:** For home delivery Vipps Checkout must perform a "pre booking" (i.e. reserve a timeslot) when the consumer selects a delivery window. Merchant provided credentials are therefore required for the shipping provider in question.
 
 ![Home delivery animation](resources/shipping_home-delivery.gif)
