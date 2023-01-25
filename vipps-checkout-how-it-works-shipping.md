@@ -38,6 +38,6 @@ The pickup point feature is enabled by setting `type: "PICKUP_POINT"`. The title
 
 ### Home delivery
 
-The home delivery feature is enabled by setting `type: "HOME_DELIVERY"`. The title will become `{providerName} home delivery` (e.g. "Porterbuddy home delivery") by default. The comsumer gets to choose an available delivery window based on the address. Vipps relays the selected option as part of the content in the "session completed callback".
+The home delivery feature is enabled by setting `type: "HOME_DELIVERY"`. The title will become `{providerName} home delivery` (e.g. "Porterbuddy home delivery") by default. The consumer gets to choose an available delivery window based on the address. Vipps relays the selected option as part of the content in the "session completed callback".
 
 ![Home delivery animation](resources/shipping_home-delivery.gif)
