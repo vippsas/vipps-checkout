@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: How it works for shipping
+title: "How it works: Shipping"
 sidebar_position: 11
 ---
 END_METADATA -->
@@ -19,7 +19,7 @@ A provider is chosen by setting the `brand` property to one of the allowed strin
 
 ![Shipping provider logo example](resources/shipping_logo-example.png)
 
-If none of the providers fit your use case (e.g., indicating in-store-pickup), you can set a generic icon by setting `brand: "OTHER"`.
+If none of the providers fit your use case (e.g., indicating in-store-pickup), set the `brand` to "OTHER" for generic shipping. This will set a generic icon.
 
 ![Shipping provider default logo](resources/shipping_logo-default.png)
 
