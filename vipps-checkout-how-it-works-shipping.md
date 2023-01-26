@@ -15,6 +15,8 @@ Vipps Checkout supports all major shipping providers in the Norwegian market, in
 - Helthjem
 - Instabox
 
+To see how this works, [visit our demo store](https://demo.vipps.no/vipps-checkout-1/full).
+
 A provider is chosen by setting the `brand` property to one of the allowed string values. Consult the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) for further details. This will set the logo and name of the provider.
 
 ![Shipping provider logo example](resources/shipping_logo-example.png)
