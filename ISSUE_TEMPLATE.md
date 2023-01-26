@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: Issue template
+title: "Issue template"
 sidebar_position: 30
 draft: true
 ---
