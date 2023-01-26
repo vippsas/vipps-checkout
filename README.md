@@ -18,18 +18,19 @@ END_METADATA -->
 
 Vipps Checkout is a Vipps product delivering a complete checkout experience, handling payment processing, shipping and gathering user info.
 
-To order, go to
+To order, go to:
+
 * [Product ordering page](https://portal.vipps.no/register/vippscheckout) to start the onboarding process.
 
 For information go to:
 
 * [Product information in Norwegian](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/checkout/)
 
-To test Vipps Checkout
+To test Vipps Checkout:
+
 * [Visit our demo store](https://demo.vipps.no/vipps-checkout) where you can try out different flavours of Checkout
 
-
-## Next steps
+## Getting started
 
 See the
 [Vipps Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
