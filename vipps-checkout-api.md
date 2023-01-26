@@ -34,8 +34,8 @@ API version: 3.0.0.
     - [Helthjem integration](#helthjem-integration)
   - [Vipps Checkout Direct](#vipps-checkout-direct)
   - [Vipps Checkout Elements](#vipps-checkout-elements)
-    - [AddressFields false example](#addressfields-false-example)
-    - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
+    - ["PaymentAndContactInfo" example](#paymentandcontactinfo-example)
+    - ["PaymentOnly" example](#paymentonly-example)
     - [Combination with shipping](#combination-with-shipping)
   - [Remembering of customer data](#remembering-of-customer-data)
   - [Receipts](#receipts)
@@ -199,11 +199,9 @@ With Vipps Checkout Direct you can easily implement an express checkout experien
 
 With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customers to identify themselves because they are already logged into your system.
 
-The data collected can be adjusted according to your needs with the configuration.elements in the session initiation request.
+The elements mode is set by configuration.Elements in initiate session.
 
-If not specified, the complete address and contact details will be gathered.
-
-#### AddressFields false example
+### "PaymentAndContactInfo" example
 
 If you do not need the address from a user you can disable it using Elements set to `PaymentAndContactInfo`, resulting in the following personal details form.
 
@@ -213,7 +211,7 @@ And the following payment form
 
 ![Address_field_false_form](resources/addressfields_false_form_2.png)
 
-#### Addressfields and ContactFields false example
+### "PaymentOnly" example
 
 If you do not need the contact details for a customer you can disable it using Elements `PaymentOnly`, resulting in the following session
 
