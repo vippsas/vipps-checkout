@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: Checkout Button
+title: "Checkout button"
 sidebar_position: 15
 ---
 END_METADATA -->

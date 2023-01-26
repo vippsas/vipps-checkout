@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: Checklist
+title: "Checklist"
 sidebar_position: 23
 ---
 END_METADATA -->

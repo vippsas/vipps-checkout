@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: FAQ
+title: "FAQs"
 sidebar_position: 24
 ---
 END_METADATA -->
@@ -19,19 +19,6 @@ For more common Vipps questions, see:
 <!-- START_COMMENT -->
 
 💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
-
-## Table of contents
-
-* [Capture, Reservations, and Refunds](#capture-reservations-and-refunds)
-  * [How are subsequent transaction operations (Capture/Cancel/Refund) handled](#how-are-subsequent-transaction-operations-capturecancelrefund-handled)
-* [Testing](#testing)
-  * [I can't test card payments in Merchant Test (MT) environment, is there something wrong?](#i-cant-test-card-payments-in-merchant-test-mt-environment-is-there-something-wrong)
-* [Card payments](#card-payments)
-  * [What card types are supported?](#what-card-types-are-supported)
-  * [Which issuer countries are supported?](#which-issuer-countries-are-supported)
-  * [Is Visa Electron supported?](#is-visa-electron-supported)
-* [Shipping](#shipping)
-  * [Can I have "Pick-up in store" as shipping option with Vipps Checkout?](#can-i-have-pick-up-in-store-as-shipping-option-with-vipps-checkout)
 
 <!-- END_COMMENT -->
 
