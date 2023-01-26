@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: How it works: shipping
+title: How it works(shipping)
 sidebar_position: 11
 ---
 END_METADATA -->
