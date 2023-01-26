@@ -5,15 +5,7 @@ sidebar_position: 24
 ---
 END_METADATA -->
 
-
-# Vipps Checkout API: Frequently Asked Questions
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).
-
-<!-- END_COMMENT -->
+# FAQs
 
 Here are the Checkout API FAQs.
 See the
@@ -22,11 +14,11 @@ for more details.
 
 For more common Vipps questions, see:
 
-* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/)
+* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
 
-Document version 1.0.0.
+<!-- START_COMMENT -->
 
-<!-- START_TOC -->
+💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
 
 ## Table of contents
 
@@ -40,18 +32,17 @@ Document version 1.0.0.
   * [Is Visa Electron supported?](#is-visa-electron-supported)
 * [Shipping](#shipping)
   * [Can I have "Pick-up in store" as shipping option with Vipps Checkout?](#can-i-have-pick-up-in-store-as-shipping-option-with-vipps-checkout)
-* [Questions?](#questions)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
-## Capture, Reservations, and Refunds
+## Capture, reservations, and refunds
 
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
 
 All subsequent transaction operations are fully supported in the
-[Vipps epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/).
+[Vipps epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
 
-See the [Vipps FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/) for common
+See the [Vipps FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs) for common
 questions about captures, reservations, and refunds.
 
 ## Testing
@@ -87,12 +78,3 @@ For example, if you want Vipps Checkout to display "Pick up at the Royal Norwegi
 
 For WooCommerce-based webshops, this is done in the shipping configuration part of WooCommerce admin:
 `https://[_your webshop URL_]/wp-admin/admin.php?page=wc-settings&tab=shipping`
-
-## Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-checkout-api/issues),
-a [pull request](https://github.com/vippsas/vipps-checkout-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
