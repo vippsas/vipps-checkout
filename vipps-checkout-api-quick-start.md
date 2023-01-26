@@ -13,17 +13,6 @@ Use the Checkout API to create a checkout session, retrieve session information,
 
 💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
 
-## Table of contents
-
-- [Postman](#postman)
-  - [Prerequisites](#prerequisites)
-  - [Step 1: Get the Vipps collection and environment](#step-1-get-the-vipps-collection-and-environment)
-  - [Step 2: Import the Vipps files](#step-2-import-the-postman-files)
-  - [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
-- [Make API calls](#make-api-calls)
-  - [Create a checkout session](#create-a-checkout-session)
-  - [Retrieve the session information](#retrieve-the-session-information)
-
 <!-- END_COMMENT -->
 
 ## Postman

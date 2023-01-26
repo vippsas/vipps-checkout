@@ -19,45 +19,6 @@ API version: 3.0.0.
 
 💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-api>. 💥
 
-# Table of contents
-
-- [Checkout Features](#checkout-features)
-  - [Vipps Checkout API](#vipps-checkout-api)
-  - [Vipps Checkout frontend](#vipps-checkout-frontend)
-  - [SDK](#sdk)
-  - [Shipping](#shipping)
-    - [Static shipping](#static-shipping)
-    - [Dynamic shipping](#dynamic-shipping)
-    - [Pickup points](#pickup-points)
-    - [Porterbuddy integration](#porterbuddy-integration)
-    - [Instabox integration](#instabox-integration)
-    - [Helthjem integration](#helthjem-integration)
-  - [Vipps Checkout Direct](#vipps-checkout-direct)
-  - [Vipps Checkout Elements](#vipps-checkout-elements)
-    - [AddressFields false example](#addressfields-false-example)
-    - [Addressfields and ContactFields false example](#addressfields-and-contactfields-false-example)
-    - [Combination with shipping](#combination-with-shipping)
-  - [Remembering of customer data](#remembering-of-customer-data)
-  - [Receipts](#receipts)
-    - [Receipts and Assisted Content Monitoring](#receipts-and-assisted-content-monitoring)
-- [System integration guidelines](#system-integration-guidelines)
-  - [Flow diagram](#flow-diagram)
-  - [Step 1: Initiating a session](#step-1-initiating-a-session)
-    - [Configuration for use inside a native mobile application](#configuration-for-use-inside-a-native-mobile-application)
-  - [Step 2: Displaying the session to the user](#step-2-displaying-the-session)
-    - [Sticky checkout session](#sticky-checkout-session)
-    - [SDK events](#sdk-events)
-  - [Step 3: Handling the result of the session](#step-3-handling-the-result-of-the-session)
-    - [Callback handling](#callback-handling)
-    - [Session polling](#session-polling)
-    - [Determine status of payment](#determine-status-of-payment)
-    - [Step 3a: If a transaction is authorized, capture payment](#step-3a-if-a-transaction-is-authorized-capture-payment)
-- [Integration partner and plugin guidelines](#integration-partner-and-plugin-guidelines)
-  - [Partner signup API guidelines](#partner-signup-api-guidelines)
-- [Transaction operations (Capture, Cancel, Refund, Details)](#transaction-operations-capture-cancel-refund-details)
-- [Vipps side Transaction information](#vipps-side-transaction-information)
-  - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
-
 <!-- END_COMMENT -->
 
 ## Checkout Features
