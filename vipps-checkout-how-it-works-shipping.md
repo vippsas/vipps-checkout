@@ -30,7 +30,7 @@ For some of the providers we offer enriching features, including:
 - Pickup point
 - Home delivery
 
-These features change the user interface to allow for more specific selection of delivery time or place, where some of the features require you (the merchant) to provide credentials. Credentials are provided in the `logistics.integrations` property at session initiation and are used to perform a "pre booking" (i.e. reserve a timeslot) for some of the shipping providers.
+These features change the user interface to allow for more specific selection of delivery time or place, where some of the features require you (the merchant) to provide credentials. Credentials are provided in the `logistics.integrations` property at session initiation and are used to perform a "pre booking" (i.e. reserve a time slot) for some of the shipping providers.
 
 An enriching feature can be chosen by setting the `type` property on the logistics option.
 Refer to the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) to see which features are available for each shipping provider.
