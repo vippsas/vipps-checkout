@@ -8,7 +8,7 @@ pagination_prev: null
 ---
 END_METADATA -->
 
-# Checkout API
+# Vipps Checkout API
 
 <!-- START_COMMENT -->
 
