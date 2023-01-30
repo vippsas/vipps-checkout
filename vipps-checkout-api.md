@@ -50,107 +50,7 @@ and you will not get improvements and bugfixes we do in the SDK.
 
 ### Shipping
 
-In most situations a merchant wants to send goods to a customer using a shipping provider. Vipps Checkout supports two different types of shipping configurations:
-
-#### Static shipping
-
-The merchant defines a set of static shipping options that _are not_ dependant on the address of the customer. This means that the merchant has to find a reasonable price for each shipping option, taking into account that the final cost of that shipment might be either more or less than the requested amount.
-
-#### Dynamic shipping
-
-The merchant defines a _dynamic options callback URL_, which is called by Vipps Checkout every time a customer updates their address. The callback endpoint receives the updated address, and the merchant decides on a set of shipping options to display to the user.
-
-#### Pickup points
-
-We currently provide support for Posten/Bring, PostNord, Instabox and Helthjem pickup points. As of now, we do not support lockers etc. in Posten/Bring and Postnord.
-To enable pickup points for a logistics option, the isPickupPoint flag must be set to true.
-
-The user selects the pickup point after picking their logistics option. The logistics option must have the isPickupPoint field set to true for this to appear.
-We then return carrier's pickup point ID, pickup point name and address.
-
-![pickup_point_example](resources/pickup_point_example.png)
-![pickup_point_select](resources/pickup_point_select.png)
-
-#### Porterbuddy integration
-
-Porterbuddy is a shipping provider that offers home delivery to a time slot selected by the customer. To enable it, the merchant must:
-
-1. Provide Porterbuddy credentials in the logistics.integrations.porterbuddy object in session initiation.
-2. Provide a logistics option with "IsPorterbuddy" flag set to true. The amount.value of the logistics option must also be set to zero as the price is determined dynamically based on delivery window.
-
-```mermaid
-sequenceDiagram
-  actor User
-  participant API as Vipps Checkout API
-  participant Merchant
-  participant Porterbuddy
-
-  User->>Merchant: Start shopping session, proceed to checkout
-  Merchant->>API: Start checkout session with Porterbuddy credentials
-  API->>Merchant: Response containing token identifying the session
-  User->>API: Selects Porterbuddy shipping option
-  API->>Porterbuddy: Retrieves delivery times for address
-  User->>User: Selects delivery time
-  User->>API: Completes payment
-  API->>Porterbuddy: Books shipment
-
-  alt If booking fails
-    API->>Merchant: Cancels payment and sends callback
-  else If booking succeeds
-    API->>Merchant: Marks payment as succeeded and sends callback
-  end
-```
-
-![porterbuddy_example](resources/porterbuddy_example.png)
-
-#### Instabox integration
-
-Instabox is a shipping provider that offers delivery to a locker location selected by the customer. To enable it:
-
-1. Provide Instabox credentials in the logistics.integrations.instabox object in session initiation.
-2. Provide a logistics option with "IsInstabox" flag set to true.
-
-```mermaid
-sequenceDiagram
-  actor User
-  participant API as Vipps Checkout API
-  participant Merchant
-  participant Instabox
-
-  User->>Merchant: Start shopping session, proceed to checkout
-  Merchant->>API: Start checkout session with Instabox credentials
-  User->>API: Selects Instabox shipping option
-  API->>Instabox: Retrieves available locker locations for address
-  User->>User: Selects locker location
-  User->>API: Completes payment
-  API->>Instabox: Prebooks order
-  API->>Merchant: Marks payment as succeeded and sends callback
-```
-
-#### Helthjem integration
-
-**(v3 only)**
-
-Helthjem is a shipping provider that offers delivery to a pick-up point selected by the customer. To enable it:
-
-1. Provide Helthjem credentials in the logistics.integrations.helthjem object in session initiation.
-2. Provide a logistics option with brand name "Helthjem" and type "PICKUP_POINT".
-
-```mermaid
-sequenceDiagram
-  actor User
-  participant API as Vipps Checkout API
-  participant Merchant
-  participant Helthjem
-
-  User->>Merchant: Start shopping session, proceed to checkout
-  Merchant->>API: Start checkout session with Helthjem credentials
-  User->>API: Selects Helthjem shipping option
-  API->>Helthjem: Retrieves available pickup points for address
-  User->>User: Selects pickup point
-  User->>API: Completes payment
-  API->>Merchant: Marks payment as succeeded and sends callback
-```
+In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping) and the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features Vipps Checkout support.
 
 ### Vipps Checkout Direct
 
@@ -284,8 +184,6 @@ with headers
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
 All fields of the request body are described in our [API Reference][create-checkout-session-endpoint].
-
-**Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
 
 The response object consists of a `token` and a `checkoutFrontendUrl`, which are used in the next step
 
