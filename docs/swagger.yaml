@@ -298,6 +298,11 @@ components:
           type: boolean
           description: 'Requires the customer to consent to share their email and openid sub with the merchant to be able to make a wallet payment (default: false).'
           nullable: true
+        customConsent:
+          allOf:
+            - $ref: '#/components/schemas/CustomConsent'
+          description: 'If used, displays a checkbox that can be used to ask for extra consent.'
+          nullable: true
       additionalProperties: false
       description: ''
     CheckoutSessionThirdPartyInformationHeaders:
@@ -327,6 +332,17 @@ components:
           description: 'List of allowed countries in ISO-3166 Alpha 2. If specified, the customer will only be able to select these countries. Example ["NO", "SE", "DK"]'
       additionalProperties: false
       description: ''
+    CustomConsent:
+      type: object
+      properties:
+        text:
+          type: string
+          description: 'Text displayed next to the checkbox. This text can contain up to one link in markdown format like this: [linkText](https://example.com)'
+        required:
+          type: boolean
+          description: Whether box has to be checked to complete the checkout.
+      additionalProperties: false
+      description: 'If used, displays a checkbox that can be used to ask for extra consent.'
     CustomerInteraction:
       enum:
         - CUSTOMER_PRESENT
@@ -473,6 +489,7 @@ components:
       additionalProperties: false
     InstaboxLogisticsType:
       enum:
+        - HOME_DELIVERY
         - PICKUP_POINT
       type: string
     Integrations:
@@ -521,19 +538,8 @@ components:
       additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOptionBase:
-      required:
-        - brand
       type: object
       properties:
-        brand:
-          enum:
-            - POSTEN
-            - POSTNORD
-            - PORTERBUDDY
-            - INSTABOX
-            - HELTHJEM
-            - OTHER
-          type: string
         amount:
           allOf:
             - $ref: '#/components/schemas/Amount'
@@ -552,15 +558,6 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-      discriminator:
-        propertyName: brand
-        mapping:
-          POSTEN: '#/components/schemas/PostenLogisticsOption'
-          POSTNORD: '#/components/schemas/PostnordLogisticsOption'
-          PORTERBUDDY: '#/components/schemas/PorterbuddyLogisticsOption'
-          INSTABOX: '#/components/schemas/InstaboxLogisticsOption'
-          HELTHJEM: '#/components/schemas/HelthjemLogisticsOption'
-          OTHER: '#/components/schemas/OtherLogisticsOption'
     MerchantAuthInfoHeaders:
       required:
         - client_id
@@ -769,6 +766,7 @@ components:
       enum:
         - Wallet
         - Card
+        - Swish
       type: string
     PaymentState:
       enum:
@@ -791,7 +789,7 @@ components:
           description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         paymentDescription:
           maxLength: 100
-          minLength: 1
+          minLength: 3
           type: string
           description: 'Description visible to the customer during payment. Example: "One pair of Vipps socks".'
         orderSummary:
@@ -821,6 +819,11 @@ components:
         country:
           type: string
           description: 'Pickup point''s country. Example: NO'
+        openingHours:
+          type: array
+          items:
+            type: string
+          nullable: true
         instabox:
           allOf:
             - $ref: '#/components/schemas/InstaboxBookingDetails'
@@ -921,7 +924,9 @@ components:
       additionalProperties: false
     PostenLogisticsType:
       enum:
+        - MAILBOX
         - PICKUP_POINT
+        - HOME_DELIVERY
       type: string
     PostnordLogisticsOption:
       required:
@@ -945,6 +950,7 @@ components:
     PostnordLogisticsType:
       enum:
         - PICKUP_POINT
+        - HOME_DELIVERY
       type: string
     PrefillCustomer:
       type: object
@@ -1041,6 +1047,10 @@ components:
         billingDetails:
           allOf:
             - $ref: '#/components/schemas/BillingDetails'
+          description: ''
+          nullable: true
+        customConsentProvided:
+          type: boolean
           description: ''
           nullable: true
       additionalProperties: false
