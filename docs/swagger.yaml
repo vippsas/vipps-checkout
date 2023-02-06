@@ -4,8 +4,10 @@ info:
   description: 'For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).'
   version: v3
 servers:
-  - url: https://apitest.vipps.no/checkout/v3
-  - url: https://api.vipps.no/checkout/v3
+  - url: https://api.vipps.no
+    description: Production environment
+  - url: https://apitest.vipps.no
+    description: Merchant Test environment
 paths:
   /session:
     post:
