@@ -58,18 +58,24 @@ Which will scale the _badge_ to 1.5x the size of the root font-size. You may als
 
 The _badge_ is an `inline` element by default, which means it will stay on the same line as sibling elements.
 
-So to center or fill the _badge_ you have to set `display: block` on the element to prevent it from being `inline`.
-
-Use `text-align` with `display:block` to align the _badge_:
+To get the _badge_ on the next line you can set `display: block` on the element to prevent it from being `inline`:
 
 ```html
-<vipps-badge vipps-senere amount="100000" variant="purple" style="display: block; text-align: center;"></vipps-badge>
+<vipps-badge vipps-senere amount="100000" variant="purple" style="display: block;"></vipps-badge>
 ```
 
-Or `width: 100%` to fill the parent container:
+To make the _badge_ fill the parent container, set `width: 100%`:
 
 ```html
-<vipps-badge vipps-senere amount="100000" variant="purple" style="display: block; width: 100%;"></vipps-badge>
+<vipps-badge vipps-senere amount="100000" variant="purple" style="width: 100%;"></vipps-badge>
+```
+
+To align the _badge_, you can set `text-align` on the parent container:
+
+```html
+<div style="text-align: center;">
+  <vipps-badge vipps-senere amount="100000" variant="purple"></vipps-badge>
+</div>
 ```
 
 ## Integrations
