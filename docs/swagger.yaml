@@ -918,9 +918,6 @@ components:
         customType:
           type: string
           nullable: true
-        customType:
-          type: string
-          nullable: true
         brand:
           pattern: POSTEN
           type: string
@@ -1056,10 +1053,6 @@ components:
         customConsentProvided:
           type: boolean
           description: ''
-          nullable: true
-        customConsentProvided:
-          type: boolean
-          description: ""
           nullable: true
       additionalProperties: false
       description: Session information
