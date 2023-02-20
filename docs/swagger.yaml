@@ -303,11 +303,6 @@ components:
             - $ref: '#/components/schemas/CustomConsent'
           description: 'If used, displays a checkbox that can be used to ask for extra consent.'
           nullable: true
-        customConsent:
-          allOf:
-            - $ref: "#/components/schemas/CustomConsent"
-          description: "If used, displays a checkbox that can be used to ask for extra consent."
-          nullable: true
       additionalProperties: false
       description: ''
     CheckoutSessionThirdPartyInformationHeaders:
