@@ -137,7 +137,7 @@ paths:
                 5XX:
                   description: 'If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. '
         Payment completed:
-          '{$request.body#/merchantInfo/callbackPrefix}/checkout/v3/order/{$request.body#/transaction/reference}':
+          "{$request.body#/merchantInfo/callbackUrl}":
             post:
               summary: Callback for session completed.
               requestBody:
@@ -302,6 +302,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/CustomConsent'
           description: 'If used, displays a checkbox that can be used to ask for extra consent.'
+          nullable: true
+        customConsent:
+          allOf:
+            - $ref: "#/components/schemas/CustomConsent"
+          description: "If used, displays a checkbox that can be used to ask for extra consent."
           nullable: true
       additionalProperties: false
       description: ''
@@ -823,6 +828,7 @@ components:
           type: array
           items:
             type: string
+          description: "Pickup point's opening hours. Example: Man-Søn: 1000-2000"
           nullable: true
         instabox:
           allOf:
@@ -913,6 +919,9 @@ components:
         type:
           allOf:
             - $ref: '#/components/schemas/PostenLogisticsType'
+          nullable: true
+        customType:
+          type: string
           nullable: true
         customType:
           type: string
@@ -1052,6 +1061,10 @@ components:
         customConsentProvided:
           type: boolean
           description: ''
+          nullable: true
+        customConsentProvided:
+          type: boolean
+          description: ""
           nullable: true
       additionalProperties: false
       description: Session information
