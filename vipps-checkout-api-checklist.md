@@ -1,17 +1,15 @@
 <!-- START_METADATA
-
-title: Checklist
-sidebar_position: 23
-
 ---
-
+title: "Checklist"
+sidebar_position: 23
+---
 END_METADATA -->
 
-# Checkout integration checklist
+# Checklist
 
 The Checkout API should be considered an aggregation API of Vipps services, while transaction operations is to be performed on the [epayment][epayment-api-reference-url] API.
 
-## Checklist
+## Checklist for full integration
 
 - [ ] Integrate _all_ the [API endpoints](vipps-checkout-api.md):
   - [ ] Initiate [`POST:checkout/v3/session`][create-checkout-session-endpoint]
@@ -53,8 +51,8 @@ The Checkout API should be considered an aggregation API of Vipps services, whil
         for normal work.
 
 [checkout-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/checkout
-[create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v3~1session/post
-[retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout/#tag/Session/paths/~1v3~1session~1%7BsessionId%7D/get
+[create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v3~1session/post
+[retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v3~1session~1%7BsessionId%7D/get
 [epayment-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/epayment
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment

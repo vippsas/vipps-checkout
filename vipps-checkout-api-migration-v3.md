@@ -1,10 +1,9 @@
 <!-- START_METADATA
-
-title: V3-migration
-sidebar_position: 25
-
 ---
-
+title: "V2 to V3 migration guide"
+sidebar_position: 25
+pagination_next: null
+---
 END_METADATA -->
 
 # Migrating from Checkout V2 to V3
@@ -47,7 +46,7 @@ The permitted values for these fields used to be case insensitive. They are now 
 
 ### Logistics
 
-The logisticsOption object is now changed to better accomodate more advanced Checkout features. It is now a polymorphic object whose type is determined by which logistics carrier is used. Refer to Swagger for more details.
+The logisticsOption object is now changed to better accommodate more advanced Checkout features. It is now a polymorphic object whose type is determined by which logistics carrier is used. Refer to Swagger for more details.
 
 ## Polling and callback
 
@@ -55,7 +54,7 @@ The response object from polling and the callback object are now identical.
 
 ### UserDetails
 
-"userDetails" has been removed.
+`userDetails` has been removed.
 If requireUserInfo is set to true in session initiation, user info will instead be provided in its own dedicated response object UserInfo.
 
 ```javascript
@@ -67,17 +66,17 @@ If requireUserInfo is set to true in session initiation, user info will instead 
 
 ### PaymentDetails
 
-paymentDetails.State is now Authorized with a z instead of Authorised with a s.
+`paymentDetails.State` is now `Authorized` with a z instead of `Authorised` with a `s`.
 
 ### Renaming of region to city
 
-billingDetails.region has been renamed to billingDetails.city
-shippingDetails.region has been renamed to shippingDetails.city
+`billingDetails.region` has been renamed to `billingDetails.city`
+`shippingDetails.region` has been renamed to `shippingDetails.city`
 
 ### Standardized country name
 
-billingDetails.country and shippingDetails.country used to be derived from the free-text field filled in by the customer. We have now changed this to always be two-letter codes that adheres to the ISO-3166-1 Alpha-2 standard (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+`billingDetails.country` and `shippingDetails.country` were previously derived from the free-text field filled in by the customer. We have now changed this to always be two-letter codes that adhere to the [ISO-3166-1 Alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
 
-## Cancel Session
+## Cancel session
 
 The cancel session endpoint has been removed.
