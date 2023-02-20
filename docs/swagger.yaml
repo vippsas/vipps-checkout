@@ -530,13 +530,19 @@ paths:
                       schema:
                         type: array
                         items:
-                          $ref: "#/components/schemas/LogisticsOptionBase"
+                          oneOf:
+                            - $ref: "#/components/schemas/PostenLogisticsOption"
+                            - $ref: "#/components/schemas/PostnordLogisticsOption"
+                            - $ref: "#/components/schemas/PorterbuddyLogisticsOption"
+                            - $ref: "#/components/schemas/InstaboxLogisticsOption"
+                            - $ref: "#/components/schemas/HelthjemLogisticsOption"
+                            - $ref: "#/components/schemas/OtherLogisticsOption"
                 4XX:
                   description: "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. "
                 5XX:
                   description: "If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. "
         Payment completed:
-          "{$request.body#/merchantInfo/callbackPrefix}/checkout/v2/order/{$request.body#/transaction/reference}":
+          "{$request.body#/merchantInfo/callbackUrl}":
             post:
               summary: Callback for session completed.
               requestBody:
@@ -634,7 +640,7 @@ components:
           format: int32
         currency:
           type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK"'
+          description: 'The currency identifier according to ISO 4217. Example: "NOK"'
       additionalProperties: false
       description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
     BillingDetails:
@@ -697,6 +703,11 @@ components:
           type: boolean
           description: "Requires the customer to consent to share their email and openid sub with the merchant to be able to make a wallet payment (default: false)."
           nullable: true
+        customConsent:
+          allOf:
+            - $ref: "#/components/schemas/CustomConsent"
+          description: "If used, displays a checkbox that can be used to ask for extra consent."
+          nullable: true
       additionalProperties: false
       description: ""
     CheckoutSessionThirdPartyInformationHeaders:
@@ -726,6 +737,17 @@ components:
           description: 'List of allowed countries in ISO-3166 Alpha 2. If specified, the customer will only be able to select these countries. Example ["NO", "SE", "DK"]'
       additionalProperties: false
       description: ""
+    CustomConsent:
+      type: object
+      properties:
+        text:
+          type: string
+          description: "Text displayed next to the checkbox. This text can contain up to one link in markdown format like this: [linkText](https://example.com)"
+        required:
+          type: boolean
+          description: Whether box has to be checked to complete the checkout.
+      additionalProperties: false
+      description: "If used, displays a checkbox that can be used to ask for extra consent."
     CustomerInteraction:
       enum:
         - CUSTOMER_PRESENT
@@ -769,6 +791,13 @@ components:
           allOf:
             - $ref: "#/components/schemas/HelthjemLogisticsType"
           nullable: true
+        customType:
+          type: string
+          nullable: true
+        brand:
+          pattern: HELTHJEM
+          type: string
+          default: HELTHJEM
       additionalProperties: false
     HelthjemLogisticsType:
       enum:
@@ -846,7 +875,24 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
+      properties:
+        type:
+          allOf:
+            - $ref: "#/components/schemas/InstaboxLogisticsType"
+          nullable: true
+        customType:
+          type: string
+          nullable: true
+        brand:
+          pattern: INSTABOX
+          type: string
+          default: INSTABOX
       additionalProperties: false
+    InstaboxLogisticsType:
+      enum:
+        - HOME_DELIVERY
+        - PICKUP_POINT
+      type: string
     Integrations:
       type: object
       properties:
@@ -965,7 +1011,7 @@ components:
           maxLength: 3
           minLength: 3
           type: string
-          description: 'The currency identificator according to ISO 4217. Example: "NOK".'
+          description: 'The currency identifier according to ISO 4217. Example: "NOK".'
         tipAmount:
           type: integer
           description: Tip amount for the order. Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
@@ -1081,6 +1127,8 @@ components:
           description: Available units for quantity. Will default to PCS if not set.
       additionalProperties: false
     OtherLogisticsOption:
+      required:
+        - title
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
@@ -1089,6 +1137,10 @@ components:
           maxLength: 200
           minLength: 1
           type: string
+        brand:
+          pattern: OTHER
+          type: string
+          default: OTHER
       additionalProperties: false
     PaymentMerchantInfo:
       required:
@@ -1099,6 +1151,7 @@ components:
           type: string
           description: 'Complete URL for receiving callbacks. Example: "https://exmaple.com/vipps/payment-callback/'
         returnUrl:
+          minLength: 1
           type: string
           description: 'Complete URL for redirecting customers to when the checkout is finished. Example: "https://example.com/vipps".'
         callbackAuthorizationToken:
@@ -1132,10 +1185,10 @@ components:
           minLength: 8
           pattern: "^[-a-zA-Z0-9]*$"
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         paymentDescription:
           maxLength: 100
-          minLength: 1
+          minLength: 3
           type: string
           description: 'Description visible to the customer during payment. Example: "One pair of Vipps socks".'
         orderSummary:
@@ -1165,6 +1218,12 @@ components:
         country:
           type: string
           description: "Pickup point's country. Example: NO"
+        openingHours:
+          type: array
+          items:
+            type: string
+          description: "Pickup point's opening hours. Example: Man-Søn: 1000-2000"
+          nullable: true
         instabox:
           allOf:
             - $ref: "#/components/schemas/InstaboxBookingDetails"
@@ -1191,7 +1250,23 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
+      properties:
+        type:
+          allOf:
+            - $ref: "#/components/schemas/PorterbuddyLogisticsType"
+          nullable: true
+        customType:
+          type: string
+          nullable: true
+        brand:
+          pattern: PORTERBUDDY
+          type: string
+          default: PORTERBUDDY
       additionalProperties: false
+    PorterbuddyLogisticsType:
+      enum:
+        - HOME_DELIVERY
+      type: string
     PorterbuddyOrigin:
       type: object
       properties:
@@ -1203,7 +1278,7 @@ components:
           description: Your email address where Porterbuddy booking confirmation will be sent
         phoneNumber:
           type: string
-          description: Your phone number where Porterbuddy may send you important messages
+          description: 'Your phone number where Porterbuddy may send you important messages. Format must be MSISDN (including country code). Example: "4791234567"'
         address:
           allOf:
             - $ref: "#/components/schemas/PorterbuddyOriginAddress"
@@ -1215,12 +1290,16 @@ components:
       properties:
         streetAddress:
           type: string
+          description: 'Example: "Robert Levins gate 5"'
         postalCode:
           type: string
+          description: 'Example: "0154"'
         city:
           type: string
+          description: 'Example: "Oslo"'
         country:
           type: string
+          description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
       additionalProperties: false
     PostenLogisticsOption:
       type: object
@@ -1231,10 +1310,19 @@ components:
           allOf:
             - $ref: "#/components/schemas/PostenLogisticsType"
           nullable: true
+        customType:
+          type: string
+          nullable: true
+        brand:
+          pattern: POSTEN
+          type: string
+          default: POSTEN
       additionalProperties: false
     PostenLogisticsType:
       enum:
+        - MAILBOX
         - PICKUP_POINT
+        - HOME_DELIVERY
       type: string
     PostnordLogisticsOption:
       type: object
@@ -1245,10 +1333,18 @@ components:
           allOf:
             - $ref: "#/components/schemas/PostnordLogisticsType"
           nullable: true
+        customType:
+          type: string
+          nullable: true
+        brand:
+          pattern: POSTNORD
+          type: string
+          default: POSTNORD
       additionalProperties: false
     PostnordLogisticsType:
       enum:
         - PICKUP_POINT
+        - HOME_DELIVERY
       type: string
     PrefillCustomer:
       type: object
@@ -1264,7 +1360,7 @@ components:
           description: 'Example: "user@example.com"'
         phoneNumber:
           type: string
-          description: 'If no country code is provided, defaults to Norway (47). Example: "4791234567"'
+          description: 'Format must be MSISDN (including country code). Example: "4791234567"'
         streetAddress:
           type: string
           description: 'Example: "Robert Levins gate 5"'
@@ -1276,7 +1372,7 @@ components:
           description: 'Example: "0154"'
         country:
           type: string
-          description: 'Can be either country code or country name. Example: "NO"'
+          description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
       additionalProperties: false
       description: "Information about the customer to be prefilled\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
     QuantityUnit:
@@ -1317,7 +1413,7 @@ components:
           nullable: true
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#orderid-recommendations'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         sessionState:
           allOf:
             - $ref: "#/components/schemas/ExternalSessionState"
@@ -1345,6 +1441,10 @@ components:
         billingDetails:
           allOf:
             - $ref: "#/components/schemas/BillingDetails"
+          description: ""
+          nullable: true
+        customConsentProvided:
+          type: boolean
           description: ""
           nullable: true
       additionalProperties: false
