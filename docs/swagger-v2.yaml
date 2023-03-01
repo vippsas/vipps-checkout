@@ -592,7 +592,7 @@ components:
           description: 'The Id of the session. Example: "123123".'
         merchantSerialNumber:
           type: string
-          description: 'The merchant serial number for the sale unit. Example: "59474"'
+          description: 'The merchant serial number for the sales unit. Example: "59474"'
         reference:
           type: string
           description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid"'
