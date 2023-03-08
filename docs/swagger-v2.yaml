@@ -109,6 +109,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/InitiateSessionResponse'
               example: {"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOiJUdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIiwic2Vzc2lvblBvbGxpbmdVUkwiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAvY2hlY2tvdXQvc2Vzc2lvbi9UdHF1Y3I5ZDdKRHZ6clhYWTU1WUZRIn0.ln7VzZkNvUGu0HhyA_a8IbXQN35WhDBmCYC9IvyYL-I","checkoutFrontendUrl":"https://vippscheckout.vipps.no/v1/","pollingUrl":"https://api.vipps.no/checkout/v1/session/31gf1g413121"}
+        '400':
+          description: 'BadRequest: Validation errors'
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: 'Unauthorized: Invalid credentials'
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: 'Forbidden: Invalid subscription or configuration'
+          content:
+            application/json:
+              schema:
+                type: string
+        '409':
+          description: Conflict. Duplicate reference
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: 'InternalServerError: Unexpected errors'
+          content:
+            application/json:
+              schema:
+                type: string
+        '502':
+          description: 'BadGateway: Unexpected errors in integrations'
+          content:
+            application/json:
+              schema:
+                type: string
       callbacks:
         Dynamic logistics:
           '{$request.body#/logistics/dynamicOptionsCallback}':
@@ -148,7 +184,7 @@ paths:
                     examples:
                       Swagger:
                         summary: Swagger
-                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","Instabox":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
+                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","OpeningHours":null,"Instabox":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
@@ -226,8 +262,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetSessionResponse'
               example: {"sessionId":"v52EtjZriRmGiKiAKHByK2","reference":"acme-shop-123-order123abc","sessionState":"SessionStarted","paymentMethod":"Wallet","paymentDetails":{"amount":{"value":10000,"currency":"NOK"},"state":"AUTHORISED"},"shippingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO","shippingMethodId":"postenservicepakke1","pickupPoint":{"id":"123","name":"Storo Storsenter","address":"Vitaminveien 7","postalCode":"0485","city":"OSLO","country":"NO"}},"billingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO"}}
+        '400':
+          description: 'BadRequest: Validation errors'
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: 'Unauthorized: Invalid credentials'
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: 'Forbidden: Invalid subscription or configuration'
+          content:
+            application/json:
+              schema:
+                type: string
         '404':
-          description: The specified session id is unknown.
+          description: 'NotFound: The specified session id is unknown.'
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: 'InternalServerError: Unexpected errors'
+          content:
+            application/json:
+              schema:
+                type: string
+        '502':
+          description: 'BadGateway: Unexpected errors in integrations'
+          content:
+            application/json:
+              schema:
+                type: string
 components:
   schemas:
     BasicSessionState:
@@ -266,7 +336,6 @@ components:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
           nullable: true
-      additionalProperties: false
       description: Defines the details of the billing
     CallbackPaymentDetails:
       type: object
@@ -279,7 +348,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/PaymentState'
           description: ''
-      additionalProperties: false
       description: Defines the details of the payment.
     CheckoutSessionThirdPartyInformationHeaders:
       type: object
@@ -296,7 +364,6 @@ components:
         vipps-System-Plugin-Version:
           type: string
           description: 'The version number of the ecommerce plugin. Example: "4.5.6".'
-      additionalProperties: false
       description: Information about the merchant system.
     CommonAmount:
       type: object
@@ -308,7 +375,6 @@ components:
         currency:
           type: string
           description: 'The currency identifier according to ISO 4217. Example: "NOK"'
-      additionalProperties: false
       description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
     GetSessionResponse:
       type: object
@@ -349,7 +415,6 @@ components:
             - $ref: '#/components/schemas/BillingDetails'
           description: Defines the details of the billing
           nullable: true
-      additionalProperties: false
       description: Session information
     InitiateSessionRequest:
       type: object
@@ -390,7 +455,6 @@ components:
           type: boolean
           description: 'Requires the customer to consent to share their email and openid sub with the merchant to be able to make a wallet payment (default: false).'
           nullable: true
-      additionalProperties: false
       description: Request to set up a Checkout session
     InitiateSessionResponse:
       type: object
@@ -404,7 +468,6 @@ components:
         pollingUrl:
           type: string
           description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
-      additionalProperties: false
       description: Response from initiating a session.
     Instabox:
       type: object
@@ -415,7 +478,6 @@ components:
         clientSecret:
           type: string
           description: The client secret provided to you by Instabox
-      additionalProperties: false
       description: Configuration required to enable Instabox logistics options
     InstaboxBookingDetails:
       type: object
@@ -429,7 +491,6 @@ components:
         sortCode:
           type: string
           description: Identifies the location
-      additionalProperties: false
       description: Details needed to book an instabox order
     Integrations:
       type: object
@@ -444,7 +505,6 @@ components:
             - $ref: '#/components/schemas/Instabox'
           description: Configuration required to enable Instabox logistics options
           nullable: true
-      additionalProperties: false
     Logistics:
       type: object
       properties:
@@ -463,7 +523,6 @@ components:
             - $ref: '#/components/schemas/Integrations'
           description: Some optional checkout features require carrier-specific configuration. Can not be used with AddressFields set to false.
           nullable: true
-      additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOption:
       type: object
@@ -511,7 +570,6 @@ components:
           type: boolean
           description: If this is an Instabox shipping option. Can not be used with AddressFields set to false
           nullable: true
-      additionalProperties: false
       description: A logistics option to be presented to the customer
     MerchantAuthInfoHeaders:
       required:
@@ -537,7 +595,6 @@ components:
           minLength: 1
           type: string
           description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
-      additionalProperties: false
       description: Headers required to retrieve an access token.
     MerchantCallbackLogisticsOptions:
       type: object
@@ -555,6 +612,7 @@ components:
           type: string
         product:
           type: string
+          nullable: true
         isDefault:
           type: boolean
         description:
@@ -566,7 +624,6 @@ components:
         isPorterbuddy:
           type: boolean
           nullable: true
-      additionalProperties: false
     MerchantLogisticsCallbackRequestBody:
       type: object
       properties:
@@ -582,7 +639,6 @@ components:
         country:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
-      additionalProperties: false
       description: Information about the customer address used when retrieving dynamic logistics options.
     PaymentCallbackRequestDto:
       type: object
@@ -592,7 +648,7 @@ components:
           description: 'The Id of the session. Example: "123123".'
         merchantSerialNumber:
           type: string
-          description: 'The merchant serial number for the sales unit. Example: "59474"'
+          description: 'The merchant serial number for the sale unit. Example: "59474"'
         reference:
           type: string
           description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid"'
@@ -624,7 +680,6 @@ components:
             - $ref: '#/components/schemas/BillingDetails'
           description: ''
           nullable: true
-      additionalProperties: false
       description: Details provided in the session completed callback
     PaymentCallbackState:
       enum:
@@ -650,7 +705,6 @@ components:
           type: string
           description: 'Complete URL to the merchant''s terms and conditions. Example: "https://example.com/vipps/termsAndConditions".'
           nullable: true
-      additionalProperties: false
     PaymentMethod:
       enum:
         - Wallet
@@ -677,10 +731,9 @@ components:
           description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid'
         paymentDescription:
           maxLength: 100
-          minLength: 1
+          minLength: 3
           type: string
           description: 'Description visible to the customer during payment. Example: "One pair of Vipps socks".'
-      additionalProperties: false
     PickupPoint:
       type: object
       properties:
@@ -702,12 +755,17 @@ components:
         country:
           type: string
           description: 'Pickup point''s country. Example: NO'
+        openingHours:
+          type: array
+          items:
+            type: string
+          description: 'Pickup point''s opening hours. Example: Man-Søn: 1000-2000'
+          nullable: true
         instabox:
           allOf:
             - $ref: '#/components/schemas/InstaboxBookingDetails'
           description: Instabox details
           nullable: true
-      additionalProperties: false
       description: The pickup point the customer selected .
     Porterbuddy:
       type: object
@@ -722,7 +780,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/PorterbuddyOrigin'
           description: Information about the sender
-      additionalProperties: false
       description: Configuration required to enable Porterbuddy logistics options
     PorterbuddyOrigin:
       type: object
@@ -740,7 +797,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/PorterbuddyOriginAddress'
           description: Your address where Porterbuddy will pick up the parcels
-      additionalProperties: false
       description: Details about the sender of the Porterbuddy parcels
     PorterbuddyOriginAddress:
       type: object
@@ -753,8 +809,10 @@ components:
           type: string
         country:
           type: string
-      additionalProperties: false
     PrefillCustomer:
+      required:
+        - phoneNumber
+        - postalCode
       type: object
       properties:
         firstName:
@@ -781,7 +839,6 @@ components:
         country:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
-      additionalProperties: false
       description: "Information about the customer to be prefilled.\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
     RequestAmount:
       type: object
@@ -795,7 +852,6 @@ components:
           description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
           format: int32
           nullable: true
-      additionalProperties: false
       description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
     ResponsePaymentDetails:
       type: object
@@ -813,7 +869,6 @@ components:
             - $ref: '#/components/schemas/TransactionAggregate'
           description: ''
           nullable: true
-      additionalProperties: false
       description: Defines the details of the payment.
     ResponseUserDetails:
       type: object
@@ -834,7 +889,6 @@ components:
           type: string
           description: 'If the UserInfo payment flow is used, this field will contain the openid sub.'
           nullable: true
-      additionalProperties: false
       description: "Defines the user details of the recipient of the ordered goods.\r\n            \r\nResponseUserDetails is deprecated. Use ShippingDetailsV2 instead"
       deprecated: true
     ShippingDetails:
@@ -881,7 +935,6 @@ components:
             - $ref: '#/components/schemas/PickupPoint'
           description: ''
           nullable: true
-      additionalProperties: false
       description: Defines the details of the shipping
     TransactionAggregate:
       type: object
@@ -906,7 +959,6 @@ components:
             - $ref: '#/components/schemas/CommonAmount'
           description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           nullable: true
-      additionalProperties: false
       description: Defines the details of the transaction
     UserDetails:
       type: object
@@ -927,5 +979,4 @@ components:
           type: string
           description: 'If the UserInfo payment flow is used, this field will contain the openid sub.'
           nullable: true
-      additionalProperties: false
       description: Defines the details of the user.
