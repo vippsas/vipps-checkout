@@ -1459,7 +1459,7 @@ components:
       type: string
     PostnordLogisticsOption:
       required:
-        - brand
+        - brand  
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
