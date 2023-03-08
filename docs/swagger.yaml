@@ -512,6 +512,42 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/InitiateSessionResponse"
+        "400":
+          description: "BadRequest: Validation errors"
+          content:
+            application/json:
+              schema:
+                type: string
+        "401":
+          description: "Unauthorized: Invalid credentials"
+          content:
+            application/json:
+              schema:
+                type: string
+        "403":
+          description: "Forbidden: Invalid subscription or configuration"
+          content:
+            application/json:
+              schema:
+                type: string
+        "409":
+          description: Conflict. Duplicate reference
+          content:
+            application/json:
+              schema:
+                type: string
+        "500":
+          description: "InternalServerError: Unexpected errors"
+          content:
+            application/json:
+              schema:
+                type: string
+        "502":
+          description: "BadGateway: Unexpected errors in integrations"
+          content:
+            application/json:
+              schema:
+                type: string
       callbacks:
         Dynamic logistics:
           "{$request.body#/logistics/dynamicOptionsCallback}":
@@ -626,11 +662,48 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionResponse"
+        "400":
+          description: "BadRequest: Validation errors"
+          content:
+            application/json:
+              schema:
+                type: string
+        "401":
+          description: "Unauthorized: Invalid credentials"
+          content:
+            application/json:
+              schema:
+                type: string
+        "403":
+          description: "Forbidden: Invalid subscription or configuration"
+          content:
+            application/json:
+              schema:
+                type: string
         "404":
-          description: The specified session id is unknown.
+          description: "NotFound: The specified session id is unknown."
+          content:
+            application/json:
+              schema:
+                type: string
+        "500":
+          description: "InternalServerError: Unexpected errors"
+          content:
+            application/json:
+              schema:
+                type: string
+        "502":
+          description: "BadGateway: Unexpected errors in integrations"
+          content:
+            application/json:
+              schema:
+                type: string
 components:
   schemas:
     Amount:
+      required:
+        - currency
+        - value
       type: object
       properties:
         value:
@@ -641,9 +714,13 @@ components:
         currency:
           type: string
           description: 'The currency identifier according to ISO 4217. Example: "NOK"'
-      additionalProperties: false
       description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
     BillingDetails:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
       type: object
       properties:
         firstName:
@@ -674,7 +751,6 @@ components:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
           nullable: true
-      additionalProperties: false
       description: Defines the details of the billing
     CheckoutConfig:
       type: object
@@ -708,9 +784,17 @@ components:
             - $ref: "#/components/schemas/CustomConsent"
           description: "If used, displays a checkbox that can be used to ask for extra consent."
           nullable: true
-      additionalProperties: false
+        showOrderSummary:
+          type: boolean
+          description: Decides whether the order lines are displayed as a shopping cart context in the checkout.
+          nullable: true
       description: ""
     CheckoutSessionThirdPartyInformationHeaders:
+      required:
+        - vipps-System-Name
+        - vipps-System-Plugin-Name
+        - vipps-System-Plugin-Version
+        - vipps-System-Version
       type: object
       properties:
         vipps-System-Name:
@@ -725,9 +809,10 @@ components:
         vipps-System-Plugin-Version:
           type: string
           description: 'The version number of the ecommerce plugin. Example: "4.5.6".'
-      additionalProperties: false
       description: Information about the merchant system.
     Countries:
+      required:
+        - supported
       type: object
       properties:
         supported:
@@ -735,9 +820,11 @@ components:
           items:
             type: string
           description: 'List of allowed countries in ISO-3166 Alpha 2. If specified, the customer will only be able to select these countries. Example ["NO", "SE", "DK"]'
-      additionalProperties: false
       description: ""
     CustomConsent:
+      required:
+        - required
+        - text
       type: object
       properties:
         text:
@@ -746,7 +833,6 @@ components:
         required:
           type: boolean
           description: Whether box has to be checked to complete the checkout.
-      additionalProperties: false
       description: "If used, displays a checkbox that can be used to ask for extra consent."
     CustomerInteraction:
       enum:
@@ -768,19 +854,24 @@ components:
         - PaymentTerminated
       type: string
     Helthjem:
+      required:
+        - password
+        - shopId
+        - username
       type: object
       properties:
         username:
+          minLength: 1
           type: string
           description: The Username provided to you by Helthjem
         password:
+          minLength: 1
           type: string
           description: The Password provided to you by Helthjem
         shopId:
           type: integer
           description: The ShopId provided to you by Helthjem
           format: int32
-      additionalProperties: false
       description: Configuration required to enable Helthjem logistics options
     HelthjemLogisticsOption:
       required:
@@ -800,13 +891,15 @@ components:
           pattern: HELTHJEM
           type: string
           default: HELTHJEM
-      additionalProperties: false
     HelthjemLogisticsType:
       enum:
         - HOME_DELIVERY
         - PICKUP_POINT
       type: string
     InitiateSessionRequest:
+      required:
+        - merchantInfo
+        - transaction
       type: object
       properties:
         merchantInfo:
@@ -832,9 +925,12 @@ components:
             - $ref: "#/components/schemas/CheckoutConfig"
           description: ""
           nullable: true
-      additionalProperties: false
       description: Request to set up a Checkout session
     InitiateSessionResponse:
+      required:
+        - checkoutFrontendUrl
+        - pollingUrl
+        - token
       type: object
       properties:
         token:
@@ -846,20 +942,27 @@ components:
         pollingUrl:
           type: string
           description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
-      additionalProperties: false
       description: Response from initiating a session.
     Instabox:
+      required:
+        - clientId
+        - clientSecret
       type: object
       properties:
         clientId:
+          minLength: 1
           type: string
           description: The client id provided to you by Instabox
         clientSecret:
+          minLength: 1
           type: string
           description: The client secret provided to you by Instabox
-      additionalProperties: false
       description: Configuration required to enable Instabox logistics options
     InstaboxBookingDetails:
+      required:
+        - availabilityToken
+        - serviceType
+        - sortCode
       type: object
       properties:
         availabilityToken:
@@ -871,7 +974,6 @@ components:
         sortCode:
           type: string
           description: Identifies the location
-      additionalProperties: false
       description: Details needed to book an instabox order
     InstaboxLogisticsOption:
       required:
@@ -891,7 +993,6 @@ components:
           pattern: INSTABOX
           type: string
           default: INSTABOX
-      additionalProperties: false
     InstaboxLogisticsType:
       enum:
         - HOME_DELIVERY
@@ -915,7 +1016,6 @@ components:
             - $ref: "#/components/schemas/Helthjem"
           description: Configuration required to enable Helthjem logistics options
           nullable: true
-      additionalProperties: false
     Logistics:
       type: object
       properties:
@@ -940,9 +1040,13 @@ components:
             - $ref: "#/components/schemas/Integrations"
           description: Some optional checkout features require carrier-specific configuration. Can not be used with AddressFields set to false.
           nullable: true
-      additionalProperties: false
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOptionBase:
+      required:
+        - amount
+        - id
+        - isDefault
+        - priority
       type: object
       properties:
         amount:
@@ -962,7 +1066,6 @@ components:
         description:
           type: string
           nullable: true
-      additionalProperties: false
     MerchantAuthInfoHeaders:
       required:
         - client_id
@@ -987,9 +1090,13 @@ components:
           minLength: 1
           type: string
           description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
-      additionalProperties: false
       description: Headers required to retrieve an access token.
     MerchantLogisticsCallbackRequestBody:
+      required:
+        - country
+        - postalCode
+        - region
+        - streetAddress
       type: object
       properties:
         streetAddress:
@@ -1004,7 +1111,6 @@ components:
         country:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
-      additionalProperties: false
       description: Information about the customer address used when retrieving dynamic logistics options.
     OrderBottomLine:
       required:
@@ -1030,7 +1136,6 @@ components:
           type: string
           description: Identifier of the terminal / point of sale.
           nullable: true
-      additionalProperties: false
     OrderLine:
       required:
         - id
@@ -1094,9 +1199,9 @@ components:
           type: boolean
           description: Flag for marking the orderline as a shipping line. This will be shown differently in the app.
           nullable: true
-      additionalProperties: false
     OrderSummary:
       required:
+        - orderBottomLine
         - orderLines
       type: object
       properties:
@@ -1110,9 +1215,9 @@ components:
           allOf:
             - $ref: "#/components/schemas/OrderBottomLine"
           description: Contains information regarding the order as a whole.
-      additionalProperties: false
     OrderUnitInfo:
       required:
+        - quantity
         - quantityUnit
         - unitPrice
       type: object
@@ -1129,7 +1234,6 @@ components:
           allOf:
             - $ref: "#/components/schemas/QuantityUnit"
           description: Available units for quantity. Will default to PCS if not set.
-      additionalProperties: false
     OtherLogisticsOption:
       required:
         - brand
@@ -1146,9 +1250,10 @@ components:
           pattern: OTHER
           type: string
           default: OTHER
-      additionalProperties: false
     PaymentMerchantInfo:
       required:
+        - callbackAuthorizationToken
+        - callbackUrl
         - returnUrl
       type: object
       properties:
@@ -1166,7 +1271,6 @@ components:
           type: string
           description: 'Complete URL to the merchant''s terms and conditions. Example: "https://example.com/vipps/termsAndConditions".'
           nullable: true
-      additionalProperties: false
     PaymentMethod:
       enum:
         - Wallet
@@ -1180,6 +1284,10 @@ components:
         - TERMINATED
       type: string
     PaymentTransaction:
+      required:
+        - amount
+        - paymentDescription
+        - reference
       type: object
       properties:
         amount:
@@ -1202,8 +1310,14 @@ components:
             - $ref: "#/components/schemas/OrderSummary"
           description: "Contain descriptions of each item present in the order, and an order bottom line for information regarding the order as a whole."
           nullable: true
-      additionalProperties: false
     PickupPoint:
+      required:
+        - address
+        - city
+        - country
+        - id
+        - name
+        - postalCode
       type: object
       properties:
         id:
@@ -1235,22 +1349,25 @@ components:
             - $ref: "#/components/schemas/InstaboxBookingDetails"
           description: Instabox details
           nullable: true
-      additionalProperties: false
       description: The pickup point the customer selected .
     Porterbuddy:
+      required:
+        - apiKey
+        - origin
+        - publicToken
       type: object
       properties:
         publicToken:
           type: string
           description: The public key provided to you by Porterbuddy
         apiKey:
+          minLength: 1
           type: string
           description: The API key provided to you by Porterbuddy
         origin:
           allOf:
             - $ref: "#/components/schemas/PorterbuddyOrigin"
           description: Information about the sender
-      additionalProperties: false
       description: Configuration required to enable Porterbuddy logistics options
     PorterbuddyLogisticsOption:
       required:
@@ -1270,12 +1387,16 @@ components:
           pattern: PORTERBUDDY
           type: string
           default: PORTERBUDDY
-      additionalProperties: false
     PorterbuddyLogisticsType:
       enum:
         - HOME_DELIVERY
       type: string
     PorterbuddyOrigin:
+      required:
+        - address
+        - email
+        - name
+        - phoneNumber
       type: object
       properties:
         name:
@@ -1291,9 +1412,13 @@ components:
           allOf:
             - $ref: "#/components/schemas/PorterbuddyOriginAddress"
           description: Your address where Porterbuddy will pick up the parcels
-      additionalProperties: false
       description: Details about the sender of the Porterbuddy parcels
     PorterbuddyOriginAddress:
+      required:
+        - city
+        - country
+        - postalCode
+        - streetAddress
       type: object
       properties:
         streetAddress:
@@ -1308,7 +1433,6 @@ components:
         country:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
-      additionalProperties: false
     PostenLogisticsOption:
       required:
         - brand
@@ -1327,7 +1451,6 @@ components:
           pattern: POSTEN
           type: string
           default: POSTEN
-      additionalProperties: false
     PostenLogisticsType:
       enum:
         - MAILBOX
@@ -1352,13 +1475,21 @@ components:
           pattern: POSTNORD
           type: string
           default: POSTNORD
-      additionalProperties: false
     PostnordLogisticsType:
       enum:
         - PICKUP_POINT
         - HOME_DELIVERY
       type: string
     PrefillCustomer:
+      required:
+        - city
+        - country
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
+        - postalCode
+        - streetAddress
       type: object
       properties:
         firstName:
@@ -1385,7 +1516,6 @@ components:
         country:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
-      additionalProperties: false
       description: "Information about the customer to be prefilled\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
     QuantityUnit:
       enum:
@@ -1396,6 +1526,9 @@ components:
         - LITRE
       type: string
     ResponsePaymentDetails:
+      required:
+        - amount
+        - state
       type: object
       properties:
         amount:
@@ -1411,9 +1544,12 @@ components:
             - $ref: "#/components/schemas/TransactionAggregate"
           description: ""
           nullable: true
-      additionalProperties: false
       description: Defines the details of the payment.
     SessionResponse:
+      required:
+        - reference
+        - sessionId
+        - sessionState
       type: object
       properties:
         sessionId:
@@ -1459,7 +1595,6 @@ components:
           type: boolean
           description: ""
           nullable: true
-      additionalProperties: false
       description: Session information
     ShippingDetails:
       type: object
@@ -1505,7 +1640,6 @@ components:
             - $ref: "#/components/schemas/PickupPoint"
           description: ""
           nullable: true
-      additionalProperties: false
       description: Defines the details of the shipping
     TransactionAggregate:
       type: object
@@ -1530,7 +1664,6 @@ components:
             - $ref: "#/components/schemas/Amount"
           description: ""
           nullable: true
-      additionalProperties: false
       description: Defines the details of the transaction
     UserFlow:
       enum:
@@ -1538,6 +1671,8 @@ components:
         - NATIVE_REDIRECT
       type: string
     UserInfo:
+      required:
+        - sub
       type: object
       properties:
         sub:
@@ -1547,5 +1682,4 @@ components:
           type: string
           description: 'Example: "user@example.com"'
           nullable: true
-      additionalProperties: false
       description: Data from the UserInfo endpoint. Will only be present if UserInfo flow is used.
