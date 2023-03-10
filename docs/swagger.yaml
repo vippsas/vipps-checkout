@@ -1275,7 +1275,6 @@ components:
       enum:
         - Wallet
         - Card
-        - Swish
       type: string
     PaymentState:
       enum:
