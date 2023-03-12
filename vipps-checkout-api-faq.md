@@ -38,7 +38,7 @@ questions about captures, reservations, and refunds.
 
 We currently don't support card payments in test environment, only payments using Vipps MT app. If you need to do verification, we suggest doing a NOK 1 payment in production, and do a subsequent refund, which will make the funds available again within a week.
 
-The only difference between a Vipps wallet payment and card payment is that _paymentMethod_ is _Wallet_ or _Card_.
+The only difference between a Vipps wallet payment and card payment is that *paymentMethod* is *Wallet* or *Card*.
 
 ## Card payments
 
