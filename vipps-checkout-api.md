@@ -1,13 +1,17 @@
 <!-- START_METADATA
 ---
-title: "API guide"
+title: Checkout API guide
+sidebar_label: API guide
 sidebar_position: 10
+description: Find technical details about integrating with the Checkout API.
+pagination_prev: Null
+pagination_next: Null
 ---
 END_METADATA -->
 
 # API guide
 
-Vipps Checkout provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
+The Checkout API provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps MobilePay products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
 
 API version: 3.0.0.
 
