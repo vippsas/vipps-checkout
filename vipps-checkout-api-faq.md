@@ -1,20 +1,22 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: "FAQs"
 sidebar_position: 24
+
 ---
+
 END_METADATA -->
 
 # FAQs
 
 Here are the Checkout API FAQs.
 See the
-[Vipps Checkout API guide](vipps-checkout-api.md)
+[Checkout API guide](vipps-checkout-api.md)
 for more details.
 
 For more common Vipps questions, see:
 
-* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
+- [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
 
 <!-- START_COMMENT -->
 
@@ -38,7 +40,7 @@ questions about captures, reservations, and refunds.
 
 We currently don't support card payments in test environment, only payments using Vipps MT app. If you need to do verification, we suggest doing a NOK 1 payment in production, and do a subsequent refund, which will make the funds available again within a week.
 
-The only difference between a Vipps wallet payment and card payment is that *paymentMethod* is *Wallet* or *Card*.
+The only difference between a Vipps wallet payment and card payment is that _paymentMethod_ is _Wallet_ or _Card_.
 
 ## Card payments
 
@@ -56,12 +58,12 @@ Yes, if the Visa Electron card is enabled for online purchases.
 
 ## Shipping
 
-### Can I have "Pick-up in store" as shipping option with Vipps Checkout?
+### Can I have "Pick-up in store" as shipping option with Checkout?
 
 Yes.
 
-Vipps Checkout will basically display whatever shipping methods defined by the webshop.
-For example, if you want Vipps Checkout to display "Pick up at the Royal Norwegian Castle", we will display that upon receiving that message through the API.
+Checkout will basically display whatever shipping methods defined by the webshop.
+For example, if you want Checkout to display "Pick up at the Royal Norwegian Castle", we will display that upon receiving that message through the API.
 
 For WooCommerce-based webshops, this is done in the shipping configuration part of WooCommerce admin:
 `https://[_your webshop URL_]/wp-admin/admin.php?page=wc-settings&tab=shipping`

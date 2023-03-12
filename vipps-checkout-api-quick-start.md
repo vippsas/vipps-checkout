@@ -1,8 +1,10 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: "Quick start"
 sidebar_position: 5
+
 ---
+
 END_METADATA -->
 
 # Quick start
@@ -26,7 +28,7 @@ Review
 
 Save the following files to your computer:
 
-- [Vipps Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
+- [Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
 - [Vipps API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
@@ -61,7 +63,7 @@ You can update any of the other environment variables. Be aware of this:
    The `reference` variable is automatically set in the environment
    of this Postman example and can be used for subsequent calls relating to this session.
 
-   To display the session, you will need to load the Vipps Checkout SDK in your website, as described in
+   To display the session, you will need to load the Checkout SDK in your website, as described in
    [API Guide: Displaying the session](vipps-checkout-api.md#step-2-displaying-the-session).
 
 ## Retrieve the session information

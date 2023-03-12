@@ -1,8 +1,10 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: "Checkout button"
 sidebar_position: 15
+
 ---
+
 END_METADATA -->
 
 # Checkout button
@@ -11,11 +13,15 @@ Make it super easy for customers to checkout out straight from a product page wi
 
 The _button_ is provided in multiple variants and colors and can be tailored to your page.
 
-To be able to use the badge on your site you need to add the Vipps Checkout Button JavaScript library.
+To be able to use the badge on your site you need to add the Checkout Button JavaScript library.
 The library should preferably be added between your page's `<head>...</head>`-tags and only once per page:
 
 ```html
-<script async type="text/javascript" src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"></script>
+<script
+  async
+  type="text/javascript"
+  src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"
+></script>
 ```
 
 If you don't have access to edit your websites code directly you can also place the JavaScript library just before the _button_.
@@ -24,7 +30,7 @@ If you don't have access to edit your websites code directly you can also place 
 
 You can find a demo and examples of all the variants [here](https://checkout.vipps.no/checkout-button/v1).
 
-![Vipps Checkout Button](resources/vipps-checkout-button.png)
+![Checkout Button](resources/vipps-checkout-button.png)
 
 ```html
 <vipps-checkout-button variant="orange" branded="true"></vipps-checkout-button>
@@ -35,7 +41,7 @@ You can find a demo and examples of all the variants [here](https://checkout.vip
 All attributes are optional.
 
 | Attribute | Description                                                                       | Default  |
-|:----------|:----------------------------------------------------------------------------------|:---------|
+| :-------- | :-------------------------------------------------------------------------------- | :------- |
 | variant   | The color variant of the button. Supported values: `orange`, `purple`, `stroked`. | `orange` |
 | language  | ISO 639-1 alpha-2 language code. Supported values: `en`, `no`.                    | `no`     |
 | rounded   | The button will have rounded corners (oval shape) when se to `true`               | `false`  |
@@ -49,7 +55,11 @@ You can customize the placement and size of the _button_ by either applying your
 If the _button_ is too small or too large to fit your content, you can override the `font-size` to scale the _button_ as follows:
 
 ```html
-<vipps-checkout-button variant="orange" variant="purple" style="font-size: 1.5rem;"></vipps-checkout-button>
+<vipps-checkout-button
+  variant="orange"
+  variant="purple"
+  style="font-size: 1.5rem;"
+></vipps-checkout-button>
 ```
 
 Which will scale the _button_ to 1.5x the size of the root font-size. You may also use `px` or `em` values to scale the _button_.
@@ -61,12 +71,15 @@ So to center or fill the _button_ you have to set `display: block` on the elemen
 Use `text-align` with `display:block` to align the _button_:
 
 ```html
-<vipps-checkout-button variant="stroked" style="display: block; text-align: center;"></vipps-checkout-button>
+<vipps-checkout-button
+  variant="stroked"
+  style="display: block; text-align: center;"
+></vipps-checkout-button>
 ```
 
 ## Integrations
 
-Read more about integrating with Vipps Checkout Direct [here](vipps-checkout-api.md#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you).
+Read more about integrating with Checkout Direct [here](vipps-checkout-api.md#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you).
 
 ### Example integration
 
@@ -74,16 +87,28 @@ Read more about integrating with Vipps Checkout Direct [here](vipps-checkout-api
 <html>
   <head>
     <title>Merchant website</title>
-    <script async type="text/javascript" src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
-    <script async type="text/javascript" src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"></script>
+    <script
+      async
+      type="text/javascript"
+      src="https://checkout.vipps.no/vippsCheckoutSDK.js"
+    ></script>
+    <script
+      async
+      type="text/javascript"
+      src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"
+    ></script>
   </head>
   <body>
-    <vipps-checkout-button id="checkout-button" variant="orange" branded="true"></vipps-checkout-button>
+    <vipps-checkout-button
+      id="checkout-button"
+      variant="orange"
+      branded="true"
+    ></vipps-checkout-button>
     <script>
       document
         .getElementById("checkout-button")
         .addEventListener("click", function () {
-          // Relay an initiate session request to Vipps Checkout API through the merchant's backend
+          // Relay an initiate session request to Checkout API through the merchant's backend
           fetch("<MERCHANT BACKEND CREATE SESSION URL>", {
             method: "POST",
           })

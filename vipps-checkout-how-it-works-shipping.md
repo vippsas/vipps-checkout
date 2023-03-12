@@ -1,13 +1,15 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: "How it works: Shipping"
 sidebar_position: 11
+
 ---
+
 END_METADATA -->
 
 # How it works for shipping
 
-Vipps Checkout supports all major shipping providers in the Norwegian market, including:
+Checkout supports all major shipping providers in the Norwegian market, including:
 
 - Bring/Posten
 - Postnord
@@ -39,14 +41,14 @@ Refer to the [API spec](https://vippsas.github.io/vipps-developer-docs/api/check
 
 ### Pickup point
 
-The *pickup point* feature is enabled by setting `type: "PICKUP_POINT"`. The title will become `{providerName} pick-up point` (e.g. "Posten pick-up point").
+The _pickup point_ feature is enabled by setting `type: "PICKUP_POINT"`. The title will become `{providerName} pick-up point` (e.g. "Posten pick-up point").
 The consumer will choose an available pickup point, based on the address. Vipps will relay the selected option as part of the content in the "session completed callback".
 
 ![Pickup point animation](resources/shipping_pickup-point.gif)
 
 ### Home delivery
 
-The *home delivery* feature is enabled by setting `type: "HOME_DELIVERY"`. The title will become `{providerName} home delivery` (e.g. "Porterbuddy home delivery"), by default.
+The _home delivery_ feature is enabled by setting `type: "HOME_DELIVERY"`. The title will become `{providerName} home delivery` (e.g. "Porterbuddy home delivery"), by default.
 The consumer will choose an available delivery window, based on the address. Vipps relays the selected option as part of the content in the "session completed callback".
 
 ![Home delivery animation](resources/shipping_home-delivery.gif)
@@ -57,6 +59,6 @@ Shipping options can be provided by the merchant either at session initiation or
 
 If you want to charge a flat rate for shipping you pass shipping options to the `logistics.fixedOptions` property at session initiation.
 
-If you want to dynamically determine the price of a shipping option based on the address of the customer you need to have an endpoint for receiving callbacks. Pass the url to the `logistics.dynamicOptionsCallback` property. Vipps Checkout will call the endpoint with the address of the customer whenever they submit or update their address during a checkout session. The endpoint must return shipping options on the same format as for fixedOptions.
+If you want to dynamically determine the price of a shipping option based on the address of the customer you need to have an endpoint for receiving callbacks. Pass the url to the `logistics.dynamicOptionsCallback` property. Checkout will call the endpoint with the address of the customer whenever they submit or update their address during a checkout session. The endpoint must return shipping options on the same format as for fixedOptions.
 
 **Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.

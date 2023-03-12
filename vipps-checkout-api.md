@@ -1,17 +1,19 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: "API guide"
 sidebar_position: 10
+
 ---
+
 END_METADATA -->
 
 # API guide
 
-Vipps Checkout provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
+Checkout provides an all-in-one solution for receiving payment for goods and services online using trusted Vipps technology and brand. It combines other Vipps products, Vipps Login and Vipps eCom/ePayments, allowing a frictionless integration for merchants.
 
 API version: 3.0.0.
 
-**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
+**Please note:** Always use the most recent API version when integrating with Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
 
 **Migrating to V3?** Consult our [Migration Guide](vipps-checkout-api-migration-v3.md).
 
@@ -23,17 +25,17 @@ API version: 3.0.0.
 
 ## Checkout Features
 
-Explains the high level features of Vipps Checkout.
+Explains the high level features of Checkout.
 
-### Vipps Checkout API
+### Checkout API
 
-Vipps Checkout works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
+Checkout works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
 
 - session initiation
 - session status
 - session cancellation
 
-### Vipps Checkout frontend
+### Checkout frontend
 
 Once a session is created, it is to be opened inside an iFrame embedded on the merchant website. The iFrame loads a web application that fetches all necessary information about the session from Vipps.
 
@@ -50,15 +52,15 @@ and you will not get improvements and bugfixes we do in the SDK.
 
 ### Shipping
 
-In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping) and the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features Vipps Checkout support.
+In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping) and the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features Checkout support.
 
-### Vipps Checkout Direct
+### Checkout Direct
 
-With Vipps Checkout Direct you can easily implement an express checkout experience directly from a single product without going through a shopping cart. Vipps Checkout Direct decouples you from needing to embed the iFrame and lets us handle everything at checkout.vipps.no before returning the customer to your shop after a payment is finished. To use Vipps Checkout Direct, follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
+With Checkout Direct you can easily implement an express checkout experience directly from a single product without going through a shopping cart. Checkout Direct decouples you from needing to embed the iFrame and lets us handle everything at checkout.vipps.no before returning the customer to your shop after a payment is finished. To use Checkout Direct, follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
 
-### Vipps Checkout Elements
+### Checkout Elements
 
-With Vipps Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customers to identify themselves because they are already logged into your system.
+With Checkout Elements, you can adjust the fields and values present in the Checkout. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customers to identify themselves because they are already logged into your system.
 
 The elements mode is set by configuration.Elements in initiate session.
 
@@ -86,11 +88,11 @@ These options may be combined with shipping if it fits your scenario. For exampl
 
 ### Remembering of customer data
 
-Vipps Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different Vipps Checkout sessions on the same machine.
+Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different Checkout sessions on the same machine.
 
 ### Receipts
 
-Vipps Checkout **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
+Checkout **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
 
 To enable Checkout to create receipts, the "OrderSummary" property in the session initiation must be set. Detailed information is available in the OpenAPI spec [session initiation endpoint][create-checkout-session-endpoint]
 
@@ -116,7 +118,7 @@ See also: [quick start guide](vipps-checkout-api-quick-start.md).
 
 ### Flow diagram
 
-The standard flow for a Vipps Checkout consists of
+The standard flow for a Checkout consists of
 
 1. Initiating a session
 2. Displaying the session to the user
@@ -128,8 +130,8 @@ sequenceDiagram
   participant LandingPage as Payment landing page
   participant App as Vipps app
   participant Merchant
-  participant Frontend as Vipps Checkout (iFrame)
-  participant API as Vipps Checkout API
+  participant Frontend as Checkout (iFrame)
+  participant API as Checkout API
 
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session
@@ -189,7 +191,7 @@ The response object consists of a `token` and a `checkoutFrontendUrl`, which are
 
 #### Configuration for use inside a native mobile application
 
-Vipps Checkout can be used in an iOS or Android app to pay for goods and services. The Vipps Checkout frontend may then be opened directly inside a Webview, instead of as an iFrame inside a merchant website.
+Checkout can be used in an iOS or Android app to pay for goods and services. The Checkout frontend may then be opened directly inside a Webview, instead of as an iFrame inside a merchant website.
 
 In this situation, the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of https. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps application, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consistently after payment.
 
@@ -203,9 +205,9 @@ Load the SDK in the `<head>` section of the merchant website.
 </head>
 ```
 
-#### Alternative 1: Classic implementation where Vipps Checkout is embedded in an iFrame on your site
+#### Alternative 1: Classic implementation where Checkout is embedded in an iFrame on your site
 
-This is the standard flow where Vipps Checkout is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Vipps Checkout Direct](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
+This is the standard flow where Checkout is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Checkout Direct](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
 
 The SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters
 
@@ -217,7 +219,7 @@ The SDK exposes a global function called `VippsCheckout`. Initialize this with t
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
 | `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                   | Yes      |
 
-Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js.
+Example merchant website using Checkout SDK to embed an iFrame with the session in plain html/js.
 
 **Please note:** To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The javascript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the Javascript on the frontend, and then in that backend call the Checkout create session endpoint so you don’t leak the keys.
 
@@ -236,7 +238,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
       document
         .getElementById("checkout-button")
         .addEventListener("click", function () {
-          // Relay an initiate session request to Vipps Checkout API through the merchant's backend
+          // Relay an initiate session request to Checkout API through the merchant's backend
           fetch("<MERCHANT BACKEND CREATE SESSION URL>", {
             method: "POST",
           })
@@ -260,7 +262,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
 </html>
 ```
 
-**Please note:** The Vipps Checkout frontend **is not** supposed to be open in its own browser window/tab. The only exception to this is when using Vipps Checkout inside a Webview in a native mobile application.
+**Please note:** The Checkout frontend **is not** supposed to be open in its own browser window/tab. The only exception to this is when using Checkout inside a Webview in a native mobile application.
 
 #### Sticky checkout session
 
@@ -360,9 +362,9 @@ window.VippsCheckout = {
 };
 ```
 
-#### Alternative 2: Vipps Checkout Direct - we handle the checkout and redirect the user back to you
+#### Alternative 2: Checkout Direct - we handle the checkout and redirect the user back to you
 
-To checkout a single item directly, use Vipps Checkout Direct. Hook this flow up on a button directly on a product, and we handle the rest by redirecting the user to checkout.vipps.no where we handle the checkout. We will return the customer back to your site when finished.
+To checkout a single item directly, use Checkout Direct. Hook this flow up on a button directly on a product, and we handle the rest by redirecting the user to checkout.vipps.no where we handle the checkout. We will return the customer back to your site when finished.
 
 We also have a [button](vipps-checkout-button.md) with the Vipps look-and-feel that you can use (if you so choose) to make the integration super easy on your product page!
 
@@ -380,16 +382,28 @@ The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this 
 <html>
   <head>
     <title>Merchant website</title>
-    <script async type="text/javascript" src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
-    <script async type="text/javascript" src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"></script>
+    <script
+      async
+      type="text/javascript"
+      src="https://checkout.vipps.no/vippsCheckoutSDK.js"
+    ></script>
+    <script
+      async
+      type="text/javascript"
+      src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"
+    ></script>
   </head>
   <body>
-    <vipps-checkout-button id="checkout-button" variant="orange" branded="true"></vipps-checkout-button>
+    <vipps-checkout-button
+      id="checkout-button"
+      variant="orange"
+      branded="true"
+    ></vipps-checkout-button>
     <script>
       document
         .getElementById("checkout-button")
         .addEventListener("click", function () {
-          // Relay an initiate session request to Vipps Checkout API through the merchant's backend
+          // Relay an initiate session request to Checkout API through the merchant's backend
           fetch("<MERCHANT BACKEND CREATE SESSION URL>", {
             method: "POST",
           })
@@ -439,7 +453,7 @@ It is critical that the endpoint receiving the callback is robust. It should als
 
 #### Session polling
 
-Vipps Checkout will expose a [polling endpoint][retrieve-sessioninfo-endpoint].
+Checkout will expose a [polling endpoint][retrieve-sessioninfo-endpoint].
 
 The complete URL for polling is returned from the
 [session creation endpoint][create-checkout-session-endpoint]
@@ -451,7 +465,7 @@ The status of the payment can be `CREATED`, `AUTHORIZED`, or `TERMINATED`. It ca
 
 Note that a callback will never be in the `CREATED` state, as it is only sent after a payment is completed in an end state. For example, when a customer successfully pays, the `PaymentDetails.state` is `AUTHORIZED`. If the payment is initiated and ongoing, it will be `CREATED`. If the payment was either aborted, expired, or an error occurred, the state is `TERMINATED`. Please refer to the [OpenAPI schema][retrieve-sessioninfo-endpoint] for `CallbackSessionDetails` and `GetSessionResponse` to see the whole context.
 
-If you want more details about the payment, call the [underlying API][get-payment-endpoint] that Vipps Checkout itself uses.
+If you want more details about the payment, call the [underlying API][get-payment-endpoint] that Checkout itself uses.
 
 ### Step 3a: If a transaction is authorized, capture payment
 
@@ -473,7 +487,7 @@ For more details about full and partial capture, see the ePayment API schema: [`
 
 ## Integration partner and plugin guidelines
 
-Vipps Checkout supports [partner-key-based authentication](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/partner-keys).
+Checkout supports [partner-key-based authentication](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/partner-keys).
 
 In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/partner-keys). This results in an _on-behalf-of_ authentication that is available when the merchant has a valid connection to your solution.
 
@@ -484,7 +498,7 @@ If you are using the [Signup API](https://github.com/vippsas/vipps-signup-api), 
 
 ## Transaction operations (Capture, Cancel, Refund, Details)
 
-Vipps Checkout should be considered an extension of existing other Vipps commerce functionality.
+Checkout should be considered an extension of existing other Vipps commerce functionality.
 
 This means that transaction operations other than payment initiation, which is handled by [Checkout](vipps-checkout-api-checklist.md), should be done on the [ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
 Use the same credentials as the ones you use with Checkout. See the
@@ -492,14 +506,14 @@ Use the same credentials as the ones you use with Checkout. See the
 
 **Please note:** That the [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api) should not be used, as it lacks full support for card transactions.
 
-### Vipps Checkout only supports Reserve/Capture
+### Checkout only supports Reserve/Capture
 
 When you initiate a payment, it will be _reserved_ until you capture it. The _capture_ can be done a few seconds later, or several days later.
 
 _Reserved_ means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. _Capture_ means that the funds are moved from the customer's account to the merchant's account.
 See [Common topics: Reserve and capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/reserve-and-capture) for more information.
 
-**Please note:** _Direct Capture_, where a transaction is automatically captured upon reservation, _is not_ supported in Vipps Checkout, and transactions will fail.
+**Please note:** _Direct Capture_, where a transaction is automatically captured upon reservation, _is not_ supported in Checkout, and transactions will fail.
 
 ## Vipps side Transaction information
 
@@ -507,7 +521,7 @@ It is possible to get the Vipps `transactionId` value of a transaction. This can
 
 ### Recommended integration (currently in pilot mode)
 
-In order to integrate with the receipts functionality, you need to retrieve the psp reference in the "paymentAction": "AUTHORISATION" event from the [event log][get-payment-event-log-endpoint] endpoint. This is required when utilizing receipts with Vipps Checkout or Free standing card payments
+In order to integrate with the receipts functionality, you need to retrieve the psp reference in the "paymentAction": "AUTHORISATION" event from the [event log][get-payment-event-log-endpoint] endpoint. This is required when utilizing receipts with Checkout or Free standing card payments
 
 [create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post
 [retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session~1%7Breference%7D/get
