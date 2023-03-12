@@ -1,10 +1,8 @@
-## <!-- START_METADATA
-
+<!-- START_METADATA
+---
 title: "How it works: Shipping"
 sidebar_position: 11
-
 ---
-
 END_METADATA -->
 
 # How it works for shipping

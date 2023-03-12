@@ -1,10 +1,8 @@
-## <!-- START_METADATA
-
+<!-- START_METADATA
+---
 title: "Checkout button"
 sidebar_position: 15
-
 ---
-
 END_METADATA -->
 
 # Checkout button

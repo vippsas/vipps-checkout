@@ -1,10 +1,8 @@
-## <!-- START_METADATA
-
+<!-- START_METADATA
+---
 title: "FAQs"
 sidebar_position: 24
-
 ---
-
 END_METADATA -->
 
 # FAQs
