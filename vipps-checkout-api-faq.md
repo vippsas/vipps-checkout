@@ -1,20 +1,24 @@
 <!-- START_METADATA
 ---
-title: "FAQs"
+title: Checkout API Frequently Asked Questions
+sidebar_label: FAQ
 sidebar_position: 24
+description: Frequently asked questions for the Checkout API.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
-# FAQs
+# Frequently asked questions
 
 Here are the Checkout API FAQs.
 See the
-[Vipps Checkout API guide](vipps-checkout-api.md)
+[Checkout API guide](vipps-checkout-api.md)
 for more details.
 
-For more common Vipps questions, see:
+For more common questions, see:
 
-* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
+* [API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
 
 <!-- START_COMMENT -->
 
@@ -27,9 +31,9 @@ For more common Vipps questions, see:
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
 
 All subsequent transaction operations are fully supported in the
-[Vipps epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
+[epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
 
-See the [Vipps FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs) for common
+See the [Common FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs) for common
 questions about captures, reservations, and refunds.
 
 ## Testing

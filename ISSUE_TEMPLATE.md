@@ -9,7 +9,7 @@ END_METADATA -->
 <!--
 
 ⚠️ The fastest way to get help or get in touch with us is if you have any problems is through the  ⚠️
-[Vipps technical documentation](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact)
+[Vipps MobilePay technical documentation](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact)
 
 # Issue Template
 
@@ -25,7 +25,7 @@ If you cannot find the answer please send an email to integration@vipps.no with 
 2. A concise, self-explanatory Subject line, such as "POST:/something gives HTTP 400 response".
 3. Company details: Organization number (find yours at Brønnøysundregistrene)
 4. Merchant Serial Number (MSN, see Getting started)
-5. Which Vipps product or Vipps API this is about.
+5. Which Vipps MobilePay product or API this is about.
 6. Environment: Is it a problem in the Test (MT) or the Production environment?
 7. Include orderId, and preferably also transactionId and contextId, to make it possible to search in logs.
 8. Date: On which date did the problem occur?

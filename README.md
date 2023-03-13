@@ -1,14 +1,16 @@
 <!-- START_METADATA
 ---
-title: "Introduction"
+title: Introduction to the Checkout API
+sidebar_label: Introduction
 sidebar_position: 1
 hide_table_of_contents: true
+description: Use the Checkout API to deliver a complete checkout experience, handling payment processing, shipping and gathering user information.
 pagination_next: null
 pagination_prev: null
 ---
 END_METADATA -->
 
-# Vipps Checkout API
+# Checkout API
 
 <!-- START_COMMENT -->
 
@@ -16,7 +18,7 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-Vipps Checkout is a Vipps product delivering a complete checkout experience, handling payment processing, shipping and gathering user info.
+Checkout is a Vipps MobilePay product delivering a complete checkout experience, handling payment processing, shipping and gathering user info.
 
 To order, go to:
 
@@ -26,14 +28,14 @@ For information go to:
 
 * [Product information in Norwegian](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/checkout/)
 
-To test Vipps Checkout:
+To test Checkout:
 
 * [Visit our demo store](https://demo.vipps.no/vipps-checkout) where you can try out different flavours of Checkout
 
 ## Getting started
 
 See the
-[Vipps Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
+[Vipps MobilePay Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:
