@@ -3,7 +3,7 @@
 title: Checkout button
 sidebar_label: Checkout button
 sidebar_position: 15
-description: Use Checkout Direct and outher "Buy now" checkout-_button.
+description: Use Checkout Direct and other "Buy now" checkout-_button.
 pagination_prev: Null
 pagination_next: Null
 ---
