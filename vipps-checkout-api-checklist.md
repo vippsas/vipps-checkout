@@ -1,13 +1,17 @@
 <!-- START_METADATA
 ---
-title: "Checklist"
+title: Checkout API checklist
+sidebar_label: Checklist
 sidebar_position: 23
+description: Checklist for full integration with the Checkout API.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
 # Checklist
 
-The Checkout API should be considered an aggregation API of Vipps services, while transaction operations is to be performed on the [epayment][epayment-api-reference-url] API.
+The Checkout API should be considered an aggregation API of Vipps MobilePay services, while transaction operations is to be performed on the [epayment][epayment-api-reference-url] API.
 
 ## Checklist for full integration
 

@@ -1,7 +1,11 @@
 <!-- START_METADATA
 ---
-title: "Checkout button"
+title: Checkout button
+sidebar_label: Checkout button
 sidebar_position: 15
+description: Use Checkout Direct and other "Buy now" checkout-_button.
+pagination_prev: Null
+pagination_next: Null
 ---
 END_METADATA -->
 

@@ -1,14 +1,17 @@
 <!-- START_METADATA
 ---
-title: "V2 to V3 migration guide"
+title: Migrating from Checkout API V2 to V3
+sidebar_label: "V2 to V3 migration guide"
 sidebar_position: 25
+description: How to change in your existing V2 integration to support Checkout V3.
 pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
 # Migrating from Checkout V2 to V3
 
-Checkout V3 improves upon V2 through alignment of polling and callback responses, improvement of field names and expanding models related to logistics options to permit more advanced features. This guide takes you through the things you need to change in your existing V2 integration to support Checkout V3.
+Checkout V3 improves upon V2 through alignment of polling and callback responses, improvement of field names, and expanding models related to logistics options to permit more advanced features. This guide takes you through the things you need to change in your existing V2 integration to support Checkout V3.
 
 ## Initiate Session
 

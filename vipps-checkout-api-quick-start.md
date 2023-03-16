@@ -1,7 +1,11 @@
 <!-- START_METADATA
 ---
-title: "Quick start"
+title: Quick start for the Checkout API
+sidebar_label: Quick start
 sidebar_position: 5
+description: Quick start guide for the using the Checkout API with Postman.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
@@ -20,14 +24,14 @@ Use the Checkout API to create a checkout session, retrieve session information,
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides) for information about getting your test environment set up.
+[Quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides) for information about getting your test environment set up.
 
-### Step 1: Get the Vipps collection and environment
+### Step 1: Get the collection and environment
 
 Save the following files to your computer:
 
-- [Vipps Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
-- [Vipps API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
+- [Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
+- [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
 

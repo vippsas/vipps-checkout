@@ -1,13 +1,17 @@
 <!-- START_METADATA
 ---
-title: "How it works: Shipping"
+title: How the Checkout API works for shipping
+sidebar_label: "How it works: Shipping"
 sidebar_position: 11
+description: View the eCom API how-it-works guides for illustrations of the main flows.
+pagination_prev: Null
+pagination_next: Null
 ---
 END_METADATA -->
 
-# How it works for shipping
+# How the Checkout API works for shipping
 
-Vipps Checkout supports all major shipping providers in the Norwegian market, including:
+The Checkout API supports all major shipping providers in the Norwegian market, including:
 
 - Bring/Posten
 - Postnord

@@ -1,13 +1,17 @@
 <!-- START_METADATA
 ---
-title: "On-site messaging"
+title: On-site messaging
+sidebar_label: On-site messaging
 sidebar_position: 15
+description: Use On-Site Messaging to let your customers know that a payment is accepted.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
-# Vipps on-site messaging
+# On-site messaging
 
-Vipps On-Site Messaging contains a _badges_ in different variants that can be used to let your customers know that Vipps payment is accepted.
+Vipps On-Site Messaging contains _badges_ in different variants that can be used to let your customers know that Vipps payment is accepted.
 
 To be able to use the badge on your site you need to add the Vipps On-Site Messaging JavaScript library.
 The library should preferably be added between your page's `<head>...</head>`-tags and only once per page:
