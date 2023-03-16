@@ -701,6 +701,9 @@ paths:
 components:
   schemas:
     Amount:
+      required:
+        - currency
+        - value
       type: object
       properties:
         value:
@@ -713,6 +716,11 @@ components:
           description: 'The currency identifier according to ISO 4217. Example: "NOK"'
       description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
     BillingDetails:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
       type: object
       properties:
         firstName:
@@ -782,6 +790,11 @@ components:
           nullable: true
       description: ""
     CheckoutSessionThirdPartyInformationHeaders:
+      required:
+        - vipps-System-Name
+        - vipps-System-Plugin-Name
+        - vipps-System-Plugin-Version
+        - vipps-System-Version
       type: object
       properties:
         vipps-System-Name:
@@ -798,6 +811,8 @@ components:
           description: 'The version number of the ecommerce plugin. Example: "4.5.6".'
       description: Information about the merchant system.
     Countries:
+      required:
+        - supported
       type: object
       properties:
         supported:
@@ -807,6 +822,9 @@ components:
           description: 'List of allowed countries in ISO-3166 Alpha 2. If specified, the customer will only be able to select these countries. Example ["NO", "SE", "DK"]'
       description: ""
     CustomConsent:
+      required:
+        - required
+        - text
       type: object
       properties:
         text:
@@ -856,6 +874,8 @@ components:
           format: int32
       description: Configuration required to enable Helthjem logistics options
     HelthjemLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
@@ -877,6 +897,9 @@ components:
         - PICKUP_POINT
       type: string
     InitiateSessionRequest:
+      required:
+        - merchantInfo
+        - transaction
       type: object
       properties:
         merchantInfo:
@@ -904,6 +927,10 @@ components:
           nullable: true
       description: Request to set up a Checkout session
     InitiateSessionResponse:
+      required:
+        - checkoutFrontendUrl
+        - pollingUrl
+        - token
       type: object
       properties:
         token:
@@ -932,6 +959,10 @@ components:
           description: The client secret provided to you by Instabox
       description: Configuration required to enable Instabox logistics options
     InstaboxBookingDetails:
+      required:
+        - availabilityToken
+        - serviceType
+        - sortCode
       type: object
       properties:
         availabilityToken:
@@ -945,6 +976,8 @@ components:
           description: Identifies the location
       description: Details needed to book an instabox order
     InstaboxLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
@@ -1009,6 +1042,11 @@ components:
           nullable: true
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOptionBase:
+      required:
+        - amount
+        - id
+        - isDefault
+        - priority
       type: object
       properties:
         amount:
@@ -1054,6 +1092,11 @@ components:
           description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
       description: Headers required to retrieve an access token.
     MerchantLogisticsCallbackRequestBody:
+      required:
+        - country
+        - postalCode
+        - region
+        - streetAddress
       type: object
       properties:
         streetAddress:
@@ -1158,6 +1201,7 @@ components:
           nullable: true
     OrderSummary:
       required:
+        - orderBottomLine
         - orderLines
       type: object
       properties:
@@ -1173,6 +1217,7 @@ components:
           description: Contains information regarding the order as a whole.
     OrderUnitInfo:
       required:
+        - quantity
         - quantityUnit
         - unitPrice
       type: object
@@ -1190,6 +1235,9 @@ components:
             - $ref: "#/components/schemas/QuantityUnit"
           description: Available units for quantity. Will default to PCS if not set.
     OtherLogisticsOption:
+      required:
+        - brand
+        - title
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
@@ -1204,6 +1252,8 @@ components:
           default: OTHER
     PaymentMerchantInfo:
       required:
+        - callbackAuthorizationToken
+        - callbackUrl
         - returnUrl
       type: object
       properties:
@@ -1225,7 +1275,6 @@ components:
       enum:
         - Wallet
         - Card
-        - Swish
       type: string
     PaymentState:
       enum:
@@ -1234,6 +1283,10 @@ components:
         - TERMINATED
       type: string
     PaymentTransaction:
+      required:
+        - amount
+        - paymentDescription
+        - reference
       type: object
       properties:
         amount:
@@ -1257,6 +1310,13 @@ components:
           description: "Contain descriptions of each item present in the order, and an order bottom line for information regarding the order as a whole."
           nullable: true
     PickupPoint:
+      required:
+        - address
+        - city
+        - country
+        - id
+        - name
+        - postalCode
       type: object
       properties:
         id:
@@ -1292,6 +1352,8 @@ components:
     Porterbuddy:
       required:
         - apiKey
+        - origin
+        - publicToken
       type: object
       properties:
         publicToken:
@@ -1307,6 +1369,8 @@ components:
           description: Information about the sender
       description: Configuration required to enable Porterbuddy logistics options
     PorterbuddyLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
@@ -1327,6 +1391,11 @@ components:
         - HOME_DELIVERY
       type: string
     PorterbuddyOrigin:
+      required:
+        - address
+        - email
+        - name
+        - phoneNumber
       type: object
       properties:
         name:
@@ -1344,6 +1413,11 @@ components:
           description: Your address where Porterbuddy will pick up the parcels
       description: Details about the sender of the Porterbuddy parcels
     PorterbuddyOriginAddress:
+      required:
+        - city
+        - country
+        - postalCode
+        - streetAddress
       type: object
       properties:
         streetAddress:
@@ -1359,6 +1433,8 @@ components:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
     PostenLogisticsOption:
+      required:
+        - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
@@ -1381,6 +1457,8 @@ components:
         - HOME_DELIVERY
       type: string
     PostnordLogisticsOption:
+      required:
+        - brand  
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
@@ -1403,8 +1481,14 @@ components:
       type: string
     PrefillCustomer:
       required:
+        - city
+        - country
+        - email
+        - firstName
+        - lastName
         - phoneNumber
         - postalCode
+        - streetAddress
       type: object
       properties:
         firstName:
@@ -1441,6 +1525,9 @@ components:
         - LITRE
       type: string
     ResponsePaymentDetails:
+      required:
+        - amount
+        - state
       type: object
       properties:
         amount:
@@ -1458,6 +1545,10 @@ components:
           nullable: true
       description: Defines the details of the payment.
     SessionResponse:
+      required:
+        - reference
+        - sessionId
+        - sessionState
       type: object
       properties:
         sessionId:
@@ -1579,6 +1670,8 @@ components:
         - NATIVE_REDIRECT
       type: string
     UserInfo:
+      required:
+        - sub
       type: object
       properties:
         sub:
