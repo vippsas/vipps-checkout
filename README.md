@@ -35,7 +35,7 @@ To test Checkout:
 ## Getting started
 
 See the
-[Vipps MobilePay Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
+[Vipps MobilePay Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:
