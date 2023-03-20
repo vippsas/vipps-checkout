@@ -9,6 +9,8 @@ END_METADATA -->
 
 With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipps/), it's easy to start accepting payments with Vipps, VISA or MasterCard through Vipps Checkout.
 
+[See how it improves your WooCommerc Checkout experience here](https://www.youtube.com/watch?v=86RSKuQ5GME)
+
 If you have a valid set of Vipps API keys, which means if you have a *Vipps på nett* or *Vipps Checkout* agreement, you can start using Vipps Checkout.
 
 If you don't have an agreement with Vipps, [click here to order](https://portal.vipps.no/register/vippscheckout).
@@ -32,7 +34,7 @@ Vipps Checkout specific features are accessed in the "Payments" settings in the 
 To turn on Checkout, simply check the box at the top of the "Vipps Checkout" screen.
 ![image](https://user-images.githubusercontent.com/25223283/226338565-250873b7-ff9d-449a-8b7e-ce7392441a2c.png)
 
-# Improve you shipping selection
+# Improve your shipping selection
 
 Standard WooCommrce shipping selection is not optimal, so we have integrated with the major Norwegian shipping providers, to remove friction from an important step in the sales process. This list currentlig includes
 
@@ -44,8 +46,20 @@ Standard WooCommrce shipping selection is not optimal, so we have integrated wit
 
 If you have agreements with one or more of these providers, you can add their API keys to Vipps Checkout, and we will present a tailored shipping selection window to your customers, giving you this
 
+## Improved shipping selection with Posten
+
 ![Posten shipping selection WooCommerce](https://user-images.githubusercontent.com/25223283/226342343-479fb87c-6f4c-4557-8b77-bafd6c36eac7.gif)
 
 instead of this
 
+## Standard shipping selection
+
 ![Standard shipping selection WooCommerce](https://user-images.githubusercontent.com/25223283/226344800-09395fc7-b1d8-4db3-8815-1d3a71e0a9ab.gif)
+
+## How to guide
+
+There are a few steps required to enable the improved shipping selection. For details, we have a [technical how-to-guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping).
+
+We have made a simple video, showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
+
+[Link to video](https://www.youtube.com/watch?v=f4NVq4A73UA)
