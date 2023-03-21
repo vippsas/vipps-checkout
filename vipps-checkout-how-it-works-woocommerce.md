@@ -19,7 +19,7 @@ If you don't have an agreement with Vipps, [click here to order](https://portal.
 
 The installation process is described [here](https://github.com/vippsas/vipps-woocommerce), but can be summarised as:
 
-1.  Install the plugin using WordPress’ [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by upload the plugin files to the /wp-content/plugins/ directory.
+1.  Install the plugin using the WordPress [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by uploading the plugin files to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Go to the WooCommerce Settings page and choose Payment Gateways (Betalinger) and enable Vipps.
 4. Go the settings page for the Vipps plugin and enter your Vipps account keys. Your account keys are available in the [Vipps Developer Portal](https://portal.vipps.no).
