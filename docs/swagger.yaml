@@ -1681,4 +1681,6 @@ components:
           type: string
           description: 'Example: "user@example.com"'
           nullable: true
-      description: Data from the UserInfo endpoint. Will only be present if UserInfo flow is used.
+      description: |-
+        Data from the [Userinfo endpoint](https://vippsas.github.io/vipps-developer-docs/api/userinfo#operation/getUserinfo).
+        This will only be present if the UserInfo flow is used.
