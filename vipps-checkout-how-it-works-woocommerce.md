@@ -9,7 +9,7 @@ END_METADATA -->
 
 With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipps/), it's easy to start accepting payments with Vipps, VISA or MasterCard through Vipps Checkout.
 
-[See how it improves your WooCommerc Checkout experience here](https://www.youtube.com/watch?v=86RSKuQ5GME)
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/86RSKuQ5GME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 If you have a valid set of Vipps API keys, which means if you have a *Vipps på nett* or *Vipps Checkout* agreement, you can start using Vipps Checkout.
 
