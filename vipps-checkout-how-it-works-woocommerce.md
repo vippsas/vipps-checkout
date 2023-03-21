@@ -11,7 +11,7 @@ With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipp
 
 <!-- START_HIDDEN_IN_GITHUB
 
-<iframe width="100%" height="500" src="https://www.youtube.com/embed/86RSKuQ5GME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/86RSKuQ5GME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>
 
 END_HIDDEN_IN_GITHUB -->
 
@@ -68,6 +68,6 @@ We have made a simple video, showing how to enable PorterBuddy in Checkout, but 
 
 <!-- START_HIDDEN_IN_GITHUB
 
-[Link to video](https://www.youtube.com/watch?v=f4NVq4A73UA)
+<iframe width="100%" height="500" src="https://www.youtube-nocookie.com/watch?v=f4NVq4A73UA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>
 
 END_HIDDEN_IN_GITHUB -->
