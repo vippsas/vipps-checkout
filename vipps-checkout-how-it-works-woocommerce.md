@@ -64,7 +64,7 @@ instead of this
 
 There are a few steps required to enable the improved shipping selection. For details, we have a [technical how-to-guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping).
 
-We have made a [simple video)(https://www.youtube-nocookie.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
+We have made a [simple video](https://www.youtube-nocookie.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
 
 <!-- START_HIDDEN_IN_GITHUB
 
