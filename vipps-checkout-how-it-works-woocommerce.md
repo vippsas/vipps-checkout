@@ -36,7 +36,7 @@ To turn on Checkout, simply check the box at the top of the "Vipps Checkout" scr
 
 # Improve your shipping selection
 
-Standard WooCommrce shipping selection is not optimal, so we have integrated with the major Norwegian shipping providers, to remove friction from an important step in the sales process. This list currentlig includes
+Standard WooCommerce shipping selection is not optimal, so we have integrated with the major Norwegian shipping providers to remove friction from this important step in the sales process. This list currently includes:
 
 - Bring/Posten
 - Postnord
