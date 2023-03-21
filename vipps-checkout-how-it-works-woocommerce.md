@@ -44,7 +44,7 @@ Standard WooCommerce shipping selection is not optimal, so we have integrated wi
 - Helthjem
 - Instabox
 
-If you have agreements with one or more of these providers, you can add their API keys to Vipps Checkout, and we will present a tailored shipping selection window to your customers, giving you this
+If you have agreements with one or more of these providers, you can add their API keys to Vipps Checkout. We can then present a tailored shipping selection window for your customers. For example, we can provide the improved shipping selection shown below.
 
 ## Improved shipping selection with Posten
 
