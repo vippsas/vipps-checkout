@@ -16,8 +16,7 @@ With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipp
 END_HIDDEN_IN_GITHUB -->
 
 <!-- START_COMMENT -->
-
-See the [WooCommerce Vipps Checkout enablement video](https://www.youtube-nocookie.com/embed/86RSKuQ5GME).
+See the [WooCommerce Vipps Checkout enablement video](https://www.youtube.com/watch?v=86RSKuQ5GME).
 <!-- END_COMMENT -->
 
 If you have a valid set of Vipps API keys, which means if you have a *Vipps på nett* or *Vipps Checkout* agreement, you can start using Vipps Checkout.
@@ -69,7 +68,7 @@ instead of this
 
 There are a few steps required to enable the improved shipping selection. For details, we have a [technical how-to-guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping).
 
-We have made a [simple video](https://www.youtube-nocookie.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
+We have made a [simple video](https://www.youtube.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
 
 <!-- START_HIDDEN_IN_GITHUB
 
