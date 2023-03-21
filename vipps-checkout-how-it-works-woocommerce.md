@@ -7,7 +7,7 @@ END_METADATA -->
 
 # How Checkout works for WooCommerce
 
-With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipps/), it's easy to start accepting payments with Vipps, VISA or MasterCard through Vipps Checkout.
+With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipps/), it's easy to start accepting payments with Vipps, VISA, or MasterCard through Vipps Checkout.
 
 <!-- START_HIDDEN_IN_GITHUB
 
@@ -25,7 +25,7 @@ If you don't have an agreement with Vipps, [click here to order](https://portal.
 
 # Vipps for WooCommerce plugin installation
 
-The installation process is described [here](https://github.com/vippsas/vipps-woocommerce), but can be summarised as:
+The installation process is described [here](https://github.com/vippsas/vipps-woocommerce), but can be summarized as:
 
 1.  Install the plugin using the WordPress [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by uploading the plugin files to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
