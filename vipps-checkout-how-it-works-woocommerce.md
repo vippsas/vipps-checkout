@@ -9,7 +9,11 @@ END_METADATA -->
 
 With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipps/), it's easy to start accepting payments with Vipps, VISA or MasterCard through Vipps Checkout.
 
+<!-- START_HIDDEN_IN_GITHUB
+
 <iframe width="100%" height="500" src="https://www.youtube.com/embed/86RSKuQ5GME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+END_HIDDEN_IN_GITHUB -->
 
 If you have a valid set of Vipps API keys, which means if you have a *Vipps på nett* or *Vipps Checkout* agreement, you can start using Vipps Checkout.
 
@@ -62,4 +66,8 @@ There are a few steps required to enable the improved shipping selection. For de
 
 We have made a simple video, showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
 
+<!-- START_HIDDEN_IN_GITHUB
+
 [Link to video](https://www.youtube.com/watch?v=f4NVq4A73UA)
+
+END_HIDDEN_IN_GITHUB -->
