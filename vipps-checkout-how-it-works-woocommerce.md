@@ -15,6 +15,11 @@ With [Vipps' official WooCommerce plugin](https://wordpress.org/plugins/woo-vipp
 
 END_HIDDEN_IN_GITHUB -->
 
+<!-- START_COMMENT -->
+
+See the [WooCommerce Vipps Checkout enablement video](https://www.youtube-nocookie.com/embed/86RSKuQ5GME).
+<!-- END_COMMENT -->
+
 If you have a valid set of Vipps API keys, which means if you have a *Vipps på nett* or *Vipps Checkout* agreement, you can start using Vipps Checkout.
 
 If you don't have an agreement with Vipps, [click here to order](https://portal.vipps.no/register/vippscheckout).
