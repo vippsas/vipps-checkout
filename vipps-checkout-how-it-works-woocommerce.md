@@ -71,7 +71,6 @@ There are a few steps required to enable the improved shipping selection. For de
 We have made a [simple video](https://www.youtube.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
 
 <!-- START_HIDDEN_IN_GITHUB
-
-<iframe width="100%" height="500" src="https://www.youtube-nocookie.com/watch?v=f4NVq4A73UA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>
+<iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/f4NVq4A73UA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>
 
 END_HIDDEN_IN_GITHUB -->
