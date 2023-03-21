@@ -28,7 +28,7 @@ The installation process is described [here](https://github.com/vippsas/vipps-wo
 
 Checkout replaces the default WooCommerce checkout window with a Vipps-designed window, giving you better conversion and less hassle.
 
-Vipps Checkout specific features are accessed in the "Payments" settings in the admin panel.
+Features specific to Vipps Checkout are accessed in the *Payments* settings in the Admin panel.
 ![image](https://user-images.githubusercontent.com/25223283/226337801-7561a625-4ad5-4a68-aa56-96a6c1bcaf68.png)
 
 To turn on Checkout, simply check the box at the top of the "Vipps Checkout" screen.
