@@ -27,7 +27,7 @@ If you don't have an agreement with Vipps, [click here to order](https://portal.
 
 The installation process is described [here](https://github.com/vippsas/vipps-woocommerce), but can be summarized as:
 
-1.  Install the plugin using the WordPress [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by uploading the plugin files to the `/wp-content/plugins/` directory.
+1. Install the plugin using the WordPress [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by uploading the plugin files to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Go to the WooCommerce Settings page and choose Payment Gateways (Betalinger) and enable Vipps.
 4. Go the settings page for the Vipps plugin and enter your Vipps account keys. Your account keys are available in the [Vipps Developer Portal](https://portal.vipps.no).
@@ -58,7 +58,6 @@ If you have agreements with one or more of these providers, you can add their AP
 
 ![Posten shipping selection WooCommerce](https://user-images.githubusercontent.com/25223283/226342343-479fb87c-6f4c-4557-8b77-bafd6c36eac7.gif)
 
-instead of this
 
 ## Standard shipping selection
 
@@ -71,6 +70,7 @@ There are a few steps required to enable the improved shipping selection. For de
 We have made a [simple video](https://www.youtube.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
 
 <!-- START_HIDDEN_IN_GITHUB
+
 <iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/f4NVq4A73UA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>
 
 END_HIDDEN_IN_GITHUB -->
