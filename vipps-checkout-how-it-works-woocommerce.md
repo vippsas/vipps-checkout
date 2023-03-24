@@ -32,6 +32,8 @@ This is how API keys look in the Vipps Portal.
 
 # Vipps for WooCommerce plugin installation
 
+To use Vipps Checkout in WooCommerce, you use our official plugin, which is kind of a program you install in you WooCommerce store.
+
 The installation process is described [here](https://github.com/vippsas/vipps-woocommerce), but can be summarized as:
 
 1. Install the plugin using the WordPress [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by uploading the plugin files to the `/wp-content/plugins/` directory.
