@@ -9,7 +9,7 @@ END_METADATA -->
 <!--
 
 ⚠️ The fastest way to get help or get in touch with us is if you have any problems is through the  ⚠️
-[Vipps MobilePay technical documentation](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact)
+[Vipps MobilePay technical documentation](https://developer.vippsmobilepay.com/docs/vipps-developers/contact)
 
 # Issue Template
 
@@ -17,7 +17,7 @@ BEFORE YOU SUBMIT AN ISSUE
 
 Almost all requests we get are already covered in the technical documentation.
 Please check the FAQs (Frequently Asked Questions), or use the search functionality
-at https://vippsas.github.io/vipps-developer-docs.
+at https://developer.vippsmobilepay.com.
 
 If you cannot find the answer please send an email to integration@vipps.no with all relevant information:
 

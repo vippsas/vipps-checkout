@@ -18,11 +18,11 @@ for more details.
 
 For more common questions, see:
 
-* [API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
+* [API General FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs)
 
 <!-- START_COMMENT -->
 
-💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
+💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
 
 <!-- END_COMMENT -->
 
@@ -31,9 +31,9 @@ For more common questions, see:
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
 
 All subsequent transaction operations are fully supported in the
-[epayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
+[epayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 
-See the [Common FAQs](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs) for common
+See the [Common FAQs](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs) for common
 questions about captures, reservations, and refunds.
 
 ## Testing

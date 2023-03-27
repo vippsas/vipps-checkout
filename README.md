@@ -14,7 +14,7 @@ END_METADATA -->
 
 <!-- START_COMMENT -->
 
-💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
+💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
 
 <!-- END_COMMENT -->
 
@@ -35,7 +35,7 @@ To test Checkout:
 ## Getting started
 
 See the
-[Vipps MobilePay Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/getting-started)
+[Vipps MobilePay Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:
@@ -44,5 +44,5 @@ Review the detailed documentation found here:
 * [API Guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API
 * [API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration
 * [API FAQs](vipps-checkout-api-faq.md): Questions and answers
-* [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout): Checkout API reference specifications
+* [API Reference](https://developer.vippsmobilepay.com/api/checkout): Checkout API reference specifications
 * [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md): Guide for how to use our on-site messaging SDK
