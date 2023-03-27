@@ -21,7 +21,7 @@ The Checkout API supports all major shipping providers in the Norwegian market, 
 
 To see how this works, [visit our demo store](https://demo.vipps.no/vipps-checkout-1/full).
 
-A provider is chosen by setting the `brand` property to one of the allowed string values. Consult the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) for further details. This will set the logo and name of the provider.
+A provider is chosen by setting the `brand` property to one of the allowed string values. Consult the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) for further details. This will set the logo and name of the provider.
 
 ![Shipping provider logo example](resources/shipping_logo-example.png)
 
@@ -39,7 +39,7 @@ For some of the providers we offer enriching features, including:
 These features change the user interface to allow for more specific selection of delivery time or place, where some of the features require you (the merchant) to provide credentials. Credentials are provided in the `logistics.integrations` property at session initiation and are used to perform a "pre booking" (i.e. reserve a time slot) for some of the shipping providers.
 
 An enriching feature can be chosen by setting the `type` property on the logistics option.
-Refer to the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) to see which features are available for each shipping provider.
+Refer to the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) to see which features are available for each shipping provider.
 
 ### Pickup point
 

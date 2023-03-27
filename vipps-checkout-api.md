@@ -15,13 +15,13 @@ The Checkout API provides an all-in-one solution for receiving payment for goods
 
 API version: 3.0.0.
 
-**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://vippsas.github.io/vipps-developer-docs/api/checkout).
+**Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://developer.vippsmobilepay.com/api/checkout).
 
 **Migrating to V3?** Consult our [Migration Guide](vipps-checkout-api-migration-v3.md).
 
 <!-- START_COMMENT -->
 
-💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-api>. 💥
+💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api>. 💥
 
 <!-- END_COMMENT -->
 
@@ -54,7 +54,7 @@ and you will not get improvements and bugfixes we do in the SDK.
 
 ### Shipping
 
-In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping) and the [API spec](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features Vipps Checkout support.
+In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping) and the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features Vipps Checkout support.
 
 ### Vipps Checkout Direct
 
@@ -94,7 +94,7 @@ Vipps Checkout supports easy fetching of user info with the built-in Vipps Login
 
 ### Receipts
 
-Vipps Checkout **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
+Vipps Checkout **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
 
 To enable Checkout to create receipts, the "OrderSummary" property in the session initiation must be set. Detailed information is available in the OpenAPI spec [session initiation endpoint][create-checkout-session-endpoint]
 
@@ -103,11 +103,11 @@ It is possible to specify shipping costs in one or more OrderLines in the sessio
 If shipping is handled in Checkout and is not free, an order line with the shipping cost will be automatically added, **even if** shipping costs are specified in the session initiation.
 
 If set up properly in the "OrderSummary" property in the session initiation, the receipt will be created when payment is initiated (by sending it to Order Management API), and will be visible in the customer's app when the payment is successfully completed.
-Further details regarding receipts in [The Order Management API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#receipts)
+Further details regarding receipts in [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts)
 
 #### Receipts and Assisted Content Monitoring
 
-Vipps offers [assisted content monitoring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) as a way for Merchants to deal with the regulatory demands of content monitoring.
+Vipps offers [assisted content monitoring](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) as a way for Merchants to deal with the regulatory demands of content monitoring.
 For some merchants Vipps can utilize the merchant's webpage for content monitoring, continuously verifying that the actual products being sold coincides with the expected products.
 If you, as a merchant, do not have a permanent website that can be utilized for content monitoring, for example you do not have a user facing website or the website is ephemeral/short lived then you must utilize Vipps Assisted Content Monitoring.
 In order to comply with Vipps Assisted Content Monitoring all transactions must be posted to the Order Management receipts functionality described in this section.
@@ -477,9 +477,9 @@ For more details about full and partial capture, see the ePayment API schema: [`
 
 ## Integration partner and plugin guidelines
 
-Vipps Checkout supports [partner-key-based authentication](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/partner-keys).
+Vipps Checkout supports [partner-key-based authentication](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
 
-In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/partner-keys). This results in an _on-behalf-of_ authentication that is available when the merchant has a valid connection to your solution.
+In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys). This results in an _on-behalf-of_ authentication that is available when the merchant has a valid connection to your solution.
 
 ### Partner signup API guidelines
 
@@ -490,36 +490,36 @@ If you are using the [Signup API](https://github.com/vippsas/vipps-signup-api), 
 
 Vipps Checkout should be considered an extension of existing other Vipps commerce functionality.
 
-This means that transaction operations other than payment initiation, which is handled by [Checkout](vipps-checkout-api-checklist.md), should be done on the [ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
+This means that transaction operations other than payment initiation, which is handled by [Checkout](vipps-checkout-api-checklist.md), should be done on the [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 Use the same credentials as the ones you use with Checkout. See the
-[ePayments guidelines](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for the integration.
+[ePayments guidelines](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for the integration.
 
-**Please note:** That the [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api) should not be used, as it lacks full support for card transactions.
+**Please note:** That the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) should not be used, as it lacks full support for card transactions.
 
 ### Vipps Checkout only supports Reserve/Capture
 
 When you initiate a payment, it will be _reserved_ until you capture it. The _capture_ can be done a few seconds later, or several days later.
 
 _Reserved_ means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. _Capture_ means that the funds are moved from the customer's account to the merchant's account.
-See [Common topics: Reserve and capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/reserve-and-capture) for more information.
+See [Common topics: Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture) for more information.
 
 **Please note:** _Direct Capture_, where a transaction is automatically captured upon reservation, _is not_ supported in Vipps Checkout, and transactions will fail.
 
 ## Vipps side Transaction information
 
-It is possible to get the Vipps `transactionId` value of a transaction. This can be used, for example, to utilize [Order Management API: Vipps-assisted content monitoring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) or to support account procedures.
+It is possible to get the Vipps `transactionId` value of a transaction. This can be used, for example, to utilize [Order Management API: Vipps-assisted content monitoring](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) or to support account procedures.
 
 ### Recommended integration (currently in pilot mode)
 
 In order to integrate with the receipts functionality, you need to retrieve the psp reference in the "paymentAction": "AUTHORISATION" event from the [event log][get-payment-event-log-endpoint] endpoint. This is required when utilizing receipts with Vipps Checkout or Free standing card payments
 
-[create-checkout-session-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session/post
-[retrieve-sessioninfo-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1session~1%7Breference%7D/get
-[create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
-[get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
-[get-payment-event-log-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
-[cancel-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/cancelPayment
-[capture-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment
-[refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
-[adjust-authorization-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
-[force-approve-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove/operation/forceApprove
+[create-checkout-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post
+[retrieve-sessioninfo-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session~1%7Breference%7D/get
+[create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment
+[get-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment
+[get-payment-event-log-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
+[cancel-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/cancelPayment
+[capture-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/capturePayment
+[refund-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/refundPayment
+[adjust-authorization-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
+[force-approve-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/ForceApprove/operation/forceApprove

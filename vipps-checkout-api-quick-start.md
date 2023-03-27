@@ -15,7 +15,7 @@ Use the Checkout API to create a checkout session, retrieve session information,
 
 <!-- START_COMMENT -->
 
-💥 Please use the documentation pages here: <https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api>. 💥
+💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
 
 <!-- END_COMMENT -->
 
@@ -24,7 +24,7 @@ Use the Checkout API to create a checkout session, retrieve session information,
 ### Prerequisites
 
 Review
-[Quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides) for information about getting your test environment set up.
+[Quick start guides](https://developer.vippsmobilepay.com/docs/vipps-developers/quick-start-guides) for information about getting your test environment set up.
 
 ### Step 1: Get the collection and environment
 
@@ -60,7 +60,7 @@ You can update any of the other environment variables. Be aware of this:
 ### Create a checkout session
 
 1. Send request `Create a Checkout Session`. This starts a simple session by using
-   [`POST:/v3/session`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v3~1session/post).
+   [`POST:/v3/session`](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1v3~1session/post).
 
    The `reference` variable is automatically set in the environment
    of this Postman example and can be used for subsequent calls relating to this session.
@@ -71,7 +71,7 @@ You can update any of the other environment variables. Be aware of this:
 ## Retrieve the session information
 
 1. Send request `Get session info`. This retrieves the session information by using
-   [`GET:/v3/session/{reference}`](https://vippsas.github.io/vipps-developer-docs/api/checkout#tag/Session/paths/~1v3~1session~1%7Breference%7D/get).
+   [`GET:/v3/session/{reference}`](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1v3~1session~1%7Breference%7D/get).
    The `reference` variable was previously set in the environment.
 
    You will see the details appear in the lower pane.
