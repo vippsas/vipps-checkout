@@ -221,7 +221,7 @@
     "name": "Checkout API v3 - Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "For details, see the [Checkout API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api).",
+      "content": "For details, see the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api).",
       "type": "text/plain"
     }
   }
