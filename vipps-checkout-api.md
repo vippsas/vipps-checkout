@@ -108,8 +108,7 @@ Further details regarding receipts in [The Order Management API](https://develop
 #### Show order summary
 
 In addition to automatically creating [receipts](receipts), setting up the OrderSummary property as described above enables the use of `showOrderSummary: true` inside `configuration` in the session initiation. This will display a simplified order summary, similar to the receipt, on top of the Checkout window. Use this feature if you would like to show what the user is paying for during the checkout. We show a simpler summary than the receipt using a subset of the properties inside `OrderSummary`. E.g. tax calculations are shown in the receipt, but not in the order summary. The following properties will be honored `id, name, discount, giftcard, totalAmount, productUrl, isReturn, isShipping, currency, giftCardAmount, quantity`
-
-<img width="666" alt="Show order summary" src="https://user-images.githubusercontent.com/920028/228213655-40bd7ecf-6f36-460f-af23-b0df1c58edd7.png">
+![Show order summary](https://user-images.githubusercontent.com/920028/228213655-40bd7ecf-6f36-460f-af23-b0df1c58edd7.png)
 
 
 #### Receipts and Assisted Content Monitoring
