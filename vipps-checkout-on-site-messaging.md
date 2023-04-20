@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: On-site messaging
 sidebar_label: On-site messaging
@@ -7,7 +6,7 @@ description: Use On-Site Messaging to let your customers know that a payment is 
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
+
 
 # On-site messaging
 

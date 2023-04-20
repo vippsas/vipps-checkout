@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Checkout button
 sidebar_label: Checkout button
@@ -7,11 +6,10 @@ description: Use Checkout Direct and other "Buy now" checkout-_button.
 pagination_prev: Null
 pagination_next: Null
 ---
-END_METADATA -->
 
 # Checkout button
 
-Make it super easy for customers to checkout out straight from a product page with Checkout Direct and our "Buy now" checkout-_button_!
+Make it super easy for customers to check out straight from a product page with Checkout Direct and our "Buy now" checkout-_button_!
 
 The _button_ is provided in multiple variants and colors and can be tailored to your page.
 
