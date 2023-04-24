@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Migrating from Checkout API V2 to V3
 sidebar_label: "V2 to V3 migration guide"
@@ -6,6 +7,7 @@ description: How to change in your existing V2 integration to support Checkout V
 pagination_next: null
 pagination_prev: null
 ---
+END_METADATA -->
 
 # Migrating from Checkout V2 to V3
 
