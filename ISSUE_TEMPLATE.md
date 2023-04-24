@@ -1,10 +1,8 @@
-<!-- START_METADATA
 ---
 title: "Issue template"
 sidebar_position: 30
 draft: true
 ---
-END_METADATA -->
 
 <!--
 

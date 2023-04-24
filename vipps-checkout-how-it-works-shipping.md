@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: How the Checkout API works for shipping
 sidebar_label: "How it works: Shipping"
@@ -7,7 +6,6 @@ description: View the eCom API how-it-works guides for illustrations of the main
 pagination_prev: Null
 pagination_next: Null
 ---
-END_METADATA -->
 
 # How the Checkout API works for shipping
 

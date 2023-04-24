@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Checkout API checklist
 sidebar_label: Checklist
@@ -7,7 +6,6 @@ description: Checklist for full integration with the Checkout API.
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Checklist
 

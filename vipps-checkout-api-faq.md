@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Checkout API Frequently Asked Questions
 sidebar_label: FAQ
@@ -7,7 +6,6 @@ description: Frequently asked questions for the Checkout API.
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Frequently asked questions
 
@@ -19,12 +17,6 @@ for more details.
 For more common questions, see:
 
 * [API General FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs)
-
-<!-- START_COMMENT -->
-
-💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
-
-<!-- END_COMMENT -->
 
 ## Capture, reservations, and refunds
 

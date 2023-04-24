@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Introduction to the Checkout API
 sidebar_label: Introduction
@@ -8,15 +7,8 @@ description: Use the Checkout API to deliver a complete checkout experience, han
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Checkout API
-
-<!-- START_COMMENT -->
-
-💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
-
-<!-- END_COMMENT -->
 
 Checkout is a Vipps MobilePay product delivering a complete checkout experience, handling payment processing, shipping and gathering user info.
 
