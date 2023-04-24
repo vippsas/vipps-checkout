@@ -14,10 +14,7 @@ If you have a valid set of Vipps API keys, which means if you have a *Vipps på 
 
 If you don't have an agreement with Vipps, [click here to order](https://portal.vipps.no/register/vippscheckout).
 
-**Don't know what API keys are?** They are the secrets your webshop uses to communicate with us securely, basically long strings of seemingly random words and numbers. You find them by logging in to [the Vipps Portal](https://portal.vipps.no/) using BankID. [Here is a more thorough explanation](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/api-keys)
-
-This is how API keys look in the Vipps Portal.
-![image](https://user-images.githubusercontent.com/25223283/227459624-01efc657-5fc5-4ccb-be71-0858663671c0.png)
+**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/) more info on what they are, how they're used, and how to get them
 
 
 
