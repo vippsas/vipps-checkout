@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Quick start for the Checkout API
 sidebar_label: Quick start
@@ -6,10 +7,17 @@ description: Quick start guide for the using the Checkout API with Postman.
 pagination_next: null
 pagination_prev: null
 ---
+END_METADATA -->
 
 # Quick start
 
 Use the Checkout API to create a checkout session, retrieve session information, and cancel the current checkout session.
+
+<!-- START_COMMENT -->
+
+💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
+
+<!-- END_COMMENT -->
 
 ## Postman
 

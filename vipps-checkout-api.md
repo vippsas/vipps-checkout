@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Checkout API guide
 sidebar_label: API guide
@@ -6,6 +7,7 @@ description: Find technical details about integrating with the Checkout API.
 pagination_prev: Null
 pagination_next: Null
 ---
+END_METADATA -->
 
 # API guide
 
@@ -16,6 +18,12 @@ API version: 3.0.0.
 **Please note:** Always use the most recent API version when integrating with Vipps Checkout. All endpoints are described in detail in our [API Reference](https://developer.vippsmobilepay.com/api/checkout).
 
 **Migrating to V3?** Consult our [Migration Guide](vipps-checkout-api-migration-v3.md).
+
+<!-- START_COMMENT -->
+
+💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api>. 💥
+
+<!-- END_COMMENT -->
 
 ## Checkout Features
 
