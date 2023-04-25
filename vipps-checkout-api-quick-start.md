@@ -22,7 +22,7 @@ Review
 
 Save the following files to your computer:
 
-- [Checkout API Postman collection](tools/vipps-checkout-api-postman-collection.json)
+- [Checkout API Postman collection](/tools/vipps-checkout-api-postman-collection.json)
 - [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
