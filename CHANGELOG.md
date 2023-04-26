@@ -1,37 +1,24 @@
 ---
-title: Checkout API change log
-sidebar_label: Change log
+title: Checkout API changelog
+sidebar_label: Changelog
 sidebar_position: 26
 pagination_next: null
 pagination_prev: null
 ---
 
-# Change log
+# Changelog
 
-## 2023
+All notable changes to the current API will be documented in this file.
 
-### March 2023 - Improved shipping options in Vipps Checkout
+## March 2023
 
-You can now offer your customers their preferred shipping method.
-Checkout adds support for all major shipping providers in the Norwegian market, including:
+* Added support for `Porterbuddy`, `Helthjem`, and `Instabox` on the 
+  [Create a Checkout session](https://developer.vippsmobilepay.com/api/checkout/#tag/Session/paths/~1session/post) endpoint.
 
-* Bring/Posten
-* Postnord
-* Porterbuddy
-* Helthjem
-* Instabox
+## December 2022
 
+* Launched Checkout API V3. See [Migrating from Checkout V2 to V3](vipps-checkout-api-migration-v3).
 
-## 2022
+## October 2022
 
-### December 2022 - Launch of Checkout API v3
-
-The Checkout API v3 is available. Checkout v3 improves upon v2 through alignment of polling and callback responses, improvement of field names and expanding models related to logistics options to permit more advanced features.
-
-For more information, check out our [migration guide](vipps-checkout-api-migration-v3)
-
-### October 2022 - Vipps on-site messaging
-
-[Vipps on-site-messaging](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-on-site-messaging)
-is updated to contain badges in different variants.
-
+* Updated [Vipps on-site-messaging](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-on-site-messaging) to contain badges in different variants.
