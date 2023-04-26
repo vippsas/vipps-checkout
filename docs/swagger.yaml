@@ -612,7 +612,7 @@ paths:
           schema:
             type: string
             default: "{{vipps_system_name}}"
-            example: acme
+            example: Acme Commerce
         - name: Vipps-System-Version
           in: header
           schema:
