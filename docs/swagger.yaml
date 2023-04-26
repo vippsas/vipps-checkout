@@ -612,7 +612,7 @@ paths:
           schema:
             type: string
             default: "{{vipps_system_name}}"
-            example: Acme Enterprises Ecommerce DeLuxe
+            example: Acme Commerce
         - name: Vipps-System-Version
           in: header
           schema:
@@ -799,7 +799,7 @@ components:
       properties:
         vipps-System-Name:
           type: string
-          description: 'The name of the ecommerce solution. Example: "Acme Enterprises Ecommerce DeLuxe".'
+          description: 'The name of the ecommerce solution. Example: "Acme Commerce".'
         vipps-System-Version:
           type: string
           description: 'The version number of the ecommerce solution. Example: "3.1.2".'
