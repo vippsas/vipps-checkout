@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Checkout API changelog
 sidebar_label: Changelog
@@ -5,6 +6,7 @@ sidebar_position: 26
 pagination_next: null
 pagination_prev: null
 ---
+END_METADATA -->
 
 # Changelog
 
