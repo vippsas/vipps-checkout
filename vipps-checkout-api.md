@@ -160,7 +160,7 @@ sequenceDiagram
   User->>App: Complete payment
 
   alt If mobile device
-    App->>Merchant: Redirect to merchant defined return URL
+    App->>Merchant: Redirect to merchant app
   else If desktop device
     LandingPage->>Merchant: Redirect to merchant defined return URL
   end
