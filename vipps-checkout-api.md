@@ -35,7 +35,6 @@ Vipps Checkout works around the concept of a _session_, which has a time to live
 
 - session initiation
 - session status
-- session cancellation
 
 ### Vipps Checkout frontend
 
