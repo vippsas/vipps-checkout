@@ -179,16 +179,16 @@ POST: https://api.vipps.no/checkout/v3/session
 
 with headers
 
-| Header                        | Description                                                                                   | Example value       |
-| ----------------------------- | --------------------------------------------------------------------------------------------- | ------------------- |
-| `Merchant-Serial-Number`      | Vipps assigned unique number for a merchant. Found in [Vipps portal](https://portal.vipps.no) |                     |
+| Header                        | Description                                                                                   | Example value          |
+| ----------------------------- | --------------------------------------------------------------------------------------------- | ---------------------- |
+| `Merchant-Serial-Number`      | Vipps assigned unique number for a merchant. Found in [Vipps portal](https://portal.vipps.no) |                        |
 | `Client_Id`                   | Client Id. Found in [Vipps portal](https://portal.vipps.no)                                   |
 | `Client_Secret`               | Client Secret. Found in [Vipps portal](https://portal.vipps.no)                               |
 | `Ocp-Apim-Subscription-Key`   | Subscription key. Found in [Vipps portal](https://portal.vipps.no)                            |
-| `Vipps-System-Name`           | The name of the ecommerce solution                                                            | `woocommerce`       |
-| `Vipps-System-Version`        | The version number of the ecommerce solution                                                  | `5.4`               |
-| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                              | `vipps-woocommerce` |
-| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                                    | `1.4.1`             |
+| `Vipps-System-Name`           | The name of the ecommerce solution                                                            | `woocommerce`          |
+| `Vipps-System-Version`        | The version number of the ecommerce solution                                                  | `5.4`                  |
+| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                              | `woocommerce-checkout` |
+| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                                    | `1.4.1`                |
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
