@@ -11,7 +11,7 @@ END_METADATA -->
 
 # Quick start
 
-Use the Checkout API to create a checkout session, retrieve session information, and cancel the current checkout session.
+Use the Checkout API to create a checkout session and retrieve session information.
 
 <!-- START_COMMENT -->
 

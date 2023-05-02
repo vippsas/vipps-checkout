@@ -35,20 +35,19 @@ Vipps Checkout works around the concept of a _session_, which has a time to live
 
 - session initiation
 - session status
-- session cancellation
 
 ### Vipps Checkout frontend
 
 Once a session is created, it is to be opened inside an iFrame embedded on the merchant website. The iFrame loads a web application that fetches all necessary information about the session from Vipps.
 
-#### SDK
+#### Frontend SDK
 
-Vipps provides an SDK to make opening the session on the merchant easy
+Vipps provides a frontend SDK to make opening the session on the merchant easy
 (the SDK is
 [explained in detail](#step-2-displaying-the-session)
 later in this guide).
 
-It is _**strongly**_ recommended to use the SDK.
+It is _**strongly**_ recommended to use the frontend SDK.
 If you do not use the SDK your implementation will require far more coding,
 and you will not get improvements and bugfixes we do in the SDK.
 
@@ -144,7 +143,7 @@ sequenceDiagram
   User->>Merchant: Start shopping session, proceed to checkout
   Merchant->>API: Start checkout session
   API-->>Merchant: Response containing token identifying the session
-  Merchant->>Frontend: Initialize SDK to open session in iFrame
+  Merchant->>Frontend: Initialize frontend SDK to open session in iFrame
   Merchant->>API: Start polling on session
   Frontend->>User: Display session
   User->>Frontend: Fill out checkout form fields. Proceed to payment
@@ -161,7 +160,7 @@ sequenceDiagram
   User->>App: Complete payment
 
   alt If mobile device
-    App->>Merchant: Redirect to merchant defined return URL
+    App->>Merchant: Redirect to merchant app
   else If desktop device
     LandingPage->>Merchant: Redirect to merchant defined return URL
   end
@@ -180,16 +179,16 @@ POST: https://api.vipps.no/checkout/v3/session
 
 with headers
 
-| Header                        | Description                                                                                   | Example value       |
-| ----------------------------- | --------------------------------------------------------------------------------------------- | ------------------- |
-| `Merchant-Serial-Number`      | Vipps assigned unique number for a merchant. Found in [Vipps portal](https://portal.vipps.no) |                     |
+| Header                        | Description                                                                                   | Example value          |
+| ----------------------------- | --------------------------------------------------------------------------------------------- | ---------------------- |
+| `Merchant-Serial-Number`      | Vipps assigned unique number for a merchant. Found in [Vipps portal](https://portal.vipps.no) |                        |
 | `Client_Id`                   | Client Id. Found in [Vipps portal](https://portal.vipps.no)                                   |
 | `Client_Secret`               | Client Secret. Found in [Vipps portal](https://portal.vipps.no)                               |
 | `Ocp-Apim-Subscription-Key`   | Subscription key. Found in [Vipps portal](https://portal.vipps.no)                            |
-| `Vipps-System-Name`           | The name of the ecommerce solution                                                            | `woocommerce`       |
-| `Vipps-System-Version`        | The version number of the ecommerce solution                                                  | `5.4`               |
-| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                              | `vipps-woocommerce` |
-| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                                    | `1.4.1`             |
+| `Vipps-System-Name`           | The name of the ecommerce solution                                                            | `woocommerce`          |
+| `Vipps-System-Version`        | The version number of the ecommerce solution                                                  | `5.4`                  |
+| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                              | `woocommerce-checkout` |
+| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                                    | `1.4.1`                |
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human readable and reasonably short values.
 
@@ -205,7 +204,7 @@ In this situation, the merchant may wish to have a `returnUrl` to direct the use
 
 ### Step 2: Displaying the session
 
-Load the SDK in the `<head>` section of the merchant website.
+Load the frontend SDK in the `<head>` section of the merchant website.
 
 ```html
 <head>
@@ -217,7 +216,7 @@ Load the SDK in the `<head>` section of the merchant website.
 
 This is the standard flow where Vipps Checkout is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Vipps Checkout Direct](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
 
-The SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters
+The frontend SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters
 
 | Parameter             | Description                                                                                                       | Optional |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
@@ -227,7 +226,7 @@ The SDK exposes a global function called `VippsCheckout`. Initialize this with t
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
 | `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                   | Yes      |
 
-Example merchant website using Vipps Checkout SDK to embed an iFrame with the session in plain html/js.
+Example merchant website using Vipps Checkout frontend SDK to embed an iFrame with the session in plain html/js.
 
 **Please note:** To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The javascript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the Javascript on the frontend, and then in that backend call the Checkout create session endpoint so you don’t leak the keys.
 
@@ -262,7 +261,7 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
             .catch((error) => {
               // Handle at least these two types of errors here:
               // 1. Fetch to create session endpoint failed
-              // 2. VippsCheckout SDK not loaded resulting in VippsCheckout not being defined
+              // 2. Vipps Checkout frontend SDK not loaded resulting in VippsCheckout not being defined
             });
         });
     </script>
@@ -274,9 +273,9 @@ Example merchant website using Vipps Checkout SDK to embed an iFrame with the se
 
 #### Sticky checkout session
 
-The SDK provides an alternative way to display the session, using a query parameter in the URL. This makes the session "sticky", meaning that the same session will open after a page refresh.
+The frontend SDK provides an alternative way to display the session, using a query parameter in the URL. This makes the session "sticky", meaning that the same session will open after a page refresh.
 
-If the query parameter `token` is present, and the token attribute in the argument object to VippsCheckout **is not** defined, the SDK will load the iFrame with the token from the query parameter.
+If the query parameter `token` is present, and the token attribute in the argument object to VippsCheckout **is not** defined, the frontend SDK will load the iFrame with the token from the query parameter.
 
 We provide a helper method that, when called, will redirect to the current page with the `token` queryParameter added to the URL. Initialize the `VippsCheckout` function outside of initiating a session.
 
@@ -295,9 +294,9 @@ var vippsCheckout = VippsCheckout({
 })
 ```
 
-#### SDK events
+#### Frontend SDK events
 
-You can listen to changes in Checkout by supplying callbacks to the `on` option in the SDK.
+You can listen to changes in Checkout by supplying callbacks to the `on` option in the frontend SDK.
 Each key in the map supplied to `on` corresponds to an event and accepts a call callback-function with a `data` parameter as a value.
 
 Available events:
@@ -376,7 +375,7 @@ To checkout a single item directly, use Vipps Checkout Direct. Hook this flow up
 
 We also have a [button](vipps-checkout-button.md) with the Vipps look-and-feel that you can use (if you so choose) to make the integration super easy on your product page!
 
-The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this with the following parameters
+The frontend SDK exposes a global function called `VippsCheckoutDirect`. Initialize this with the following parameters
 
 | Parameter             | Description                                                                                                       | Optional |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------- | -------- |
@@ -414,7 +413,7 @@ The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this 
             .catch((error) => {
               // Handle at least these two types of errors here:
               // 1. Fetch to create session endpoint failed
-              // 2. VippsCheckout SDK not loaded resulting in VippsCheckout not being defined
+              // 2. Vipps Checkout frontend SDK not loaded resulting in VippsCheckout not being defined
             });
         });
     </script>
@@ -422,7 +421,7 @@ The SDK exposes a global function called `VippsCheckoutDirect`. Initialize this 
 </html>
 ```
 
-**Please note:** The `VippsCheckoutDirect` method in the SDK can be used instead of `VippsCheckout` as per alternative 1, if you want to bypass the iFrame flow and let Vipps handle the checkout completely.
+**Please note:** The `VippsCheckoutDirect` method in the frontend SDK can be used instead of `VippsCheckout` as per alternative 1, if you want to bypass the iFrame flow and let Vipps handle the checkout completely.
 
 ### Step 3: Handling the result of the session
 
