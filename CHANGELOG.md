@@ -11,6 +11,8 @@ END_METADATA -->
 # Changelog
 
 All notable changes to the current API will be documented in this file.
+To learn about API versioning, see
+[Common topics: API Lifecycle](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-lifecycle/).
 
 ## March 2023
 
