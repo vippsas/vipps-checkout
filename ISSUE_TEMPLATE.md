@@ -19,7 +19,7 @@ Almost all requests we get are already covered in the technical documentation.
 Please check the FAQs (Frequently Asked Questions), or use the search functionality
 at https://developer.vippsmobilepay.com.
 
-If you cannot find the answer please send an email to integration@vipps.no with all relevant information:
+If you cannot find the answer please send an email to developer@vippsmobilepay.com with all relevant information:
 
 1. Please: Always include a detailed description of the problem with a step-by-step description of what you do and what happens.
 2. A concise, self-explanatory Subject line, such as "POST:/something gives HTTP 400 response".
