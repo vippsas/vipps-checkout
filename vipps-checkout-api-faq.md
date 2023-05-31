@@ -46,17 +46,8 @@ The only difference between a Vipps wallet payment and card payment is that *pay
 
 ## Card payments
 
-### What card types are supported?
-
-Visa and Mastercard. This includes any cards that are co-branded with VISA and Mastercard.
-
-### Which issuer countries are supported?
-
-Cards issued in the following countries are accepted: EEA/EØS (European Economic Area), UK, Canada, USA, Australia and New Zealand.
-
-### Is Visa Electron supported?
-
-Yes, if the Visa Electron card is enabled for online purchases.
+See:
+[Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments)
 
 ## Shipping
 
