@@ -25,8 +25,6 @@ If you don't have an agreement with Vipps, [click here to order](https://portal.
 
 **Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/) more info on what they are, how they're used, and how to get them
 
-
-
 # Vipps for WooCommerce plugin installation
 
 To use Vipps Checkout in WooCommerce, you use our official plugin, which is kind of a program you install in you WooCommerce store.
@@ -34,13 +32,13 @@ To use Vipps Checkout in WooCommerce, you use our official plugin, which is kind
 The installation process is described [here](https://github.com/vippsas/vipps-woocommerce), but can be summarized as:
 
 1. Install the plugin using the WordPress [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by uploading the plugin files to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
+2. Activate the plugin through the 'Plugins' screen on WordPress.
 3. Go to the WooCommerce Settings page and choose Payment Gateways (Betalinger) and enable Vipps.
 4. Go the settings page for the Vipps plugin and enter your Vipps account keys. Your account keys are available in the [Vipps Developer Portal](https://portal.vipps.no).
 
 # Checkout specific setup
 
-Checkout replaces the default WooCommerce checkout window with a Vipps-designed window, giving you better conversion and less hassle.
+Checkout replaces the default WooCommerce checkout window with a Vipps window, giving you better conversion and less hassle.
 
 Features specific to Vipps Checkout are accessed in the *Payments* settings in the Admin panel.
 ![image](https://user-images.githubusercontent.com/25223283/226337801-7561a625-4ad5-4a68-aa56-96a6c1bcaf68.png)
@@ -63,7 +61,6 @@ If you have agreements with one or more of these providers, you can add their AP
 ## Improved shipping selection with Posten
 
 ![Posten shipping selection WooCommerce](https://user-images.githubusercontent.com/25223283/226342343-479fb87c-6f4c-4557-8b77-bafd6c36eac7.gif)
-
 
 ## Standard shipping selection
 

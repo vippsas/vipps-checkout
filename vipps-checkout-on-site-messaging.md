@@ -41,12 +41,12 @@ You can find a demo and examples of all the variants [here](https://checkout.vip
 
 All attributes are optional.
 
-| Attribute    | Description                                                                                                                                             | Default |
-|:-------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
-| variant      | The color variant of the badge. Supported values: `white`, `orange`, `gray`, `light-orange`, `purple`.                                                  | `white` |
-| language     | ISO 639-1 alpha-2 language code. Supported values: `en`, `no`.                                                                                     | `no`    |
-| vipps-senere | Set this to `true` if your business supports the "Vipps Senere"-product.                                                                                | `false` |
-| amount       | The payable amount in NOK. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre. |         |
+| Attribute      | Description                                                                                                                                             | Default |
+|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
+| `variant`      | The color variant of the badge. Supported values: `white`, `orange`, `gray`, `light-orange`, `purple`.                                                  | `white` |
+| `language`     | ISO 639-1 alpha-2 language code. Supported values: `en`, `no`.                                                                                          | `no`    |
+| `vipps-senere` | Set this to `true` if your business supports the _Vipps Senere_ product.                                                                                | `false` |
+| `amount`       | The payable amount in NOK. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.     |         |
 
 #### Customization
 
@@ -104,7 +104,8 @@ Next, just add the JavaScript library and the code snippet for the _badge_:
 
 ### Magento
 
-To add the _badge_ to your product in Magento, find your product in Magento Admin > Catalog > Products and open it for edit. Go to Content, Short Description, hide the editor and copy paste in the following:
+To add the _badge_ to your product in Magento, find your product in _Magento Admin_ > _Catalog_ > _Products_ and open it for edit.
+Go to _Content_ > _Short Description_, hide the editor, and then paste in the following:
 
 ```html
 <script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>
@@ -115,7 +116,7 @@ To add the _badge_ to your product in Magento, find your product in Magento Admi
 
 ### Shopify
 
-To add the _badge_ to your product in Shopify, find your product in Shopify Admin > Products and open it. Press the "Show Html"-button and copy paste in the following:
+To add the _badge_ to your product in Shopify, find your product in _Shopify Admin_ > _Products_ and open it. Press the _Show HTML_ button and paste in the following:
 
 ```html
 <script async type="text/javascript" src="https://checkout.vipps.no/on-site-messaging/v1/vipps-osm.js"></script>

@@ -11,7 +11,7 @@ END_METADATA -->
 
 # Checkout button
 
-Make it super easy for customers to checkout out straight from a product page with Checkout Direct and our "Buy now" checkout-_button_!
+Make it super easy for customers to check out straight from a product page with Checkout Direct and our "Buy now" checkout-_button_!
 
 The _button_ is provided in multiple variants and colors and can be tailored to your page.
 
@@ -42,7 +42,7 @@ All attributes are optional.
 |:----------|:----------------------------------------------------------------------------------|:---------|
 | variant   | The color variant of the button. Supported values: `orange`, `purple`, `stroked`. | `orange` |
 | language  | ISO 639-1 alpha-2 language code. Supported values: `en`, `no`.                    | `no`     |
-| rounded   | The button will have rounded corners (oval shape) when se to `true`               | `false`  |
+| rounded   | The button will have rounded corners (oval shape) when set to `true`              | `false`  |
 | stretched | Will fill the whole with of the parent container when set to `true`               | `false`  |
 | branded   | Brand with the Vipps-logo                                                         | `false`  |
 

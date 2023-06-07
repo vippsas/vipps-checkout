@@ -12,7 +12,7 @@ paths:
       tags:
         - Session
       summary: Create a Checkout session
-      description: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\nePayments landing page URL, free standing card page URL."
+      description: "Creates a checkout session and returns a JWT token which wraps the login URL,\r\nePayments landing page URL, freestanding card page URL."
       parameters:
         - name: Vipps-System-Name
           in: header
