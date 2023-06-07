@@ -15,50 +15,50 @@ Checkout V3 improves upon V2 through alignment of polling and callback responses
 
 ## Initiate Session
 
-### CheckoutConfiguration
+### `CheckoutConfiguration`
 
-The field "Configuration" has been added to InitiateSessionRequest and following fields have been moved into it:
+The field `Configuration` has been added to `InitiateSessionRequest` and the following fields have been moved into it:
 
-- customerInteraction
-- userFlow
-- requireUserInfo
-- elements
+- `customerInteraction`
+- `userFlow`
+- `requireUserInfo`
+- `elements`
 
-The elements field replaces the former ContactFields and AddressFields flags with an enum. They are equivalent according to the following table.
+The `elements` field replaces the former `ContactFields` and Address`Fields flags with an enum. They are equivalent according to the following table.
 
-| Elements              | ContactFields | AddressFields |
-| --------------------- | ------------- | ------------- |
-| Full (default)        | true          | true          |
-| PaymentAndContactInfo | true          | false         |
-| PaymentOnly           | false         | false         |
+| `Elements`              | `ContactFields` | `AddressFields` |
+| ----------------------- | ------------- | ------------- |
+| `Full` (default)        | true          | true          |
+| `PaymentAndContactInfo` | true          | false         |
+| `PaymentOnly`           | false         | false         |
 
 We have also added a new field Countries which allows merchants to specify which countries they support.
 
-### CallbackUrl
+### `CallbackUrl`
 
-callbackUrlPrefix has been replaced by callbackUrl so that you send in the whole url to where you want the "Payment Completed" callback.
+`callbackUrlPrefix` has been replaced by `callbackUrl` so that you send in the whole URL to where you want the "Payment Completed" callback.
 
 ### Strongly typed fields
 
 The following are now strongly typed:
 
-- customerInteraction
-- userFlow
+- `customerInteraction`
+- `userFlow`
 
-The permitted values for these fields used to be case insensitive. They are now case sensitive.
+The permitted values for these fields used to be case-insensitive. They are now case-sensitive.
 
 ### Logistics
 
-The logisticsOption object is now changed to better accommodate more advanced Checkout features. It is now a polymorphic object whose type is determined by which logistics carrier is used. Refer to Swagger for more details.
+The `logisticsOption` object is now changed to better accommodate more advanced Checkout features. It is now a polymorphic object whose type is determined by which logistics carrier is used. Refer to Swagger for more details.
 
 ## Polling and callback
 
 The response object from polling and the callback object are now identical.
 
-### UserDetails
+### `UserDetails`
 
 `userDetails` has been removed.
-If requireUserInfo is set to true in session initiation, user info will instead be provided in its own dedicated response object UserInfo.
+If `requireUserInfo` is set to `true` in session initiation, user info will instead be provided in its own dedicated response object `UserInfo`.
 
 ```javascript
 "userInfo": {
@@ -67,7 +67,7 @@ If requireUserInfo is set to true in session initiation, user info will instead 
 }
 ```
 
-### PaymentDetails
+### `PaymentDetails`
 
 `paymentDetails.State` is now `Authorized` with a z instead of `Authorised` with a `s`.
 

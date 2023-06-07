@@ -47,7 +47,7 @@ Save the following files to your computer:
    - `client_id` - Merchant key is required for getting the access token.
    - `client_secret` - Merchant key is required for getting the access token.
    - `Ocp-Apim-Subscription-Key` - Merchant subscription key.
-   - `merchantSerialNumber` - Merchant id.
+   - `merchantSerialNumber` - Merchant ID.
    - `internationalMobileNumber` - The mobile number for the test app profile you have received or registered, including country code. Do not include the `+`.
 
 You can update any of the other environment variables. Be aware of this:
