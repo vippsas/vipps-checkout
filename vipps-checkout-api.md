@@ -439,10 +439,9 @@ The callback will be sent to a
 implemented by the merchant.
 
 ```http
-POST: {callbackPrefix}/checkout/{apiVersion}/order/{orderId}
+POST: {merchantInfo.callbackUrl}
 ```
 
-Here, `callbackPrefix` and `orderId` (also referred to as `transaction.reference`) are defined when initiating a session.
 The `callbackAuthorizationToken`, provided by the merchant at session initiation, will be attached as the `Authorization` header. Use this to authorize the caller.
 
 Vipps requires that every callback is answered with a `HTTP 2XX response`. In the eventuality that any other response is sent, Vipps will retry with an exponential backoff until `2XX` is received again. The callback will be retried a maximum of 3 times.
