@@ -3,7 +3,7 @@
 title: Checkout button
 sidebar_label: Checkout button
 sidebar_position: 15
-description: Use Checkout Direct and other "Buy now" checkout-_button.
+description: Use Checkout Direct and other "Buy now" checkout-button.
 pagination_prev: Null
 pagination_next: Null
 ---
@@ -11,9 +11,9 @@ END_METADATA -->
 
 # Checkout button
 
-Make it super easy for customers to check out straight from a product page with Checkout Direct and our "Buy now" checkout-_button_!
+Make it super easy for customers to check out straight from a product page with Checkout Direct and our "Buy now" checkout-*button*!
 
-The _button_ is provided in multiple variants and colors and can be tailored to your page.
+The *button* is provided in multiple variants and colors and can be tailored to your page.
 
 To be able to use the badge on your site you need to add the Vipps Checkout Button JavaScript library.
 The library should preferably be added between your page's `<head>...</head>`-tags and only once per page:
@@ -22,7 +22,7 @@ The library should preferably be added between your page's `<head>...</head>`-ta
 <script async type="text/javascript" src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"></script>
 ```
 
-If you don't have access to edit your websites code directly you can also place the JavaScript library just before the _button_.
+If you don't have access to edit your websites code directly, you can also place the JavaScript library just before the *button*.
 
 ## Example button
 
@@ -48,21 +48,21 @@ All attributes are optional.
 
 ### Customization
 
-You can customize the placement and size of the _button_ by either applying your own CSS-style with the `class` or `style` attribute.
+You can customize the placement and size of the *button* by either applying your own CSS-style with the `class` or `style` attribute.
 
-If the _button_ is too small or too large to fit your content, you can override the `font-size` to scale the _button_ as follows:
+If the *button* is too small or too large to fit your content, you can override the `font-size` to scale the *button* as follows:
 
 ```html
 <vipps-checkout-button variant="orange" variant="purple" style="font-size: 1.5rem;"></vipps-checkout-button>
 ```
 
-Which will scale the _button_ to 1.5x the size of the root font-size. You may also use `px` or `em` values to scale the _button_.
+Which will scale the *button* to 1.5x the size of the root font-size. You may also use `px` or `em` values to scale the *button*.
 
-The _button_ is an `inline` element by default, which means it will stay on the same line as sibling elements.
+The *button* is an `inline` element by default, which means it will stay on the same line as sibling elements.
 
-So to center or fill the _button_ you have to set `display: block` on the element to prevent it from being `inline`.
+So to center or fill the *button* you have to set `display: block` on the element to prevent it from being `inline`.
 
-Use `text-align` with `display:block` to align the _button_:
+Use `text-align` with `display:block` to align the *button*:
 
 ```html
 <vipps-checkout-button variant="stroked" style="display: block; text-align: center;"></vipps-checkout-button>

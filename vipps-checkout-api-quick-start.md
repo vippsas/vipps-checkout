@@ -35,15 +35,15 @@ Save the following files to your computer:
 
 ### Step 2: Import the Postman files
 
-1. In Postman, click _Import_ in the upper-left corner.
-1. In the dialog that opens, with _File_ selected, click _Upload Files_.
-1. Select the two files you have just downloaded and click _Import_.
+1. In Postman, click *Import* in the upper-left corner.
+1. In the dialog that opens, with *File* selected, click *Upload Files*.
+1. Select the two files you have just downloaded and click *Import*.
 
 ### Step 3: Set up Postman environment
 
 1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
 1. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
-1. Fill in the `Current Value` for the following fields to get started. For the first keys, go to _Vipps Portal > Utvikler -> Test Keys._
+1. Fill in the `Current Value` for the following fields to get started. For the first keys, go to *Vipps Portal* > *Utvikler* > *Test Keys*.
    * `client_id` - Merchant key is required for getting the access token.
    * `client_secret` - Merchant key is required for getting the access token.
    * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
