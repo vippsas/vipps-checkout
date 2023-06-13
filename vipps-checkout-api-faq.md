@@ -31,7 +31,7 @@ For more common questions, see:
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
 
 All subsequent transaction operations are fully supported in the
-[epayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
+[ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 
 See the [Common FAQs](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs) for common
 questions about captures, reservations, and refunds.
@@ -58,5 +58,5 @@ Yes.
 Vipps Checkout will basically display whatever shipping methods defined by the webshop.
 For example, if you want Vipps Checkout to display "Pick up at the Royal Norwegian Castle", we will display that upon receiving that message through the API.
 
-For WooCommerce-based webshops, this is done in the shipping configuration part of WooCommerce admin:
+For WooCommerce-based web shops, this is done in the shipping configuration part of WooCommerce admin:
 `https://[_your webshop URL_]/wp-admin/admin.php?page=wc-settings&tab=shipping`

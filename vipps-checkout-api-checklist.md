@@ -11,7 +11,7 @@ END_METADATA -->
 
 # Checklist
 
-The Checkout API should be considered an aggregation API of Vipps MobilePay services, while transaction operations is to be performed on the [epayment][epayment-api-reference-url] API. For examples of requests and responses, see the relevant API docs for [checkout][checkout-api-reference-url] and [epayment][epayment-api-reference-url].
+The Checkout API should be considered an aggregation API of Vipps MobilePay services, while transaction operations is to be performed on the [ePayment][epayment-api-reference-url] API. For examples of requests and responses, see the relevant API docs for [Checkout][checkout-api-reference-url] and [ePayment][epayment-api-reference-url].
 
 ## Checklist for full integration
 
@@ -50,7 +50,6 @@ Integrate _applicable_ [ePayment API endpoints](vipps-checkout-api.md)
 |     Handle redirects| The merchant must handle that the `fallback` URL is opened in the default browser on the phone, and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc. Follow our [recommendations regarding handling redirects](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/redirects/). See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/common-problems-faq#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)|
 |     Follow design guidelines| The Vipps branding must be according to the [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines).|
 |     Educate customer support| Make sure your customer service, etc. has all the tools and information they need available in _your_ system, through the APIs listed in the first item in this checklist, and that they do not need to visit [portal.vipps.no](https://portal.vipps.no) for normal work.|
-
 
 [checkout-api-reference-url]: https://developer.vippsmobilepay.com/api/checkout
 [create-checkout-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1v3~1session/post
