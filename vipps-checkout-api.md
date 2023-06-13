@@ -34,7 +34,7 @@ Explains the high level features of Vipps Checkout.
 
 ### Vipps Checkout API
 
-Vipps Checkout works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
+Vipps Checkout works around the concept of a *session*, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
 
 * session initiation
 * session status
@@ -50,7 +50,7 @@ Vipps provides a frontend SDK to make opening the session on the merchant easy
 [explained in detail](#step-2-displaying-the-session)
 later in this guide).
 
-It is _**strongly**_ recommended using the frontend SDK.
+It is **strongly** recommended using the frontend SDK.
 If you do not use the SDK your implementation will require far more coding,
 and you will not get improvements and bug fixes we do in the SDK.
 
@@ -60,7 +60,7 @@ In most situations a merchant wants to send goods to a customer using a shipping
 
 ### Vipps Checkout Direct
 
-With Vipps Checkout Direct you can easily implement an express checkout experience directly from a single product without going through a shopping cart. Vipps Checkout Direct decouples you from needing to embed the iFrame and lets us handle everything at checkout.vipps.no before returning the customer to your shop after a payment is finished. To use Vipps Checkout Direct, follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
+With Vipps Checkout Direct you can easily implement an express checkout experience directly from a single product without going through a shopping cart. Vipps Checkout Direct decouples you from needing to embed the iFrame and lets us handle everything at `checkout.vipps.no` before returning the customer to your shop after a payment is finished. To use Vipps Checkout Direct, follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
 
 ### Vipps Checkout Elements
 
@@ -100,8 +100,8 @@ Vipps Checkout **(V3 only)** supports creating receipts, visible in the App. Thi
 
 To enable Checkout to create receipts, the `OrderSummary` property in the session initiation must be set. Detailed information is available in the OpenAPI spec [session initiation endpoint][create-checkout-session-endpoint]
 
-Receipt information is a combination of a list of _OrderLines_ and a _BottomLine_. An _OrderLine_ is a description of each item present in the order. The _BottomLine_ contains information regarding the order as a whole.
-It is possible to specify shipping costs in one or more _OrderLines_ in the session initiation.
+Receipt information is a combination of a list of *OrderLines* and a *BottomLine*. An *OrderLine* is a description of each item present in the order. The *BottomLine* contains information regarding the order as a whole.
+It is possible to specify shipping costs in one or more *OrderLines* in the session initiation.
 If shipping is handled in Checkout and is not free, an order line with the shipping cost will be automatically added, **even if** shipping costs are specified in the session initiation.
 
 If set up properly in the `OrderSummary` property in the session initiation, the receipt will be created when payment is initiated (by sending it to Order Management API), and will be visible in the customer's app when the payment is successfully completed.
@@ -111,7 +111,6 @@ Further details regarding receipts in [The Order Management API](https://develop
 
 In addition to automatically creating [receipts](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts), setting up the `OrderSummary` property as described above enables the use of `showOrderSummary: true` inside `configuration` in the session initiation. This will display a simplified order summary, similar to the receipt, on top of the Checkout window. Use this feature if you would like to show what the user is paying for during the checkout. We show a simpler summary than the receipt using a subset of the properties inside `OrderSummary`. E.g. tax calculations are shown in the receipt, but not in the order summary. The following properties will be honored `id, name, discount, giftcard, totalAmount, productUrl, isReturn, isShipping, currency, giftCardAmount, quantity`
 ![Show order summary](https://user-images.githubusercontent.com/920028/228213655-40bd7ecf-6f36-460f-af23-b0df1c58edd7.png)
-
 
 #### Receipts and Assisted Content Monitoring
 
@@ -227,7 +226,7 @@ The frontend SDK exposes a global function called `VippsCheckout`. Initialize th
 | `iFrameContainerId`   | The ID of the HTML element to contain the Checkout iFrame                                                         | No       |
 | `token`               | Token identifying the session. Comes from session creation response.                                              | No       |
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
-| `on`                  | Listen to events from Checkout. See [SDK events](#sdk-events) for more details.                                   | Yes      |
+| `on`                  | Listen to events from Checkout. See [SDK events](#frontend-sdk-events) for more details.                                   | Yes      |
 
 Example merchant website using Vipps Checkout frontend SDK to embed an iFrame with the session in plain html/js.
 
@@ -428,7 +427,7 @@ The frontend SDK exposes a global function called `VippsCheckoutDirect`. Initial
 
 ### Step 3: Handling the result of the session
 
-After the user has completed the checkout process, the merchant will be notified with transaction details through _callback_ and _polling_, as described below.
+After the user has completed the checkout process, the merchant will be notified with transaction details through *callback* and *polling*, as described below.
 
 **Please note:** It is highly recommended implementing polling in addition to callback. Vipps **does not** guarantee delivery of the callback.
 
@@ -467,14 +466,14 @@ If you want more details about the payment, call the [underlying get payment end
 
 ### Step 3a: If a transaction is authorized, capture payment
 
-If the payment state of a session is `AUTHORIZED`, when received in callback or polling, the amount of the transaction was successfully _reserved_.
+If the payment state of a session is `AUTHORIZED`, when received in callback or polling, the amount of the transaction was successfully *reserved*.
 
-In order to actually move the money and complete the payment, the transaction must be _captured_. Capture must be done in accordance with the terms and conditions you have with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
+In order to actually move the money and complete the payment, the transaction must be *captured*. Capture must be done in accordance with the terms and conditions you have with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
 
-A capture operation for the whole reserved amount is called a _full capture_.
-A capture operation for only part of the reserved amount is called a _partial capture_.
+A capture operation for the whole reserved amount is called a *full capture*.
+A capture operation for only part of the reserved amount is called a *partial capture*.
 
-A _partial capture_ is used, for example, if only parts of an order could be fulfilled.
+A *partial capture* is used, for example, if only parts of an order could be fulfilled.
 
 For more details about full and partial capture, see the ePayment API schema: [`POST:epayment/v1/{reference}/capture`][capture-payment-endpoint].
 
@@ -487,7 +486,7 @@ For more details about full and partial capture, see the ePayment API schema: [`
 
 Vipps Checkout supports [partner-key-based authentication](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
 
-In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys). This results in an _on-behalf-of_ authentication that is available when the merchant has a valid connection to your solution.
+In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
 
 ### Partner signup API guidelines
 
@@ -506,12 +505,12 @@ Use the same credentials as the ones you use with Checkout. See the
 
 ### Vipps Checkout only supports Reserve/Capture
 
-When you initiate a payment, it will be _reserved_ until you capture it. The _capture_ can be done a few seconds later, or several days later.
+When you initiate a payment, it will be *reserved* until you capture it. The *capture* can be done a few seconds later, or several days later.
 
-_Reserved_ means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. _Capture_ means that the funds are moved from the customer's account to the merchant's account.
+_Reserved* means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. *Capture* means that the funds are moved from the customer's account to the merchant's account.
 See [Common topics: Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture) for more information.
 
-**Please note:** _Direct Capture_, where a transaction is automatically captured upon reservation, _is not_ supported in Vipps Checkout, and transactions will fail.
+**Please note:** *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
 
 ## Vipps side Transaction information
 
@@ -519,7 +518,7 @@ It is possible to get the Vipps `transactionId` value of a transaction. This can
 
 ### Recommended integration (currently in pilot mode)
 
-In order to integrate with the _receipt_ functionality,
+In order to integrate with the *receipt* functionality,
 you need to retrieve the PSP reference in the `"paymentAction": "AUTHORISATION"` event from the [event log][get-payment-event-log-endpoint] endpoint. This is required when using receipts with Checkout or freestanding card payments
 
 [create-checkout-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post
