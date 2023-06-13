@@ -36,8 +36,8 @@ Explains the high level features of Vipps Checkout.
 
 Vipps Checkout works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
 
-- session initiation
-- session status
+* session initiation
+* session status
 
 ### Vipps Checkout frontend
 
