@@ -16,7 +16,7 @@ To learn about API versioning, see
 
 ## March 2023
 
-* Added support for `Porterbuddy`, `Helthjem`, and `Instabox` on the 
+* Added support for `Porterbuddy`, `Helthjem`, and `Instabox` on the
   [Create a Checkout session](https://developer.vippsmobilepay.com/api/checkout/#tag/Session/paths/~1session/post) endpoint.
 
 ## December 2022

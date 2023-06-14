@@ -30,7 +30,7 @@ For information go to:
 
 To test Checkout:
 
-* [Visit our demo store](https://demo.vipps.no/vipps-checkout) where you can try out different flavours of Checkout
+* [Visit our demo store](https://demo.vipps.no/vipps-checkout) where you can try out different flavors of Checkout
 
 ## Getting started
 

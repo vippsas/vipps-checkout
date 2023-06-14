@@ -13,11 +13,11 @@ END_METADATA -->
 
 The Checkout API supports all major shipping providers in the Norwegian market, including:
 
-- Bring/Posten
-- Postnord
-- Porterbuddy
-- Helthjem
-- Instabox
+* Bring/Posten
+* Postnord
+* Porterbuddy
+* Helthjem
+* Instabox
 
 To see how this works, [visit our demo store](https://demo.vipps.no/vipps-checkout-1/full).
 
@@ -33,8 +33,8 @@ If none of the providers fit your use case (e.g., indicating in-store-pickup), s
 
 For some of the providers we offer enriching features, including:
 
-- Pickup point
-- Home delivery
+* Pickup point
+* Home delivery
 
 These features change the user interface to allow for more specific selection of delivery time or place, where some features require you (the merchant) to provide credentials. Credentials are provided in the `logistics.integrations` property at session initiation and are used to perform a "pre-booking" (i.e. reserve a time slot) for some shipping providers.
 

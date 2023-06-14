@@ -50,11 +50,11 @@ To turn on Checkout, simply check the box at the top of the "Vipps Checkout" scr
 
 Standard WooCommerce shipping selection is not optimal, so we have integrated with the major Norwegian shipping providers to remove friction from this important step in the sales process. This list currently includes:
 
-- Bring/Posten
-- Postnord
-- Porterbuddy
-- Helthjem
-- Instabox
+* Bring/Posten
+* Postnord
+* Porterbuddy
+* Helthjem
+* Instabox
 
 If you have agreements with one or more of these providers, you can add their API keys to Vipps Checkout. We can then present a tailored shipping selection window for your customers. For example, we can provide the improved shipping selection shown below.
 

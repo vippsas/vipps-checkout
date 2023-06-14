@@ -19,10 +19,10 @@ Checkout V3 improves upon V2 through alignment of polling and callback responses
 
 The field `Configuration` has been added to `InitiateSessionRequest` and the following fields have been moved into it:
 
-- `customerInteraction`
-- `userFlow`
-- `requireUserInfo`
-- `elements`
+* `customerInteraction`
+* `userFlow`
+* `requireUserInfo`
+* `elements`
 
 The `elements` field replaces the former `ContactFields` and Address`Fields flags with an enum. They are equivalent according to the following table.
 
@@ -42,8 +42,8 @@ We have also added a new field Countries which allows merchants to specify which
 
 The following are now strongly typed:
 
-- `customerInteraction`
-- `userFlow`
+* `customerInteraction`
+* `userFlow`
 
 The permitted values for these fields used to be case-insensitive. They are now case-sensitive.
 
