@@ -55,6 +55,14 @@ The consumer will choose an available delivery window, based on the address. Vip
 
 ![Home delivery animation](resources/shipping_home-delivery.gif)
 
+### Pricing
+
+When it comes to shipping options, the `amount`-property sets the price.
+A friendly reminder: The complete checkout amount, including shipping, cannot be free (e.g. 0). If the shipping is free, the transaction amount must be 1 NOK or more. If the transaction amount is free (e.g. 0), shipping options must be 1 NOK or more.
+Please note that the `amount` property is required for a shipping option and cannot be `null`, except for Porterbuddy.
+If you're using Porterbuddy, the `amount` property is optional. If it's not provided, the `amount` will be calculated by Porterbuddy through dynamic pricing. You can adjust this in the Porterbuddy dashboard at porterbuddy.com.
+
+
 ## When to provide shipping options
 
 Shipping options can be provided by the merchant either at session initiation or at a later stage.

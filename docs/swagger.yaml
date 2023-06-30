@@ -875,11 +875,16 @@ components:
       description: Configuration required to enable Helthjem logistics options
     HelthjemLogisticsOption:
       required:
+        - amount
         - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
       properties:
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Amount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         type:
           allOf:
             - $ref: "#/components/schemas/HelthjemLogisticsType"
@@ -977,11 +982,16 @@ components:
       description: Details needed to book an instabox order
     InstaboxLogisticsOption:
       required:
+        - amount
         - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
       properties:
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Amount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         type:
           allOf:
             - $ref: "#/components/schemas/InstaboxLogisticsType"
@@ -1043,16 +1053,11 @@ components:
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOptionBase:
       required:
-        - amount
         - id
         - isDefault
         - priority
       type: object
       properties:
-        amount:
-          allOf:
-            - $ref: "#/components/schemas/Amount"
-          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         id:
           maxLength: 200
           minLength: 1
@@ -1236,6 +1241,7 @@ components:
           description: Available units for quantity. Will default to PCS if not set.
     OtherLogisticsOption:
       required:
+        - amount
         - brand
         - title
       type: object
@@ -1246,6 +1252,10 @@ components:
           maxLength: 200
           minLength: 1
           type: string
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Amount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         brand:
           pattern: OTHER
           type: string
@@ -1375,6 +1385,11 @@ components:
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
       properties:
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Amount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
+          nullable: true
         type:
           allOf:
             - $ref: "#/components/schemas/PorterbuddyLogisticsType"
@@ -1434,11 +1449,16 @@ components:
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
     PostenLogisticsOption:
       required:
+        - amount
         - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
       properties:
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Amount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         type:
           allOf:
             - $ref: "#/components/schemas/PostenLogisticsType"
@@ -1458,11 +1478,16 @@ components:
       type: string
     PostnordLogisticsOption:
       required:
-        - brand  
+        - amount
+        - brand
       type: object
       allOf:
         - $ref: "#/components/schemas/LogisticsOptionBase"
       properties:
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Amount"
+          description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
         type:
           allOf:
             - $ref: "#/components/schemas/PostnordLogisticsType"
@@ -1633,6 +1658,11 @@ components:
         shippingMethodId:
           type: string
           description: 'Id of the shipping method. Example: "123abc"'
+          nullable: true
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Amount"
+          description: Shipping method amount
           nullable: true
         pickupPoint:
           allOf:
