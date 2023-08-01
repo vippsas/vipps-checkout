@@ -484,9 +484,9 @@ For more details about full and partial capture, see the ePayment API schema: [`
 
 ## Integration partner and plugin guidelines
 
-Vipps Checkout supports [partner-key-based authentication](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
+Vipps Checkout supports [partner-key-based authentication](https://developer.vippsmobilepay.com/docs/partner/partner-keys).
 
-In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
+In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
 
 ### Partner signup API guidelines
 
