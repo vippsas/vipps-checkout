@@ -23,7 +23,7 @@ If you have a valid set of Vipps API keys, which means if you have a *Vipps på 
 
 If you don't have an agreement with Vipps, [click here to order](https://portal.vipps.no/register/vippscheckout).
 
-**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/) more info on what they are, how they're used, and how to get them
+**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/) more info on what they are, how they're used, and how to get them
 
 # Vipps for WooCommerce plugin installation
 
