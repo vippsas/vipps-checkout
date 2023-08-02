@@ -484,9 +484,9 @@ For more details about full and partial capture, see the ePayment API schema: [`
 
 ## Integration partner and plugin guidelines
 
-Vipps Checkout supports [partner-key-based authentication](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
+Vipps Checkout supports [partner-key-based authentication](https://developer.vippsmobilepay.com/docs/partner/partner-keys).
 
-In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
+In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
 
 ### Partner signup API guidelines
 
@@ -508,7 +508,7 @@ Use the same credentials as the ones you use with Checkout. See the
 When you initiate a payment, it will be *reserved* until you capture it. The *capture* can be done a few seconds later, or several days later.
 
 _Reserved* means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. *Capture* means that the funds are moved from the customer's account to the merchant's account.
-See [Common topics: Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture) for more information.
+See [Common topics: Reserve and capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture) for more information.
 
 **Please note:** *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in Vipps Checkout, and transactions will fail.
 

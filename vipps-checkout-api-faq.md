@@ -18,7 +18,7 @@ for more details.
 
 For more common questions, see:
 
-* [API General FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs)
+* [API General FAQ](https://developer.vippsmobilepay.com/docs/faqs)
 
 <!-- START_COMMENT -->
 
@@ -33,7 +33,7 @@ For more common questions, see:
 All subsequent transaction operations are fully supported in the
 [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 
-See the [Common FAQs](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs) for common
+See the [Common FAQs](https://developer.vippsmobilepay.com/docs/faqs) for common
 questions about captures, reservations, and refunds.
 
 ## Testing
@@ -47,7 +47,7 @@ The only difference between a Vipps wallet payment and card payment is that *pay
 ## Card payments
 
 See:
-[Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments)
+[Card payments](https://developer.vippsmobilepay.com/docs/faqs/users-and-payments-faq/#card-payments)
 
 ## Shipping
 

@@ -9,7 +9,7 @@ END_METADATA -->
 <!--
 
 ⚠️ The fastest way to get help or get in touch with us is if you have any problems is through the  ⚠️
-[Vipps MobilePay technical documentation](https://developer.vippsmobilepay.com/docs/vipps-developers/contact)
+[Vipps MobilePay technical documentation](https://developer.vippsmobilepay.com/docs/contact)
 
 # Issue Template
 
