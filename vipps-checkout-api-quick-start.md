@@ -64,7 +64,7 @@ In Postman, tweak the environment with your own values (see
 * `client_id` - Merchant key required for getting the access token.
 * `client_secret` - Merchant key required for getting the access token.
 * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
-* `merchantSerialNumber` - Merchant ID.
+* `Merchant-Serial-Number` - Merchant ID.
 * `internationalMobileNumber` - The MSISDN for the test app profile you have received or registered. This is your test mobile number *including* country code.
 
 You can update any of the other environment variables. Be aware of this:
