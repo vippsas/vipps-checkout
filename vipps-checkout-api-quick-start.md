@@ -37,7 +37,7 @@ your test credentials from the merchant portal, as described in the
 **Important:** The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
 
-## Your first Payment
+## Your first Checkout
 
 ### Step 1 - Setup
 
