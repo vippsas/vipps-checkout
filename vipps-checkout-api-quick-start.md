@@ -2,7 +2,6 @@
 ---
 title: Quick start for the Checkout API
 sidebar_label: Quick start
-id: quick-start
 sidebar_position: 5
 description: Quick steps for getting started with the Checkout API.
 toc_min_heading_level: 2
