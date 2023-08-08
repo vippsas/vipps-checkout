@@ -26,6 +26,12 @@ For more common questions, see:
 
 <!-- END_COMMENT -->
 
+## Checkout features
+
+### Is it possible to add a newsletter option in Vipps Checkout?
+
+Yes, [custom consent](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api/#custom-consent) can be used.
+
 ## Capture, reservations, and refunds
 
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
