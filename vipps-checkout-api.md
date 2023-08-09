@@ -94,6 +94,16 @@ These options may be combined with shipping if it fits your scenario. For exampl
 
 Vipps Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different Vipps Checkout sessions on the same machine.
 
+### Custom consent
+
+Sometimes you need to ask your customers for permission for certain actions, such as subscribing to newsletters. That's where our "custom consent" feature comes in handy!
+
+When you enable "custom consent", a checkbox with a message appears at the bottom of the checkout page. Your customers can choose to check this box if they want to give their consent. You can make the checkbox optional or required, depending on your needs.
+
+The message displayed next to the checkbox can contain up to one link, formatted in markdown like this: `[linkText](https://example.com)`. This allows you to direct customers to additional information or resources related to the consent request.
+
+![Custom consent](resources/custom_consent.png)
+
 ### Receipts
 
 Vipps Checkout **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
