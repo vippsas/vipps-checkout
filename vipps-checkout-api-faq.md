@@ -66,3 +66,20 @@ For example, if you want Vipps Checkout to display "Pick up at the Royal Norwegi
 
 For WooCommerce-based web shops, this is done in the shipping configuration part of WooCommerce admin:
 `https://[_your webshop URL_]/wp-admin/admin.php?page=wc-settings&tab=shipping`
+
+## Errors
+
+Any errors that occur will return a non-successful response code with a body based on https://tools.ietf.org/html/rfc7807.
+Common errors include:
+* Invalid credentials (status code 401)
+* Missing mandatory fields in a request (status code 400)
+* Session expired or not known (status code 404).
+An example of error returned when querying an expired session:
+```
+{
+    "errorCode": "Session-00100",
+    "title": "Session expired or not known.",
+    "status": 404,
+    "instance": "urn:uuid:d1bb89d3-50ab-4e90-94c0-54a67da0a7ec"
+}
+```

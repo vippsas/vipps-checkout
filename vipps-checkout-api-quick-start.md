@@ -36,6 +36,8 @@ your test credentials from the merchant portal, as described in the
 **Important:** The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
 
+**A note on errors:** An endpoint may return a non-successful response code for many reasons, including invalid API keys, missing fields in an input, etc. When errors occur, a response based on https://tools.ietf.org/html/rfc7807 will be returned.
+
 ## Your first Checkout
 
 ### Step 1 - Setup
