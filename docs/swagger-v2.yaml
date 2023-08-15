@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: checkout-backend-merchant.API
-  description: 'For details, see the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api).'
+  description: 'For details, see the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/).'
   version: v2
 servers:
   - url: https://apitest.vipps.no/checkout
@@ -18,28 +18,24 @@ paths:
           in: header
           schema:
             type: string
-            maxLength: 30
             default: '{{vipps_system_name}}'
-            example: Acme Enterprises Ecommerce DeLuxe
+            example: Acme Commerce
         - name: Vipps-System-Version
           in: header
           schema:
             type: string
-            maxLength: 30
             default: '{{vipps_system_version}}'
             example: '3.1.2'
         - name: Vipps-System-Plugin-Name
           in: header
           schema:
             type: string
-            maxLength: 30
             default: '{{vipps_system_plugin_name}}'
             example: acme-webshop
         - name: Vipps-System-Plugin-Version
           in: header
           schema:
             type: string
-            maxLength: 30
             default: '{{vipps_system_plugin_version}}'
             example: '4.5.6'
         - name: client_id
@@ -118,37 +114,37 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '401':
           description: 'Unauthorized: Invalid credentials'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '403':
           description: 'Forbidden: Invalid subscription or configuration'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '409':
           description: Conflict. Duplicate reference
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '500':
           description: 'InternalServerError: Unexpected errors'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '502':
           description: 'BadGateway: Unexpected errors in integrations'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
       callbacks:
         Dynamic logistics:
           '{$request.body#/logistics/dynamicOptionsCallback}':
@@ -188,7 +184,7 @@ paths:
                     examples:
                       Swagger:
                         summary: Swagger
-                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","OpeningHours":null,"Instabox":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
+                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","Amount":{"Value":100,"Currency":"NOK"},"PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","OpeningHours":null,"Instabox":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
               responses:
                 '200':
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
@@ -215,7 +211,7 @@ paths:
           schema:
             type: string
             default: '{{vipps_system_name}}'
-            example: Acme Enterprises Ecommerce DeLuxe
+            example: Acme Commerce
         - name: Vipps-System-Version
           in: header
           schema:
@@ -265,43 +261,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetSessionResponse'
-              example: {"sessionId":"v52EtjZriRmGiKiAKHByK2","reference":"acme-shop-123-order123abc","sessionState":"SessionStarted","paymentMethod":"Wallet","paymentDetails":{"amount":{"value":10000,"currency":"NOK"},"state":"AUTHORISED"},"shippingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO","shippingMethodId":"postenservicepakke1","pickupPoint":{"id":"123","name":"Storo Storsenter","address":"Vitaminveien 7","postalCode":"0485","city":"OSLO","country":"NO"}},"billingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO"}}
+              example: {"sessionId":"v52EtjZriRmGiKiAKHByK2","reference":"acme-shop-123-order123abc","sessionState":"SessionStarted","paymentMethod":"Wallet","paymentDetails":{"amount":{"value":10000,"currency":"NOK"},"state":"AUTHORISED"},"shippingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO","shippingMethodId":"postenservicepakke1","amount":{"value":100,"currency":"NOK"},"pickupPoint":{"id":"123","name":"Storo Storsenter","address":"Vitaminveien 7","postalCode":"0485","city":"OSLO","country":"NO"}},"billingDetails":{"firstName":"Ada","lastName":"Lovelace","email":"user@example.com","phoneNumber":"4791234567","streetAddress":"Robert Levins gate 5","postalCode":"0154","region":"Oslo","country":"NO"}}
         '400':
           description: 'BadRequest: Validation errors'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '401':
           description: 'Unauthorized: Invalid credentials'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '403':
           description: 'Forbidden: Invalid subscription or configuration'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '404':
           description: 'NotFound: The specified session id is unknown.'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '500':
           description: 'InternalServerError: Unexpected errors'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
         '502':
           description: 'BadGateway: Unexpected errors in integrations'
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/CheckoutProblemDetails'
 components:
   schemas:
     BasicSessionState:
@@ -310,6 +306,11 @@ components:
         - SessionTerminated
       type: string
     BillingDetails:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
       type: object
       properties:
         firstName:
@@ -342,6 +343,9 @@ components:
           nullable: true
       description: Defines the details of the billing
     CallbackPaymentDetails:
+      required:
+        - amount
+        - state
       type: object
       properties:
         amount:
@@ -353,12 +357,41 @@ components:
             - $ref: '#/components/schemas/PaymentState'
           description: ''
       description: Defines the details of the payment.
+    CheckoutProblemDetails:
+      required:
+        - errorCode
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errorCode:
+          type: string
+      additionalProperties: { }
     CheckoutSessionThirdPartyInformationHeaders:
+      required:
+        - vipps-System-Name
+        - vipps-System-Plugin-Name
+        - vipps-System-Plugin-Version
+        - vipps-System-Version
       type: object
       properties:
         vipps-System-Name:
           type: string
-          description: 'The name of the ecommerce solution. Example: "Acme Enterprises Ecommerce DeLuxe".'
+          description: 'The name of the ecommerce solution. Example: "Acme Commerce".'
         vipps-System-Version:
           type: string
           description: 'The version number of the ecommerce solution. Example: "3.1.2".'
@@ -370,6 +403,9 @@ components:
           description: 'The version number of the ecommerce plugin. Example: "4.5.6".'
       description: Information about the merchant system.
     CommonAmount:
+      required:
+        - currency
+        - value
       type: object
       properties:
         value:
@@ -381,6 +417,10 @@ components:
           description: 'The currency identifier according to ISO 4217. Example: "NOK"'
       description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
     GetSessionResponse:
+      required:
+        - reference
+        - sessionId
+        - sessionState
       type: object
       properties:
         sessionId:
@@ -388,7 +428,7 @@ components:
           description: 'The Id of the session. Example: "123123".'
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid/'
         sessionState:
           allOf:
             - $ref: '#/components/schemas/BasicSessionState'
@@ -421,6 +461,11 @@ components:
           nullable: true
       description: Session information
     InitiateSessionRequest:
+      required:
+        - addressFields
+        - contactFields
+        - merchantInfo
+        - transaction
       type: object
       properties:
         merchantInfo:
@@ -461,6 +506,10 @@ components:
           nullable: true
       description: Request to set up a Checkout session
     InitiateSessionResponse:
+      required:
+        - checkoutFrontendUrl
+        - pollingUrl
+        - token
       type: object
       properties:
         token:
@@ -474,6 +523,9 @@ components:
           description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
       description: Response from initiating a session.
     Instabox:
+      required:
+        - clientId
+        - clientSecret
       type: object
       properties:
         clientId:
@@ -484,6 +536,10 @@ components:
           description: The client secret provided to you by Instabox
       description: Configuration required to enable Instabox logistics options
     InstaboxBookingDetails:
+      required:
+        - availabilityToken
+        - serviceType
+        - sortCode
       type: object
       properties:
         availabilityToken:
@@ -529,6 +585,11 @@ components:
           nullable: true
       description: "If both dynamic and fixed options are specified, dynamic options is provided to the user.\r\nIf no DynamicOptionsCallback is provided, only fixed logistics options will be used.\r\nWhen using dynamic shipping we recommend that you define logistics.fixedOptions as a backup.\r\nIf the callback does not resolve successfully within 8 seconds, returns null or an empty list the system will fall back to static options.\r\nIf no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout."
     LogisticsOption:
+      required:
+        - amount
+        - brand
+        - id
+        - product
       type: object
       properties:
         amount:
@@ -601,6 +662,12 @@ components:
           description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
       description: Headers required to retrieve an access token.
     MerchantCallbackLogisticsOptions:
+      required:
+        - amount
+        - brand
+        - id
+        - isDefault
+        - priority
       type: object
       properties:
         amount:
@@ -629,6 +696,11 @@ components:
           type: boolean
           nullable: true
     MerchantLogisticsCallbackRequestBody:
+      required:
+        - country
+        - postalCode
+        - region
+        - streetAddress
       type: object
       properties:
         streetAddress:
@@ -645,6 +717,12 @@ components:
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
       description: Information about the customer address used when retrieving dynamic logistics options.
     PaymentCallbackRequestDto:
+      required:
+        - merchantSerialNumber
+        - paymentDetails
+        - reference
+        - sessionId
+        - sessionState
       type: object
       properties:
         sessionId:
@@ -655,7 +733,7 @@ components:
           description: 'The merchant serial number for the sale unit. Example: "59474"'
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid"'
+          description: 'The merchant''s unique reference for the transaction. Also known as Reference. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid/"'
         sessionState:
           allOf:
             - $ref: '#/components/schemas/PaymentCallbackState'
@@ -692,6 +770,8 @@ components:
       type: string
     PaymentMerchantInfo:
       required:
+        - callbackAuthorizationToken
+        - callbackPrefix
         - returnUrl
       type: object
       properties:
@@ -713,6 +793,8 @@ components:
       enum:
         - Wallet
         - Card
+        - Swish
+        - Mobilepay
       type: string
     PaymentState:
       enum:
@@ -721,6 +803,10 @@ components:
         - TERMINATED
       type: string
     PaymentTransaction:
+      required:
+        - amount
+        - paymentDescription
+        - reference
       type: object
       properties:
         amount:
@@ -732,13 +818,20 @@ components:
           minLength: 8
           pattern: '^[-a-zA-Z0-9]*$'
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid/'
         paymentDescription:
           maxLength: 100
           minLength: 3
           type: string
           description: 'Description visible to the customer during payment. Example: "One pair of Vipps socks".'
     PickupPoint:
+      required:
+        - address
+        - city
+        - country
+        - id
+        - name
+        - postalCode
       type: object
       properties:
         id:
@@ -772,6 +865,10 @@ components:
           nullable: true
       description: The pickup point the customer selected .
     Porterbuddy:
+      required:
+        - apiKey
+        - origin
+        - publicToken
       type: object
       properties:
         publicToken:
@@ -786,6 +883,11 @@ components:
           description: Information about the sender
       description: Configuration required to enable Porterbuddy logistics options
     PorterbuddyOrigin:
+      required:
+        - address
+        - email
+        - name
+        - phoneNumber
       type: object
       properties:
         name:
@@ -803,6 +905,11 @@ components:
           description: Your address where Porterbuddy will pick up the parcels
       description: Details about the sender of the Porterbuddy parcels
     PorterbuddyOriginAddress:
+      required:
+        - city
+        - country
+        - postalCode
+        - streetAddress
       type: object
       properties:
         streetAddress:
@@ -815,8 +922,14 @@ components:
           type: string
     PrefillCustomer:
       required:
+        - city
+        - country
+        - email
+        - firstName
+        - lastName
         - phoneNumber
         - postalCode
+        - streetAddress
       type: object
       properties:
         firstName:
@@ -845,6 +958,8 @@ components:
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
       description: "Information about the customer to be prefilled.\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
     RequestAmount:
+      required:
+        - currency
       type: object
       properties:
         currency:
@@ -858,6 +973,9 @@ components:
           nullable: true
       description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
     ResponsePaymentDetails:
+      required:
+        - amount
+        - state
       type: object
       properties:
         amount:
@@ -875,6 +993,11 @@ components:
           nullable: true
       description: Defines the details of the payment.
     ResponseUserDetails:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
       type: object
       properties:
         firstName:
@@ -934,6 +1057,11 @@ components:
           type: string
           description: 'Id of the shipping method. Example: "123abc"'
           nullable: true
+        amount:
+          allOf:
+            - $ref: '#/components/schemas/CommonAmount'
+          description: Shipping method amount
+          nullable: true
         pickupPoint:
           allOf:
             - $ref: '#/components/schemas/PickupPoint'
@@ -965,6 +1093,11 @@ components:
           nullable: true
       description: Defines the details of the transaction
     UserDetails:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
       type: object
       properties:
         firstName:

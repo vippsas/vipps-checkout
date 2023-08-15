@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: checkout-backend-merchant-v3.API
-  description: "For details, see the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api)."
+  description: "For details, see the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/)."
   version: v3
 servers:
   - url: https://apitest.vipps.no/checkout/v3
@@ -103,9 +103,9 @@ paths:
                             },
                             {
                               "brand": "POSTEN",
-                              "type": "PICKUP_POINT",
                               "amount":
                                 { "value": 300, "currency": "{{currency}}" },
+                              "type": "PICKUP_POINT",
                               "id": "postenservicepakke2",
                               "priority": 2,
                               "isDefault": false,
@@ -184,8 +184,8 @@ paths:
                             },
                             {
                               "brand": "POSTEN",
-                              "type": "PICKUP_POINT",
                               "amount": { "value": 300, "currency": "NOK" },
+                              "type": "PICKUP_POINT",
                               "id": "postenservicepakke2",
                               "priority": 2,
                               "isDefault": false,
@@ -250,9 +250,9 @@ paths:
                             },
                             {
                               "brand": "POSTEN",
-                              "type": "PICKUP_POINT",
                               "amount":
                                 { "value": 300, "currency": "{{currency}}" },
+                              "type": "PICKUP_POINT",
                               "id": "postenservicepakke2",
                               "priority": 2,
                               "isDefault": false,
@@ -331,8 +331,8 @@ paths:
                             },
                             {
                               "brand": "POSTEN",
-                              "type": "PICKUP_POINT",
                               "amount": { "value": 300, "currency": "NOK" },
+                              "type": "PICKUP_POINT",
                               "id": "postenservicepakke2",
                               "priority": 2,
                               "isDefault": false,
@@ -397,9 +397,9 @@ paths:
                             },
                             {
                               "brand": "POSTEN",
-                              "type": "PICKUP_POINT",
                               "amount":
                                 { "value": 300, "currency": "{{currency}}" },
+                              "type": "PICKUP_POINT",
                               "id": "postenservicepakke2",
                               "priority": 2,
                               "isDefault": false,
@@ -478,8 +478,8 @@ paths:
                             },
                             {
                               "brand": "POSTEN",
-                              "type": "PICKUP_POINT",
                               "amount": { "value": 300, "currency": "NOK" },
+                              "type": "PICKUP_POINT",
                               "id": "postenservicepakke2",
                               "priority": 2,
                               "isDefault": false,
@@ -517,37 +517,37 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "401":
           description: "Unauthorized: Invalid credentials"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "403":
           description: "Forbidden: Invalid subscription or configuration"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "409":
           description: Conflict. Duplicate reference
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "500":
           description: "InternalServerError: Unexpected errors"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "502":
           description: "BadGateway: Unexpected errors in integrations"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
       callbacks:
         Dynamic logistics:
           "{$request.body#/logistics/dynamicOptionsCallback}":
@@ -569,9 +569,9 @@ paths:
                           oneOf:
                             - $ref: "#/components/schemas/PostenLogisticsOption"
                             - $ref: "#/components/schemas/PostnordLogisticsOption"
-                            - $ref: "#/components/schemas/PorterbuddyLogisticsOption"
                             - $ref: "#/components/schemas/InstaboxLogisticsOption"
                             - $ref: "#/components/schemas/HelthjemLogisticsOption"
+                            - $ref: "#/components/schemas/PorterbuddyLogisticsOption"
                             - $ref: "#/components/schemas/OtherLogisticsOption"
                 4XX:
                   description: "If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. "
@@ -667,37 +667,37 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "401":
           description: "Unauthorized: Invalid credentials"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "403":
           description: "Forbidden: Invalid subscription or configuration"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "404":
           description: "NotFound: The specified session id is unknown."
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "500":
           description: "InternalServerError: Unexpected errors"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
         "502":
           description: "BadGateway: Unexpected errors in integrations"
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/CheckoutProblemDetails"
 components:
   schemas:
     Amount:
@@ -789,6 +789,30 @@ components:
           description: Decides whether the order lines are displayed as a shopping cart context in the checkout.
           nullable: true
       description: ""
+    CheckoutProblemDetails:
+      required:
+        - errorCode
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errorCode:
+          type: string
+      additionalProperties: {}
     CheckoutSessionThirdPartyInformationHeaders:
       required:
         - vipps-System-Name
@@ -1039,9 +1063,9 @@ components:
             oneOf:
               - $ref: "#/components/schemas/PostenLogisticsOption"
               - $ref: "#/components/schemas/PostnordLogisticsOption"
-              - $ref: "#/components/schemas/PorterbuddyLogisticsOption"
               - $ref: "#/components/schemas/InstaboxLogisticsOption"
               - $ref: "#/components/schemas/HelthjemLogisticsOption"
+              - $ref: "#/components/schemas/PorterbuddyLogisticsOption"
               - $ref: "#/components/schemas/OtherLogisticsOption"
           description: Fixed list of logistics options.
           nullable: true
@@ -1269,7 +1293,7 @@ components:
       properties:
         callbackUrl:
           type: string
-          description: 'Complete URL for receiving callbacks. Example: "https://exmaple.com/vipps/payment-callback/'
+          description: 'Complete URL for receiving callback after payment is completed. Example: "https://exmaple.com/vipps/payment-callback/oS1d5f9abD'
         returnUrl:
           minLength: 1
           type: string
@@ -1308,7 +1332,7 @@ components:
           minLength: 8
           pattern: "^[-a-zA-Z0-9]*$"
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid/'
         paymentDescription:
           maxLength: 100
           minLength: 3
@@ -1585,7 +1609,7 @@ components:
           nullable: true
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid/'
         sessionState:
           allOf:
             - $ref: "#/components/schemas/ExternalSessionState"
@@ -1711,6 +1735,4 @@ components:
           type: string
           description: 'Example: "user@example.com"'
           nullable: true
-      description: |-
-        Data from the [Userinfo endpoint](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo).
-        This will only be present if the UserInfo flow is used.
+      description: Data from the UserInfo endpoint. Will only be present if UserInfo flow is used.
