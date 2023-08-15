@@ -813,6 +813,7 @@ components:
         errorCode:
           type: string
       additionalProperties: {}
+      description: A machine-readable format for specifying errors in HTTP API responses based on <see href="https://tools.ietf.org/html/rfc7807" />.
     CheckoutSessionThirdPartyInformationHeaders:
       required:
         - vipps-System-Name
