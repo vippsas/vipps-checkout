@@ -32,17 +32,16 @@ To test Checkout:
 
 * [Visit our demo store](https://demo.vipps.no/vipps-checkout) where you can try out different flavors of Checkout
 
-## Getting started
+## Next steps
 
-See the
-[Vipps MobilePay Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started)
-for information about API keys, product activation, how to make API calls, etc.
-
-Review the detailed documentation found here:
-
-* [API quick start](vipps-checkout-api-quick-start.md): Quick start
-* [API Guide](vipps-checkout-api.md): Developer guide for Vipps Checkout API
-* [API Checklist](vipps-checkout-api-checklist.md): Checklist for a Vipps Checkout integration
+* [API quick start](vipps-checkout-api-quick-start.md): Run the basic examples in curl or Postman.
+* [API Guide](vipps-checkout-api.md): Learn about the Checkout API features.
+* [API Checklist](vipps-checkout-api-checklist.md): Complete the checklist for a Checkout integration.
 * [API FAQs](vipps-checkout-api-faq.md): Questions and answers
-* [API Reference](https://developer.vippsmobilepay.com/api/checkout): Checkout API reference specifications
-* [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md): Guide for how to use our on-site messaging SDK
+* [API Reference](https://developer.vippsmobilepay.com/api/checkout): Go straight to the endpoint specifications.
+* [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md): Learn how to use our on-site messaging SDK.
+
+If you're new to the platform, see
+[Getting started](https://developer.vippsmobilepay.com/docs/getting-started/)
+for information about API keys, product activation, and the test environment.
+
