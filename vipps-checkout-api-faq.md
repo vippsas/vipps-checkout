@@ -69,7 +69,10 @@ For WooCommerce-based web shops, this is done in the shipping configuration part
 
 ## Errors
 
-Any errors that occur will return a non-successful response code with a body based on https://tools.ietf.org/html/rfc7807.
+**Note: our error message format may evolve, so avoid building strict logic around it**
+
+Any errors that occur will return a non-successful response code with a body based on https://tools.ietf.org/html/rfc7807. 
+
 Common errors include:
 * Invalid credentials (status code 401)
 * Missing mandatory fields in a request (status code 400)
