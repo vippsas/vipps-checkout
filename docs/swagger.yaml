@@ -19,24 +19,28 @@ paths:
             type: string
             default: "{{vipps_system_name}}"
             example: Acme Commerce
+            maxLength: 30
         - name: Vipps-System-Version
           in: header
           schema:
             type: string
             default: "{{vipps_system_version}}"
             example: "3.1.2"
+            maxLength: 30
         - name: Vipps-System-Plugin-Name
           in: header
           schema:
             type: string
             default: "{{vipps_system_plugin_name}}"
             example: acme-webshop
+            maxLength: 30
         - name: Vipps-System-Plugin-Version
           in: header
           schema:
             type: string
             default: "{{vipps_system_plugin_version}}"
             example: "4.5.6"
+            maxLength: 30
         - name: client_id
           in: header
           schema:
@@ -823,15 +827,19 @@ components:
       type: object
       properties:
         vipps-System-Name:
+          maxLength: 30
           type: string
           description: 'The name of the ecommerce solution. Example: "Acme Commerce".'
         vipps-System-Version:
+          maxLength: 30
           type: string
           description: 'The version number of the ecommerce solution. Example: "3.1.2".'
         vipps-System-Plugin-Name:
+          maxLength: 30
           type: string
           description: 'The name of the ecommerce plugin. Example: "acme-webshop".'
         vipps-System-Plugin-Version:
+          maxLength: 30
           type: string
           description: 'The version number of the ecommerce plugin. Example: "4.5.6".'
       description: Information about the merchant system.
