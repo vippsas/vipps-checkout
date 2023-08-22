@@ -94,6 +94,16 @@ These options may be combined with shipping if it fits your scenario. For exampl
 
 Vipps Checkout supports easy fetching of user info with the built-in Vipps Login integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different Vipps Checkout sessions on the same machine.
 
+### Prefill customer data
+
+We believe that simplicity is key to providing the best user experience. With `prefillCustomer`, you can easily send in any information you have about your customer, making filling out forms in the Checkout a breeze.
+All fields in the `prefillCustomer` optional. We will prefill the form with whatever information you send and let your customers fill in the rest if some information is missing.
+
+To further streamline the payment process, we've implemented a feature that automatically forwards the phone number to the Vipps payment page (landing page for Vipps).
+This removes the hassle of having to fill in the phone number multiple times and makes it even easier for your customers to pay with Vipps.
+
+Even if your Checkout is set up with `PaymentOnly`, you can still send in your customer's phone number to make the payment process smoother.
+
 ### Custom consent
 
 Sometimes you need to ask your customers for permission for certain actions, such as subscribing to newsletters. That's where our "custom consent" feature comes in handy!

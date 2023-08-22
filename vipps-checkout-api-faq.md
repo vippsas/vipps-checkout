@@ -32,6 +32,10 @@ For more common questions, see:
 
 Yes, [custom consent](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api/#custom-consent) can be used.
 
+### How can I prefill my customers phone number in the Vipps payment page (landing page)?
+
+Yes, check out the [prefill customer data](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api/#prefill-customer-data) feature.
+
 ## Capture, reservations, and refunds
 
 ### How are subsequent transaction operations (Capture/Cancel/Refund) handled?
