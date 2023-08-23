@@ -97,7 +97,7 @@ Vipps Checkout supports easy fetching of user info with the built-in Vipps Login
 ### Prefill customer data
 
 We believe that simplicity is key to providing the best user experience. With `prefillCustomer`, you can easily send in any information you have about your customer, making filling out forms in the Checkout a breeze.
-All fields in the `prefillCustomer` optional. We will prefill the form with whatever information you send and let your customers fill in the rest if some information is missing.
+All fields in `prefillCustomer` are optional. We will prefill the form with whatever information you send and let your customers fill in the rest if any information is missing.
 
 To further streamline the payment process, we've implemented a feature that automatically forwards the phone number to the Vipps payment page (landing page for Vipps).
 This removes the hassle of having to fill in the phone number multiple times and makes it even easier for your customers to pay with Vipps.
