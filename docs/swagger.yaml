@@ -1538,41 +1538,40 @@ components:
         - HOME_DELIVERY
       type: string
     PrefillCustomer:
-      required:
-        - city
-        - country
-        - email
-        - firstName
-        - lastName
-        - phoneNumber
-        - postalCode
-        - streetAddress
       type: object
       properties:
         firstName:
           type: string
           description: 'Example: "Ada"'
+          nullable: true
         lastName:
           type: string
           description: 'Example: "Lovelace"'
+          nullable: true
         email:
           type: string
           description: 'Example: "user@example.com"'
+          nullable: true
         phoneNumber:
           type: string
           description: 'Format must be MSISDN (including country code). Example: "4791234567"'
+          nullable: true
         streetAddress:
           type: string
           description: 'Example: "Robert Levins gate 5"'
+          nullable: true
         city:
           type: string
           description: 'Example: "Oslo"'
+          nullable: true
         postalCode:
           type: string
           description: 'Example: "0154"'
+          nullable: true
         country:
           type: string
           description: 'The ISO-3166-1 Alpha-2 representation of the country. Example: "NO"'
+          nullable: true
       description: "Information about the customer to be prefilled\r\n            \r\nIf any of the customer information is invalid such as the phone number,\r\nthe customer will be prompted to input new user information."
     QuantityUnit:
       enum:
@@ -1744,4 +1743,6 @@ components:
           type: string
           description: 'Example: "user@example.com"'
           nullable: true
-      description: Data from the UserInfo endpoint. Will only be present if UserInfo flow is used.
+      description: |-
+        Data from the [Userinfo endpoint](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo).
+        This will only be present if the UserInfo flow is used.
