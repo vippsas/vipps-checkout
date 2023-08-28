@@ -22,7 +22,3 @@ To learn about API versioning, see
 ## December 2022
 
 * Launched Checkout API V3. See [Migrating from Checkout V2 to V3](./vipps-checkout-api-migration-v3.md).
-
-## October 2022
-
-* Updated [Vipps on-site-messaging](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-on-site-messaging) to contain badges in different variants.

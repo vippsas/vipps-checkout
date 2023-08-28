@@ -338,7 +338,7 @@ Available events:
 | Parameter     | Type                             | Description                                                                 |
 | ------------- | -------------------------------- | --------------------------------------------------------------------------- |
 | `id`          | `string`                         | The merchants shipping option identification.                               |
-| `brand`       | `string`                         | The name of the brand of the option (for example "Posten" or "PostNord").   |
+| `brand`       | `string`                         | The name of the brand of the option (for example, "Posten" or "PostNord").   |
 | `description` | `description` &#124; `undefined` | The description of the shipping option.                                     |
 | `product`     | `string`                         | The brand specific product (for example, "Servicepakke" or "Home delivery"). |
 | `price`       | `Money`                          | The price of the shipping option.                                           |
@@ -395,7 +395,7 @@ window.VippsCheckout = {
 
 To check out a single item directly, use *Checkout Direct*. Hook this flow up on a button directly on a product, and we handle the rest by redirecting the user to `checkout.vipps.no` where we handle the checkout. We will return the customer back to your site when finished.
 
-We also have a [button](vipps-checkout-button.md) with the Vipps look-and-feel that you can use (if you so choose) to make the integration super easy on your product page!
+We also have a [Checkout button](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-button/) with the Vipps look-and-feel that you can use (if you so choose) to make the integration super easy on your product page!
 
 The frontend SDK exposes a global function called `VippsCheckoutDirect`. Initialize this with the following parameters
 
