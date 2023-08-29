@@ -19,6 +19,9 @@ END_METADATA -->
 <!-- END_COMMENT -->
 
 Checkout is a Vipps MobilePay product delivering a complete checkout experience, handling payment processing, shipping and gathering user info.
+If you're new to the Vipps MobilePay API platform, see
+[Getting started](https://developer.vippsmobilepay.com/docs/getting-started/)
+for information about API keys, product activation, and the test environment.
 
 To order, go to:
 
@@ -39,9 +42,8 @@ To test Checkout:
 * [API Checklist](vipps-checkout-api-checklist.md): Complete the checklist for a Checkout integration.
 * [API FAQs](vipps-checkout-api-faq.md): Questions and answers
 * [API Reference](https://developer.vippsmobilepay.com/api/checkout): Go straight to the endpoint specifications.
-* [On-Site Messaging SDK](vipps-checkout-on-site-messaging.md): Learn how to use our on-site messaging SDK.
 
-If you're new to the platform, see
-[Getting started](https://developer.vippsmobilepay.com/docs/getting-started/)
-for information about API keys, product activation, and the test environment.
+## Related topics
 
+* [Checkout button](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-button/) - Add Vipps Checkout buttons to your website.
+* [On-Site Messaging badges](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-on-site-messaging/): Create Vipps badges with our *On-Site Messaging* SDK.
