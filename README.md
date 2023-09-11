@@ -38,12 +38,12 @@ To test Checkout:
 ## Next steps
 
 * [API quick start](vipps-checkout-api-quick-start.md): Run the basic examples in curl or Postman.
-* [API Guide](vipps-checkout-api.md): Learn about the Checkout API features.
-* [API Checklist](vipps-checkout-api-checklist.md): Complete the checklist for a Checkout integration.
-* [API FAQs](vipps-checkout-api-faq.md): Questions and answers
-* [API Reference](https://developer.vippsmobilepay.com/api/checkout): Go straight to the endpoint specifications.
+* [API guide](vipps-checkout-api.md): Learn about the Checkout API features.
+* [API checklist](vipps-checkout-api-checklist.md): Complete the checklist for a Checkout integration.
+* [API FAQ](vipps-checkout-api-faq.md): Questions and answers
+* [API reference](https://developer.vippsmobilepay.com/api/checkout): Go straight to the endpoint specifications.
 
 ## Related topics
 
-* [Checkout button](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-button/) - Add Vipps Checkout buttons to your website.
-* [On-Site Messaging badges](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-on-site-messaging/): Create Vipps badges with our *On-Site Messaging* SDK.
+* [Checkout button](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-button/) - Add *Checkout* buttons to your website.
+* [On-site messaging badges](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-on-site-messaging/): Create Vipps badges with our *On-Site Messaging* SDK.
