@@ -72,23 +72,23 @@ The `Elements` mode is set by `configuration.Elements` in initiate session.
 
 If you do not need the address from a user you can disable it using Elements set to `PaymentAndContactInfo`, resulting in the following personal details form.
 
-![Address_field_false_form](resources/addressfields_false_form.png)
+![Address_field_false_form](images/addressfields_false_form.png)
 
 And the following payment form
 
-![Address_field_false_form](resources/addressfields_false_form_2.png)
+![Address_field_false_form](images/addressfields_false_form_2.png)
 
 ### `PaymentOnly` example
 
 If you do not need the contact details for a customer you can disable it using Elements `PaymentOnly`, resulting in the following session
 
-![payment_only](resources/addressfields_false_contactfields_false.png)
+![payment_only](images/addressfields_false_contactfields_false.png)
 
 #### Combination with shipping
 
 These options may be combined with shipping if it fits your scenario. For example resulting in the following session:
 
-![fields_false_with_shipping](resources/fields_false_with_shipping.png)
+![fields_false_with_shipping](images/fields_false_with_shipping.png)
 
 ### Remembering of customer data
 
@@ -112,7 +112,7 @@ When you enable "custom consent", a checkbox with a message appears at the botto
 
 The message displayed next to the checkbox can contain up to one link, formatted in markdown like this: `[linkText](https://example.com)`. This allows you to direct customers to additional information or resources related to the consent request.
 
-![Custom consent](resources/custom_consent.png)
+![Custom consent](images/custom_consent.png)
 
 ### Receipts
 
