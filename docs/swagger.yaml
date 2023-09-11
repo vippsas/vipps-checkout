@@ -1115,19 +1115,19 @@ components:
         client_id:
           minLength: 1
           type: string
-          description: 'Client ID for the merchant (the "username"). Found in the Vipps portal. Example: "fb492b5e-7907-4d83-bc20-c7fb60ca35de".'
+          description: 'Client ID for the merchant (the "username"). Found in the merchant portal. Example: "fb492b5e-7907-4d83-bc20-c7fb60ca35de".'
         client_secret:
           minLength: 1
           type: string
-          description: 'Client Secret for the merchant (the "password"). Found in the Vipps portal. Example: "Y8Kteew6GE3ZmeycEt6egg==".'
+          description: 'Client Secret for the merchant (the "password"). Found in the merchant portal. Example: "Y8Kteew6GE3ZmeycEt6egg==".'
         ocp-Apim-Subscription-Key:
           minLength: 1
           type: string
-          description: 'Vipps Subscription key for the API product. Found in the Vipps portal. Example: "0f14ebcab0eb4b29ae0cb90d91b4a84a".'
+          description: 'Subscription key for the API product. Found in the merchant portal. Example: "0f14ebcab0eb4b29ae0cb90d91b4a84a".'
         merchant-Serial-Number:
           minLength: 1
           type: string
-          description: 'Vipps assigned unique number for a merchant. Found in the Vipps portal. Example: "123456".'
+          description: 'Assigned unique number for a merchant. Found in the merchant portal. Example: "123456".'
       description: Headers required to retrieve an access token.
     MerchantLogisticsCallbackRequestBody:
       required:
@@ -1346,7 +1346,7 @@ components:
           maxLength: 100
           minLength: 3
           type: string
-          description: 'Description visible to the customer during payment. Example: "One pair of Vipps socks".'
+          description: 'Description visible to the customer during payment. Example: "One pair of socks".'
         orderSummary:
           allOf:
             - $ref: "#/components/schemas/OrderSummary"
@@ -1738,7 +1738,7 @@ components:
       properties:
         sub:
           type: string
-          description: The openid sub that uniquely identifies a Vipps user.
+          description: The openid sub that uniquely identifies a Vipps or MobilePay user.
         email:
           type: string
           description: 'Example: "user@example.com"'

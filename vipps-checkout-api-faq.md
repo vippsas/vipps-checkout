@@ -28,13 +28,13 @@ For more common questions, see:
 
 ## Checkout features
 
-### Is it possible to add a newsletter option in Vipps Checkout?
+### Is it possible to add a newsletter option in Checkout?
 
 Yes, [custom consent](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api/#custom-consent) can be used.
 
-### How can I prefill my customers phone number in the Vipps payment page (landing page)?
+### How can I pre-fill my customers phone number in the payment page (landing page)?
 
-Yes, check out the [prefill customer data](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api/#prefill-customer-data) feature.
+Yes, check out the [pre-fill customer data](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api/#prefill-customer-data) feature.
 
 ## Capture, reservations, and refunds
 
@@ -50,9 +50,9 @@ questions about captures, reservations, and refunds.
 
 ### I can't test card payments in Merchant Test (MT) environment, is there something wrong?
 
-We currently don't support card payments in test environment, only payments using Vipps MT app. If you need to do verification, we suggest doing a NOK 1 payment in production, and do a subsequent refund, which will make the funds available again within a week.
+We currently don't support card payments in test environment, only payments using the MT app. If you need to do verification, we suggest doing a NOK 1 payment in production, and do a subsequent refund, which will make the funds available again within a week.
 
-The only difference between a Vipps wallet payment and card payment is that *paymentMethod* is *Wallet* or *Card*.
+The only difference between a wallet payment and card payment is that *paymentMethod* is *Wallet* or *Card*.
 
 ## Card payments
 
@@ -61,12 +61,12 @@ See:
 
 ## Shipping
 
-### Can I have "Pick-up in store" as shipping option with Vipps Checkout?
+### Can I have "Pick-up in store" as shipping option with Checkout?
 
 Yes.
 
-Vipps Checkout will basically display whatever shipping methods defined by the webshop.
-For example, if you want Vipps Checkout to display "Pick up at the Royal Norwegian Castle", we will display that upon receiving that message through the API.
+*Checkout* will basically display whatever shipping methods defined by the webshop.
+For example, if you want *Checkout*  to display "Pick up at the Royal Norwegian Castle", we will display that upon receiving that message through the API.
 
 For WooCommerce-based web shops, this is done in the shipping configuration part of WooCommerce admin:
 `https://[_your webshop URL_]/wp-admin/admin.php?page=wc-settings&tab=shipping`
@@ -75,14 +75,17 @@ For WooCommerce-based web shops, this is done in the shipping configuration part
 
 **Note: our error message format may evolve, so avoid building strict logic around it**
 
-Any errors that occur will return a non-successful response code with a body based on https://tools.ietf.org/html/rfc7807. 
+Any errors that occur will return a non-successful response code with a body based on <https://tools.ietf.org/html/rfc7807>.
 
 Common errors include:
+
 * Invalid credentials (status code 401)
 * Missing mandatory fields in a request (status code 400)
 * Session expired or not known (status code 404).
+
 An example of error returned when querying an expired session:
-```
+
+```json
 {
     "errorCode": "Session-00100",
     "title": "Session expired or not known.",
