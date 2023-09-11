@@ -11,6 +11,8 @@ END_METADATA -->
 
 # API guide
 
+![Vipps](./images/vipps.png) *Available for Vipps now.* ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at MobilePay launch.*
+
 The Checkout API provides an all-in-one solution for receiving payment for goods and services online using our trusted technology and brand.
 It combines the Vipps MobilePay products,
 [Login](https://developer.vippsmobilepay.com/docs/APIs/login-api/)
