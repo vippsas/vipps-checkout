@@ -28,7 +28,7 @@ Use the Checkout API to create a checkout session and retrieve session informati
 
 ## Before you begin
 
-This document covers the quick steps for getting started with the Vipps Checkout API.
+This document covers the quick steps for getting started with the Checkout API.
 You must have already signed up as an organization with Vipps MobilePay and have
 your test credentials from the merchant portal, as described in the
 [Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started).
