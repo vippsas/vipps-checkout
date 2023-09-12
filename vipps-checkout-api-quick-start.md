@@ -21,9 +21,7 @@ END_METADATA -->
 Use the Checkout API to create a checkout session and retrieve session information.
 
 <!-- START_COMMENT -->
-
 💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
-
 <!-- END_COMMENT -->
 
 ## Before you begin
@@ -36,7 +34,8 @@ your test credentials from the merchant portal, as described in the
 **Important:** The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
 
-**A note on errors:** An endpoint may return a non-successful response code for many reasons, including invalid API keys, missing fields in an input, etc. When errors occur, a response based on https://tools.ietf.org/html/rfc7807 will be returned. The message format may evolve, so avoid building strict logic around it.
+**A note on errors:** An endpoint may return a non-successful response code for many reasons, including invalid API keys, missing fields in an input, etc.
+When errors occur, a response based on <https://tools.ietf.org/html/rfc7807> will be returned. The message format may evolve, so avoid building strict logic around it.
 
 ## Your first Checkout
 
@@ -51,10 +50,10 @@ values={[
 ]}>
 <TabItem value="postman">
 
-**Please note:** Postman is discontinuing their offline version. Use only your test keys and delete them after testing.
-Ensure that your company allows for cloud use before continuing.
+**Please note:** To prevent your sensitive data and credentials from being synced to the Postman cloud,
+store them in the *Current Value* fields of your Postman environment.
 
-If you wish to use Postman, import the following files:
+Import the following files:
 
 * [Checkout API Postman collection](/tools/vipps-checkout-api-postman-collection.json)
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
@@ -80,11 +79,9 @@ No setup needed :)
 </TabItem>
 </Tabs>
 
-
 ### Step 2 - Create a checkout session
 
 Create a checkout session with: [`POST:/v3/session`][create-session-endpoint].
-
 
 <Tabs
 defaultValue="curl"
@@ -181,7 +178,6 @@ curl https://apitest.vipps.no/checkout/v3/session/UNIQUE-SESSION-REFERENCE \
 
 </TabItem>
 </Tabs>
-
 
 [create-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1v3~1session/post
 [get-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1v3~1session~1%7Breference%7D/get
