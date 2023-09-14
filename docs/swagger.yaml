@@ -1655,7 +1655,7 @@ components:
       properties:
         sub:
           type: string
-          description: The openid sub that uniquely identifies a Vipps user.
+          description: The openid sub that uniquely identifies a Vipps or MobilePay user.
         email:
           type: string
           description: 'Example: "user@example.com"'
