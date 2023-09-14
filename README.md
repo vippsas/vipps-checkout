@@ -12,6 +12,10 @@ END_METADATA -->
 
 # Checkout API
 
+![Vipps](./images/vipps.png) *Available for Vipps now.*
+
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+
 <!-- START_COMMENT -->
 
 💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
