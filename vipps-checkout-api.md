@@ -13,7 +13,12 @@ END_METADATA -->
 
 ![Vipps](./images/vipps.png) *Available for Vipps now.*
 
-![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at MobilePay launch.*
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+
+<!-- START_COMMENT -->
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
+<!-- END_COMMENT -->
 
 The Checkout API provides an all-in-one solution for receiving payment for goods and services online using our trusted technology and brand.
 It combines the Vipps MobilePay products,
@@ -26,11 +31,6 @@ API version: 3.0.0.
 
 **Migrating to V3?** Consult our [Migration Guide](vipps-checkout-api-migration-v3.md).
 
-<!-- START_COMMENT -->
-
-💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api>. 💥
-
-<!-- END_COMMENT -->
 
 ## Checkout Features
 

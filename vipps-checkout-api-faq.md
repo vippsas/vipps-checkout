@@ -21,9 +21,8 @@ For more common questions, see:
 * [API General FAQ](https://developer.vippsmobilepay.com/docs/faqs)
 
 <!-- START_COMMENT -->
-
-💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
-
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
 <!-- END_COMMENT -->
 
 ## Checkout features
