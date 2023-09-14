@@ -21,7 +21,8 @@ END_METADATA -->
 Use the Checkout API to create a checkout session and retrieve session information.
 
 <!-- START_COMMENT -->
-💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
 <!-- END_COMMENT -->
 
 ## Before you begin

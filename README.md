@@ -17,9 +17,8 @@ END_METADATA -->
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
 <!-- START_COMMENT -->
-
-💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/checkout-api>. 💥
-
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
 <!-- END_COMMENT -->
 
 Checkout is a Vipps MobilePay product delivering a complete checkout experience, handling payment processing, shipping and gathering user info.
