@@ -1090,6 +1090,15 @@ components:
           type: string
           description: Identifier of the terminal / point of sale.
           nullable: true
+        paymentSources:
+          allOf:
+            - $ref: "#/components/schemas/PaymentSources"
+          description: "May be used to indicate that the payment comes from multiple sources. Example: giftcard + card"
+          nullable: true
+        receiptNumber:
+          type: string
+          description: ""
+          nullable: true
     OrderLine:
       required:
         - id
@@ -1236,6 +1245,29 @@ components:
         - Wallet
         - Card
       type: string
+    PaymentSources:
+      type: object
+      properties:
+        giftCard:
+          type: integer
+          description: Amount from gift card
+          format: int64
+          nullable: true
+        card:
+          type: integer
+          description: Amount from card
+          format: int64
+          nullable: true
+        voucher:
+          type: integer
+          description: Amount from voucher
+          format: int64
+          nullable: true
+        cash:
+          type: integer
+          description: Amount from cash
+          format: int64
+          nullable: true
     PaymentState:
       enum:
         - CREATED
@@ -1655,7 +1687,7 @@ components:
       properties:
         sub:
           type: string
-          description: The openid sub that uniquely identifies a Vipps or MobilePay user.
+          description: The openid sub that uniquely identifies a user.
         email:
           type: string
           description: 'Example: "user@example.com"'
