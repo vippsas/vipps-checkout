@@ -27,9 +27,7 @@ Use the Checkout API to create a checkout session and retrieve session informati
 
 ## Before you begin
 
-This document covers the quick steps for getting started with the Checkout API.
-
-**Important:** The examples use standard example values that you must change to
+The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
 Note that any currency amount must be an Integer value minimum 100 in øre.
 
