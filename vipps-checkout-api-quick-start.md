@@ -28,12 +28,10 @@ Use the Checkout API to create a checkout session and retrieve session informati
 ## Before you begin
 
 This document covers the quick steps for getting started with the Checkout API.
-You must have already signed up as an organization with Vipps MobilePay and have
-your test credentials from the merchant portal, as described in the
-[Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started).
 
 **Important:** The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
+Note that any currency amount must be an Integer value minimum 100 in øre.
 
 **A note on errors:** An endpoint may return a non-successful response code for many reasons, including invalid API keys, missing fields in an input, etc.
 When errors occur, a response based on <https://tools.ietf.org/html/rfc7807> will be returned. The message format may evolve, so avoid building strict logic around it.
@@ -41,6 +39,17 @@ When errors occur, a response based on <https://tools.ietf.org/html/rfc7807> wil
 ## Your first Checkout
 
 ### Step 1 - Setup
+
+You must have already signed up as an organization with Vipps MobilePay and have
+your test credentials from the merchant portal.
+
+You will need the following values, as described in the
+[Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started):
+
+* `client_id` - Client_id for a test sales unit.
+* `client_secret` - Client_id for a test sales unit.
+* `Ocp-Apim-Subscription-Key` - Subscription key for a test sales unit.
+* `Merchant-Serial-Number` - The unique ID for a test sales unit.
 
 <Tabs
 defaultValue="curl"
@@ -51,31 +60,20 @@ values={[
 ]}>
 <TabItem value="postman">
 
-**Please note:** To prevent your sensitive data and credentials from being synced to the Postman cloud,
-store them in the *Current Value* fields of your Postman environment.
-
 In Postman, import the following files:
 
 * [Checkout API Postman collection](/tools/vipps-checkout-api-postman-collection.json)
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
-Update the *Current Value* field in your Postman environment with your own values (see
-[API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/)):
+🔥 **Do not use production keys in Postman.** 🔥
 
-* `client_id` - Merchant key required for getting the access token.
-* `client_secret` - Merchant key required for getting the access token.
-* `Ocp-Apim-Subscription-Key` - Merchant subscription key.
-* `Merchant-Serial-Number` - Merchant ID.
-
-You can update any of the other environment variables. Be aware of this:
-
-* Any currency amount must be an Integer value minimum 100 in øre.
-* Most URLs must be `https`.
+Update the *Current Value* field in your Postman environment with your **Merchant Test** keys.
+Use *Current Value* field for added security, as these values are not synced to the cloud.
 
 </TabItem>
 <TabItem value="curl">
 
-No setup needed :)
+No additional setup needed :)
 
 </TabItem>
 </Tabs>
@@ -109,7 +107,7 @@ curl https://apitest.vipps.no/checkout/v3/session \
 -H "client_id: YOUR-CLIENT-ID" \
 -H "client_secret: YOUR-CLIENT-SECRET" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
--H "Merchant-Serial-Number: 123456" \
+-H "Merchant-Serial-Number: YOUR-MSN" \
 -H "Vipps-System-Name: acme" \
 -H "Vipps-System-Version: 3.1.2" \
 -H "Vipps-System-Plugin-Name: acme-webshop" \
@@ -169,7 +167,7 @@ curl https://apitest.vipps.no/checkout/v3/session/UNIQUE-SESSION-REFERENCE \
 -H "client_id: YOUR-CLIENT-ID" \
 -H "client_secret: YOUR-CLIENT-SECRET" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
--H "Merchant-Serial-Number: 123456" \
+-H "Merchant-Serial-Number: YOUR-MSN" \
 -H "Vipps-System-Name: acme" \
 -H "Vipps-System-Version: 3.1.2" \
 -H "Vipps-System-Plugin-Name: acme-webshop" \
