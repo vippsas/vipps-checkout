@@ -106,9 +106,9 @@ curl https://apitest.vipps.no/checkout/v3/session \
 -H "client_secret: YOUR-CLIENT-SECRET" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Merchant-Serial-Number: YOUR-MSN" \
--H "Vipps-System-Name: acme" \
+-H "Vipps-System-Name: YOUR-COMPANY-NAME" \
 -H "Vipps-System-Version: 3.1.2" \
--H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Name: YOUR-PLUGIN-NAME" \
 -H "Vipps-System-Plugin-Version: 4.5.6" \
 -X POST \
 -d '{
