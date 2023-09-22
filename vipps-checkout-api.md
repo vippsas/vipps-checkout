@@ -227,7 +227,7 @@ The response object consists of a `token` and a `checkoutFrontendUrl`, which are
 
 Checkout can be used in an iOS or Android app to pay for goods and services. The Checkout frontend may then be opened directly inside a web view, instead of as an iFrame inside a merchant website.
 
-In this situation, the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of HTTPS. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps or MobilePay app, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consistently after payment.
+In this situation, the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of HTTPS. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps MobilePay app, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consistently after payment.
 
 ### Step 2: Displaying the session
 
