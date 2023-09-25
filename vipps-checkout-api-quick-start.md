@@ -27,8 +27,8 @@ Use the Checkout API to create a checkout session and retrieve session informati
 
 ## Before you begin
 
-The examples use standard example values that you must change to
-use *your* values. This includes API keys, HTTP headers, reference, etc.
+The provided example values in this guide must be changed with the values for your sales unit and user.
+This applies for API keys, HTTP headers, reference, phone number, etc.
 Note that any currency amount must be an Integer value minimum 100 in øre.
 
 **A note on errors:** An endpoint may return a non-successful response code for many reasons, including invalid API keys, missing fields in an input, etc.
