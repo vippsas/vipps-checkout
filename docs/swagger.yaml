@@ -712,6 +712,7 @@ components:
     CheckoutProblemDetails:
       required:
         - errorCode
+        - errors
       type: object
       properties:
         type:
@@ -732,6 +733,12 @@ components:
           nullable: true
         errorCode:
           type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       additionalProperties: {}
       description: A machine-readable format for specifying errors in HTTP API responses based on <see href="https://tools.ietf.org/html/rfc7807" />.
     CheckoutSessionThirdPartyInformationHeaders:
