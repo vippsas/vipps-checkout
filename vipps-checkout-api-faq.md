@@ -89,6 +89,21 @@ An example of error returned when querying an expired session:
     "errorCode": "Session-00100",
     "title": "Session expired or not known.",
     "status": 404,
-    "instance": "urn:uuid:d1bb89d3-50ab-4e90-94c0-54a67da0a7ec"
+    "instance": "urn:uuid:d1bb89d3-50ab-4e90-94c0-54a67da0a7ec",
+}
+```
+
+Example of the result of a failed validation:
+```json
+{
+    "errorCode": "Validation-00001",
+    "title": "One or more validation errors occurred.",
+    "status": 400,
+    "instance": "urn:uuid:d1bb89d3-50ab-4e90-94c0-54a67da0a7ec",
+    "errors": {
+        "Transaction.Reference": [
+            "The Reference field is required."
+        ]
+    }
 }
 ```
