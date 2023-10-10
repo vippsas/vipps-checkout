@@ -533,7 +533,7 @@ Use the same credentials for ePayment and Checkout. See the
 When you initiate a payment, it will be *reserved* until you capture it. The *capture* can be done a few seconds later, or several days later.
 
 *Reserved* means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. *Capture* means that the funds are moved from the customer's account to the merchant's account.
-See [Common topics: Reserve and capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture) for more information.
+See [Knowledge base: Reserve and capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture) for more information.
 
 **Please note:** *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in *Checkout*, and transactions will fail.
 
