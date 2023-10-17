@@ -7,7 +7,13 @@ END_METADATA -->
 
 # How Checkout works for WooCommerce
 
-With our [official WooCommerce plugin](https://wordpress.org/plugins/woo-vipps/), it's easy to start accepting payments with Vipps, VISA, or MasterCard through *Checkout*.
+With our official WooCommerce plugin, it's easy to start accepting payments with Vipps, VISA, or MasterCard through *Checkout*.
+
+For technical information about the plugin, see
+[Vipps for WooCommerce](https://developer.vippsmobilepay.com/docs/plugins-ext/woocommerce/) or 
+from the WordPress site: [Pay with Vipps for WooCommerce](https://wordpress.org/plugins/woo-vipps/).
+
+
 
 <!-- START_HIDDEN_IN_GITHUB
 
@@ -21,20 +27,20 @@ See the [WooCommerce *Checkout* enablement video](https://www.youtube.com/watch?
 
 If you have a valid set of [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/), which means if you have a *Vipps på nett* or *Checkout* agreement, you can start using *Checkout*.
 
-If you don't have an agreement with Vipps MobilePay, [click here to order](https://portal.vipps.no/register/vippscheckout).
+If you don't have an agreement with Vipps MobilePay, register on the [merchant portal](https://portal.vipps.no/register/vippscheckout).
 
-**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/) more info on what they are, how they're used, and how to get them
+**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/) more info on what they are, how they're used, and how to get them.
 
 # Vipps for WooCommerce plugin installation
 
 To use *Checkout* in WooCommerce, you use our official plugin, which is kind of a program you install in you WooCommerce store.
 
-The installation process is described [here](https://github.com/vippsas/vipps-woocommerce), but can be summarized as:
+The [detailed installation process](https://developer.vippsmobilepay.com/docs/plugins-ext/woocommerce/#installation) can be summarized as:
 
 1. Install the plugin using the WordPress [built-in installer](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins). The plugin can also be installed manually by uploading the plugin files to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' screen on WordPress.
 3. Go to the WooCommerce Settings page and choose Payment Gateways (Betalinger) and enable Vipps.
-4. Go the settings page for the Vipps plugin and enter your Vipps account keys. Your account keys are available in the [Vipps Developer Portal](https://portal.vipps.no).
+4. Go the settings page for the Vipps plugin and enter your Vipps account keys. Your account keys are available in the [merchant portal](https://portal.vipps.no).
 
 # Checkout specific setup
 
