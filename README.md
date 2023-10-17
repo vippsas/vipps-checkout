@@ -38,6 +38,12 @@ To test Checkout:
 
 * [Visit our demo store](https://demo.vipps.no/vipps-checkout) where you can try out different flavors of Checkout
 
+## Plugins for the Checkout API
+
+* [Vipps Checkout Module for Magento 2](https://developer.vippsmobilepay.com/docs/plugins-ext/checkout-magento/)
+* [Vipps Checkout for Shopify](https://developer.vippsmobilepay.com/docs/plugins-ext/checkout-shopify/)
+* [Vipps for WooCommerce](https://developer.vippsmobilepay.com/docs/plugins-ext/woocommerce/)
+
 ## Next steps
 
 * [API quick start](vipps-checkout-api-quick-start.md): Run the basic examples in curl or Postman.
