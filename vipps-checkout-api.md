@@ -161,7 +161,7 @@ The standard flow for a Checkout consists of
 sequenceDiagram
   actor User
   participant LandingPage as Payment landing page
-  participant App as Vipps MobilePay app
+  participant App as Vipps or MobilePay app
   participant Merchant
   participant Frontend as Checkout (iFrame)
   participant API as Checkout API
@@ -177,7 +177,7 @@ sequenceDiagram
   API-->>Frontend: Payment URL
 
   alt If mobile device
-    Frontend->>App: Switch to Vipps MobilePay app
+    Frontend->>App: Switch to Vipps or MobilePay app
   else If desktop device
     Frontend->>LandingPage: Redirect to payment landing page
     LandingPage->>App: Receive push for payment
@@ -227,7 +227,7 @@ The response object consists of a `token` and a `checkoutFrontendUrl`, which are
 
 Checkout can be used in an iOS or Android app to pay for goods and services. The Checkout frontend may then be opened directly inside a web view, instead of as an iFrame inside a merchant website.
 
-In this situation, the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of HTTPS. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps MobilePay app, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consistently after payment.
+In this situation, the merchant may wish to have a `returnUrl` to direct the user back to an application using a custom URL scheme (e.g. `myapp://`) instead of HTTPS. The frontend application will automatically try to detect if the user is on a mobile device, if so doing an "app switch" into the Vipps or MobilePay app, and then back to your application upon completion. Because of variations in devices and browser implementations there are certain edge cases where the device type is wrongly detected. Initiate the session with `userFlow` set to `NATIVE_REDIRECT` to ensure that the app switching is done consistently after payment.
 
 ### Step 2: Displaying the session
 
@@ -509,14 +509,11 @@ For more details about full and partial capture, see the ePayment API schema: [`
 
 ## Integration partner and plugin guidelines
 
-*Checkout* supports [partner-key-based authentication](https://developer.vippsmobilepay.com/docs/partner/partner-keys).
+*Checkout* allows you to use [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys) for authentication.
 
-In the initiation request, use your own credentials and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
+In the initiation request, use your own partner keys and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
 
-### Partner signup API guidelines
-
-If you are using the [Signup API](https://github.com/vippsas/vipps-signup-api), you need to use the "eCom access" key, instead of the old access token. This API is considered deprecated, and you should migrate to one of the supported APIs. See
-[Deprecation of the Signup API](https://github.com/vippsas/vipps-signup-api/blob/master/vipps-signup-api-deprecation.md) for more information.
+To sign up a partner, see the [Partner documentation](https://developer.vippsmobilepay.com/docs/partner/).
 
 ## Transaction operations (Capture, Cancel, Refund, Details)
 
