@@ -58,7 +58,7 @@ Vipps Checkout charges a percentage fee for the payment volume processed. Our st
 Yes, Vipps Checkout can be integrated with most major website and e-commerce platforms, including Shopify, WooCommerce, and Magento. Check out our [list of plugins](https://developer.vippsmobilepay.com/docs/plugins/) for more information.
 
 ### How long does it take for payments to be paid out with Checkout?
-You will typically get your money on your account within three (3) banking days. So money paid to you on a Monday will be on your account on Wednesday, Payment on Friday will be on your account on Tuesday. [See more details here](https://developer.vippsmobilepay.com/docs/settlements/).
+You will typically get your money on your account within three (3) banking days. So money paid to you on a Monday will be on your account on Wednesday, and payment on Friday will be on your account on Tuesday. [See more details here](https://developer.vippsmobilepay.com/docs/settlements/).
 
 ### How does Checkout compare to other online payment solutions?
 Checkout offers Vipps as it is supposed to work, card payments, user information retrieval and shipping selection in one well designed bundle, and copares favorably, or at least we think that, to other online payment solutions.
