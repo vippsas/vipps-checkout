@@ -61,7 +61,7 @@ Yes, Vipps Checkout can be integrated with most major website and e-commerce pla
 You will typically get your money on your account within three (3) banking days. So money paid to you on a Monday will be on your account on Wednesday, and payment on Friday will be on your account on Tuesday. See [Settlements](https://developer.vippsmobilepay.com/docs/settlements/) for more details.
 
 ### How does Checkout compare to other online payment solutions?
-Checkout offers Vipps as it is supposed to work, card payments, user information retrieval and shipping selection in one well designed bundle, and copares favorably, or at least we think that, to other online payment solutions.
+Checkout offers Vipps as it is supposed to work with card payments, user information retrieval, and shipping selection all in one well-designed bundle, and compares favorably to other online payment solutions.
 
 ## Technical information
 
