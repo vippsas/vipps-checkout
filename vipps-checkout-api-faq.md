@@ -25,7 +25,45 @@ For more common questions, see:
 [Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
 <!-- END_COMMENT -->
 
-## Checkout features
+## General Information
+
+### What is Checkout?
+Checkout is an online payment solution that allows businesses to offer their customers a fast, secure, and convenient way to pay for goods and services online.
+
+### How do I sign up for Checkout?
+To sign up for Checkout, you need to create an account on the Vipps website and follow the instructions to set up your account. You will need to provide information about your business and bank account details.
+
+### What kind of support is available for Checkout users?
+We provide support through our website, email, and through our extensive partner network. There is also a knowledge base available on the website that contains answers to frequently asked questions.
+
+## Payment Methods
+
+### What payment methods are available with Checkout?
+Vipps Checkout supports a range of payment methods, including Vipps, credit and debit cards. Local payment methods will also become availabel in select markets during 2024, e.g. bank payments in Finland.
+
+### Can I use Checkout for recurring payments?
+Checkout does not currently support recurring payments, but we plan on launching Vipps Recurring Payments in 2023.
+
+## Security and Fees
+
+### Is it safe to use Checkout for online payments?
+Yes, Vipps Checkout is a secure payment solution that uses industry-standard encryption to protect your and your users' personal and financial information.
+
+### What fees are associated with using Checkout?
+Vipps Checkout charges a percentage fee for the payment volume processed. Our standard prices can be found [here](https://vipps.no/alle-priser/bedrift/).
+
+## Integration and Functionality
+
+### Can I integrate Checkout with my existing website or online store?
+Yes, Vipps Checkout can be integrated with most major website and e-commerce platforms, including Shopify, WooCommerce, and Magento. Check out our [list of plugins](https://developer.vippsmobilepay.com/docs/plugins/) for more information.
+
+### How long does it take for payments to be paid out with Checkout?
+You will typically get your money on your account within three (3) banking days. So money paid to you on a Monday will be on your account on Wednesday, Payment on Friday will be on your account on Tuesday. [See more details here](https://developer.vippsmobilepay.com/docs/settlements/).
+
+### How does Checkout compare to other online payment solutions?
+Checkout offers Vipps as it is supposed to work, card payments, user information retrieval and shipping selection in one well designed bundle, and copares favorably, or at least we think that, to other online payment solutions.
+
+## Technical information
 
 ### Is it possible to add a newsletter option in Checkout?
 
