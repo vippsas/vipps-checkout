@@ -629,12 +629,12 @@ components:
         value:
           minimum: 0
           type: integer
-          description: Must be in Minor Units. The smallest unit of a currency. Example 100 NOK = 10000.
+          description: Must be in minor units. The smallest unit of a currency. Example 100 NOK = 10000.
           format: int32
         currency:
           type: string
-          description: 'The currency identifier according to ISO 4217. Example: "NOK"'
-      description: "Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre."
+          description: 'The currency identifier according to ISO 4217. Only NOK is supported at the moment. Support for EUR, DKK, and SEK will be provided in early 2024.'
+      description: "Amounts are specified in minor units. For Norwegian kroner (NOK), that means 1 NOK = 100 øre. Example: 499 NOK = 49900 øre."
     BillingDetails:
       required:
         - email
