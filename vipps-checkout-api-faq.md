@@ -39,7 +39,7 @@ We provide support through our website, email, and through our extensive partner
 ## Payment Methods
 
 ### What payment methods are available with Checkout?
-Vipps Checkout supports a range of payment methods, including Vipps, credit and debit cards. Local payment methods will also become availabel in select markets during 2024, e.g. bank payments in Finland.
+Vipps Checkout supports a range of payment methods, including Vipps, credit and debit cards. Local payment methods will also become available in select markets during 2024, e.g. bank payments in Finland.
 
 ### Can I use Checkout for recurring payments?
 Checkout does not currently support recurring payments, but we plan on launching Vipps Recurring Payments in 2023.
