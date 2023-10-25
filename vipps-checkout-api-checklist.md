@@ -19,18 +19,18 @@ Integrate *all* the [Checkout API endpoints](vipps-checkout-api.md)
 
 | Endpoint     | Comment |
 |--------------|---------|
-|     Initiate | [`POST:checkout/v3/session`][create-checkout-session-endpoint] |
-|     Details  | [`GET:checkout/v3/session/{reference}`][retrieve-sessioninfo-endpoint] |
+|     Initiate | [`POST:/checkout/v3/session`][create-checkout-session-endpoint] |
+|     Details  | [`GET:/checkout/v3/session/{reference}`][retrieve-sessioninfo-endpoint] |
 |     Callback |[`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](vipps-checkout-api.md#example-of-callback) |
 
 Integrate *applicable* [ePayment API endpoints](vipps-checkout-api.md)
 
 | Endpoint | Comment |
 |----------|---------|
-|     Get payment details | [`GET:epayment/v1/{reference}`][get-payment-endpoint] |
-|     Cancel payment | [`POST:epayment/v1/{reference}cancel`][cancel-payment-endpoint] |
-|     Full and partial capture payment | [`POST:epayment/v1/{reference}/capture`][capture-payment-endpoint] |
-|     Full and partial refund payment | [`POST:epayment/v1/{reference}refund`][refund-payment-endpoint] |
+|     Get payment details | [`GET:/epayment/v1/{reference}`][get-payment-endpoint] |
+|     Cancel payment | [`POST:/epayment/v1/{reference}cancel`][cancel-payment-endpoint] |
+|     Full and partial capture payment | [`POST:/epayment/v1/{reference}/capture`][capture-payment-endpoint] |
+|     Full and partial refund payment | [`POST:/epayment/v1/{reference}refund`][refund-payment-endpoint] |
 
 ## Quality assurance
 

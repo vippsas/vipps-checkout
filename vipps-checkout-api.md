@@ -500,7 +500,7 @@ A capture operation for only part of the reserved amount is called a *partial ca
 
 A *partial capture* is used, for example, if only parts of an order could be fulfilled.
 
-For more details about full and partial capture, see the ePayment API schema: [`POST:epayment/v1/{reference}/capture`][capture-payment-endpoint].
+For more details about full and partial capture, see the ePayment API schema: [`POST:/epayment/v1/{reference}/capture`][capture-payment-endpoint].
 
 **Please note:** You cannot perform a capture on an amount larger than that which is reserved.
 
