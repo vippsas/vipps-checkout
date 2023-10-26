@@ -78,7 +78,7 @@ No additional setup needed :)
 
 ### Step 2 - Create a checkout session
 
-Create a checkout session with: [`POST:/v3/session`][create-session-endpoint].
+Create a checkout session with: [`POST:/checkout/v3/session`][create-session-endpoint].
 
 <Tabs
 defaultValue="curl"
@@ -139,7 +139,7 @@ To display the session, you will need to load the Checkout SDK in your website, 
 ### Step 3 - Retrieve the session information
 
 Retrieve the session information by using
-[`GET:/v3/session/{reference}`][get-session-endpoint] with `reference` from the previous step.
+[`GET:/checkout/v3/session/{reference}`][get-session-endpoint] with `reference` from the previous step.
 
 <Tabs
 defaultValue="curl"
