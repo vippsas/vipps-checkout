@@ -16,7 +16,7 @@ END_METADATA -->
 BEFORE YOU SUBMIT AN ISSUE
 
 Almost all requests we get are already covered in the technical documentation.
-Please check the FAQs (Frequently Asked Questions), or use the search functionality
+Please check the Knowledge base, or use the search functionality
 at https://developer.vippsmobilepay.com.
 
 If you cannot find the answer please send an email to developer@vippsmobilepay.com with all relevant information:
