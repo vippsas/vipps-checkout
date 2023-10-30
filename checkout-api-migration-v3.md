@@ -1,85 +1,87 @@
 <!-- START_METADATA
 ---
-title: Migrating from Checkout API V2 to V3
-sidebar_label: "V2 to V3 migration guide"
-sidebar_position: 25
-description: How to change in your existing V2 integration to support Checkout V3.
+title: Quick start for the Checkout API
+sidebar_label: Quick start
+sidebar_position: 5
+@@ -8,6 +8,7 @@ toc_min_heading_level: 2
+toc_max_heading_level: 5
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
-# Migrating from Checkout V2 to V3
+import ApiSchema from '@theme/ApiSchema';
+@@ -21,8 +22,10 @@ END_METADATA -->
+Use the Checkout API to create a checkout session and retrieve session information.
 
-Checkout V3 improves upon V2 through alignment of polling and callback responses, improvement of field names, and expanding models related to logistics options to permit more advanced features. This guide takes you through the things you need to change in your existing V2 integration to support Checkout V3.
+<!-- START_COMMENT -->
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
+<!-- END_COMMENT -->
 
-## Initiate Session
+## Before you begin
+@@ -44,10 +47,10 @@ your test credentials from the merchant portal.
+You will need the following values, as described in the
+[Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started):
 
-### `CheckoutConfiguration`
+* `client_id` - Client_id for a test sales unit.
+* `client_secret` - Client_id for a test sales unit.
+* `Ocp-Apim-Subscription-Key` - Subscription key for a test sales unit.
+* `Merchant-Serial-Number` - The unique ID for a test sales unit.
 
-The field `Configuration` has been added to `InitiateSessionRequest` and the following fields have been moved into it:
+<Tabs
+defaultValue="curl"
+@@ -60,13 +63,13 @@ values={[
 
-* `customerInteraction`
-* `userFlow`
-* `requireUserInfo`
-* `elements`
+In Postman, import the following files:
 
-The `elements` field replaces the former `ContactFields` and Address`Fields flags with an enum. They are equivalent according to the following table.
+* [Checkout API Postman collection](/tools/checkout-api-postman-collection.json)
+* [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
-| `Elements`              | `ContactFields` | `AddressFields` |
-| ----------------------- | ------------- | ------------- |
-| `Full` (default)        | true          | true          |
-| `PaymentAndContactInfo` | true          | false         |
-| `PaymentOnly`           | false         | false         |
+🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
 
-We have also added a new field Countries which allows merchants to specify which countries they support.
+Update the *Current Value* field in your Postman environment with your **Merchant Test** keys.
+Use *Current Value* field for added security, as these values are not synced to the cloud.
 
-### `CallbackUrl`
+</TabItem>
+<TabItem value="curl">
+@@ -134,7 +137,7 @@ curl https://apitest.vipps.no/checkout/v3/session \
+Take note of the `reference` value, as it can be used for subsequent calls relating to this session.
 
-`callbackUrlPrefix` has been replaced by `callbackUrl` so that you send in the whole URL to where you want the "Payment Completed" callback.
+To display the session, you will need to load the Checkout SDK in your website, as described in
+[API Guide: Displaying the session](checkout-api.md#step-2-displaying-the-session).
 
-### Strongly typed fields
+### Step 3 - Retrieve the session information
 
-The following are now strongly typed:
-
-* `customerInteraction`
-* `userFlow`
-
-The permitted values for these fields used to be case-insensitive. They are now case-sensitive.
-
-### Logistics
-
-The `logisticsOption` object is now changed to better accommodate more advanced Checkout features. It is now a polymorphic object whose type is determined by which logistics carrier is used. Refer to Swagger for more details.
-
-## Polling and callback
-
-The response object from polling and the callback object are now identical.
-
-### `UserDetails`
-
-`userDetails` has been removed.
-If `requireUserInfo` is set to `true` in session initiation, user info will instead be provided in its own dedicated response object `UserInfo`.
-
-```javascript
-"userInfo": {
-    "sub": string,
-    "email": string
-}
+Retrieve the session information by using
+[`GET:/checkout/v3/session/{reference}`][get-session-endpoint] with `reference` from the previous step.
+<Tabs
+defaultValue="curl"
+groupId="sdk-choice"
+values={[
+{label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
+]}>
+<TabItem value="postman">
+```bash
+Send request Get session info
 ```
-
-### `PaymentDetails`
-
-`paymentDetails.State` is now `Authorized` with a z instead of `Authorised` with a `s`.
-
-### Renaming of region to city
-
-`billingDetails.region` has been renamed to `billingDetails.city`
-`shippingDetails.region` has been renamed to `shippingDetails.city`
-
-### Standardized country name
-
-`billingDetails.country` and `shippingDetails.country` were previously derived from the free-text field filled in by the customer. We have now changed this to always be two-letter codes that adhere to the [ISO-3166-1 Alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
-
-## Cancel session
-
-The cancel session endpoint has been removed.
+You will see the details appear in the lower pane.
+</TabItem>
+<TabItem value="curl">
+```bash
+curl https://apitest.vipps.no/checkout/v3/session/UNIQUE-SESSION-REFERENCE \
+-H "Content-Type: application/json" \
+-H "client_id: YOUR-CLIENT-ID" \
+-H "client_secret: YOUR-CLIENT-SECRET" \
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Merchant-Serial-Number: YOUR-MSN" \
+-H "Vipps-System-Name: acme" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-X GET
+```
+</TabItem>
+</Tabs>
+[create-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1v3~1session/post
+[get-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1v3~1session~1%7Breference%7D/get

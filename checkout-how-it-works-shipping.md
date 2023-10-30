@@ -1,17 +1,53 @@
 <!-- START_METADATA
 ---
-title: How the Checkout API works for shipping
-sidebar_label: "How it works: Shipping"
-sidebar_position: 11
-description: View the eCom API how-it-works guides for illustrations of the main flows.
-pagination_prev: Null
-pagination_next: Null
+title: "How it works: WooCommerce"
+sidebar_position: 12
 ---
 END_METADATA -->
 
-# How the Checkout API works for shipping
+# How Checkout works for WooCommerce
 
-The Checkout API supports all major shipping providers in the Norwegian market, including:
+With our official WooCommerce plugin, it's easy to start accepting payments with Vipps, VISA, or MasterCard through *Checkout*.
+
+For technical information about the plugin, see
+[Vipps for WooCommerce](https://developer.vippsmobilepay.com/docs/plugins-ext/woocommerce/) or 
+from the WordPress site: [Pay with Vipps for WooCommerce](https://wordpress.org/plugins/woo-vipps/).
+
+
+
+<!-- START_HIDDEN_IN_GITHUB
+<iframe width="100%" height="500" src="https://www.youtube-nocookie.com/embed/86RSKuQ5GME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>
+END_HIDDEN_IN_GITHUB -->
+
+<!-- START_COMMENT -->
+See the [WooCommerce *Checkout* enablement video](https://www.youtube.com/watch?v=86RSKuQ5GME).
+<!-- END_COMMENT -->
+
+If you have a valid set of [API keys](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/), which means if you have a *Vipps på nett* or *Checkout* agreement, you can start using *Checkout*.
+
+If you don't have an agreement with Vipps MobilePay, register on the [merchant portal](https://portal.vipps.no/register/vippscheckout).
+
+**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/) more info on what they are, how they're used, and how to get them.
+
+# Vipps for WooCommerce plugin installation
+
+To use *Checkout* in WooCommerce, you use our official plugin, which is kind of a program you install in you WooCommerce store.
+
+The [detailed installation process](https://developer.vippsmobilepay.com/docs/plugins-ext/woocommerce/#installation) can be summarized as:
+
+@@ -46,23 +48,23 @@ The [detailed installation process](https://developer.vippsmobilepay.com/docs/pl
+
+Checkout replaces the default WooCommerce checkout window with a Vipps window, giving you better conversion and less hassle.
+
+Features specific to *Checkout* are accessed in the *Payments* settings in the Admin panel.
+![image](https://user-images.githubusercontent.com/25223283/226337801-7561a625-4ad5-4a68-aa56-96a6c1bcaf68.png)
+
+To turn on *Checkout*, check the box at the top of the "Checkout" screen.
+![image](https://user-images.githubusercontent.com/25223283/226338565-250873b7-ff9d-449a-8b7e-ce7392441a2c.png)
+
+# Improve your shipping selection
+
+Standard WooCommerce shipping selection is not optimal, so we have integrated with the major Norwegian shipping providers to remove friction from this important step in the sales process. This list currently includes:
 
 * Bring/Posten
 * Postnord
@@ -19,55 +55,14 @@ The Checkout API supports all major shipping providers in the Norwegian market, 
 * Helthjem
 * Instabox
 
-To see how this works, [visit our demo store](https://demo.vipps.no/vipps-checkout-1/full).
+If you have agreements with one or more of these providers, you can add their API keys to *Checkout*. We can then present a tailored shipping selection window for your customers. For example, we can provide the improved shipping selection shown below.
 
-A provider is chosen by setting the `brand` property to one of the allowed string values. Consult the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) for further details. This will set the logo and name of the provider.
+## Improved shipping selection with Posten
 
-![Shipping provider logo example](images/shipping_logo-example.png)
+@@ -74,7 +76,7 @@ If you have agreements with one or more of these providers, you can add their AP
 
-If none of the providers fit your use case (e.g., indicating in-store-pickup), set the `brand` to "OTHER" for generic shipping. This will set a generic icon.
+## How to guide
 
-![Shipping provider default logo](images/shipping_logo-default.png)
+There are a few steps required to enable the improved shipping selection. For details, we have a [technical how-to-guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/checkout-how-it-works-shipping).
 
-## Enriching features
-
-For some of the providers we offer enriching features, including:
-
-* Pickup point
-* Home delivery
-
-These features change the user interface to allow for more specific selection of delivery time or place, where some features require you (the merchant) to provide credentials. Credentials are provided in the `logistics.integrations` property at session initiation and are used to perform a "pre-booking" (i.e. reserve a time slot) for some shipping providers.
-
-An enriching feature can be chosen by setting the `type` property on the logistics option.
-Refer to the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) to see which features are available for each shipping provider.
-
-### Pickup point
-
-The *pickup point* feature is enabled by setting `type: "PICKUP_POINT"`. The title will become `{providerName} pick-up point` (e.g. "Posten pick-up point").
-The consumer will choose an available pickup point, based on the address. We will relay the selected option as part of the content in the "session completed callback".
-
-![Pickup point animation](images/shipping_pickup-point.gif)
-
-### Home delivery
-
-The *home delivery* feature is enabled by setting `type: "HOME_DELIVERY"`. The title will become `{providerName} home delivery` (e.g. "Porterbuddy home delivery"), by default.
-The consumer will choose an available delivery window, based on the address. We relay the selected option as part of the content in the "session completed callback".
-
-![Home delivery animation](images/shipping_home-delivery.gif)
-
-### Pricing
-
-When it comes to shipping options, the `amount`-property sets the price.
-A friendly reminder: The complete checkout amount, including shipping, cannot be free (e.g. 0). If the shipping is free, the transaction amount must be 1 NOK or more. If the transaction amount is free (e.g. 0), shipping options must be 1 NOK or more.
-Please note that the `amount` property is required for a shipping option and cannot be `null`, except for Porterbuddy.
-If you're using Porterbuddy, the `amount` property is optional. If it's not provided, the `amount` will be calculated by Porterbuddy through dynamic pricing. You can adjust this in the Porterbuddy dashboard at porterbuddy.com.
-
-## When to provide shipping options
-
-Shipping options can be provided by the merchant either at session initiation or at a later stage.
-
-If you want to charge a flat rate for shipping you pass shipping options to the `logistics.fixedOptions` property at session initiation.
-
-If you want to dynamically determine the price of a shipping option based on the address of the customer you need to have an endpoint for receiving callbacks. Pass the URL to the `logistics.dynamicOptionsCallback` property. *Checkout* will call the endpoint with the address of the customer whenever they submit or update their address during a checkout session. The endpoint must return shipping options on the same format as for `fixedOptions`.
-
-**Please note:** When using dynamic shipping we recommend that you define `logistics.fixedOptions` as a backup. If the callback does not resolve successfully within 8 seconds, returns `null` or an empty list the system will fall back to static options. If no fallback options are provided, the user will be presented with an error and will not be able to continue with the checkout.
+We have made a [simple video](https://www.youtube.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
