@@ -21,4 +21,4 @@ To learn about API versioning, see
 
 ## December 2022
 
-* Launched Checkout API V3. See [Migrating from Checkout V2 to V3](./vipps-checkout-api-migration-v3.md).
+* Launched Checkout API V3. See [Migrating from Checkout V2 to V3](./checkout-api-migration-v3.md).

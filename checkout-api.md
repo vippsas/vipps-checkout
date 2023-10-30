@@ -1,23 +1,27 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: Checkout API guide
 sidebar_label: API guide
 sidebar_position: 10
 description: Find technical details about integrating with the Checkout API.
 pagination_prev: Null
 pagination_next: Null
+
 ---
+
 END_METADATA -->
 
 # API guide
 
-![Vipps](./images/vipps.png) *Available for Vipps now.*
+![Vipps](./images/vipps.png) _Available for Vipps now._
 
-![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
+![MobilePay](./images/mp.png) _Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about)._
 
 <!-- START_COMMENT -->
+
 ℹ️ Please use the website:
 [Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
+
 <!-- END_COMMENT -->
 
 The Checkout API provides an all-in-one solution for receiving payment for goods and services online using our trusted technology and brand.
@@ -27,21 +31,20 @@ and [ePayment](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/), al
 
 API version: 3.0.0.
 
-**Please note:** Always use the most recent API version when integrating with *Checkout*. All endpoints are described in detail in our [API Reference](https://developer.vippsmobilepay.com/api/checkout).
+**Please note:** Always use the most recent API version when integrating with _Checkout_. All endpoints are described in detail in our [API Reference](https://developer.vippsmobilepay.com/api/checkout).
 
-**Migrating to V3?** Consult our [Migration Guide](vipps-checkout-api-migration-v3.md).
-
+**Migrating to V3?** Consult our [Migration Guide](checkout-api-migration-v3.md).
 
 ## Checkout Features
 
-Explains the high level features of *Checkout*.
+Explains the high level features of _Checkout_.
 
 ### Checkout API
 
-*Checkout* works around the concept of a *session*, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
+_Checkout_ works around the concept of a _session_, which has a time to live of one hour. The API exposes endpoints for the merchant to interact with a session. These include:
 
-* session initiation
-* session status
+- session initiation
+- session status
 
 ### Checkout frontend
 
@@ -60,15 +63,15 @@ and you will not get improvements and bug fixes we do in the SDK.
 
 ### Shipping
 
-In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping) and the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features *Checkout* support.
+In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/checkout-how-it-works-shipping) and the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features _Checkout_ support.
 
 ### Checkout Direct
 
-With *Checkout Direct* you can easily implement an express checkout experience directly from a single product without going through a shopping cart. *Checkout Direct*  decouples you from needing to embed the iFrame and lets us handle everything at `checkout.vipps.no` before returning the customer to your shop after a payment is finished. To use *Checkout Direct* , follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
+With _Checkout Direct_ you can easily implement an express checkout experience directly from a single product without going through a shopping cart. _Checkout Direct_ decouples you from needing to embed the iFrame and lets us handle everything at `checkout.vipps.no` before returning the customer to your shop after a payment is finished. To use _Checkout Direct_ , follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
 
 ### Checkout Elements
 
-With *Checkout Elements*, you can adjust the fields and values present in the *Checkout*. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customers to identify themselves because they are already logged into your system.
+With _Checkout Elements_, you can adjust the fields and values present in the _Checkout_. For example, you might have a purchasing flow where you do not require an address because you are not sending physical goods, or you do not need the customers to identify themselves because they are already logged into your system.
 
 The `Elements` mode is set by `configuration.Elements` in initiate session.
 
@@ -96,7 +99,7 @@ These options may be combined with shipping if it fits your scenario. For exampl
 
 ### Remembering of customer data
 
-*Checkout* supports easy fetching of user info with the built-in *Login* integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different *Checkout* sessions on the same machine.
+_Checkout_ supports easy fetching of user info with the built-in _Login_ integration. With a functionality called "Remember Me", the user is can opt in to having this information being persisted across different _Checkout_ sessions on the same machine.
 
 ### Prefill customer data
 
@@ -120,12 +123,12 @@ The message displayed next to the checkbox can contain up to one link, formatted
 
 ### Receipts
 
-*Checkout* **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
+_Checkout_ **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
 
 To enable Checkout to create receipts, the `OrderSummary` property in the session initiation must be set. Detailed information is available in the OpenAPI spec [session initiation endpoint][create-checkout-session-endpoint]
 
-Receipt information is a combination of a list of *OrderLines* and a *BottomLine*. An *OrderLine* is a description of each item present in the order. The *BottomLine* contains information regarding the order as a whole.
-It is possible to specify shipping costs in one or more *OrderLines* in the session initiation.
+Receipt information is a combination of a list of _OrderLines_ and a _BottomLine_. An _OrderLine_ is a description of each item present in the order. The _BottomLine_ contains information regarding the order as a whole.
+It is possible to specify shipping costs in one or more _OrderLines_ in the session initiation.
 If shipping is handled in Checkout and is not free, an order line with the shipping cost will be automatically added, **even if** shipping costs are specified in the session initiation.
 
 If set up properly in the `OrderSummary` property in the session initiation, the receipt will be created when payment is initiated (by sending it to Order Management API), and will be visible in the customer's app when the payment is successfully completed.
@@ -147,7 +150,7 @@ In order to comply with Assisted Content Monitoring, all transactions must be po
 
 Be sure to always use the most updated version of the API when integrating.
 
-See also: [quick start guide](vipps-checkout-api-quick-start.md).
+See also: [quick start guide](checkout-api-quick-start.md).
 
 ### Flow diagram
 
@@ -205,16 +208,16 @@ POST: https://api.vipps.no/checkout/v3/session
 
 with headers
 
-| Header                        | Description                                                                           | Example value          |
-| ----------------------------- | ------------------------------------------------------------------------------------- | ---------------------- |
-| `Merchant-Serial-Number`      | Unique number for a merchant. Found in the [merchant portal](https://portal.vipps.no) | `123456`               |
+| Header                        | Description                                                                           | Example value                          |
+| ----------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| `Merchant-Serial-Number`      | Unique number for a merchant. Found in the [merchant portal](https://portal.vipps.no) | `123456`                               |
 | `Client_Id`                   | Client ID. Found in the [merchant portal](https://portal.vipps.no)                    | `fb492b5e-7907-4d83-bc20-c7fb60ca35de` |
-| `Client_Secret`               | Client Secret. Found in the [merchant portal](https://portal.vipps.no)                | `Y8Kteew6GE2ZmeycEt6egg=` |
-| `Ocp-Apim-Subscription-Key`   | Subscription key. Found in the [merchant portal](https://portal.vipps.no)             | `0f14ebcab0ec4b29ae0cb90d91b4a84a` |
-| `Vipps-System-Name`           | The name of the ecommerce solution                                                    | `woocommerce`          |
-| `Vipps-System-Version`        | The version number of the ecommerce solution                                          | `5.4`                  |
-| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                      | `woocommerce-checkout` |
-| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                            | `1.4.1`                |
+| `Client_Secret`               | Client Secret. Found in the [merchant portal](https://portal.vipps.no)                | `Y8Kteew6GE2ZmeycEt6egg=`              |
+| `Ocp-Apim-Subscription-Key`   | Subscription key. Found in the [merchant portal](https://portal.vipps.no)             | `0f14ebcab0ec4b29ae0cb90d91b4a84a`     |
+| `Vipps-System-Name`           | The name of the ecommerce solution                                                    | `woocommerce`                          |
+| `Vipps-System-Version`        | The version number of the ecommerce solution                                          | `5.4`                                  |
+| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin                                                      | `woocommerce-checkout`                 |
+| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                            | `1.4.1`                                |
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human-readable and reasonably short values.
 See [API keys](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/#how-to-use-the-api-keys) and [HTTP Headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers/) for more information.
@@ -241,7 +244,7 @@ Load the frontend SDK in the `<head>` section of the merchant website.
 
 #### Alternative 1: Classic implementation where Checkout is embedded in an iFrame on your site
 
-This is the standard flow where *Checkout* is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Checkout Direct](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
+This is the standard flow where _Checkout_ is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Checkout Direct](#alternative-2-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
 
 The frontend SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters:
 
@@ -251,9 +254,9 @@ The frontend SDK exposes a global function called `VippsCheckout`. Initialize th
 | `iFrameContainerId`   | The ID of the HTML element to contain the Checkout iFrame                                                         | No       |
 | `token`               | Token identifying the session. Comes from session creation response.                                              | No       |
 | `language`            | Can be set to 'no' Norwegian, or 'en' English. This is optional and will default to 'en' English if not specified | Yes      |
-| `on`                  | Listen to events from Checkout. See [SDK events](#frontend-sdk-events) for more details.                                   | Yes      |
+| `on`                  | Listen to events from Checkout. See [SDK events](#frontend-sdk-events) for more details.                          | Yes      |
 
-Example merchant website using *Checkout* frontend SDK to embed an iFrame with the session in plain html/js.
+Example merchant website using _Checkout_ frontend SDK to embed an iFrame with the session in plain html/js.
 
 **Please note:** To call the “create session endpoint” you must include headers that contain secret keys (client secret, subscription key). The JavaScript in the example can be openly viewed by anyone as it is client side frontend code. Therefore, you must call your own backend from the JavaScript on the frontend, and then in that backend call the Checkout create session endpoint, so you don’t leak the keys.
 
@@ -265,7 +268,7 @@ Example merchant website using *Checkout* frontend SDK to embed an iFrame with t
   </head>
   <body>
     <button type="button" id="checkout-button">Checkout with Vipps</button>
-    <section id="vipps-checkout-frame-container">
+    <section id="checkout-frame-container">
       <!-- This is where the iFrame will be embedded -->
     </section>
     <script>
@@ -280,7 +283,7 @@ Example merchant website using *Checkout* frontend SDK to embed an iFrame with t
             .then((data) => {
               var vippsCheckout = VippsCheckout({
                 checkoutFrontendUrl: data.checkoutFrontendUrl,
-                iFrameContainerId: "vipps-checkout-frame-container",
+                iFrameContainerId: "checkout-frame-container",
                 language: "no",
                 token: data.token,
               });
@@ -331,8 +334,8 @@ Available events:
 | Parameter                      | Description                                                                                             | Type                                                                                                                                            |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `shipping_option_selected`     | Is triggered when the user selects a shipping option or `undefined` when shipping option is deselected. | `ShippingOption` &#124; `undefined`                                                                                                             |
-| `total_amount_changed`         | Is triggered when the total amount changes (for example, when a shipping option is selected).            | `Money`                                                                                                                                         |
-| `session_status_changed`       | Is triggered upon changes in session status (for example, when payment is started).                   | `SessionStarted` &#124; `PaymentInitiated` &#124; `PaymentSuccessful` &#124; `PaymentFailed` &#124; `SessionTerminated` &#124; `SessionExpired` |
+| `total_amount_changed`         | Is triggered when the total amount changes (for example, when a shipping option is selected).           | `Money`                                                                                                                                         |
+| `session_status_changed`       | Is triggered upon changes in session status (for example, when payment is started).                     | `SessionStarted` &#124; `PaymentInitiated` &#124; `PaymentSuccessful` &#124; `PaymentFailed` &#124; `SessionTerminated` &#124; `SessionExpired` |
 | `shipping_address_changed`     | Is triggered when a new "delivered to" address is submitted or `undefined` when removed.                | `Address` &#124; `undefined`                                                                                                                    |
 | `customer_information_changed` | Is triggered when new customer information is submitted or `undefined` when removed.                    | `Address` &#124; `undefined`                                                                                                                    |
 
@@ -340,13 +343,13 @@ Available events:
 
 ###### `ShippingOption`
 
-| Parameter     | Type                             | Description                                                                 |
-| ------------- | -------------------------------- | --------------------------------------------------------------------------- |
-| `id`          | `string`                         | The merchants shipping option identification.                               |
+| Parameter     | Type                             | Description                                                                  |
+| ------------- | -------------------------------- | ---------------------------------------------------------------------------- |
+| `id`          | `string`                         | The merchants shipping option identification.                                |
 | `brand`       | `string`                         | The name of the brand of the option (for example, "Posten" or "PostNord").   |
-| `description` | `description` &#124; `undefined` | The description of the shipping option.                                     |
+| `description` | `description` &#124; `undefined` | The description of the shipping option.                                      |
 | `product`     | `string`                         | The brand specific product (for example, "Servicepakke" or "Home delivery"). |
-| `price`       | `Money`                          | The price of the shipping option.                                           |
+| `price`       | `Money`                          | The price of the shipping option.                                            |
 
 ###### `Money`
 
@@ -373,7 +376,7 @@ Available events:
 ```js
 window.VippsCheckout = {
   checkoutFrontendUrl: data.checkoutFrontendUrl,
-  iFrameContainerId: "vipps-checkout-frame-container",
+  iFrameContainerId: "checkout-frame-container",
   language: "no",
   token: data.token,
   on: {
@@ -398,7 +401,7 @@ window.VippsCheckout = {
 
 #### Alternative 2: Checkout Direct - we handle the checkout and redirect the user back to you
 
-To check out a single item directly, use *Checkout Direct*. Hook this flow up on a button directly on a product, and we handle the rest by redirecting the user to `checkout.vipps.no` where we handle the checkout. We will return the customer back to your site when finished.
+To check out a single item directly, use _Checkout Direct_. Hook this flow up on a button directly on a product, and we handle the rest by redirecting the user to `checkout.vipps.no` where we handle the checkout. We will return the customer back to your site when finished.
 
 We also have a [Checkout button](https://developer.vippsmobilepay.com/docs/design-guidelines/checkout-button/) with our look-and-feel that you can use (if you so choose) to make the integration super easy on your product page!
 
@@ -416,11 +419,23 @@ The frontend SDK exposes a global function called `VippsCheckoutDirect`. Initial
 <html>
   <head>
     <title>Merchant website</title>
-    <script async type="text/javascript" src="https://checkout.vipps.no/vippsCheckoutSDK.js"></script>
-    <script async type="text/javascript" src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"></script>
+    <script
+      async
+      type="text/javascript"
+      src="https://checkout.vipps.no/vippsCheckoutSDK.js"
+    ></script>
+    <script
+      async
+      type="text/javascript"
+      src="https://checkout.vipps.no/checkout-button/v1/vipps-checkout-button.js"
+    ></script>
   </head>
   <body>
-    <vipps-checkout-button id="checkout-button" variant="orange" branded="true"></vipps-checkout-button>
+    <vipps-checkout-button
+      id="checkout-button"
+      variant="orange"
+      branded="true"
+    ></vipps-checkout-button>
     <script>
       document
         .getElementById("checkout-button")
@@ -452,7 +467,7 @@ The frontend SDK exposes a global function called `VippsCheckoutDirect`. Initial
 
 ### Step 3: Handling the result of the session
 
-After the user has completed the checkout process, the merchant will be notified with transaction details through *callback* and *polling*, as described below.
+After the user has completed the checkout process, the merchant will be notified with transaction details through _callback_ and _polling_, as described below.
 
 **Please note:** It is highly recommended implementing polling in addition to callback. We **do not** guarantee delivery of the callback.
 
@@ -491,35 +506,35 @@ If you want more details about the payment, call the [underlying get payment end
 
 ### Step 3a: If a transaction is authorized, capture payment
 
-If the payment state of a session is `AUTHORIZED`, when received in callback or polling, the amount of the transaction was successfully *reserved*.
+If the payment state of a session is `AUTHORIZED`, when received in callback or polling, the amount of the transaction was successfully _reserved_.
 
-In order to actually move the money and complete the payment, the transaction must be *captured*. Capture must be done in accordance with the terms and conditions you have with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
+In order to actually move the money and complete the payment, the transaction must be _captured_. Capture must be done in accordance with the terms and conditions you have with the user. Our recommendation is that this is not performed until the goods or services have been delivered.
 
-A capture operation for the whole reserved amount is called a *full capture*.
-A capture operation for only part of the reserved amount is called a *partial capture*.
+A capture operation for the whole reserved amount is called a _full capture_.
+A capture operation for only part of the reserved amount is called a _partial capture_.
 
-A *partial capture* is used, for example, if only parts of an order could be fulfilled.
+A _partial capture_ is used, for example, if only parts of an order could be fulfilled.
 
 For more details about full and partial capture, see the ePayment API schema: [`POST:/epayment/v1/{reference}/capture`][capture-payment-endpoint].
 
 **Please note:** You cannot perform a capture on an amount larger than that which is reserved.
 
 **Please note:** A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See
-[Transaction operations](vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
+[Transaction operations](checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
 
 ## Integration partner and plugin guidelines
 
-*Checkout* allows you to use [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys) for authentication.
+_Checkout_ allows you to use [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys) for authentication.
 
-In the initiation request, use your own partner keys and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/partner/partner-keys). This results in an *on-behalf-of* authentication that is available when the merchant has a valid connection to your solution.
+In the initiation request, use your own partner keys and send the Merchant Serial Number as described on the [Partner keys page](https://developer.vippsmobilepay.com/docs/partner/partner-keys). This results in an _on-behalf-of_ authentication that is available when the merchant has a valid connection to your solution.
 
 To sign up a partner, see the [Partner documentation](https://developer.vippsmobilepay.com/docs/partner/).
 
 ## Transaction operations (Capture, Cancel, Refund, Details)
 
-*Checkout* should be considered an extension of our other commerce functionality (e.g., [ePayment](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/)).
+_Checkout_ should be considered an extension of our other commerce functionality (e.g., [ePayment](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/)).
 
-This means that transaction operations other than payment initiation, which is handled by [Checkout](vipps-checkout-api-checklist.md), should be done on the [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
+This means that transaction operations other than payment initiation, which is handled by [Checkout](checkout-api-checklist.md), should be done on the [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 Use the same credentials for ePayment and Checkout. See the
 [ePayment guidelines](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for the integration.
 
@@ -527,12 +542,12 @@ Use the same credentials for ePayment and Checkout. See the
 
 ### Checkout only supports Reserve/Capture
 
-When you initiate a payment, it will be *reserved* until you capture it. The *capture* can be done a few seconds later, or several days later.
+When you initiate a payment, it will be _reserved_ until you capture it. The _capture_ can be done a few seconds later, or several days later.
 
-*Reserved* means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. *Capture* means that the funds are moved from the customer's account to the merchant's account.
+_Reserved_ means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. _Capture_ means that the funds are moved from the customer's account to the merchant's account.
 See [Knowledge base: Reserve and capture](https://developer.vippsmobilepay.com/docs/knowledge-base/reserve-and-capture) for more information.
 
-**Please note:** *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in *Checkout*, and transactions will fail.
+**Please note:** _Direct Capture_, where a transaction is automatically captured upon reservation, _is not_ supported in _Checkout_, and transactions will fail.
 
 ## Transaction information
 
@@ -540,7 +555,7 @@ It is possible to get the `transactionId` value of a transaction. This can be us
 
 ### Recommended integration (currently in pilot mode)
 
-In order to integrate with the *receipt* functionality,
+In order to integrate with the _receipt_ functionality,
 you need to retrieve the PSP reference in the `"paymentAction": "AUTHORISATION"` event from the [event log][get-payment-event-log-endpoint] endpoint. This is required when using receipts with Checkout or freestanding card payments
 
 [create-checkout-session-endpoint]: https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post

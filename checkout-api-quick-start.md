@@ -1,5 +1,5 @@
-<!-- START_METADATA
----
+## <!-- START_METADATA
+
 title: Quick start for the Checkout API
 sidebar_label: Quick start
 sidebar_position: 5
@@ -8,6 +8,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 5
 pagination_next: null
 pagination_prev: null
+
 ---
 
 import ApiSchema from '@theme/ApiSchema';
@@ -21,8 +22,10 @@ END_METADATA -->
 Use the Checkout API to create a checkout session and retrieve session information.
 
 <!-- START_COMMENT -->
+
 ℹ️ Please use the website:
 [Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/checkout-api>).
+
 <!-- END_COMMENT -->
 
 ## Before you begin
@@ -44,10 +47,10 @@ your test credentials from the merchant portal.
 You will need the following values, as described in the
 [Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started):
 
-* `client_id` - Client_id for a test sales unit.
-* `client_secret` - Client_id for a test sales unit.
-* `Ocp-Apim-Subscription-Key` - Subscription key for a test sales unit.
-* `Merchant-Serial-Number` - The unique ID for a test sales unit.
+- `client_id` - Client_id for a test sales unit.
+- `client_secret` - Client_id for a test sales unit.
+- `Ocp-Apim-Subscription-Key` - Subscription key for a test sales unit.
+- `Merchant-Serial-Number` - The unique ID for a test sales unit.
 
 <Tabs
 defaultValue="curl"
@@ -60,13 +63,13 @@ values={[
 
 In Postman, import the following files:
 
-* [Checkout API Postman collection](/tools/vipps-checkout-api-postman-collection.json)
-* [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
+- [Checkout API Postman collection](/tools/checkout-api-postman-collection.json)
+- [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
 
-Update the *Current Value* field in your Postman environment with your **Merchant Test** keys.
-Use *Current Value* field for added security, as these values are not synced to the cloud.
+Update the _Current Value_ field in your Postman environment with your **Merchant Test** keys.
+Use _Current Value_ field for added security, as these values are not synced to the cloud.
 
 </TabItem>
 <TabItem value="curl">
@@ -134,7 +137,7 @@ curl https://apitest.vipps.no/checkout/v3/session \
 Take note of the `reference` value, as it can be used for subsequent calls relating to this session.
 
 To display the session, you will need to load the Checkout SDK in your website, as described in
-[API Guide: Displaying the session](vipps-checkout-api.md#step-2-displaying-the-session).
+[API Guide: Displaying the session](checkout-api.md#step-2-displaying-the-session).
 
 ### Step 3 - Retrieve the session information
 
