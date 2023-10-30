@@ -17,7 +17,7 @@ See the
 for more details.
 
 For general information and questions, please check in the
-[Knowledge base](https://developer.vippsmobilepay.com/docs/common-topics/).
+[Knowledge base](https://developer.vippsmobilepay.com/docs/knowledge-base/).
 
 <!-- START_COMMENT -->
 ℹ️ Please use the website:
@@ -79,7 +79,7 @@ Yes, check out the [pre-fill customer data](https://developer.vippsmobilepay.com
 All subsequent transaction operations are fully supported in the
 [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 
-See the [Knowledge base](https://developer.vippsmobilepay.com/docs/common-topics/) for common
+See the [Knowledge base](https://developer.vippsmobilepay.com/docs/knowledge-base/) for common
 questions about captures, reservations, and refunds.
 
 ## Testing
@@ -93,7 +93,7 @@ The only difference between a wallet payment and card payment is that *paymentMe
 ## Card payments
 
 See:
-[Card payments](https://developer.vippsmobilepay.com/docs/common-topics/payments#card-payments)
+[Card payments](https://developer.vippsmobilepay.com/docs/knowledge-base/payments#card-payments)
 
 ## Shipping
 
