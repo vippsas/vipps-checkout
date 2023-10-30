@@ -15,15 +15,15 @@ The Checkout API should be considered an aggregation API of Vipps MobilePay serv
 
 ## Checklist for full integration
 
-Integrate *all* the [Checkout API endpoints](vipps-checkout-api.md)
+Integrate *all* the [Checkout API endpoints](checkout-api.md)
 
 | Endpoint     | Comment |
 |--------------|---------|
 |     Initiate | [`POST:/checkout/v3/session`][create-checkout-session-endpoint] |
 |     Details  | [`GET:/checkout/v3/session/{reference}`][retrieve-sessioninfo-endpoint] |
-|     Callback |[`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](vipps-checkout-api.md#example-of-callback) |
+|     Callback |[`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](checkout-api.md#example-of-callback) |
 
-Integrate *applicable* [ePayment API endpoints](vipps-checkout-api.md)
+Integrate *applicable* [ePayment API endpoints](checkout-api.md)
 
 | Endpoint | Comment |
 |----------|---------|
@@ -36,7 +36,7 @@ Integrate *applicable* [ePayment API endpoints](vipps-checkout-api.md)
 
 | Action | Comment |
 |--------|---------|
-|     Handle callbacks | Correctly handle callbacks from Vipps MobilePay, both for successful and unsuccessful payments. See the API documentation for [how callback URLs are built](vipps-checkout-api.md#callback-handling), make test calls to make sure you handle the `POST` requests correctly. We do not have capacity to manually do this for you. |
+|     Handle callbacks | Correctly handle callbacks from Vipps MobilePay, both for successful and unsuccessful payments. See the API documentation for [how callback URLs are built](checkout-api.md#callback-handling), make test calls to make sure you handle the `POST` requests correctly. We do not have capacity to manually do this for you. |
 |     Handle errors | Make sure to log and handle [all errors](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api.md#errors). All integrations should display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
 |     Include HTTP headers | Send the [HTTP headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
 |     Add information to the payment history| We recommend using the [Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) to add receipts and/or images to the payment history. This is a great benefit for the end user experience. It is also mandatory for merchants using ["Vipps Assisted Content Monitoring"](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/#vipps-assisted-content-monitoring). |

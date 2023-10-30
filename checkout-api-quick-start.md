@@ -60,7 +60,7 @@ values={[
 
 In Postman, import the following files:
 
-* [Checkout API Postman collection](/tools/vipps-checkout-api-postman-collection.json)
+* [Checkout API Postman collection](/tools/checkout-api-postman-collection.json)
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
@@ -134,7 +134,7 @@ curl https://apitest.vipps.no/checkout/v3/session \
 Take note of the `reference` value, as it can be used for subsequent calls relating to this session.
 
 To display the session, you will need to load the Checkout SDK in your website, as described in
-[API Guide: Displaying the session](vipps-checkout-api.md#step-2-displaying-the-session).
+[API Guide: Displaying the session](checkout-api.md#step-2-displaying-the-session).
 
 ### Step 3 - Retrieve the session information
 

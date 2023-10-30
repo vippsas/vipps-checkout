@@ -29,7 +29,7 @@ API version: 3.0.0.
 
 **Please note:** Always use the most recent API version when integrating with *Checkout*. All endpoints are described in detail in our [API Reference](https://developer.vippsmobilepay.com/api/checkout).
 
-**Migrating to V3?** Consult our [Migration Guide](vipps-checkout-api-migration-v3.md).
+**Migrating to V3?** Consult our [Migration Guide](checkout-api-migration-v3.md).
 
 
 ## Checkout Features
@@ -60,11 +60,11 @@ and you will not get improvements and bug fixes we do in the SDK.
 
 ### Shipping
 
-In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping) and the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features *Checkout* support.
+In most situations a merchant wants to send goods to a customer using a shipping provider. Consult [the shipping guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/checkout-how-it-works-shipping) and the [API spec](https://developer.vippsmobilepay.com/api/checkout#tag/Session/paths/~1session/post) for a detailed description of which shipping providers and features *Checkout* support.
 
 ### Checkout Direct
 
-With *Checkout Direct* you can easily implement an express checkout experience directly from a single product without going through a shopping cart. *Checkout Direct*  decouples you from needing to embed the iFrame and lets us handle everything at `checkout.vipps.no` before returning the customer to your shop after a payment is finished. To use *Checkout Direct* , follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
+With *Checkout Direct* you can easily implement an express checkout experience directly from a single product without going through a shopping cart. *Checkout Direct*  decouples you from needing to embed the iFrame and lets us handle everything at `checkout.vipps.no` before returning the customer to your shop after a payment is finished. To use *Checkout Direct* , follow the [System integration guidelines](#system-integration-guidelines) and make sure you pick [Alternative 2](#alternative-2-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you) under [Step 2: Displaying the session to the user](#step-2-displaying-the-session).
 
 ### Checkout Elements
 
@@ -147,7 +147,7 @@ In order to comply with Assisted Content Monitoring, all transactions must be po
 
 Be sure to always use the most updated version of the API when integrating.
 
-See also: [quick start guide](vipps-checkout-api-quick-start.md).
+See also: [quick start guide](checkout-api-quick-start.md).
 
 ### Flow diagram
 
@@ -241,7 +241,7 @@ Load the frontend SDK in the `<head>` section of the merchant website.
 
 #### Alternative 1: Classic implementation where Checkout is embedded in an iFrame on your site
 
-This is the standard flow where *Checkout* is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Checkout Direct](#alternative-2-vipps-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
+This is the standard flow where *Checkout* is embedded on your site typically when a customer checks out a shopping cart. For direct checkout of a single item, see [Checkout Direct](#alternative-2-checkout-direct---we-handle-the-checkout-and-redirect-the-user-back-to-you). The two alternatives can work side by side in combination on your site.
 
 The frontend SDK exposes a global function called `VippsCheckout`. Initialize this with the following parameters:
 
@@ -505,7 +505,7 @@ For more details about full and partial capture, see the ePayment API schema: [`
 **Please note:** You cannot perform a capture on an amount larger than that which is reserved.
 
 **Please note:** A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See
-[Transaction operations](vipps-checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
+[Transaction operations](checkout-api.md#transaction-operations-capture-cancel-refund-details) for more information.
 
 ## Integration partner and plugin guidelines
 
@@ -519,7 +519,7 @@ To sign up a partner, see the [Partner documentation](https://developer.vippsmob
 
 *Checkout* should be considered an extension of our other commerce functionality (e.g., [ePayment](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/)).
 
-This means that transaction operations other than payment initiation, which is handled by [Checkout](vipps-checkout-api-checklist.md), should be done on the [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
+This means that transaction operations other than payment initiation, which is handled by [Checkout](checkout-api-checklist.md), should be done on the [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 Use the same credentials for ePayment and Checkout. See the
 [ePayment guidelines](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for the integration.
 
