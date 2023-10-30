@@ -15,15 +15,15 @@ The Checkout API should be considered an aggregation API of Vipps MobilePay serv
 
 ## Checklist for full integration
 
-Integrate *all* the [Checkout API endpoints](vipps-checkout-api.md)
+Integrate *all* the [Checkout API endpoints](checkout-api.md)
 
 | Endpoint     | Comment |
 |--------------|---------|
 |     Initiate | [`POST:/checkout/v3/session`][create-checkout-session-endpoint] |
 |     Details  | [`GET:/checkout/v3/session/{reference}`][retrieve-sessioninfo-endpoint] |
-|     Callback |[`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](vipps-checkout-api.md#example-of-callback) |
+|     Callback |[`POST:[callbackPrefix]/checkout/{version}/order/{orderId}`](checkout-api.md#example-of-callback) |
 
-Integrate *applicable* [ePayment API endpoints](vipps-checkout-api.md)
+Integrate *applicable* [ePayment API endpoints](checkout-api.md)
 
 | Endpoint | Comment |
 |----------|---------|
