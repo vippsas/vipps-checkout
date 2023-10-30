@@ -1297,7 +1297,7 @@ components:
           minLength: 8
           pattern: "^[-a-zA-Z0-9]*$"
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid/'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/knowledge-base/orderid/'
         paymentDescription:
           maxLength: 100
           minLength: 3
@@ -1573,7 +1573,7 @@ components:
           nullable: true
         reference:
           type: string
-          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/common-topics/orderid/'
+          description: 'The merchant''s unique reference for the transaction. Also known as OrderId. Example: "acme-shop-123-order123abc". See https://developer.vippsmobilepay.com/docs/knowledge-base/orderid/'
         sessionState:
           allOf:
             - $ref: "#/components/schemas/ExternalSessionState"

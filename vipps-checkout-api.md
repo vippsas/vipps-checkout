@@ -103,7 +103,7 @@ These options may be combined with shipping if it fits your scenario. For exampl
 We believe that simplicity is key to providing the best user experience. With `prefillCustomer`, you can easily send in any information you have about your customer, making filling out forms in the Checkout a breeze.
 All fields in `prefillCustomer` are optional. We will prefill the form with whatever information you send and let your customers fill in the rest if any information is missing.
 
-To further streamline the payment process, we've implemented a feature that automatically forwards the phone number to our [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
+To further streamline the payment process, we've implemented a feature that automatically forwards the phone number to our [landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/).
 This removes the hassle of having to fill in the phone number multiple times and makes it even easier for your customers to pay.
 
 Even if your Checkout is set up with `PaymentOnly`, you can still send in your customer's phone number to make the payment process smoother.
@@ -217,7 +217,7 @@ with headers
 | `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin                                            | `1.4.1`                |
 
 The last four headers (starting with `Vipps-System-`) are meant to identify your system (and plugin). Please use self-explanatory, human-readable and reasonably short values.
-See [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/#how-to-use-the-api-keys) and [HTTP Headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers/) for more information.
+See [API keys](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/#how-to-use-the-api-keys) and [HTTP Headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers/) for more information.
 
 All fields of the request body are described in our [API Reference][create-checkout-session-endpoint].
 
@@ -530,7 +530,7 @@ Use the same credentials for ePayment and Checkout. See the
 When you initiate a payment, it will be *reserved* until you capture it. The *capture* can be done a few seconds later, or several days later.
 
 *Reserved* means that the customer has approved the payment. The funds remain in the customer's account, but are not available for use. *Capture* means that the funds are moved from the customer's account to the merchant's account.
-See [Knowledge base: Reserve and capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture) for more information.
+See [Knowledge base: Reserve and capture](https://developer.vippsmobilepay.com/docs/knowledge-base/reserve-and-capture) for more information.
 
 **Please note:** *Direct Capture*, where a transaction is automatically captured upon reservation, *is not* supported in *Checkout*, and transactions will fail.
 

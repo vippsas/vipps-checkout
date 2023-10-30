@@ -25,11 +25,11 @@ END_HIDDEN_IN_GITHUB -->
 See the [WooCommerce *Checkout* enablement video](https://www.youtube.com/watch?v=86RSKuQ5GME).
 <!-- END_COMMENT -->
 
-If you have a valid set of [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/), which means if you have a *Vipps på nett* or *Checkout* agreement, you can start using *Checkout*.
+If you have a valid set of [API keys](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/), which means if you have a *Vipps på nett* or *Checkout* agreement, you can start using *Checkout*.
 
 If you don't have an agreement with Vipps MobilePay, register on the [merchant portal](https://portal.vipps.no/register/vippscheckout).
 
-**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/) more info on what they are, how they're used, and how to get them.
+**Don't know what API keys are?** [Here you can find](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/) more info on what they are, how they're used, and how to get them.
 
 # Vipps for WooCommerce plugin installation
 
