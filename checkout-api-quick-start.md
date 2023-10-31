@@ -134,7 +134,7 @@ curl https://apitest.vipps.no/checkout/v3/session \
 Take note of the `reference` value, as it can be used for subsequent calls relating to this session.
 
 To display the session, you will need to load the Checkout SDK in your website, as described in
-[API Guide: Displaying the session](checkout-api.md#step-2-displaying-the-session).
+[API Guide: Displaying the session](checkout-api-guide.md#step-2-displaying-the-session).
 
 ### Step 3 - Retrieve the session information
 
