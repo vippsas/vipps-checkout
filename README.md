@@ -46,10 +46,10 @@ To test Checkout:
 
 ## Next steps
 
-* [API quick start](vipps-checkout-api-quick-start.md): Run the basic examples in curl or Postman.
-* [API guide](vipps-checkout-api.md): Learn about the Checkout API features.
-* [API checklist](vipps-checkout-api-checklist.md): Complete the checklist for a Checkout integration.
-* [API FAQ](vipps-checkout-api-faq.md): Questions and answers
+* [API quick start](./checkout-api-quick-start.md): Run the basic examples in curl or Postman.
+* [API guide](./checkout-api-guide.md): Learn about the Checkout API features.
+* [API checklist](./checkout-api-checklist.md): Complete the checklist for a Checkout integration.
+* [API FAQ](./checkout-api-faq.md): Questions and answers
 * [API reference](https://developer.vippsmobilepay.com/api/checkout): Go straight to the endpoint specifications.
 
 ## Related topics

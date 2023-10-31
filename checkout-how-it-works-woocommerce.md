@@ -74,7 +74,7 @@ If you have agreements with one or more of these providers, you can add their AP
 
 ## How to guide
 
-There are a few steps required to enable the improved shipping selection. For details, we have a [technical how-to-guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-how-it-works-shipping).
+There are a few steps required to enable the improved shipping selection. For details, we have a [technical how-to-guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/checkout-how-it-works-shipping).
 
 We have made a [simple video](https://www.youtube.com/watch?v=f4NVq4A73UA), showing how to enable PorterBuddy in Checkout, but the same principles apply for the other options.
 
