@@ -66,11 +66,11 @@ Checkout offers Vipps as it is supposed to work with card payments, user informa
 
 ### Is it possible to add a newsletter option in Checkout?
 
-Yes, [custom consent](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/checkout-api/#custom-consent) can be used.
+Yes, [custom consent](checkout-api.md#custom-consent) can be used.
 
 ### How can I pre-fill my customers phone number in the payment page (landing page)?
 
-Yes, check out the [pre-fill customer data](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/checkout-api/#prefill-customer-data) feature.
+Yes, check out the [pre-fill customer data](checkout-api.md#prefill-customer-data) feature.
 
 ## Capture, reservations, and refunds
 
