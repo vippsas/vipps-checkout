@@ -505,7 +505,7 @@ For more details about full and partial capture, see the ePayment API schema: [`
 **Please note:** You cannot perform a capture on an amount larger than that which is reserved.
 
 **Please note:** A reservation will expire automatically after some days if it is not captured, but it can also be manually removed using the `Cancel` transaction operation. If a transaction is already captured, the `Refund` operation must be used. This is because money has actually been moved at this point and must be moved back. See
-[Transaction operations](checkout-api-guide.md#transaction-operations-capture-cancel-refund-details) for more information.
+[Transaction operations](./checkout-api-guide.md#transaction-operations-capture-cancel-refund-details) for more information.
 
 ## Integration partner and plugin guidelines
 
