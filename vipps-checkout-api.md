@@ -120,7 +120,7 @@ The message displayed next to the checkbox can contain up to one link, formatted
 
 ### Receipts
 
-*Checkout* **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts) directly.
+*Checkout* **(V3 only)** supports creating receipts, visible in the App. This can be useful in many cases, and a receipt can be mandatory in some cases [as described below](#receipts-and-assisted-content-monitoring). It is possible to post the order lines and bottom line to the Order Management API independently, without using the functionality described in this section. Then you need to use [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/#receipts) directly.
 
 To enable Checkout to create receipts, the `OrderSummary` property in the session initiation must be set. Detailed information is available in the OpenAPI spec [session initiation endpoint][create-checkout-session-endpoint]
 
@@ -129,16 +129,16 @@ It is possible to specify shipping costs in one or more *OrderLines* in the sess
 If shipping is handled in Checkout and is not free, an order line with the shipping cost will be automatically added, **even if** shipping costs are specified in the session initiation.
 
 If set up properly in the `OrderSummary` property in the session initiation, the receipt will be created when payment is initiated (by sending it to Order Management API), and will be visible in the customer's app when the payment is successfully completed.
-Further details regarding receipts in [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts)
+Further details regarding receipts in [The Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/#receipts)
 
 #### Show order summary
 
-In addition to automatically creating [receipts](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#receipts), setting up the `OrderSummary` property as described above enables the use of `showOrderSummary: true` inside `configuration` in the session initiation. This will display a simplified order summary, similar to the receipt, on top of the Checkout window. Use this feature if you would like to show what the user is paying for during the checkout. We show a simpler summary than the receipt using a subset of the properties inside `OrderSummary`. E.g. tax calculations are shown in the receipt, but not in the order summary. The following properties will be honored `id, name, discount, giftcard, totalAmount, productUrl, isReturn, isShipping, currency, giftCardAmount, quantity`
+In addition to automatically creating [receipts](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/#receipts), setting up the `OrderSummary` property as described above enables the use of `showOrderSummary: true` inside `configuration` in the session initiation. This will display a simplified order summary, similar to the receipt, on top of the Checkout window. Use this feature if you would like to show what the user is paying for during the checkout. We show a simpler summary than the receipt using a subset of the properties inside `OrderSummary`. E.g. tax calculations are shown in the receipt, but not in the order summary. The following properties will be honored `id, name, discount, giftcard, totalAmount, productUrl, isReturn, isShipping, currency, giftCardAmount, quantity`
 ![Show order summary](https://user-images.githubusercontent.com/920028/228213655-40bd7ecf-6f36-460f-af23-b0df1c58edd7.png)
 
 #### Receipts and Assisted Content Monitoring
 
-We offer [assisted content monitoring](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) as a way for Merchants to deal with the regulatory demands of content monitoring.
+We offer [assisted content monitoring](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/#vipps-assisted-content-monitoring) as a way for Merchants to deal with the regulatory demands of content monitoring.
 For some merchants, we can utilize the merchant's webpage for content monitoring, continuously verifying that the actual products being sold coincides with the expected products.
 If you, as a merchant, do not have a permanent website that can be utilized for content monitoring, for example you do not have a user facing website or the website is ephemeral/short-lived, then you must utilize Assisted Content Monitoring.
 In order to comply with Assisted Content Monitoring, all transactions must be posted to the Order Management receipts functionality described in this section.
@@ -536,7 +536,7 @@ See [Knowledge base: Reserve and capture](https://developer.vippsmobilepay.com/d
 
 ## Transaction information
 
-It is possible to get the `transactionId` value of a transaction. This can be used, for example, to utilize [Order Management API: Vipps-assisted content monitoring](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring) or to support account procedures.
+It is possible to get the `transactionId` value of a transaction. This can be used, for example, to utilize [Order Management API: Vipps-assisted content monitoring](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/#vipps-assisted-content-monitoring) or to support account procedures.
 
 ### Recommended integration (currently in pilot mode)
 
