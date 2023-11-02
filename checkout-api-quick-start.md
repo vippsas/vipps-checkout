@@ -32,7 +32,7 @@ This applies for API keys, HTTP headers, reference, phone number, etc.
 Note that any currency amount must be an Integer value minimum 100 in øre.
 
 **A note on errors:** An endpoint may return a non-successful response code for many reasons, including invalid API keys, missing fields in an input, etc.
-When errors occur, a response based on <https://tools.ietf.org/html/rfc7807> will be returned. The message format may evolve, so avoid building strict logic around it.
+When errors occur, a response based on [Problem Details for HTTP APIs](https://tools.ietf.org/html/rfc7807) will be returned. The message format may evolve, so avoid building strict logic around it.
 
 ## Your first Checkout
 
