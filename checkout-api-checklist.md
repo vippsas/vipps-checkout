@@ -11,7 +11,7 @@ END_METADATA -->
 
 # Checklist
 
-The Checkout API is composed of several Vipps MobilePay services, while the [ePayment API][epayment-api-reference-url]. For examples of requests and responses, see the [Checkout API guide][checkout-api-reference-url] and [ePayment API guide][epayment-api-reference-url].
+The Checkout API is composed of several Vipps MobilePay services, while transaction operations are to be performed on the  [ePayment API][epayment-api-reference-url]. For examples of requests and responses, see the [Checkout API guide][checkout-api-reference-url] and [ePayment API guide][epayment-api-reference-url].
 
 ## Checklist for full integration
 
