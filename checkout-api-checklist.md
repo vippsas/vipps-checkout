@@ -11,7 +11,7 @@ END_METADATA -->
 
 # Checklist
 
-The Checkout API should be considered an aggregation API of Vipps MobilePay services, while transaction operations is to be performed on the [ePayment][epayment-api-reference-url] API. For examples of requests and responses, see the relevant API docs for [Checkout][checkout-api-reference-url] and [ePayment][epayment-api-reference-url].
+The Checkout API is composed of several Vipps MobilePay services, while the [ePayment API][epayment-api-reference-url]. For examples of requests and responses, see the [Checkout API guide][checkout-api-reference-url] and [ePayment API guide][epayment-api-reference-url].
 
 ## Checklist for full integration
 
@@ -31,6 +31,13 @@ Integrate *applicable* [ePayment API endpoints](https://developer.vippsmobilepay
 |     Cancel payment | [`POST:/epayment/v1/{reference}cancel`][cancel-payment-endpoint] |
 |     Full and partial capture payment | [`POST:/epayment/v1/{reference}/capture`][capture-payment-endpoint] |
 |     Full and partial refund payment | [`POST:/epayment/v1/{reference}refund`][refund-payment-endpoint] |
+
+When the checklist is completed, notify Vipps MobilePay Integration Service
+at [developer@vippsmobilepay.com](mailto:developer@vippsmobilepay.com).
+Include examples from the test environment, pilot customer info, and a description of the implemented solution.
+
+We will verify the integration and contact you.
+After the checklist is approved, we'll send you the information you need to get started.
 
 ## Quality assurance
 
