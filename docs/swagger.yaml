@@ -1,7 +1,10 @@
 openapi: 3.0.1
 info:
   title: checkout-backend-merchant-v3.API
-  description: "For details, see the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/)."
+  description: |-
+     The Checkout API can be used to create a checkout session within your website,
+     where you can process payments, handle shipping, and gather consent to user information.
+     See the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/) for more details.
   version: v3
 servers:
   - url: https://apitest.vipps.no/checkout/v3
