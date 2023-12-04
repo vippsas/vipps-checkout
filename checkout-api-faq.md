@@ -68,9 +68,9 @@ Checkout offers Vipps as it is supposed to work with card payments, user informa
 
 Yes, [custom consent](./checkout-api-guide.md#custom-consent) can be used.
 
-### How can I pre-fill my customers phone number in the payment page (landing page)?
+### How can I prefill my customers phone number in the payment page (landing page)?
 
-Yes, check out the [pre-fill customer data](./checkout-api-guide.md#prefill-customer-data) feature.
+Yes, check out the [prefill customer data](./checkout-api-guide.md#prefill-customer-data) feature.
 
 ## Capture, reservations, and refunds
 
