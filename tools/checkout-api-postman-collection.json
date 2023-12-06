@@ -1,11 +1,11 @@
 {
   "item": [
     {
-      "id": "8153c657-e758-4a05-9b88-cac3ec0486a9",
+      "id": "c05806b4-8f33-41a6-9db5-d5606245c3f7",
       "name": "session",
       "item": [
         {
-          "id": "af4cfc57-1f71-47ec-a22e-02fc8f0d495e",
+          "id": "381b6f3f-601b-446a-b532-03d33c30cb34",
           "name": "Create a Checkout session",
           "request": {
             "name": "Create a Checkout session",
@@ -24,25 +24,25 @@
               {
                 "disabled": false,
                 "key": "Vipps-System-Name",
-                "value": "{{vipps_system_name}}",
+                "value": "{{system_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Version",
-                "value": "{{vipps_system_version}}",
+                "value": "{{system_version}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Name",
-                "value": "{{vipps_system_plugin_name}}",
+                "value": "{{system_plugin_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Version",
-                "value": "{{vipps_system_plugin_version}}",
+                "value": "{{system_plugin_version}}",
                 "description": ""
               },
               {
@@ -82,7 +82,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"merchantInfo\": {\n    \"callbackUrl\": \"{{callbackUrl}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"value\": 1000,\n      \"currency\": \"{{currency}}\"\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"brand\": \"POSTEN\",\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\"\n      },\n      {\n        \"brand\": \"POSTEN\",\n        \"type\": \"PICKUP_POINT\",\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\"\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"configuration\": {\n    \"customerInteraction\": \"CUSTOMER_NOT_PRESENT\",\n    \"elements\": \"Full\",\n    \"countries\": {\n      \"supported\": [\n        \"NO\",\n        \"SE\",\n        \"DK\"\n      ]\n    }\n  }\n}",
+              "raw": "{\n  \"merchantInfo\": {\n    \"callbackUrl\": \"{{callbackUrl}}\",\n    \"returnUrl\": \"{{fallBack}}\",\n    \"callbackAuthorizationToken\": \"{{$guid}}\",\n    \"termsAndConditionsUrl\": \"{{termsAndConditionsUrl}}\"\n  },\n  \"transaction\": {\n    \"amount\": {\n      \"value\": 1000,\n      \"currency\": \"{{currency}}\"\n    },\n    \"reference\": \"{{orderId}}\",\n    \"paymentDescription\": \"{{transactionTextInitiate}}\"\n  },\n  \"logistics\": {\n    \"dynamicOptionsCallback\": \"{{dynamicOptionsCallbackUrl}}\",\n    \"fixedOptions\": [\n      {\n        \"brand\": \"POSTEN\",\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"id\": \"postenservicepakke1\",\n        \"priority\": 1,\n        \"isDefault\": true,\n        \"description\": \"Your package is delivered to your home.\"\n      },\n      {\n        \"brand\": \"POSTEN\",\n        \"amount\": {\n          \"value\": 300,\n          \"currency\": \"{{currency}}\"\n        },\n        \"type\": \"PICKUP_POINT\",\n        \"id\": \"postenservicepakke2\",\n        \"priority\": 2,\n        \"isDefault\": false,\n        \"description\": \"Pick up your package at the local store.\"\n      }\n    ],\n    \"integrations\": {\n      \"porterbuddy\": {\n        \"publicToken\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"apiKey\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni \",\n        \"origin\": {\n          \"name\": \"{{firstName}} {{lastName}}\",\n          \"email\": \"{{email}}\",\n          \"phoneNumber\": \"{{internationalMobileNumber}}\",\n          \"address\": {\n            \"streetAddress\": \"{{streetAddress}}\",\n            \"postalCode\": \"{{postalCode}}\",\n            \"city\": \"{{city}}\",\n            \"country\": \"{{country}}\"\n          }\n        }\n      }\n    }\n  },\n  \"prefillCustomer\": {\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phoneNumber\": \"{{internationalMobileNumber}}\",\n    \"streetAddress\": \"{{streetAddress}}\",\n    \"city\": \"{{city}}\",\n    \"postalCode\": \"{{postalCode}}\",\n    \"country\": \"{{country}}\"\n  },\n  \"configuration\": {\n    \"customerInteraction\": \"CUSTOMER_NOT_PRESENT\",\n    \"elements\": \"Full\",\n    \"countries\": {\n      \"supported\": [\n        \"NO\",\n        \"SE\",\n        \"DK\"\n      ]\n    }\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -121,7 +121,7 @@
           }
         },
         {
-          "id": "c5342172-24b6-488e-a122-a577d89ad1c0",
+          "id": "3a7e8593-0a57-4e12-8c4e-a20bfeaa412a",
           "name": "Get session info",
           "request": {
             "name": "Get session info",
@@ -152,25 +152,25 @@
               {
                 "disabled": false,
                 "key": "Vipps-System-Name",
-                "value": "{{vipps_system_name}}",
+                "value": "{{system_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Version",
-                "value": "{{vipps_system_version}}",
+                "value": "{{system_version}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Name",
-                "value": "{{vipps_system_plugin_name}}",
+                "value": "{{system_plugin_name}}",
                 "description": ""
               },
               {
                 "disabled": false,
                 "key": "Vipps-System-Plugin-Version",
-                "value": "{{vipps_system_plugin_version}}",
+                "value": "{{system_plugin_version}}",
                 "description": ""
               },
               {
@@ -217,11 +217,11 @@
   ],
   "event": [],
   "info": {
-    "_postman_id": "a4ff3cf4-e56b-448d-8251-8120304c06f9",
+    "_postman_id": "ec68c60b-36c9-4a57-b51c-4a760e528614",
     "name": "Checkout API v3 - Collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "For details, see the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api).",
+      "content": "The Checkout API can be used to create a checkout session within your website, where you can process payments, handle shipping, and gather consent to user information. See the [Checkout API Guide](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/) for more details. Spec: d62f12b1",
       "type": "text/plain"
     }
   }

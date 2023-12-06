@@ -14,6 +14,11 @@ All notable changes to the current API will be documented in this file.
 To learn about API versioning, see
 [API Lifecycle](https://developer.vippsmobilepay.com/docs/knowledge-base/api-lifecycle/).
 
+## December 2023
+
+* Added Posti integration documentation for Finland
+* Removed unused logistics options
+
 ## March 2023
 
 * Added support for `Porterbuddy`, `Helthjem`, and `Instabox` on the
