@@ -11,13 +11,13 @@ END_METADATA -->
 
 # How the Checkout API works for shipping
 
-The Checkout API supports all major shipping providers in the Norwegian market, including:
+The Checkout API supports most major shipping providers in the nordic market, including:
 
 * Bring/Posten
 * Postnord
 * Porterbuddy
 * Helthjem
-* Instabox
+* Posti
 
 To see how this works, [visit our demo store](https://demo.vipps.no/vipps-checkout-1/full).
 

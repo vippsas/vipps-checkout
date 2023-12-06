@@ -104,7 +104,6 @@ paths:
                               "description": "Your package is delivered to your home.",
                               "isPickupPoint": false,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                             {
                               "amount":
@@ -117,7 +116,6 @@ paths:
                               "description": "Pick up your package at the local store.",
                               "isPickupPoint": true,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                           ],
                         "integrations":
@@ -189,7 +187,6 @@ paths:
                               "description": "Your package is delivered to your home.",
                               "isPickupPoint": false,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                             {
                               "amount": { "currency": "NOK", "value": 300 },
@@ -201,7 +198,6 @@ paths:
                               "description": "Pick up your package at a pickup point",
                               "isPickupPoint": true,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                           ],
                       },
@@ -259,7 +255,6 @@ paths:
                               "description": "Your package is delivered to your home.",
                               "isPickupPoint": false,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                             {
                               "amount":
@@ -272,7 +267,6 @@ paths:
                               "description": "Pick up your package at the local store.",
                               "isPickupPoint": true,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                           ],
                         "integrations":
@@ -344,7 +338,6 @@ paths:
                               "description": "Your package is delivered to your home.",
                               "isPickupPoint": false,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                             {
                               "amount": { "currency": "NOK", "value": 300 },
@@ -356,7 +349,6 @@ paths:
                               "description": "Pick up your package at a pickup point",
                               "isPickupPoint": true,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                           ],
                       },
@@ -414,7 +406,6 @@ paths:
                               "description": "Your package is delivered to your home.",
                               "isPickupPoint": false,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                             {
                               "amount":
@@ -427,7 +418,6 @@ paths:
                               "description": "Pick up your package at the local store.",
                               "isPickupPoint": true,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                           ],
                         "integrations":
@@ -499,7 +489,6 @@ paths:
                               "description": "Your package is delivered to your home.",
                               "isPickupPoint": false,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                             {
                               "amount": { "currency": "NOK", "value": 300 },
@@ -511,7 +500,6 @@ paths:
                               "description": "Pick up your package at a pickup point",
                               "isPickupPoint": true,
                               "isPorterbuddy": false,
-                              "isInstabox": false,
                             },
                           ],
                       },
@@ -618,7 +606,7 @@ paths:
                     examples:
                       Swagger:
                         summary: Swagger
-                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","Amount":{"Value":100,"Currency":"NOK"},"PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","OpeningHours":null,"Instabox":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
+                        value: '{"SessionId":"v52EtjZriRmGiKiAKHByK2","MerchantSerialNumber":"59474","Reference":"acme-shop-123-order123abc","SessionState":0,"PaymentMethod":0,"PaymentDetails":{"Amount":{"Value":10000,"Currency":"NOK"},"State":1},"UserDetails":{"FirstName":"Ada","LastName":"Lovelace","PhoneNumber":"4791234567","Email":"user@example.com","UserInfoSub":"fe0ffa07-5524-445a-9692-13a89222165b"},"ShippingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO","ShippingMethodId":"postenservicepakke1","Amount":{"Value":100,"Currency":"NOK"},"PickupPoint":{"Id":"123","Name":"Storo Storsenter","Address":"Vitaminveien 7","PostalCode":"0485","City":"OSLO","Country":"NO","OpeningHours":null}},"BillingDetails":{"FirstName":"Ada","LastName":"Lovelace","Email":"user@example.com","PhoneNumber":"4791234567","StreetAddress":"Robert Levins gate 5","PostalCode":"0154","Region":"Oslo","Country":"NO"}}'
               responses:
                 "200":
                   description: Your server implementation should return this HTTP status code if the data was received successfully.
@@ -1001,36 +989,6 @@ components:
           type: string
           description: 'The URL to poll for session information. Example: "https://api.vipps.no/checkout/v1/session/31gf1g413121".'
       description: Response from initiating a session.
-    Instabox:
-      required:
-        - clientId
-        - clientSecret
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: The client id provided to you by Instabox
-        clientSecret:
-          type: string
-          description: The client secret provided to you by Instabox
-      description: Configuration required to enable Instabox logistics options
-    InstaboxBookingDetails:
-      required:
-        - availabilityToken
-        - serviceType
-        - sortCode
-      type: object
-      properties:
-        availabilityToken:
-          type: string
-          description: Identifies when the delivery options were fetched
-        serviceType:
-          type: string
-          description: Identifies the service (For example "EXPRESS")
-        sortCode:
-          type: string
-          description: Identifies the location
-      description: Details needed to book an instabox order
     Integrations:
       type: object
       properties:
@@ -1038,11 +996,6 @@ components:
           allOf:
             - $ref: "#/components/schemas/Porterbuddy"
           description: Configuration required to enable Porterbuddy logistics options
-          nullable: true
-        instabox:
-          allOf:
-            - $ref: "#/components/schemas/Instabox"
-          description: Configuration required to enable Instabox logistics options
           nullable: true
     Logistics:
       type: object
@@ -1109,10 +1062,6 @@ components:
         isPorterbuddy:
           type: boolean
           description: If this is a Porterbuddy shipping option. Can not be used with AddressFields set to false
-          nullable: true
-        isInstabox:
-          type: boolean
-          description: If this is an Instabox shipping option. Can not be used with AddressFields set to false
           nullable: true
       description: A logistics option to be presented to the customer
     MerchantAuthInfoHeaders:
@@ -1334,11 +1283,6 @@ components:
           items:
             type: string
           description: "Pickup point's opening hours. Example: Man-Søn: 1000-2000"
-          nullable: true
-        instabox:
-          allOf:
-            - $ref: "#/components/schemas/InstaboxBookingDetails"
-          description: Instabox details
           nullable: true
       description: The pickup point the customer selected .
     Porterbuddy:
